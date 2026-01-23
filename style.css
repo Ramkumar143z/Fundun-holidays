@@ -1,0 +1,1337 @@
+:root {
+    --gold: #D4AF37;
+    --black:#000000;
+    --dark-grey: #121212;
+    --white: #ffffff;
+}
+
+* { margin:0; padding:0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background-color: var(--black); color: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
+
+.container { width: 90%; max-width: 1200px; margin: auto; }
+.gold { color: var(--gold); }
+.section { padding: 80px 0; }
+.bg-dark { background-color: var(--dark-grey); }
+.center { text-align: center; }
+
+/* Navigation */
+/* Default State: Transparent */
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 1000;
+    background-color: transparent; /* Starting transparent */
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease;
+    border-bottom: none; /* Kila line varathu */
+}
+
+/* Scrolled State: Black Background */
+#navbar.scrolled {
+    background-color: #000000; /* Scroll panna aprm black */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Slight shadow for depth */
+}
+
+/* Nav links color (adjust if needed) */
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+}
+.nav-container { width: 96%; height: 60px; margin: auto; }
+.nav-flex { display: flex; justify-content: space-between; align-items: center; }
+.logo-box { display: flex; align-items: center; gap: 10px; }
+.nav-logo { height: 45px; }
+.logo-text { font-family: 'Poppins'; font-weight: 800; font-size: 1.1rem; }
+.nav-right { display: flex; align-items: center; gap: 40px; }
+.nav-links { list-style: none; display: flex; gap: 25px; }
+.nav-links a { text-decoration: none; color: #fff; font-weight: 600; font-size: 0.85rem; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;}
+.nav-links a:hover { color: var(--gold); }
+.btn-small { padding: 8px 18px !important; font-size: 0.8rem !important; }
+
+/* Hero */
+.hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; }
+.hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); z-index: -1; object-fit: cover; }
+.hero-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); z-index: 0;}
+.hero-content { position: relative; z-index: 10; padding: 20px; }
+.bold-heading { font-family: 'Poppins'; font-weight: 800; font-size: 4.5rem; line-height: 1.1; margin-bottom: 20px; }
+.hero-content p { font-size: 1.2rem; margin-bottom: 30px; }
+.hero-btns { display: flex; justify-content: center; gap: 15px; }
+
+/* Buttons */
+.btn-gold { background: var(--gold); color: #000; padding: 14px 28px; border-radius: 4px; font-weight: 700; border: none; cursor: pointer; transition: 0.3s; }
+.btn-gold:hover { background: #fff; }
+.btn-white { background: transparent; border: 2px solid #fff; color: #fff; padding: 14px 28px; border-radius: 4px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+.btn-white:hover { background: #fff; color: #000; }
+
+/* Destinations */
+.section-title { font-family: 'Poppins'; font-weight: 700; font-size: 2.5rem; text-align: center; margin-bottom: 50px; }
+.state-title { font-family: 'Poppins'; font-weight: 800; font-size: 1.9rem; text-align: center; margin: 18px 0 28px; letter-spacing: 0.6px; }
+.dest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+/* --- Destinations Section Mattum Silver Shine Apply Pannum --- */
+
+/* Specific-ah destinations section kulla irukka dest-card-ku mattum */
+#destinations .dest-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    background: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    cursor: pointer;
+}
+
+/* Touch (Hover) pannra andha oru card mattum lift aagum */
+#destinations .dest-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(255, 255, 255, 0.4); 
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    z-index: 5; /* Card matha cards-ku mela theriyum */
+}
+
+/* Specific card image zoom */
+#destinations .dest-card .dest-img {
+    height: 250px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 1.2s ease, filter 0.5s ease;
+}
+
+#destinations .dest-card:hover .dest-img {
+    transform: scale(1.1);
+    filter: brightness(0.6);
+}
+
+/* SILVER SHINE EFFECT: Ovvoru card touch-kum trigger aagum */
+#destinations .dest-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    transition: 0.7s;
+    z-index: 3;
+    pointer-events: none; /* Idhu click interaction-a thadukkaadhu */
+}
+
+/* Hover pannra card-la mattum shine cross aagum */
+#destinations .dest-card:hover::after {
+    left: 150%;
+}
+
+/* Info area fix to prevent overlap */
+#destinations .dest-card .dest-info {
+    position: relative;
+    padding: 20px;
+    z-index: 4;
+    background: #1a1a1a;
+}.dest-img { height: 230px; background-size: cover; background-position: center; }
+.dest-info { padding: 20px; }
+.btn-card { width: 100%; border: 1px solid var(--gold); color: var(--gold); padding: 10px; background: transparent; cursor: pointer; font-weight: 700; margin-top: 15px; transition: 0.3s; }
+.btn-card:hover { background: var(--gold); color: #000; }
+/* Modhala cards-a hide panni veikanum */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px); /* 40px keezha irukkum */
+    transition: all 0.8s ease-out;
+    will-change: transform, opacity;
+}
+
+/* User scroll panni section-ku vandhadhum, JS indha class-a add pannum */
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0); /* Normal position-ku vandhurum */
+}
+.dest-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 20px rgba(5, 5, 5, 0.2); /* Gold Glow */
+    transform: translateY(-10px);
+    background: #000;
+}
+
+.btn-gold:hover {
+    box-shadow: 0 0 15px var(--gold);
+    background: #fff;
+    color: #000;
+}
+
+/* Offer & Upcoming Dotted Box Design */
+.offer-card {
+    background: #1a1a1a;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.dotted-box {
+    border: 2px dotted var(--gold);
+}
+.price { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+
+/* Overlays */
+.detail-page-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #000; z-index: 2000;
+    display: none; overflow-y: auto;
+    animation: slideUp 0.5s ease forwards;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; }
+.detail-header { position: sticky; top: 0; background: rgba(0,0,0,0.95); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; z-index: 100; }
+.btn-back { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 8px 20px; cursor: pointer; font-weight: 700; transition: 0.3s; }
+.btn-back:hover { background: var(--gold); color: #000; }
+
+.detail-hero { height: 100vh; background-size: cover; background-position: center; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
+.detail-hero::after { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to bottom, transparent, #000); }
+.detail-hero-content { position: relative; z-index: 5; }
+.detail-hero-content h1 { font-size: 4rem; font-family: 'Poppins'; text-transform: uppercase; }
+
+/* Services */
+.service-flex { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.s-item { text-align: center; padding: 40px; border: 1px solid #222; width: 280px; transition: 0.3s; color: #888; border-radius: 12px; background: #0f0f0f;}
+.s-item:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2); }
+.s-item i { font-size: 3rem; color: var(--gold); margin-bottom: 15px; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease, color 0.4s ease; transform-origin: center; }
+.s-item:hover i { transform: scale(1.2) translateY(-10px); filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.6)); }
+
+/* Honeymoon Tours - Pink */
+.s-item:nth-child(5):hover { border-color: #FF1493; transform: translateY(-5px); box-shadow: 0 15px 50px rgba(255, 20, 147, 0.4); transition: all 0.4s ease; }
+.s-item:nth-child(5):hover i { color: #FF1493; filter: drop-shadow(0 0 15px #FF1493); }
+
+/* Family Tours - Soft Green */
+.s-item:nth-child(3):hover { border-color: #66BB6A; transform: translateY(-5px); box-shadow: 0 15px 50px rgba(102, 187, 106, 0.4); transition: all 0.4s ease; }
+.s-item:nth-child(3):hover i { color: #66BB6A; filter: drop-shadow(0 0 15px #66BB6A); }
+
+/* Holiday Packages - Sky Blue */
+.s-item:nth-child(1):hover { border-color: #4FC3F7; transform: translateY(-5px); box-shadow: 0 15px 50px rgba(79, 195, 247, 0.4); transition: all 0.4s ease; }
+.s-item:nth-child(1):hover i { color: #4FC3F7; filter: drop-shadow(0 0 15px #4FC3F7); }
+
+/* Custom Planning - Bright Orange */
+.s-item:nth-child(4):hover { border-color: #FF8C42; transform: translateY(-5px); box-shadow: 0 15px 50px rgba(255, 140, 66, 0.4); transition: all 0.4s ease; }
+.s-item:nth-child(4):hover i { color: #FF8C42; filter: drop-shadow(0 0 15px #FF8C42); }
+
+/* Corporate Tours - silver */
+.s-item:nth-child(2):hover { border-color: purple; transform: translateY(-5px); box-shadow: 0 15px 50px rgba(70, 130, 180, 0.4); transition: all 0.4s ease; }
+.s-item:nth-child(2):hover i { color: purple; filter: drop-shadow(0 0 15px #4682B4); }
+
+/* Contact Cards */
+/* Grid-la irukka cards-ku delay set panrom */
+.dest-grid .dest-card:nth-child(1) { transition-delay: 0.1s; }
+.dest-grid .dest-card:nth-child(2) { transition-delay: 0.2s; }
+.dest-grid .dest-card:nth-child(3) { transition-delay: 0.3s; }
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.contact-card { background: #1a1a1a; padding: 40px; border-radius: 10px; text-align: center; border: 1px solid #333; cursor: pointer; transition: 0.3s; }
+.contact-card:hover { border-color: var(--gold); transform: translateY(-5px); background: #222; }
+.contact-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 15px; }
+
+/* Footer */
+footer { padding: 60px 0 20px; background: #080808; border-top: 2px solid var(--gold); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+.footer-logo { height: 60px; margin-bottom: 15px; }
+.f-links a { color: #888; text-decoration: none; line-height: 2; font-size: 0.9rem; }
+.social-icons { display: flex; gap: 20px; font-size: 1.5rem; margin-top: 15px; }
+.social-icons a { color: #d4af37; transition: all 0.3s ease; text-decoration: none; display: flex; align-items: center; justify-content: center; }
+
+/* Facebook hover effect - blue color */
+.social-icons a[href*="facebook"] {
+    color: var(--gold);
+}
+.social-icons a[href*="facebook"]:hover {
+    color: #1877F2;
+    filter: drop-shadow(0 0 10px #1877F2);
+    transform: scale(1.2);
+}
+
+/* Instagram hover effect - pink color */
+.social-icons a[href*="instagram"] {
+    color: var(--gold);
+}
+.social-icons a[href*="instagram"]:hover {
+    color: #E4405F;
+    filter: drop-shadow(0 0 30px #E4405F);
+    transform: scale(1.2);
+}
+
+/* Email/Envelope hover effect - gold */
+.social-icons a[href*="mailto"] {
+    color: var(--gold);
+}
+.social-icons a[href*="mailto"]:hover {
+    color: var(--gold);
+    filter: drop-shadow(0 0 10px var(--gold));
+    transform: scale(1.2);
+}
+
+.f-hr { border: 0; border-top: 1px solid #222; margin: 30px 0; }
+
+/* WhatsApp Float */
+.whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: white; z-index: 1500; box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-decoration: none; }
+
+@media (max-width: 768px) {
+    .bold-heading { font-size: 2.5rem; }
+    .nav-links { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .detail-hero-content h1 { font-size: 2.5rem; }
+    .state-title { font-size: 1.4rem; }
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    .social-icons { justify-content: center; }
+
+    
+}
+/* Poster image for hero (replacing video) */
+.hero-poster { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); z-index: -1; object-fit: cover; }
+
+/* Promo Modal Popup */
+/* Promo Popup-ku indha style-a replace pannunga */
+#promoPopup {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    /* Initial state: konjam keezha, hidden-ah irukanum */
+    transform: translate(-50%, -40%) scale(0.9); 
+    opacity: 0;
+    visibility: hidden;
+    
+    width: 92%;
+    max-width: 500px;
+    background: #0f0f0f;
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+    padding: 25px;
+    z-index: 10000;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth movement */
+}
+
+/* Pop-up trigger aagum podhu varra class */
+#promoPopup.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1); /* Centre-ku vandhurum */
+}
+#promoPopup { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.98); width: 92%; max-width: 520px; background: #0f0f0f; color: #fff; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); z-index: 100000; display: none; padding: 22px; }
+#promoPopup.open { display: block; animation: popIn 260ms cubic-bezier(.2,.9,.2,1) forwards; }
+#promoPopup .promo-head { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+#promoPopup h3 { margin: 0; font-size: 1.2rem; }
+#promoPopup p { color: #d1d1d1; margin: 12px 0 16px; font-size: 0.95rem; }
+#promoPopup .promo-actions { display:flex; gap:10px; justify-content:flex-end; align-items:center; }
+#promoPopup .promo-actions .btn { padding: 10px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+#promoPopup .btn-ghost { background: transparent; border: 1px solid #444; color: #fff; }
+#promoPopup .btn-primary { background: var(--gold); color: #000; border: none; }
+#promoPopup .promo-footer { display:flex; justify-content:space-between; align-items:center; margin-top: 12px; }
+#promoPopup label { font-size: 0.9rem; color: #bbb; display:flex; align-items:center; gap:8px; cursor: pointer; }
+
+@keyframes popIn { from { opacity: 0; transform: translate(-50%, -48%) scale(0.96); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+/* Preloader Styles */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #000000; /* Black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Stays on top of everything */
+    transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+.preloader-content {
+    text-align: center;
+}
+
+.loader-logo {
+    width: 250px; /* Adjust size of the big logo here */
+    height: auto;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+/* Optional: Golden line animation under logo */
+.loader-line {
+    width: 100px;
+    height: 3px;
+    background: var(--gold);
+    margin: 20px auto 0;
+    border-radius: 10px;
+    animation: expand 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+@keyframes expand {
+    0% { width: 0; }
+    50% { width: 150px; }
+    100% { width: 0; }
+}
+
+/* Class to hide the preloader */
+.hide-preloader {
+    opacity: 0;
+    visibility: hidden;
+}
+/* Login Button in Nav */
+.btn-login {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+.btn-login:hover { color: #d4af37; }
+
+/* Auth Modal Styles */
+.auth-container {
+    background: #111;
+    width: 90%;
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid #333;
+    position: relative;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.close-auth {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: #222;
+    border: 1px solid #444;
+    color: white;
+    border-radius: 5px;
+}
+
+.w-100 { width: 100%; margin-top: 10px; }
+
+.auth-switch {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #888;
+}
+/* Gallery Marquee Styles (movie-poster sized items) */
+.gallery-marquee {
+    width: 100%;
+    overflow: hidden;
+    padding: 22px 0;
+    position: relative;
+    background: #000;
+}
+
+.marquee-track {
+    display: flex;
+    /* item total width = item width + horizontal margin (20px) -> 220 + 20 = 240 */
+    width: calc(240px * 38); /* adjust count if you change number of images */
+    animation: scroll-right 40s linear infinite;
+    gap: 20px;
+}
+
+.gallery-item {
+    width: 220px; /* poster-like width */
+    height: 340px; /* taller for movie-poster aspect */
+    margin: 0 10px;
+    flex-shrink: 0;
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid #222;
+    transition: transform 0.28s ease, border-color 0.2s ease;
+    background: #111;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-item:hover {
+    border-color: #d4af37;
+    transform: scale(1.04);
+    z-index: 10;
+}
+
+.gallery-marquee:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+/* Lightbox Modal Style */
+.image-lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+}
+
+#fullImage {
+    max-width: 90%;
+    max-height: 85%;
+    border: 3px solid #d4af37;
+    border-radius: 5px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #fff;
+    font-size: 50px;
+    cursor: pointer;
+}
+.auth-switch a { text-decoration: none; font-weight: bold; }
+
+/* Entrance reveal animations */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(.2,.9,.2,1), transform 0.7s cubic-bezier(.2,.9,.2,1); will-change: opacity, transform; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Upwards variation */
+.reveal-up { opacity: 0; transform: translateY(10px); }
+.reveal-up.visible { opacity: 1; transform: translateY(0); transition: opacity 0.6s ease, transform 0.6s ease; }
+
+/* Blur-up progressive image loading */
+.blur-up { filter: blur(18px) scale(1.02); transition: filter 0.7s ease, transform 0.7s ease; }
+.blur-up.loaded { filter: blur(0) scale(1); }
+
+/* Background lazy/progressive */
+.bg-lazy { filter: blur(12px) scale(1.02); transition: filter 0.7s ease, transform 0.7s ease; }
+.bg-lazy.loaded { filter: blur(0) scale(1); }
+
+/* Parallax helper */
+.parallax { will-change: transform; }
+
+/* Simple welcome popup */
+#welcomePopup { position: fixed; right: 20px; bottom: 90px; background: rgba(10,10,10,0.98); color: #fff; padding: 18px 20px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); z-index: 99999; display: none; width: 300px; }
+#welcomePopup.open { display: block; animation: popupIn 0.36s ease; }
+#welcomePopup h4 { margin-bottom: 8px; }
+#welcomePopup p { font-size: 0.9rem; color: #ddd; margin-bottom: 12px; }
+#welcomePopup .close-welcome { background: transparent; border: 1px solid #444; color: #fff; padding: 6px 10px; border-radius: 6px; cursor: pointer; }
+
+@keyframes popupIn { from { transform: translateY(10px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+
+/* Text animation: containers appear, then letters animate in */
+.text-reveal { animation: boxReveal 0.5s ease forwards; }
+
+@keyframes boxReveal {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Individual letter animation (staggered) */
+.letter { display: inline-block; opacity: 0; animation: letterFadeSlide 0.5s cubic-bezier(.2,.9,.2,1) forwards; }
+
+@keyframes letterFadeSlide {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* ======== ATTRACTIONS MODAL STYLES ======== */
+.attractions-modal-content {
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 12px;
+    max-width: 650px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 50px;
+    position: relative;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95);
+    animation: slideInUp 0.4s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-attractions {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: transparent;
+    border: none;
+    font-size: 32px;
+    color: var(--gold);
+    cursor: pointer;
+    transition: 0.3s;
+    opacity: 0.7;
+}
+
+.close-attractions:hover {
+    color: var(--white);
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+.attractions-header {
+    text-align: center;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    padding-bottom: 30px;
+}
+
+.attractions-header h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+.attractions-header p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+}
+
+.attractions-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 40px;
+}
+
+.attraction-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 16px 18px;
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid rgba(212, 175, 55, 0.4);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.attraction-item:hover {
+    background: rgba(212, 175, 55, 0.08);
+    border-left-color: var(--gold);
+    transform: translateX(5px);
+}
+
+.attraction-icon {
+    font-size: 1.2rem;
+    min-width: 30px;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.attraction-name {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.attractions-footer {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.attractions-footer button {
+    flex: 1;
+}
+
+/* ======== END ATTRACTIONS MODAL STYLES ======== */
+/* Service Icons Animation */
+
+/* 1. Honeymoon Tours - Heart Flip Over */
+.s-item:hover .fa-heart {
+    transform: rotateY(180deg);
+    transition: transform 0.6s;
+    color: #ff4d4d; /* Heart color change */
+}
+
+/* 2. Family Tours - Shuffle Effect */
+.s-item:hover .fa-users {
+    animation: shuffle 0.5s infinite;
+}
+
+@keyframes shuffle {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(2px, -2px); }
+    50% { transform: translate(-2px, 2px); }
+    75% { transform: translate(2px, 2px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* 3. School & College Package - Graduation Cap Jump */
+.s-item:hover .fa-graduation-cap {
+    animation: jump 0.5s ease-in-out infinite;
+}
+
+@keyframes jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* 4. Corporate Tours - Building Pulse */
+.s-item:hover .fa-building {
+    transform: scale(1.2);
+    transition: 0.3s;
+}
+
+/* 5. Custom Planning - Map Marked Rotation */
+.s-item:hover .fa-map-marked-alt {
+    transform: rotate(15deg);
+    transition: 0.3s;
+}
+
+/* Common style for smooth motion */
+.s-item i {
+    display: inline-block;
+    transition: all 0.4s ease;
+}
+/* Screenshot design mathiriye Instagram box */
+.instagram-promo-dark {
+    text-align: center;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 350px; /* Mattha cards kooda match aaga */
+}
+
+/* Instagram icon mela add panna (Optional) */
+.instagram-promo-dark h3::before {
+    content: '\f16d'; /* FontAwesome Instagram Icon */
+    font-family: 'Font Awesome 6 Brands';
+    display: block;
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: var(--gold);
+}
+
+/* Animation for the gold text */
+.instagram-promo-dark .price.gold {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.3;
+    margin: 20px 0;
+    text-transform: uppercase;
+}
+
+/* Hover effect */
+.instagram-promo-dark:hover {
+    background-color: #1a1a1a;
+    transition: 0.3s ease;
+}
+/* All Video Offer Cards Styling */
+.video-offer-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 400px; /* Card height adjustment */
+    display: flex;
+    align-items: center;    /* Vertically Center alignment */
+    justify-content: center; /* Horizontally Center alignment */
+    border: 2px dotted var(--gold) !important;
+    background-color: #000;
+    padding: 0 !important; /* Content alignment-ukaga padding remove panrom */
+}
+
+.video-background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.offer-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4); /* Video darker to make text pop */
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.card-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 30px;
+    width: 100%;
+}
+
+/* Hover Effect: Video konjam bright aagum */
+.video-offer-card:hover .offer-video {
+    filter: brightness(0.6);
+    transition: 0.5s ease;
+}
+
+.video-offer-card .price.gold {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin: 15px 0;
+    text-transform: uppercase;
+    display: block;
+}
+/* 1. Base style for the card */
+.contact-card {
+    background: #111; /* Dark background as seen in your image */
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #333;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smooth bouncy transition */
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 2. Hover effect for the Box (Shadow and Lift) */
+.contact-card:hover {
+    transform: translateY(-10px); /* Moves the card up */
+    background: #1a1a1a;
+    border-color: #ffcc00; /* Gold border on hover */
+    box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2); /* Gold glow shadow */
+}
+
+/* 3. Icon Translation (Moving and Scaling) */
+.contact-card i {
+    font-size: 2.5rem;
+    color: #ffcc00; /* Gold color */
+    margin-bottom: 15px;
+    display: inline-block;
+    transition: transform 0.4s ease, color 0.4s ease;
+}
+
+.contact-card:hover i {
+    transform: scale(1.2) translateY(-5px); /* Grows and moves up */
+    color: #fff; /* Changes icon to white on hover */
+}
+
+/* 4. Text color change on hover */
+.contact-card h3 {
+    margin: 10px 0;
+    transition: color 0.3s ease;
+}
+
+.contact-card:hover h3 {
+    color: #ffcc00; /* Title turns gold */
+}
+
+/* 5. Extra: Subtle glow on the small text */
+.contact-card small {
+    color: #888;
+    transition: color 0.3s ease;
+}
+
+.contact-card:hover small {
+    color: #bbb;
+}
+/* --- Common Transitions --- */
+.contact-card {
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.contact-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2);
+    border-color: #ffcc00;
+}
+
+/* --- 1. Phone Ringing Animation --- */
+@keyframes ring {
+    0% { transform: rotate(0); }
+    10% { transform: rotate(15deg); }
+    20% { transform: rotate(-15deg); }
+    30% { transform: rotate(15deg); }
+    40% { transform: rotate(-15deg); }
+    50% { transform: rotate(0); }
+    100% { transform: rotate(0); }
+}
+
+.contact-card:hover .fa-phone {
+    animation: ring 0.5s infinite;
+    color: #fff;
+}
+
+/* --- 2. Mail Sending (Fly) Animation --- */
+@keyframes fly {
+    0% { transform: translateX(0) translateY(0) scale(1); opacity: 1; }
+    30% { transform: translateX(-5px) translateY(5px); }
+    100% { transform: translateX(50px) translateY(-50px) scale(0.5); opacity: 0; }
+}
+
+.contact-card:hover .fa-envelope {
+    animation: fly 0.8s infinite;
+    color: #fff;
+}
+
+/* --- 3. Location / Map Animation --- */
+/* FontAwesome-ல் 'map' icon பயன்படுத்தினால் இது நன்றாக இருக்கும் */
+@keyframes mapOpen {
+    0% { transform: scaleX(1); }
+    50% { transform: scaleX(1.5); }
+    100% { transform: scaleX(1); }
+}
+
+/* Pin குதிப்பது போன்ற அனிமேஷன் */
+@keyframes pinJump {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
+}
+
+.contact-card:hover .fa-map-marker-alt {
+    animation: pinJump 0.6s ease infinite;
+    color: #fff;
+}
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding-top: 40px;
+}
+/* --- Base Card Styles --- */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 40px 0;
+}
+
+.contact-card {
+    background: #111;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #333;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden; /* Keeps animations inside the card */
+}
+
+.contact-card:hover {
+    transform: translateY(-10px);
+    border-color: #ffcc00;
+    box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2);
+}
+
+/* Container for the icons to allow absolute positioning */
+.icon-wrapper {
+    position: relative;
+    height: 60px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-wrapper i {
+    font-size: 40px;
+    color: #ffcc00;
+    transition: all 0.4s ease;
+}
+
+/* --- 1. Phone Ringing Animation --- */
+@keyframes ring {
+    0% { transform: rotate(0); }
+    25% { transform: rotate(15deg); }
+    50% { transform: rotate(-15deg); }
+    75% { transform: rotate(15deg); }
+    100% { transform: rotate(0); }
+}
+
+.contact-card:hover .fa-phone {
+    animation: ring 0.4s infinite;
+    color: #fff;
+}
+
+/* --- 2. Email Flying Animation --- */
+@keyframes flyEmail {
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    100% { transform: translate(50px, -50px) scale(0.5); opacity: 0; }
+}
+
+.contact-card:hover .fa-envelope {
+    animation: flyEmail 0.8s infinite;
+    color: #fff;
+}
+
+/* --- 3. Book Opening & Pin Animation --- */
+.pin-icon {
+    position: absolute;
+    opacity: 0; /* Hidden by default */
+    transform: translateY(20px);
+    color: #ff3333 !important; /* Red color for the pin */
+    transition: all 0.5s ease;
+}
+
+.contact-card:hover .fa-book-open {
+    transform: scaleX(1.3); /* Simulates book opening wide */
+    color: #ffd700;
+}
+
+.contact-card:hover .pin-icon {
+    opacity: 1;
+    transform: translateY(-25px); /* Pin pops up from the book */
+    animation: pinJump 0.6s infinite alternate 0.4s; /* Jumps after book opens */
+}
+
+@keyframes pinJump {
+    from { transform: translateY(-25px); }
+    to { transform: translateY(-35px); }
+}
+.icon-container {
+    position: relative;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pin-icon {
+    position: absolute;
+    opacity: 0;
+    color: #ff3333 !important;
+    z-index: 2;
+}
+
+.book-icon {
+    z-index: 1;
+}
+/* Offers Section Grid - 3 cards in a single line */
+#offers .dest-grid {
+    display: grid;
+    /* 3 cards-um ore line-la vara '1fr' moonu thadava kudukanum */
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 20px;
+    width: 100%;
+}
+
+/* Offer Card Height & Width adjustments */
+.video-offer-card {
+    height: 280px; /* Height-ah kammi panniyachu */
+    min-height: auto; /* Pathaiyatha min-height-ah remove panna */
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+/* Video fit inside the smaller height card */
+.offer-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Video stretch aagama cover panna */
+}
+
+/* Responsive: Mobile-la ore line-la iruntha nalla irukathu, 
+   athanaala mobile-ku mattum 1 column-ah mathidalam */
+@media (max-width: 992px) {
+    #offers .dest-grid {
+        grid-template-columns: 1fr; /* Mobile-la oru card thaan theriyaanum */
+    }
+    .video-offer-card {
+        height: 250px; /* Mobile-la innum konjam height kammi */
+    }
+}
+/* --- SPECIFIC EFFECTS: DESTINATION GRID & TOP SIGHTSEEING ONLY --- */
+
+/* 1. Targetting ONLY Destination Cards and Top Sightseeing Items */
+#places-grid .dest-card, 
+#tamilNaduMarquee .state-marquee-item {
+    position: relative;
+    overflow: hidden !important; /* Image veliya zoom aagama thadukka */
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* 2. Card Hover: Lift-up & Shadow */
+#places-grid .dest-card:hover, 
+#tamilNaduMarquee .state-marquee-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(255, 215, 0, 0.25);
+}
+
+/* 3. Image Zoom Effect (Unga existing image classes) */
+#places-grid .dest-card .dest-img, 
+#tamilNaduMarquee .state-marquee-item .state-marquee-item-img {
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease !important;
+}
+
+#places-grid .dest-card:hover .dest-img, 
+#tamilNaduMarquee .state-marquee-item:hover .state-marquee-item-img {
+    transform: scale(1.12); /* Subtle zoom */
+    filter: brightness(0.7); /* Konjam dark aagum shine nalla theriya */
+}
+
+/* 4. Shine Effect (Pseudo-element) */
+#places-grid .dest-card::after, 
+#tamilNaduMarquee .state-marquee-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    transition: 0.7s;
+    pointer-events: none;
+    z-index: 2;
+}
+
+#places-grid .dest-card:hover::after, 
+#tamilNaduMarquee .state-marquee-item:hover::after {
+    left: 150%;
+}
+
+/* 5. Z-index fix: Content (Text/Buttons) safe-ah mela iruka */
+#places-grid .dest-info, 
+#tamilNaduMarquee .state-marquee-item-info {
+    position: relative;
+    z-index: 3;
+}
+/* --- GALLERY MARQUEE ROTATION EFFECT --- */
+
+/* 1. Marquee Container setup */
+#marqueeWrapper {
+    padding: 40px 0;
+    perspective: 1000px; /* 3D depth effect-kaga */
+}
+
+/* 2. Individual Marquee Item Rotation */
+#marqueeWrapper .marquee-item {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
+    transform: rotate(-3deg); /* Default-ah konjam saayuthu */
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 0 15px;
+}
+
+/* Alternating rotation: Odd cards oru pakkam, Even cards maru pakkam rotate aagum */
+#marqueeWrapper .marquee-item:nth-child(even) {
+    transform: rotate(3deg);
+}
+
+/* 3. Hover Pannum Pothu: Card Straight-a aagi Lift aagum */
+#marqueeWrapper .marquee-item:hover {
+    transform: rotate(0deg) translateY(-15px) scale(1.05); /* Straight aagum */
+    z-index: 100;
+    box-shadow: 0 25px 50px rgba(255, 215, 0, 0.3);
+    border: 2px solid #FFD700;
+}
+
+/* 4. Inside Image Zoom (Optional: matching previous effects) */
+#marqueeWrapper .marquee-item .marquee-item-img {
+    transition: transform 1.2s ease;
+}
+
+#marqueeWrapper .marquee-item:hover .marquee-item-img {
+    transform: scale(1.1);
+}
+
+/* 5. Shine effect only for these marquee items */
+#marqueeWrapper .marquee-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+    transform: skewX(-25deg);
+    transition: 0.8s;
+}
+
+#marqueeWrapper .marquee-item:hover::after {
+    left: 150%;
+}
+/* --- PREMIUM BOOKING BUTTONS --- */
+
+/* Common Button Style */
+#modalWaBtn, .insta-btn-premium {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 50px; /* Pill shape */
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: white;
+    width: 100%;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* WhatsApp Premium Style */
+#modalWaBtn {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+}
+
+#modalWaBtn:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+}
+
+/* Instagram Premium Style */
+.insta-btn-premium {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    box-shadow: 0 10px 20px rgba(220, 39, 67, 0.2);
+}
+
+.insta-btn-premium:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 15px 30px rgba(220, 39, 67, 0.4);
+}
+
+/* Icon Animation */
+#modalWaBtn i, .insta-btn-premium i {
+    font-size: 1.4rem;
+    animation: pulseIcon 2s infinite;
+}
+
+@keyframes pulseIcon {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+/* Ovvoru vaarthaikkum (word) naduvil space vara */
+.text-reveal .word {
+    display: inline-block !important;
+    margin-right: 16px !important; /* Intha value-ai maatri space-ai kootta/kuraikka mudiyum */
+}
+
+/* Letters-ukku naduvil space vendam endral */
+.text-reveal .char {
+    display: inline-block !important;
+    margin-right: 0px !important; 
+    letter-spacing: normal !important;
+}
+
+/* Oru velai ".word" class illai endral, idhai use seiyungal */
+.text-reveal span {
+    white-space: pre !important; /* HTML-il ulla original space-ai idhu thirumba konduvarum */
+}
+/* Gallery Container-ukku 3D depth kodukka */
+.gallery-marquee {
+    overflow: hidden;
+    padding: 60px 0;
+    perspective: 1000px; /* 3D depth effects-ukku ithu mukkiyam */
+    background: #000; /* Dark theme-ukku etrapola */
+}
+
+/* Marquee track-ai valaikka */
+.marquee-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: marquee-scroll 30s linear infinite;
+    transform-style: preserve-3d;
+}
+
+/* Ovvoru image-um concave (valainthu) theriya */
+.gallery-item {
+    width: 250px;
+    height: 350px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.5s ease;
+    
+    /* Concave effect: image-ai konjam saithu valaikka */
+    transform: rotateY(-15deg) scale(0.9); 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 215, 0, 0.3); /* Gold border for luxury look */
+}
+
+/* Hover seiyumpothu image straight-aga vara */
+.gallery-item:hover {
+    transform: rotateY(0deg) scale(1.1);
+    z-index: 10;
+    border-color: #d4af37; /* Gold color */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Marquee animation */
+@keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}

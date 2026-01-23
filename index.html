@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundun Holidays | Luxury Travels</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" />
+</head>
+<body>
+<div id="preloader">
+    <div class="preloader-content">
+        <img src="img/img4.png" alt="Fundun Logo" class="loader-logo">
+        <div class="loader-logo"></div>
+    </div>
+</div>
+<!-- Locomotive scroll container starts -->
+<div id="page" data-scroll-container>
+    <a href="javascript:void(0)" onclick="whatsapp('General Enquiry')" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+
+    <nav id="navbar">
+        <div class="nav-container nav-flex">
+            <div class="logo-box">
+                <img src="img/img4-removebg-preview.png" alt="Fundun Logo" class="nav-logo" style="width: 40px; height: 40px;">
+                <div class="logo-text">FUNDUN <span class="gold">HOLIDAYS</span></div>
+            </div>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="javascript:void(0)" onclick="toggleAbout(true)">About Us</a></li>
+                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#offers">Offers</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <a href="javascript:void(0)" onclick="whatsapp('Get a Quote')" class="btn-gold btn-small">Get Quote</a>
+                <a href="javascript:void(0)" onclick="toggleLoginModal(true)" class="btn-login"><i class="fas fa-user"></i> Login</a>
+            </div>
+        </div>
+    </nav>
+<div id="loginModal" class="detail-page-overlay" style="display:none; z-index: 6000;">
+    <div class="auth-container">
+        <button class="close-auth" onclick="toggleLoginModal(false)">&times;</button>
+        
+        <div class="auth-box" id="loginBox">
+            <h2 class="gold">LOGIN</h2>
+            <form onsubmit="event.preventDefault(); alert('Login successful!')">
+                <input type="email" placeholder="Email Address" required class="auth-input">
+                <input type="password" placeholder="Password" required class="auth-input">
+                <button type="submit" class="btn-gold w-100">Login</button>
+            </form>
+            <p class="auth-switch">Don't have an account? <a href="javascript:void(0)" onclick="switchAuth('signup')" class="gold">Sign Up</a></p>
+        </div>
+
+        <div class="auth-box" id="signupBox" style="display:none;">
+            <h2 class="gold">SIGN UP</h2>
+            <form onsubmit="event.preventDefault(); alert('Account created!')">
+                <input type="text" placeholder="Full Name" required class="auth-input">
+                <input type="email" placeholder="Email Address" required class="auth-input">
+                <input type="password" placeholder="Create Password" required class="auth-input">
+                <button type="submit" class="btn-gold w-100">Create Account</button>
+            </form>
+            <p class="auth-switch">Already have an account? <a href="javascript:void(0)" onclick="switchAuth('login')" class="gold">Login</a></p>
+        </div>
+    </div>
+</div>
+    <div id="aboutPage" class="detail-page-overlay">
+        <div class="detail-header">
+            <button class="btn-back" onclick="toggleAbout(false)"><i class="fas fa-arrow-left"></i> Back</button>
+            <div class="logo-text">FUNDUN <span class="gold">HOLIDAYS</span></div>
+        </div>
+        <div class="container section">
+            <h2 class="section-title text-reveal">ABOUT <span class="gold">US</span></h2>
+            <div class="about-grid">
+                <div>
+                    <h3 class="gold text-reveal">Company Introduction</h3>
+                    <p class="text-reveal">Fundun Holidays is a premium travel brand dedicated to curating bespoke travel experiences. We pride ourselves on reliability, luxury, and creating memories that last a lifetime.</p>
+                    <h3 class="gold text-reveal" style="margin-top: 20px;">Mission & Vision</h3>
+                    <p class="text-reveal">Our mission is to provide world-class travel services with a personal touch, ensuring every client feels like royalty. Our vision is to become the most trusted luxury travel partner globally.</p>
+                </div>
+                <div class="bg-dark" style="padding:30px; border-radius:10px; border: 1px solid #222;">
+                    <h3 class="gold text-reveal">Why Choose Us?</h3>
+                    <ul class="benefit-list text-reveal" style="list-style: none; margin-top: 15px;">
+                        <li><i class="fas fa-check gold"></i> Expert Travel Team</li>
+                        <li><i class="fas fa-check gold"></i> Customized Packages</li>
+                        <li><i class="fas fa-check gold"></i> Affordable Luxury</li>
+                        <li><i class="fas fa-check gold"></i> 24/7 Premium Support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header id="home" class="hero">
+        <!-- Poster image replacing video for faster load and consistent behavior -->
+        <img src="img/POSTER.png" alt="Explore the extraordinary" class="hero-poster" aria-hidden="true" style="filter: brightness(1.3);">
+        <div class="hero-overlay"></div>
+        <div class="hero-content" data-scroll-section>
+            <h1 class="bold-heading text-reveal">EXPLORE THE <span class="gold">EXTRAORDINARY</span></h1>
+            <p class="text-reveal">Your Trusted Partner for Luxury Domestic & International World Tours.</p>
+            <div class="hero-btns">
+                <button onclick="scrollToSection('destinations')" class="btn-gold">Plan Your Trip</button>
+                <button onclick="whatsapp('Chatting from Hero Section')" class="btn-white">Chat on WhatsApp</button>
+            </div>
+        </div>
+    </header>
+  <div class="dest-card reveal"> 
+    <section id="destinations" class="section">
+    <div class="container">
+        <h2 class="section-title">DESTIN <span class="gold">ATIONS</span></h2>
+        
+        <div class="state-container" style="margin-bottom: 60px;">
+            <h3 class="state-title">Tamil Nadu <span class="gold">Culture</span></h3>
+            <div class="dest-grid">
+                <div class="dest-card">
+                    <div class="dest-img" style="background-image: url('img/img5.jpg');"></div>
+                    <div class="dest-info"><h3>Ooty</h3></div>
+                </div>
+                <div class="dest-card">
+                    <div class="dest-img" style="background-image: url('img/img6.jpg');"></div>
+                    <div class="dest-info"><h3>Kodaikanal</h3></div>
+                </div>
+                <div class="dest-card">
+                    <div class="dest-img" style="background-image: url('img/img7.jpg');"></div>
+                    <div class="dest-info"><h3>Kanniyakumari</h3></div>
+                </div>
+            </div>
+            <div class="center" style="margin-top: 20px;">
+                <button class="btn-card" onclick="openDestinationPage('Tamil Nadu')">know More <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <div class="state-container" style="margin-bottom: 60px;">
+            <h3 class="state-title">Kerala <span class="gold">Special</span></h3>
+            <div class="dest-grid">
+                <div class="dest-card">
+                    <div class="dest-img" style="background-image: url('img/munar.jpg');"></div>
+                    <div class="dest-info"><h3>Munnar</h3></div>
+                </div>
+                <div class="dest-card">
+                    <div class="dest-img" style="background-image: url('img/alleppey.jpg');"></div>
+                    <div class="dest-info"><h3>Alleppey</h3></div>
+                </div>
+                <div class="dest-card">
+                    <div class="dest-img" style="background-image: url('img/wayanad.jpg');"></div>
+                    <div class="dest-info"><h3>Wayanad</h3></div>
+                </div>
+            </div>
+            <div class="center" style="margin-top: 20px;">
+                <button class="btn-card" onclick="openDestinationPage('Kerala')">know More<i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <div class="state-container" style="margin-bottom: 60px;">
+            <h3 class="state-title">Karnataka <span class="gold">Diaries</span></h3>
+            <div class="dest-grid">
+                <div class="dest-card">
+                    <div class="dest-img" style="background-image: url('img/mysore.jpg');"></div>
+                    <div class="dest-info"><h3>Mysore</h3></div>
+                </div>
+                <div class="dest-card">
+                    <div class="dest-img" style="background-image: url('img/coorg.jpg');"></div>
+                    <div class="dest-info"><h3>Coorg</h3></div>
+                </div>
+                <div class="dest-card">
+                    <div class="dest-img" style="background-image: url('img/Bangalore.jpg');"></div>
+                    <div class="dest-info"><h3>Bangalore.</h3></div>
+                </div>
+            </div>
+            <div class="center" style="margin-top: 20px;">
+                <button class="btn-card" onclick="openDestinationPage('Karnataka')">know More<i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+</section></div>
+
+    <div id="detailPage" class="detail-page-overlay">
+        <div class="detail-header">
+            <button class="btn-back" onclick="closeDetailPage()"><i class="fas fa-arrow-left"></i> Back</button>
+            <div class="logo-text">FUNDUN <span class="gold">HOLIDAYS</span></div>
+        </div>
+        
+        <!-- Image Modal for Detail Page -->
+        <div id="detailImageModal" class="detail-image-modal" style="display: none;">
+            <div class="detail-image-modal-content">
+                <button class="detail-image-close" onclick="closeDetailImageModal()">&times;</button>
+                <img id="detailModalImage" src="" alt="Place" class="detail-full-image">
+                <div class="detail-image-info">
+                    <h2 id="detailModalPlaceName"></h2>
+                    <p id="detailModalPlaceDesc"></p>
+                    <button class="btn-gold" onclick="closeDetailImageModal()">Close <i class="fas fa-arrow-left"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="detail-hero" class="detail-hero">
+            <div class="detail-hero-content">
+                <h1 id="detail-title"></h1>
+                <p id="detail-subtitle" class="gold"></p>
+            </div>
+        </div>
+        <div class="container section">
+            <h2 class="section-title">TOP <span class="gold">SIGHTSEEINGS</span></h2>
+            <div class="dest-grid" id="places-grid"></div>
+            <div class="center" style="margin-top: 60px;">
+                <button class="btn-gold" id="final-wa-btn">Book Full Package via WhatsApp</button>
+            </div>
+        </div>
+    </div>
+     <section id="services" class="section">
+    <div class="container">
+        <h2 class="section-title">OUR <span class="gold">SERVICES</span></h2>
+        <div class="service-flex">
+            <div class="s-item" onclick="selectServiceAndScroll('School&College Package')"><i class="fas fa-graduation-cap"></i> <h4>School & College Package</h4></div>
+            <div class="s-item" onclick="selectServiceAndScroll('Corporate Tours')"><i class="fas fa-building"></i> <h4>Corporate Tours</h4></div>
+            <div class="s-item" onclick="selectServiceAndScroll('Family Tours')"><i class="fas fa-users"></i> <h4>Family Tours</h4></div>
+            <div class="s-item" onclick="selectServiceAndScroll('Custom Planning')"><i class="fas fa-map-marked-alt"></i> <h4>Custom Planning</h4></div>
+            <div class="s-item" onclick="selectServiceAndScroll('Honeymoon Tours')"><i class="fas fa-heart"></i> <h4>Honeymoon Tours</h4></div>
+           
+    </div>
+</section>
+<div id="bookingModal" class="detail-page-overlay" style="display:none; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; z-index: 5000;">
+    <div class="contact-card" style="max-width: 400px; margin: auto;">
+        <h3 id="selectedServiceName" class="gold" style="margin-bottom: 20px;"></h3>
+        <p>Choose your booking method:</p>
+        <div style="display: flex; gap: 10px; margin-top: 20px; justify-content: center;">
+            <button id="modalWaBtn" class="btn-gold">WhatsApp</button>
+            <button id="modalMailBtn" class="btn-white">Email</button>
+        </div>
+        <button onclick="closeBookingModal()" class="btn-card" style="margin-top: 20px; border:none; color: #888;">Cancel</button>
+    </div>
+</div>
+
+<!-- Attractions Modal (removed offer popup as requested) -->
+   <div class="dest-card reveal"> 
+    
+    <section id="offers" class="section bg-dark">
+    <div class="container">
+        <h2 class="section-title">EXCLUSIVE <span class="gold">OFFERS</span></h2>
+        <div class="dest-grid">
+            
+            <div class="offer-card video-offer-card">
+                <div class="video-background-container">
+                    <video class="offer-video" loop muted playsinline autoplay>
+                        <source src="vid/vid3.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <h3>Students Offers</h3>
+                    <p>Ooty + Kodaikanal (5 Days)</p>
+                    <div class="price gold">Save 20% + 5% Extra Discount</div>
+                    <button class="btn-gold" onclick="whatsapp('Students Offer')">Book Combo Now</button>
+                </div>
+            </div>
+
+            <div class="offer-card video-offer-card">
+                <div class="video-background-container">
+                    <video class="offer-video" loop muted playsinline autoplay>
+                        <source src="vid/vid2.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <h3>Friends & Family</h3>
+                    <p>Munnar + Alleppey (7 Days)</p>
+                    <div class="price gold">Special Group Discount</div>
+                    <button class="btn-gold" onclick="whatsapp('Friends & Family Offer')">Book Combo Now</button>
+                </div>
+            </div>
+
+            <div class="offer-card video-offer-card">
+                <div class="video-background-container">
+                    <video class="offer-video" loop muted playsinline autoplay>
+                        <source src="vid/vid4.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <h3>Instagram Special</h3>
+                    <p>Follow our official page</p>
+                    <div class="price gold">Get 5% Instant Discount</div>
+                    <button class="btn-gold" onclick="window.open('https://www.instagram.com/fundun_holidays', '_blank')">Follow & Claim</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <section class="section bg-dark">
+        <div class="container">
+            <h2 class="section-title">UPCOMING <span class="gold">TOURS</span></h2>
+            <div class="dest-grid">
+                <div class="offer-card dotted-box">
+                    <div class="date-badge gold" style="font-weight: 800; border: 1px solid var(--gold); padding: 5px 15px; border-radius: 20px; margin-bottom: 10px;">Jan 2026</div>
+                    <h3>Kerala </h3>
+                    <p>Vagamon & Alleppey.</p>
+                    <button class="btn-card" onclick="whatsapp('Enquiry for Nature Tour Oct')">Enquire via WhatsApp</button>
+                </div>
+                <div class="offer-card dotted-box">
+                    <div class="date-badge gold" style="font-weight: 800; border: 1px solid var(--gold); padding: 5px 15px; border-radius: 20px; margin-bottom: 10px;">Feb 2026</div>
+                    <h3>Tamilnadu</h3>
+                    <p>ooty & Yercaud.</p>
+                    <button class="btn-card" onclick="whatsapp('Enquiry for Mountains Tour feb')">Enquire via WhatsApp</button>
+                </div>
+                <div class="offer-card dotted-box">
+                    <div class="date-badge gold" style="font-weight: 800; border: 1px solid var(--gold); padding: 5px 15px; border-radius: 20px; margin-bottom: 10px;">Mar 2026</div>
+                    <h3>Karnataka</h3>
+                    <p>Mysore & Dandeli .</p>
+                    <button class="btn-card" onclick="whatsapp('Enquiry for Jolly  Tour Jan')">Enquire via WhatsApp</button>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-dark">
+        <div class="container">
+            <h2 class="section-title"> TESTI<span class="gold">MONIALS</span></h2>
+            <div class="dest-grid">
+                <div class="contact-card testimonial">
+                    <i class="fas fa-quote-left gold"></i>
+                    <p>"The best travel experience ever! Fundun Holidays made our honeymoon truly royal."</p>
+                    <h4 class="gold">- Arjun & Meera</h4>
+                </div>
+                <div class="contact-card testimonial">
+                    <i class="fas fa-quote-left gold"></i>
+                    <p>"Highly professional team. The Kerala houseboat stay was perfectly arranged."</p>
+                    <h4 class="gold">- Rajesh Kumar</h4>
+                </div>
+                <div class="contact-card testimonial">
+                    <i class="fas fa-quote-left gold"></i>
+                    <p>"Affordable luxury is real! We saved a lot on our Malaysia trip. Highly recommend."</p>
+                    <h4 class="gold">- Sneha W.</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="dest-card reveal"> 
+    <section class="section bg-dark">
+    <div class="container">
+        <h2 class="section-title">OUR <span class="gold">GALLERY</span></h2>
+        <div class="gallery-marquee">
+            <div class="marquee-track">
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img1.jpg" alt="Travel 1"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img2.jpg" alt="Travel 2"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img3.jpg" alt="Travel 3"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img4.jpg" alt="Travel 4"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img5.jpg" alt="Travel 5"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img6.jpg" alt="Travel 6"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img7.jpg" alt="Travel 7"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img8.jpg" alt="Travel 8"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img9.jpg" alt="Travel 9"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img10.jpg" alt="Travel 10"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img11.jpg" alt="Travel 11"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img12.jpg" alt="Travel 12"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img13.jpg" alt="Travel 13"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img14.jpg" alt="Travel 14"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img15.jpg" alt="Travel 15"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img16.jpg" alt="Travel 16"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img17.jpg" alt="Travel 17"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img18.jpg" alt="Travel 18"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img19.jpg" alt="Travel 19"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img20.jpg" alt="Travel 1"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img21.jpg" alt="Travel 2"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img22.jpg" alt="Travel 3"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img23.jpg" alt="Travel 4"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img24.jpg" alt="Travel 5"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img25.jpg" alt="Travel 6"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img26.jpg" alt="Travel 7"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img27.jpg" alt="Travel 8"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img28.jpg" alt="Travel 9"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img29.jpg" alt="Travel 10"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img30.jpg" alt="Travel 11"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img31.jpg" alt="Travel 12"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img32.jpg" alt="Travel 13"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img33.jpg" alt="Travel 14"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img34.jpg" alt="Travel 15"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img35.jpg" alt="Travel 16"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="img/og/img36.jpg" alt="Travel 17"></div>
+    
+            </div>
+        </div>
+    </div></div>
+</section>
+
+<div id="imageLightbox" class="image-lightbox-overlay" onclick="closeLightbox()">
+    <span class="close-lightbox">&times;</span>
+    <img id="fullImage" src="" alt="Full View">
+</div>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">TRAVEL <span class="gold">BLOG</span></h2>
+            <div class="dest-grid">
+                <div class="dest-card blog-post">
+                    <div class="dest-img" style="background-image: url('');"></div>
+                    <div class="dest-info">
+                        <small class="gold">TRAVEL TIPS</small>
+                        <h3>5 Must-Pack Items for International Trips</h3>
+                        <p>Ensure a smooth journey with these essential travel gadgets and documents...</p>
+                    </div>
+                </div>
+                <div class="dest-card blog-post">
+                    <div class="dest-img" style="background-image: url('');"></div>
+                    <div class="dest-info">
+                        <small class="gold">GUIDES</small>
+                        <h3>Discovering the Hidden Gems of Tamil Nadu</h3>
+                        <p>Beyond the famous temples, explore the unexplored waterfalls and hill stations...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="dest-card reveal"> 
+   <section id="contact" class="section bg-dark">
+    <div class="container">
+        <h2 class="section-title text-reveal">CONTACT <span class="gold">US</span></h2>
+        
+        <div class="contact-grid">
+            <div class="contact-card" onclick="whatsapp('General Phone Enquiry')">
+                <i class="fas fa-phone"></i>
+                <h3>Phone</h3>
+                <p>+91 9585575354</p>
+                <small>Chat on WhatsApp</small>
+            </div>
+
+            <div class="contact-card" onclick="openMail()">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>dineshcse142@gmail.com</p>
+                <small>Open Mail App</small>
+            </div>
+
+           <div class="contact-card address-card" onclick="openMap()">
+    <div class="icon-container">
+        <i class="fas fa-book book-icon"></i>
+        <i class="fas fa-map-marker-alt pin-icon"></i>
+    </div>
+    <h3>Address</h3>
+    <p>Your Office Location</p>
+    <small>View on Google Maps</small>
+</div>
+</section>
+    <div id="google_translate_element" style="padding: 10px; text-align: right;"></div>
+
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="f-about">
+                <img src="img/img4-removebg-preview.png" alt="Footer Logo" class="footer-logo"/>
+                <p>Luxury and Trustworthy brand for all your travel needs.</p>
+                <div class="social-icons">
+                    <i class="fa fa-plane gold"></i>
+                     <i class="fa fa-bus gold"></i>
+                     <h6>24/7 Premium Support</h6>
+                </div>
+            </div>
+            <div class="f-links">
+                <h4>Quick Links</h4>
+                <a href="#home"> <span class="gold">home</span></a><br>
+                <a href="javascript:void(0)" onclick="toggleAbout(true)"><span class="gold">About Us</span></a><br>
+                <a href="#destinations"> <span class="gold">Destinations</span></a><br>
+                <a href="#offers"> <span class="gold">Offers</span></a>
+            </div>
+            <div class="f-social">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/fundun_holidays" target="_blank" style="color: inherit;">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/fundun_holidays" target="_blank" style="color: inherit;">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="mailto:dineshcse142@gmail.com" style="color: inherit; text-decoration: none;">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div><br>
+                <button class="btn-gold" onclick="whatsapp('Footer Button Enquiry')">WhatsApp Us</button>
+            </div>
+        </div>
+        <hr class="f-hr">
+        <p class="center">© 2026 Fundun Holidays | All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+    <div id="bookingModal" class="detail-page-overlay" style="display:none; align-items: center; justify-content: center; z-index: 7000;">
+    <div class="auth-box" style="text-align: center; max-width: 400px; padding: 40px;">
+        <h3 class="gold" id="selectedServiceName">Book Your Trip</h3>
+        <p style="margin-bottom: 25px; color: #ccc;">Choose your preferred booking method:</p>
+        
+        <button id="modalWaBtn" class="btn-gold w-100" style="margin-bottom: 15px;">
+            <i class="fab fa-whatsapp"></i> Book via WhatsApp
+        </button>
+        
+        <button id="modalMailBtn" class="btn-white w-100" style="background: transparent; border: 1px solid #fff; color: #fff;">
+            <i class="fas fa-envelope"></i> Book via Email
+        </button>
+        
+        <button onclick="closeBookingModal()" class="gold" style="background:none; border:none; margin-top: 20px; cursor: pointer;">
+            Close
+        </button>
+    </div>
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+<script>
+    window.onscroll = function() {
+        var navbar = document.getElementById("navbar");
+        
+        // Scroll 50px mela pochu na black aagum, illati transparent
+        if (window.pageYOffset > 50) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
+    };
+</script>
+</body>
+</html>
