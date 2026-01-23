@@ -1,872 +1,1402 @@
-// 1. Data Object
-const travelData = {
-    "Tamil Nadu": {
-        subtitle: "Experience the Rich Culture & Heritage",
-        heroImg: "img/img1.jpg",
-        places: [
-            { 
-                name: "Ooty", 
-                img: "img/img5.jpg", 
-                desc: "Queen of Hill Stations.",
-                attractions: ["Boat House", "Pykara Dam", "Pykara Lake", "Rose Garden", "Tea Museum", "Pine Forest", "Shooting Point", "Karnataka Garden", "Doddapetta Peak"]
-            },
-            { 
-                name: "Kodaikanal", 
-                img: "img/img6.jpg", 
-                desc: "The Princess of Hill Stations.",
-                attractions: ["Silver Falls", "Kodaikanal Lake", "Bryant Park", "Coakers Park", "Poombarai", "Kookal", "Pillar Rock", "Guna Caves"]
-            },
-            { 
-                name: "Kanyakumari", 
-                img: "img/img7.jpg", 
-                desc: "Meeting point of three oceans.",
-                attractions: ["Thiruvalluvar Statue", "Vivekananda Memorial Rock", "Sunset View Point", "Beach", "Padmanabhapuram Palace", "Papanasam Temple", "Manimuthar Dam", "Kuttralam"]
-            },
-            { 
-                name: "Pondicherry", 
-                img: "img/img8.jpg", 
-                desc: "The French Riviera of the East.",
-                attractions: ["French Colony", "Paradise Beach", "Sacred Heart Basilica", "Rock Beach", "Auroville Beach", "Promenade Beach", "Chunnambar Boat House"]
-            },
-            { 
-                name: "Chennai", 
-                img: "img/Chennai.jpg", 
-                desc: "Gateway to South India.",
-                attractions: ["Marina Beach", "Mahabalipuram", "Santhome Church", "Birla Planetorium", "Elliotts Beach", "Kapaleeshwar Temple", "VGP Amusement Park"]
-            },
-            { 
-                name: "yercaud", 
-                img: "img/yercaud.jpg", 
-                desc: "Jewel of the South.",
-                attractions: ["Yercaud Lake", "Pagoda Point", "Loop Road", "Bears Cave", "Kiliyur Water Falls", "Servarayan Temple"]
-            }
-            
-        ]
-    },
-    "Kerala": {
-        subtitle: "Relax in God's Own Country",
-        heroImg: "img/img3.jpg",
-        places: [
-            { 
-                name: "Munnar", 
-                img: "img/munar.jpg", 
-                desc: "Kashmir of South India.",
-                attractions: ["Mattupetty Dam", "Tea Museum", "Echo Point", "Top Station", "Kundala Lake", "Photo Point", "Rose Garden"]
-            },
-            { 
-                name: "Cochin", 
-                img: "img/cochi.jpg", 
-                desc: "Queen of the Arabian Sea.",
-                attractions: ["Chotanikara Bhagavathy Temple", "Athi Rampadi Water Falls", "Cherai Beach", "Mattancherry Palace", "Hill Palace Museum", "Wonderla", "Bolgatti Palace", "Lulu Mall", "Vypen Beach"]
-            },
-            { 
-                name: "Wayanad", 
-                img: "img/Wayanad.jpg", 
-                desc: "eco-tourism and adventure camping.",
-                attractions: ["Edakkal Caves", "Chembra Peak", "Lakkidi View Point", "Soochippara Water Falls", "Meenmutty Falls", "Banasurasagar Dam"]
-            },
-            { 
-                name: "Alleppey", 
-                img: "img/Alleppey.jpg", 
-                desc: "Venice of the East",
-                attractions: ["Backwaters", "Alappuzha Beach", "Light House", "St. Mary Forane Church", "Vembanad Lake"]
-            },
-            { 
-                name: "Vagamon",  
-                img: "img/Vagamon.jpg", 
-                desc: "Scotland of Asia",
-                attractions: ["Thangalpara", "Kurushimala", "Pine Forest", "Vagamon Meadows", "Ulupunni Tunnel", "Echo Point", "Idukki Dam", "Marmala Falls"]
-            },
-            { 
-                name: "Trivandrum", 
-                img: "img/Trivandrum.jpg", 
-                desc: "Evergreen City of India.",
-                attractions: ["Padmanabha Swamy Temple", "Chithra Art Gallery", "Zoological Park", "Napier Museum", "Magic Planet", "Mall of Travancore", "Kovalam Light House", "Kovalam Beach"]
-            },
-            { 
-                name: "Varkala", 
-                img: "img/Varkala.jpg", 
-                desc: "Goa of Kerala.",
-                attractions: ["Varkala Beach", "Varkala Cliff", "Odayam Beach", "Anjengo Fort Lighthouse"]
-            },
-            { 
-                name: "Thekkady", 
-                img: "img/Thekkady.jpg", 
-                desc: "famous wildlife reserves in South India.",
-                attractions: ["Periyar National Park", "Thekkady Lake", "Hill King", "Vandiperiyar"]
-            }
-        ]
-    },
-    "Karnataka": {
-        subtitle: "Nature Sings in green hills",
-        heroImg: "img/img2.jpg",
-        places: [
-            { 
-                name: "Mysore", 
-                img: "img/mysore.jpg", 
-                desc: "Cultural Capital of Karnataka.",
-                attractions: ["Mysore Palace", "Mysore Zoo", "Shuka Vana", "Brindavan Garden", "Chamundeshwari Temple", "Balmuri Falls", "St. Philomena Church", "GRS Fantasy Amusement Park"]
-            },
-            { 
-                name: "Coorg", 
-                img: "img/Coorg.jpg", 
-                desc: "picturesque hill station in Karnataka.",
-                attractions: ["Golden Temple", "Kaveri Nisargadhama", "Dubare Forest", "Harangi Dam", "White Water River Rafting", "Chiklihole Reservoir", "Abbey Falls", "Raja Seat", "Mandalpete Jeep Trekking"]
-            },
-            { 
-                name: "Bangalore",
-                img: "img/Bangalore.jpg", 
-                desc: "Silicon Valley of India.",
-                attractions: ["Wonderla", "Lalbagh Garden", "Bannerghatta National Park", "Bangalore Palace", "Cubbon Park", "Iskcon Temple", "Triusultan Palace", "Commercial Street Shopping", "Visvesvaraya Museum", "UB City Mall"]
-            },
-            { 
-                name: "Chikmagalur", 
-                img: "img/Chikmagalur.jpg", 
-                desc: "A serene hill station.",
-                attractions: ["Siri Statue", "Mullayanagiri", "Baba Budan Giri", "Seethalayangiri", "Z-Point Trekking", "Honnamana Halla", "Ukkada Water Falls", "Jhari Falls", "Bandi Kallu Gudda Sunset Point"]
-            },
-            { 
-                name: "Mangalore", 
-                img: "img/mang.jpg", 
-                desc: "A vibrant coastal city famous for its beaches, temples, and delicious seafood cuisine.",
-                attractions: ["Panambur Beach", "Pilikula Tourism", "Tannirbhavi Beach", "Mangaladevi Temple", "Someshwar Beach", "Forum Fiza Mall"]
-            },
-            { 
-                name: "Murudeshwar", 
-                img: "img/Mangalore.jpg", 
-                desc: "statue of Lord Shiva overlooking the Arabian Sea.",
-                attractions: ["Shiva Temple", "Murudeshwar Beach", "Murudeshwar Fort", "Jog Falls"]
-            },
-            { 
-                name: "Gokarna & Udupi", 
-                img: "img/udipi.jpg", 
-                desc: "Spiritual and coastal destinations known for pristine beaches, ancient temples, and peaceful vibes.",
-                attractions: ["Om Beach", "Paradise Beach", "Kudle Beach", "Mahabaleshwara Temple", "Water Sports", "Yana Caves", "Halfmoon Beach", "St. Mary's Island", "Krishna Temple", "Anantheshwara Temple"]
-            },
-            { 
-                name: "Dandeli", 
-                img: "img/Dandeli.jpg", 
-                desc: "An adventure hotspot celebrated for river rafting, dense forests, and rich wildlife.",
-                attractions: ["Moulangi Eco Park", "Disney Park", "Supa Dam", "Kali River Water Sports", "Zorbing", "Rafting", "Jacuzzi Bath", "Zipline Activities", "Trekking", "Kayaking"]
-            }
-        ]
-    }
-};
-
-// 2. Variables & State
-let selectedServiceType = "General Tour"; 
-
-// 3. Core Navigation & Layout Functions
-function toggleAbout(show) {
-    const aboutPage = document.getElementById('aboutPage');
-    aboutPage.style.display = show ? 'block' : 'none';
-    document.body.style.overflow = show ? 'hidden' : 'auto';
+:root {
+    --gold: #D4AF37;
+    --black:#000000;
+    --dark-grey: #121212;
+    --white: #ffffff;
 }
 
-function selectServiceAndScroll(serviceName) {
-    selectedServiceType = serviceName; 
-    // Use unified scroll helper
-    scrollToSection('destinations');
+* { margin:0; padding:0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background-color: var(--black); color: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
+
+.container { width: 90%; max-width: 1200px; margin: auto; }
+.gold { color: var(--gold); }
+.section { padding: 80px 0; }
+.bg-dark { background-color: var(--dark-grey); }
+.center { text-align: center; }
+
+/* Navigation */
+/* Default State: Transparent */
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 1000;
+    background-color: transparent; /* Starting transparent */
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease;
+    border-bottom: none; /* Kila line varathu */
 }
 
-function scrollToSection(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    if (window.locoScroll && typeof window.locoScroll.scrollTo === 'function') {
-        window.locoScroll.scrollTo(el);
-    } else {
-        el.scrollIntoView({ behavior: 'smooth' });
-    }
+/* Scrolled State: Black Background */
+#navbar.scrolled {
+    background-color: #000000; /* Scroll panna aprm black */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Slight shadow for depth */
 }
 
-// State Destination Marquee Functionality
-let currentDestPlace = null;
+/* Nav links color (adjust if needed) */
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+}
+.nav-container { width: 96%; height: 60px; margin: auto; }
+.nav-flex { display: flex; justify-content: space-between; align-items: center; }
+.logo-box { display: flex; align-items: center; gap: 10px; }
+.nav-logo { height: 45px; }
+.logo-text { font-family: 'Poppins'; font-weight: 800; font-size: 1.1rem; }
+.nav-right { display: flex; align-items: center; gap: 40px; }
+.nav-links { list-style: none; display: flex; gap: 25px; }
+.nav-links a { text-decoration: none; color: #fff; font-weight: 600; font-size: 0.85rem; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;}
+.nav-links a:hover { color: var(--gold); }
+.btn-small { padding: 8px 18px !important; font-size: 0.8rem !important; }
 
-function initializeTamilNaduMarquee() {
-    const wrapper = document.getElementById('tamilNaduMarquee');
-    if (!wrapper) return;
+/* Hero */
+.hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; }
+.hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); z-index: -1; object-fit: cover; }
+.hero-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); z-index: 0;}
+.hero-content { position: relative; z-index: 10; padding: 20px; }
+.bold-heading { font-family: 'Poppins'; font-weight: 800; font-size: 4.5rem; line-height: 1.1; margin-bottom: 20px; }
+.hero-content p { font-size: 1.2rem; margin-bottom: 30px; }
+.hero-btns { display: flex; justify-content: center; gap: 15px; }
+
+/* Buttons */
+.btn-gold { background: var(--gold); color: #000; padding: 14px 28px; border-radius: 4px; font-weight: 700; border: none; cursor: pointer; transition: 0.3s; }
+.btn-gold:hover { background: #fff; }
+.btn-white { background: transparent; border: 2px solid #fff; color: #fff; padding: 14px 28px; border-radius: 4px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+.btn-white:hover { background: #fff; color: #000; }
+
+/* Destinations */
+.section-title { font-family: 'Poppins'; font-weight: 700; font-size: 2.5rem; text-align: center; margin-bottom: 50px; }
+.state-title { font-family: 'Poppins'; font-weight: 800; font-size: 1.9rem; text-align: center; margin: 18px 0 28px; letter-spacing: 0.6px; }
+.dest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+/* --- Destinations Section Mattum Silver Shine Apply Pannum --- */
+
+/* Specific-ah destinations section kulla irukka dest-card-ku mattum */
+#destinations .dest-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    background: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    cursor: pointer;
+}
+
+/* Touch (Hover) pannra andha oru card mattum lift aagum */
+#destinations .dest-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(255, 255, 255, 0.4); 
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    z-index: 5; /* Card matha cards-ku mela theriyum */
+}
+
+/* Specific card image zoom */
+#destinations .dest-card .dest-img {
+    height: 250px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 1.2s ease, filter 0.5s ease;
+}
+
+#destinations .dest-card:hover .dest-img {
+    transform: scale(1.1);
+    filter: brightness(0.6);
+}
+
+/* SILVER SHINE EFFECT: Ovvoru card touch-kum trigger aagum */
+#destinations .dest-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    transition: 0.7s;
+    z-index: 3;
+    pointer-events: none; /* Idhu click interaction-a thadukkaadhu */
+}
+
+/* Hover pannra card-la mattum shine cross aagum */
+#destinations .dest-card:hover::after {
+    left: 150%;
+}
+
+/* Info area fix to prevent overlap */
+#destinations .dest-card .dest-info {
+    position: relative;
+    padding: 20px;
+    z-index: 4;
+    background: #1a1a1a;
+}.dest-img { height: 230px; background-size: cover; background-position: center; }
+.dest-info { padding: 20px; }
+.btn-card { width: 100%; border: 1px solid var(--gold); color: var(--gold); padding: 10px; background: transparent; cursor: pointer; font-weight: 700; margin-top: 15px; transition: 0.3s; }
+.btn-card:hover { background: var(--gold); color: #000; }
+/* Modhala cards-a hide panni veikanum */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px); /* 40px keezha irukkum */
+    transition: all 0.8s ease-out;
+    will-change: transform, opacity;
+}
+
+/* User scroll panni section-ku vandhadhum, JS indha class-a add pannum */
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0); /* Normal position-ku vandhurum */
+}
+.dest-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 20px rgba(5, 5, 5, 0.2); /* Gold Glow */
+    transform: translateY(-10px);
+    background: #000;
+}
+
+.btn-gold:hover {
+    box-shadow: 0 0 15px var(--gold);
+    background: #fff;
+    color: #000;
+}
+
+/* Offer & Upcoming Dotted Box Design */
+.offer-card {
+    background: #1a1a1a;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.dotted-box {
+    border: 2px dotted var(--gold);
+}
+.price { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+
+/* Overlays */
+.detail-page-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #000; z-index: 2000;
+    display: none; overflow-y: auto;
+    animation: slideUp 0.5s ease forwards;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; }
+.detail-header { position: sticky; top: 0; background: rgba(0,0,0,0.95); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; z-index: 100; }
+.btn-back { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 8px 20px; cursor: pointer; font-weight: 700; transition: 0.3s; }
+.btn-back:hover { background: var(--gold); color: #000; }
+
+.detail-hero { height: 100vh; background-size: cover; background-position: center; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
+.detail-hero::after { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to bottom, transparent, #000); }
+.detail-hero-content { position: relative; z-index: 5; }
+.detail-hero-content h1 { font-size: 4rem; font-family: 'Poppins'; text-transform: uppercase; }
+
+/* Services */
+.service-flex { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.s-item { text-align: center; padding: 40px; border: 1px solid #222; width: 280px; transition: 0.3s; color: #888; border-radius: 12px; background: #0f0f0f;}
+.s-item:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2); }
+.s-item i { font-size: 3rem; color: var(--gold); margin-bottom: 15px; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease, color 0.4s ease; transform-origin: center; }
+.s-item:hover i { transform: scale(1.2) translateY(-10px); filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.6)); }
+
+/* Honeymoon Tours - Pink */
+.s-item:nth-child(5):hover { border-color: #FF1493; transform: translateY(-5px); box-shadow: 0 15px 50px rgba(255, 20, 147, 0.4); transition: all 0.4s ease; }
+.s-item:nth-child(5):hover i { color: #FF1493; filter: drop-shadow(0 0 15px #FF1493); }
+
+/* Family Tours - Soft Green */
+.s-item:nth-child(3):hover { border-color: #66BB6A; transform: translateY(-5px); box-shadow: 0 15px 50px rgba(102, 187, 106, 0.4); transition: all 0.4s ease; }
+.s-item:nth-child(3):hover i { color: #66BB6A; filter: drop-shadow(0 0 15px #66BB6A); }
+
+/* Holiday Packages - Sky Blue */
+.s-item:nth-child(1):hover { border-color: #4FC3F7; transform: translateY(-5px); box-shadow: 0 15px 50px rgba(79, 195, 247, 0.4); transition: all 0.4s ease; }
+.s-item:nth-child(1):hover i { color: #4FC3F7; filter: drop-shadow(0 0 15px #4FC3F7); }
+
+/* Custom Planning - Bright Orange */
+.s-item:nth-child(4):hover { border-color: #FF8C42; transform: translateY(-5px); box-shadow: 0 15px 50px rgba(255, 140, 66, 0.4); transition: all 0.4s ease; }
+.s-item:nth-child(4):hover i { color: #FF8C42; filter: drop-shadow(0 0 15px #FF8C42); }
+
+/* Corporate Tours - silver */
+.s-item:nth-child(2):hover { border-color: purple; transform: translateY(-5px); box-shadow: 0 15px 50px rgba(70, 130, 180, 0.4); transition: all 0.4s ease; }
+.s-item:nth-child(2):hover i { color: purple; filter: drop-shadow(0 0 15px #4682B4); }
+
+/* Contact Cards */
+/* Grid-la irukka cards-ku delay set panrom */
+.dest-grid .dest-card:nth-child(1) { transition-delay: 0.1s; }
+.dest-grid .dest-card:nth-child(2) { transition-delay: 0.2s; }
+.dest-grid .dest-card:nth-child(3) { transition-delay: 0.3s; }
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.contact-card { background: #1a1a1a; padding: 40px; border-radius: 10px; text-align: center; border: 1px solid #333; cursor: pointer; transition: 0.3s; }
+.contact-card:hover { border-color: var(--gold); transform: translateY(-5px); background: #222; }
+.contact-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 15px; }
+
+/* Footer */
+footer { padding: 60px 0 20px; background: #080808; border-top: 2px solid var(--gold); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+.footer-logo { height: 60px; margin-bottom: 15px; }
+.f-links a { color: #888; text-decoration: none; line-height: 2; font-size: 0.9rem; }
+.social-icons { display: flex; gap: 20px; font-size: 1.5rem; margin-top: 15px; }
+.social-icons a { color: #d4af37; transition: all 0.3s ease; text-decoration: none; display: flex; align-items: center; justify-content: center; }
+
+/* Facebook hover effect - blue color */
+.social-icons a[href*="facebook"] {
+    color: var(--gold);
+}
+.social-icons a[href*="facebook"]:hover {
+    color: #1877F2;
+    filter: drop-shadow(0 0 10px #1877F2);
+    transform: scale(1.2);
+}
+
+/* Instagram hover effect - pink color */
+.social-icons a[href*="instagram"] {
+    color: var(--gold);
+}
+.social-icons a[href*="instagram"]:hover {
+    color: #E4405F;
+    filter: drop-shadow(0 0 30px #E4405F);
+    transform: scale(1.2);
+}
+
+/* Email/Envelope hover effect - gold */
+.social-icons a[href*="mailto"] {
+    color: var(--gold);
+}
+.social-icons a[href*="mailto"]:hover {
+    color: var(--gold);
+    filter: drop-shadow(0 0 10px var(--gold));
+    transform: scale(1.2);
+}
+
+.f-hr { border: 0; border-top: 1px solid #222; margin: 30px 0; }
+
+/* WhatsApp Float */
+.whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: white; z-index: 1500; box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-decoration: none; }
+
+@media (max-width: 768px) {
+    .bold-heading { font-size: 2.5rem; }
+    .nav-links { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .detail-hero-content h1 { font-size: 2.5rem; }
+    .state-title { font-size: 1.4rem; }
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    .social-icons { justify-content: center; }
+
     
-    const tamilNaduPlaces = travelData['Tamil Nadu'].places.slice(0, 3); // First 3 places: Ooty, Kodaikanal, Pondicherry
+}
+/* Poster image for hero (replacing video) */
+.hero-poster { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); z-index: -1; object-fit: cover; }
+
+/* Promo Modal Popup */
+/* Promo Popup-ku indha style-a replace pannunga */
+#promoPopup {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    /* Initial state: konjam keezha, hidden-ah irukanum */
+    transform: translate(-50%, -40%) scale(0.9); 
+    opacity: 0;
+    visibility: hidden;
     
-    wrapper.innerHTML = '';
-    tamilNaduPlaces.forEach(place => {
-        const item = document.createElement('div');
-        item.className = 'state-marquee-item';
-        item.onclick = () => openDestImageModal(place);
-        item.innerHTML = `
-            <div class="state-marquee-item-img" style="background-image: url('${place.img}');"></div>
-            <div class="state-marquee-item-info">
-                <h3>${place.name}</h3>
-            </div>
-        `;
-        wrapper.appendChild(item);
-    });
+    width: 92%;
+    max-width: 500px;
+    background: #0f0f0f;
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+    padding: 25px;
+    z-index: 10000;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth movement */
 }
 
-function openDestImageModal(place) {
-    currentDestPlace = place;
-    document.getElementById('destModalName').textContent = place.name;
-    document.getElementById('destModalDesc').textContent = place.desc;
-    document.getElementById('destModalImage').src = place.img;
-    document.getElementById('destImageModal').style.display = 'flex';
+/* Pop-up trigger aagum podhu varra class */
+#promoPopup.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1); /* Centre-ku vandhurum */
+}
+#promoPopup { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.98); width: 92%; max-width: 520px; background: #0f0f0f; color: #fff; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); z-index: 100000; display: none; padding: 22px; }
+#promoPopup.open { display: block; animation: popIn 260ms cubic-bezier(.2,.9,.2,1) forwards; }
+#promoPopup .promo-head { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+#promoPopup h3 { margin: 0; font-size: 1.2rem; }
+#promoPopup p { color: #d1d1d1; margin: 12px 0 16px; font-size: 0.95rem; }
+#promoPopup .promo-actions { display:flex; gap:10px; justify-content:flex-end; align-items:center; }
+#promoPopup .promo-actions .btn { padding: 10px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+#promoPopup .btn-ghost { background: transparent; border: 1px solid #444; color: #fff; }
+#promoPopup .btn-primary { background: var(--gold); color: #000; border: none; }
+#promoPopup .promo-footer { display:flex; justify-content:space-between; align-items:center; margin-top: 12px; }
+#promoPopup label { font-size: 0.9rem; color: #bbb; display:flex; align-items:center; gap:8px; cursor: pointer; }
+
+@keyframes popIn { from { opacity: 0; transform: translate(-50%, -48%) scale(0.96); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+/* Preloader Styles */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #000000; /* Black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Stays on top of everything */
+    transition: opacity 0.8s ease, visibility 0.8s;
 }
 
-function closeDestImageModal() {
-    document.getElementById('destImageModal').style.display = 'none';
+.preloader-content {
+    text-align: center;
 }
 
-function handleDestKnowMore() {
-    if (currentDestPlace) {
-        closeDestImageModal();
-        openDestinationPage('Tamil Nadu');
+.loader-logo {
+    width: 250px; /* Adjust size of the big logo here */
+    height: auto;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+/* Optional: Golden line animation under logo */
+.loader-line {
+    width: 100px;
+    height: 3px;
+    background: var(--gold);
+    margin: 20px auto 0;
+    border-radius: 10px;
+    animation: expand 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+@keyframes expand {
+    0% { width: 0; }
+    50% { width: 150px; }
+    100% { width: 0; }
+}
+
+/* Class to hide the preloader */
+.hide-preloader {
+    opacity: 0;
+    visibility: hidden;
+}
+/* Login Button in Nav */
+.btn-login {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+.btn-login:hover { color: #d4af37; }
+
+/* Auth Modal Styles */
+.auth-container {
+    background: #111;
+    width: 90%;
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid #333;
+    position: relative;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.close-auth {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: #222;
+    border: 1px solid #444;
+    color: white;
+    border-radius: 5px;
+}
+
+.w-100 { width: 100%; margin-top: 10px; }
+
+.auth-switch {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #888;
+}
+/* Gallery Marquee Styles (movie-poster sized items) */
+.gallery-marquee {
+    width: 100%;
+    overflow: hidden;
+    padding: 22px 0;
+    position: relative;
+    background: #000;
+}
+
+.marquee-track {
+    display: flex;
+    /* item total width = item width + horizontal margin (20px) -> 220 + 20 = 240 */
+    width: calc(240px * 38); /* adjust count if you change number of images */
+    animation: scroll-right 40s linear infinite;
+    gap: 20px;
+}
+
+.gallery-item {
+    width: 220px; /* poster-like width */
+    height: 340px; /* taller for movie-poster aspect */
+    margin: 0 10px;
+    flex-shrink: 0;
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid #222;
+    transition: transform 0.28s ease, border-color 0.2s ease;
+    background: #111;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-item:hover {
+    border-color: #d4af37;
+    transform: scale(1.04);
+    z-index: 10;
+}
+
+.gallery-marquee:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+/* Lightbox Modal Style */
+.image-lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+}
+
+#fullImage {
+    max-width: 90%;
+    max-height: 85%;
+    border: 3px solid #d4af37;
+    border-radius: 5px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #fff;
+    font-size: 50px;
+    cursor: pointer;
+}
+.auth-switch a { text-decoration: none; font-weight: bold; }
+
+/* Entrance reveal animations */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(.2,.9,.2,1), transform 0.7s cubic-bezier(.2,.9,.2,1); will-change: opacity, transform; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Upwards variation */
+.reveal-up { opacity: 0; transform: translateY(10px); }
+.reveal-up.visible { opacity: 1; transform: translateY(0); transition: opacity 0.6s ease, transform 0.6s ease; }
+
+/* Blur-up progressive image loading */
+.blur-up { filter: blur(18px) scale(1.02); transition: filter 0.7s ease, transform 0.7s ease; }
+.blur-up.loaded { filter: blur(0) scale(1); }
+
+/* Background lazy/progressive */
+.bg-lazy { filter: blur(12px) scale(1.02); transition: filter 0.7s ease, transform 0.7s ease; }
+.bg-lazy.loaded { filter: blur(0) scale(1); }
+
+/* Parallax helper */
+.parallax { will-change: transform; }
+
+/* Simple welcome popup */
+#welcomePopup { position: fixed; right: 20px; bottom: 90px; background: rgba(10,10,10,0.98); color: #fff; padding: 18px 20px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); z-index: 99999; display: none; width: 300px; }
+#welcomePopup.open { display: block; animation: popupIn 0.36s ease; }
+#welcomePopup h4 { margin-bottom: 8px; }
+#welcomePopup p { font-size: 0.9rem; color: #ddd; margin-bottom: 12px; }
+#welcomePopup .close-welcome { background: transparent; border: 1px solid #444; color: #fff; padding: 6px 10px; border-radius: 6px; cursor: pointer; }
+
+@keyframes popupIn { from { transform: translateY(10px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+
+/* Text animation: containers appear, then letters animate in */
+.text-reveal { animation: boxReveal 0.5s ease forwards; }
+
+@keyframes boxReveal {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Individual letter animation (staggered) */
+.letter { display: inline-block; opacity: 0; animation: letterFadeSlide 0.5s cubic-bezier(.2,.9,.2,1) forwards; }
+
+@keyframes letterFadeSlide {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* ======== ATTRACTIONS MODAL STYLES ======== */
+.attractions-modal-content {
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 12px;
+    max-width: 650px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 50px;
+    position: relative;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95);
+    animation: slideInUp 0.4s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-// Close modal when clicking outside
-window.addEventListener('click', function(event) {
-    const modal = document.getElementById('destImageModal');
-    if (event.target === modal) {
-        closeDestImageModal();
+.close-attractions {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: transparent;
+    border: none;
+    font-size: 32px;
+    color: var(--gold);
+    cursor: pointer;
+    transition: 0.3s;
+    opacity: 0.7;
+}
+
+.close-attractions:hover {
+    color: var(--white);
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+.attractions-header {
+    text-align: center;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    padding-bottom: 30px;
+}
+
+.attractions-header h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+.attractions-header p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+}
+
+.attractions-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 40px;
+}
+
+.attraction-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 16px 18px;
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid rgba(212, 175, 55, 0.4);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.attraction-item:hover {
+    background: rgba(212, 175, 55, 0.08);
+    border-left-color: var(--gold);
+    transform: translateX(5px);
+}
+
+.attraction-icon {
+    font-size: 1.2rem;
+    min-width: 30px;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.attraction-name {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.attractions-footer {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.attractions-footer button {
+    flex: 1;
+}
+
+/* ======== END ATTRACTIONS MODAL STYLES ======== */
+/* Service Icons Animation */
+
+/* 1. Honeymoon Tours - Heart Flip Over */
+.s-item:hover .fa-heart {
+    transform: rotateY(180deg);
+    transition: transform 0.6s;
+    color: #ff4d4d; /* Heart color change */
+}
+
+/* 2. Family Tours - Shuffle Effect */
+.s-item:hover .fa-users {
+    animation: shuffle 0.5s infinite;
+}
+
+@keyframes shuffle {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(2px, -2px); }
+    50% { transform: translate(-2px, 2px); }
+    75% { transform: translate(2px, 2px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* 3. School & College Package - Graduation Cap Jump */
+.s-item:hover .fa-graduation-cap {
+    animation: jump 0.5s ease-in-out infinite;
+}
+
+@keyframes jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* 4. Corporate Tours - Building Pulse */
+.s-item:hover .fa-building {
+    transform: scale(1.2);
+    transition: 0.3s;
+}
+
+/* 5. Custom Planning - Map Marked Rotation */
+.s-item:hover .fa-map-marked-alt {
+    transform: rotate(15deg);
+    transition: 0.3s;
+}
+
+/* Common style for smooth motion */
+.s-item i {
+    display: inline-block;
+    transition: all 0.4s ease;
+}
+/* Screenshot design mathiriye Instagram box */
+.instagram-promo-dark {
+    text-align: center;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 350px; /* Mattha cards kooda match aaga */
+}
+
+/* Instagram icon mela add panna (Optional) */
+.instagram-promo-dark h3::before {
+    content: '\f16d'; /* FontAwesome Instagram Icon */
+    font-family: 'Font Awesome 6 Brands';
+    display: block;
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: var(--gold);
+}
+
+/* Animation for the gold text */
+.instagram-promo-dark .price.gold {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.3;
+    margin: 20px 0;
+    text-transform: uppercase;
+}
+
+/* Hover effect */
+.instagram-promo-dark:hover {
+    background-color: #1a1a1a;
+    transition: 0.3s ease;
+}
+/* All Video Offer Cards Styling */
+.video-offer-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 400px; /* Card height adjustment */
+    display: flex;
+    align-items: center;    /* Vertically Center alignment */
+    justify-content: center; /* Horizontally Center alignment */
+    border: 2px dotted var(--gold) !important;
+    background-color: #000;
+    padding: 0 !important; /* Content alignment-ukaga padding remove panrom */
+}
+
+.video-background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.offer-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4); /* Video darker to make text pop */
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.card-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 30px;
+    width: 100%;
+}
+
+/* Hover Effect: Video konjam bright aagum */
+.video-offer-card:hover .offer-video {
+    filter: brightness(0.6);
+    transition: 0.5s ease;
+}
+
+.video-offer-card .price.gold {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin: 15px 0;
+    text-transform: uppercase;
+    display: block;
+}
+/* 1. Base style for the card */
+.contact-card {
+    background: #111; /* Dark background as seen in your image */
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #333;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smooth bouncy transition */
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 2. Hover effect for the Box (Shadow and Lift) */
+.contact-card:hover {
+    transform: translateY(-10px); /* Moves the card up */
+    background: #1a1a1a;
+    border-color: #ffcc00; /* Gold border on hover */
+    box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2); /* Gold glow shadow */
+}
+
+/* 3. Icon Translation (Moving and Scaling) */
+.contact-card i {
+    font-size: 2.5rem;
+    color: #ffcc00; /* Gold color */
+    margin-bottom: 15px;
+    display: inline-block;
+    transition: transform 0.4s ease, color 0.4s ease;
+}
+
+.contact-card:hover i {
+    transform: scale(1.2) translateY(-5px); /* Grows and moves up */
+    color: #fff; /* Changes icon to white on hover */
+}
+
+/* 4. Text color change on hover */
+.contact-card h3 {
+    margin: 10px 0;
+    transition: color 0.3s ease;
+}
+
+.contact-card:hover h3 {
+    color: #ffcc00; /* Title turns gold */
+}
+
+/* 5. Extra: Subtle glow on the small text */
+.contact-card small {
+    color: #888;
+    transition: color 0.3s ease;
+}
+
+.contact-card:hover small {
+    color: #bbb;
+}
+/* --- Common Transitions --- */
+.contact-card {
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.contact-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2);
+    border-color: #ffcc00;
+}
+
+/* --- 1. Phone Ringing Animation --- */
+@keyframes ring {
+    0% { transform: rotate(0); }
+    10% { transform: rotate(15deg); }
+    20% { transform: rotate(-15deg); }
+    30% { transform: rotate(15deg); }
+    40% { transform: rotate(-15deg); }
+    50% { transform: rotate(0); }
+    100% { transform: rotate(0); }
+}
+
+.contact-card:hover .fa-phone {
+    animation: ring 0.5s infinite;
+    color: #fff;
+}
+
+/* --- 2. Mail Sending (Fly) Animation --- */
+@keyframes fly {
+    0% { transform: translateX(0) translateY(0) scale(1); opacity: 1; }
+    30% { transform: translateX(-5px) translateY(5px); }
+    100% { transform: translateX(50px) translateY(-50px) scale(0.5); opacity: 0; }
+}
+
+.contact-card:hover .fa-envelope {
+    animation: fly 0.8s infinite;
+    color: #fff;
+}
+
+/* --- 3. Location / Map Animation --- */
+/* FontAwesome-ல் 'map' icon பயன்படுத்தினால் இது நன்றாக இருக்கும் */
+@keyframes mapOpen {
+    0% { transform: scaleX(1); }
+    50% { transform: scaleX(1.5); }
+    100% { transform: scaleX(1); }
+}
+
+/* Pin குதிப்பது போன்ற அனிமேஷன் */
+@keyframes pinJump {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
+}
+
+.contact-card:hover .fa-map-marker-alt {
+    animation: pinJump 0.6s ease infinite;
+    color: #fff;
+}
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding-top: 40px;
+}
+/* --- Base Card Styles --- */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 40px 0;
+}
+
+.contact-card {
+    background: #111;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #333;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden; /* Keeps animations inside the card */
+}
+
+.contact-card:hover {
+    transform: translateY(-10px);
+    border-color: #ffcc00;
+    box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2);
+}
+
+/* Container for the icons to allow absolute positioning */
+.icon-wrapper {
+    position: relative;
+    height: 60px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-wrapper i {
+    font-size: 40px;
+    color: #ffcc00;
+    transition: all 0.4s ease;
+}
+
+/* --- 1. Phone Ringing Animation --- */
+@keyframes ring {
+    0% { transform: rotate(0); }
+    25% { transform: rotate(15deg); }
+    50% { transform: rotate(-15deg); }
+    75% { transform: rotate(15deg); }
+    100% { transform: rotate(0); }
+}
+
+.contact-card:hover .fa-phone {
+    animation: ring 0.4s infinite;
+    color: #fff;
+}
+
+/* --- 2. Email Flying Animation --- */
+@keyframes flyEmail {
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    100% { transform: translate(50px, -50px) scale(0.5); opacity: 0; }
+}
+
+.contact-card:hover .fa-envelope {
+    animation: flyEmail 0.8s infinite;
+    color: #fff;
+}
+
+/* --- 3. Book Opening & Pin Animation --- */
+.pin-icon {
+    position: absolute;
+    opacity: 0; /* Hidden by default */
+    transform: translateY(20px);
+    color: #ff3333 !important; /* Red color for the pin */
+    transition: all 0.5s ease;
+}
+
+.contact-card:hover .fa-book-open {
+    transform: scaleX(1.3); /* Simulates book opening wide */
+    color: #ffd700;
+}
+
+.contact-card:hover .pin-icon {
+    opacity: 1;
+    transform: translateY(-25px); /* Pin pops up from the book */
+    animation: pinJump 0.6s infinite alternate 0.4s; /* Jumps after book opens */
+}
+
+@keyframes pinJump {
+    from { transform: translateY(-25px); }
+    to { transform: translateY(-35px); }
+}
+.icon-container {
+    position: relative;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pin-icon {
+    position: absolute;
+    opacity: 0;
+    color: #ff3333 !important;
+    z-index: 2;
+}
+
+.book-icon {
+    z-index: 1;
+}
+/* Offers Section Grid - 3 cards in a single line */
+#offers .dest-grid {
+    display: grid;
+    /* 3 cards-um ore line-la vara '1fr' moonu thadava kudukanum */
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 20px;
+    width: 100%;
+}
+
+/* Offer Card Height & Width adjustments */
+.video-offer-card {
+    height: 280px; /* Height-ah kammi panniyachu */
+    min-height: auto; /* Pathaiyatha min-height-ah remove panna */
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+/* Video fit inside the smaller height card */
+.offer-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Video stretch aagama cover panna */
+}
+
+/* Responsive: Mobile-la ore line-la iruntha nalla irukathu, 
+   athanaala mobile-ku mattum 1 column-ah mathidalam */
+@media (max-width: 992px) {
+    #offers .dest-grid {
+        grid-template-columns: 1fr; /* Mobile-la oru card thaan theriyaanum */
     }
-});
-
-// Marquee Functionality
-document.addEventListener('DOMContentLoaded', () => {
-    const slides = document.querySelectorAll('.slide');
-    const numSlides = slides.length;
-    const angleStep = 360 / numSlides; 
-    const radius = 550; // Curve distance
-
-    // Initial arrangement
-    slides.forEach((slide, index) => {
-        gsap.set(slide, {
-            rotationY: index * angleStep,
-            z: radius,
-            transformOrigin: `50% 50% ${-radius}px`
-        });
-    });
-
-    // Rotation Animation
-    const animation = gsap.to(".gsap-slider-wrapper", {
-        rotationY: 360,
-        duration: 30, // Speed of rotation
-        ease: "none",
-        repeat: -1
-    });
-
-    // Pause on Hover
-    const viewport = document.querySelector('.gallery-viewport');
-    viewport.addEventListener('mouseenter', () => animation.pause());
-    viewport.addEventListener('mouseleave', () => animation.play());
-});
-
-// Close modal when clicking outside
-window.addEventListener('click', function(event) {
-    const modal = document.getElementById('marqueeModal');
-    if (event.target === modal) {
-        closeMarqueeModal();
+    .video-offer-card {
+        height: 250px; /* Mobile-la innum konjam height kammi */
     }
-});
+}
+/* --- SPECIFIC EFFECTS: DESTINATION GRID & TOP SIGHTSEEING ONLY --- */
 
-/// 4. Destination Detail Page Logic (REPLACED VERSION)
-function openDestinationPage(title) {
-    const data = travelData[title];
-    const detailPage = document.getElementById('detailPage');
+/* 1. Targetting ONLY Destination Cards and Top Sightseeing Items */
+#places-grid .dest-card, 
+#tamilNaduMarquee .state-marquee-item {
+    position: relative;
+    overflow: hidden !important; /* Image veliya zoom aagama thadukka */
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* 2. Card Hover: Lift-up & Shadow */
+#places-grid .dest-card:hover, 
+#tamilNaduMarquee .state-marquee-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(255, 215, 0, 0.25);
+}
+
+/* 3. Image Zoom Effect (Unga existing image classes) */
+#places-grid .dest-card .dest-img, 
+#tamilNaduMarquee .state-marquee-item .state-marquee-item-img {
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease !important;
+}
+
+#places-grid .dest-card:hover .dest-img, 
+#tamilNaduMarquee .state-marquee-item:hover .state-marquee-item-img {
+    transform: scale(1.12); /* Subtle zoom */
+    filter: brightness(0.7); /* Konjam dark aagum shine nalla theriya */
+}
+
+/* 4. Shine Effect (Pseudo-element) */
+#places-grid .dest-card::after, 
+#tamilNaduMarquee .state-marquee-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    transition: 0.7s;
+    pointer-events: none;
+    z-index: 2;
+}
+
+#places-grid .dest-card:hover::after, 
+#tamilNaduMarquee .state-marquee-item:hover::after {
+    left: 150%;
+}
+
+/* 5. Z-index fix: Content (Text/Buttons) safe-ah mela iruka */
+#places-grid .dest-info, 
+#tamilNaduMarquee .state-marquee-item-info {
+    position: relative;
+    z-index: 3;
+}
+/* --- GALLERY MARQUEE ROTATION EFFECT --- */
+
+/* 1. Marquee Container setup */
+#marqueeWrapper {
+    padding: 40px 0;
+    perspective: 1000px; /* 3D depth effect-kaga */
+}
+
+/* 2. Individual Marquee Item Rotation */
+#marqueeWrapper .marquee-item {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
+    transform: rotate(-3deg); /* Default-ah konjam saayuthu */
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 0 15px;
+}
+
+/* Alternating rotation: Odd cards oru pakkam, Even cards maru pakkam rotate aagum */
+#marqueeWrapper .marquee-item:nth-child(even) {
+    transform: rotate(3deg);
+}
+
+/* 3. Hover Pannum Pothu: Card Straight-a aagi Lift aagum */
+#marqueeWrapper .marquee-item:hover {
+    transform: rotate(0deg) translateY(-15px) scale(1.05); /* Straight aagum */
+    z-index: 100;
+    box-shadow: 0 25px 50px rgba(255, 215, 0, 0.3);
+    border: 2px solid #FFD700;
+}
+
+/* 4. Inside Image Zoom (Optional: matching previous effects) */
+#marqueeWrapper .marquee-item .marquee-item-img {
+    transition: transform 1.2s ease;
+}
+
+#marqueeWrapper .marquee-item:hover .marquee-item-img {
+    transform: scale(1.1);
+}
+
+/* 5. Shine effect only for these marquee items */
+#marqueeWrapper .marquee-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+    transform: skewX(-25deg);
+    transition: 0.8s;
+}
+
+#marqueeWrapper .marquee-item:hover::after {
+    left: 150%;
+}
+/* --- PREMIUM BOOKING BUTTONS --- */
+
+/* Common Button Style */
+#modalWaBtn, .insta-btn-premium {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 50px; /* Pill shape */
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: white;
+    width: 100%;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* WhatsApp Premium Style */
+#modalWaBtn {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+}
+
+#modalWaBtn:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+}
+
+/* Instagram Premium Style */
+.insta-btn-premium {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    box-shadow: 0 10px 20px rgba(220, 39, 67, 0.2);
+}
+
+.insta-btn-premium:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 15px 30px rgba(220, 39, 67, 0.4);
+}
+
+/* Icon Animation */
+#modalWaBtn i, .insta-btn-premium i {
+    font-size: 1.4rem;
+    animation: pulseIcon 2s infinite;
+}
+
+@keyframes pulseIcon {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+/* Ovvoru vaarthaikkum (word) naduvil space vara */
+.text-reveal .word {
+    display: inline-block !important;
+    margin-right: 16px !important; /* Intha value-ai maatri space-ai kootta/kuraikka mudiyum */
+}
+
+/* Letters-ukku naduvil space vendam endral */
+.text-reveal .char {
+    display: inline-block !important;
+    margin-right: 0px !important; 
+    letter-spacing: normal !important;
+}
+
+/* Oru velai ".word" class illai endral, idhai use seiyungal */
+.text-reveal span {
+    white-space: pre !important; /* HTML-il ulla original space-ai idhu thirumba konduvarum */
+}
+/* Gallery Container-ukku 3D depth kodukka */
+.gallery-marquee {
+    overflow: hidden;
+    padding: 60px 0;
+    perspective: 1000px; /* 3D depth effects-ukku ithu mukkiyam */
+    background: #000; /* Dark theme-ukku etrapola */
+}
+
+/* Marquee track-ai valaikka */
+.marquee-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: marquee-scroll 30s linear infinite;
+    transform-style: preserve-3d;
+}
+
+/* Ovvoru image-um concave (valainthu) theriya */
+.gallery-item {
+    width: 250px;
+    height: 350px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.5s ease;
     
-    if (data) {
-        document.getElementById('detail-title').innerText = title;
-        document.getElementById('detail-subtitle').innerText = data.subtitle;
-        const detailHeroEl = document.getElementById('detail-hero');
-        // set background progressively
-        detailHeroEl.dataset.bg = data.heroImg;
-        detailHeroEl.style.backgroundImage = 'none';
-        detailHeroEl.classList.add('bg-lazy');
-        const heroHigh = new Image();
-        heroHigh.src = data.heroImg;
-        heroHigh.onload = function() {
-            detailHeroEl.style.backgroundImage = `url('${data.heroImg}')`;
-            detailHeroEl.classList.add('loaded');
-            detailHeroEl.classList.remove('bg-lazy');
-        };
-        
-        const grid = document.getElementById('places-grid');
-        grid.innerHTML = ""; 
-
-        data.places.forEach(place => {
-            grid.innerHTML += `
-                <div class="dest-card">
-                    <div class="dest-img" data-bg="${place.img}"></div>
-                    <div class="dest-info">
-                        <h3 class="gold">${place.name}</h3>
-                        <p style="font-size: 0.9rem; color: #ccc;">${place.desc}</p>
-                        <div class="dest-buttons" style="display: flex; gap: 10px; margin-top: 10px;">
-                            <button class="btn-card" onclick="openAttractionsModal('${place.name}', '${title}')" style="flex: 1;">View Details</button>
-                            <button class="btn-card" onclick="openBookingOptions('${place.name}', '${title}')" style="flex: 1;">Book Now</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
-        // After injecting, progressively load the newly added background images
-        const newBgEls = grid.querySelectorAll('.dest-img');
-        newBgEls.forEach(el => {
-            const bg = el.dataset.bg;
-            if (bg) {
-                el.classList.add('bg-lazy');
-                const high = new Image();
-                high.src = bg;
-                high.onload = function() {
-                    el.style.backgroundImage = `url('${bg}')`;
-                    el.classList.add('loaded');
-                    el.classList.remove('bg-lazy');
-                };
-            }
-        });
-
-        const finalBtn = document.getElementById('final-wa-btn');
-        finalBtn.innerText = `Book Full ${title} Package`;
-        
-        // Intha vari thaan WhatsApp/Email Modal-ai open pannum
-        finalBtn.onclick = function() {
-            openBookingOptions(`Full Package`, title);
-        };
-
-        detailPage.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
-}
-function closeDetailPage() {
-    document.getElementById('detailPage').style.display = 'none';
-    document.body.style.overflow = 'auto';
+    /* Concave effect: image-ai konjam saithu valaikka */
+    transform: rotateY(-15deg) scale(0.9); 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 215, 0, 0.3); /* Gold border for luxury look */
 }
 
-// Detail Image Modal Functions
-function openDetailImageModal(placeName, imageUrl, description) {
-    document.getElementById('detailModalPlaceName').textContent = placeName;
-    document.getElementById('detailModalImage').src = imageUrl;
-    document.getElementById('detailModalPlaceDesc').textContent = description;
-    document.getElementById('detailImageModal').style.display = 'flex';
+/* Hover seiyumpothu image straight-aga vara */
+.gallery-item:hover {
+    transform: rotateY(0deg) scale(1.1);
+    z-index: 10;
+    border-color: #d4af37; /* Gold color */
 }
 
-function closeDetailImageModal() {
-    document.getElementById('detailImageModal').style.display = 'none';
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-// Close modal when clicking outside
-window.addEventListener('click', function(event) {
-    const modal = document.getElementById('detailImageModal');
-    if (event.target === modal) {
-        closeDetailImageModal();
-    }
-});
+/* Marquee animation */
+@keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+/* --- GSAP CONCAVE GALLERY START --- */
 
-function openBookingOptions(placeName, stateName) {
-    const modal = document.getElementById('bookingModal');
-    const displayTitle = `${selectedServiceType}: ${placeName}`;
-    document.getElementById('selectedServiceName').innerText = displayTitle;
+/* Gallery Viewport - Full Width setup */
+.gallery-viewport {
+    perspective: 2500px; 
+    width: 100vw; /* Screen width full-ah edukkum */
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #000;
+    margin-left: calc(-50vw + 50%); /* Container-ah vittu veliya full width-ku vara intha trick use panrom */
+    margin-right: calc(-50vw + 50%);
+    position: relative;
+}
+
+.gsap-slider-wrapper {
+    position: relative;
+    width: 250px; /* Poster size konjam kootalam */
+    height: 380px;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.slide {
+    position: absolute;
+    width: 250px;
+    height: 380px;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(212, 175, 55, 0.2);
     
-    // WhatsApp Action
-    const waBtn = document.getElementById('modalWaBtn');
-    waBtn.innerHTML = `<i class="fab fa-whatsapp"></i> WhatsApp Booking`;
-    waBtn.onclick = function() {
-        const phoneNumber = "919585575354";
-        const message = `Hi Fundun Holidays, I am interested in [${selectedServiceType}] for [${placeName}, ${stateName}].`;
-        window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-        closeBookingModal();
-    };
+    /* 1. MIRROR REFLECTION: 
+       'below 10px' means reflection starts 10px after the image.
+       'linear-gradient' makes the reflection fade out beautifully. */
+    -webkit-box-reflect: below 10px linear-gradient(transparent 50%, rgba(0,0,0,0.3));
 
-    // Instagram Action
-    const instaBtn = document.getElementById('modalMailBtn');
-    instaBtn.innerHTML = `<i class="fab fa-instagram"></i> Instagram DM`;
-    instaBtn.className = 'insta-btn-premium'; // New class for premium look
-    instaBtn.onclick = function() {
-        const instaUsername = "fundun_holidays"; 
-        window.open(`https://www.instagram.com/${instaUsername}/`, '_blank');
-        closeBookingModal();
-    };
+    /* 2. PREMIUM SHADOW: 
+       Gives a 3D feel and prevents the image from looking flat. */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5), 
+                0 0 15px rgba(212, 175, 55, 0.1);
 
-    modal.style.display = 'flex'; 
-    document.body.style.overflow = 'hidden';
+    transition: transform 0.4s ease, border-color 0.3s ease;
+    will-change: transform, opacity;
 }
 
-function closeBookingModal() {
-    document.getElementById('bookingModal').style.display = 'none';
-    document.body.style.overflow = 'auto';
+/* Hover-la shadow and reflection innum bright aaga */
+.slide:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+    filter: brightness(1.1);
 }
-
-// ======== ATTRACTIONS MODAL FUNCTIONS ========
-let currentAttractionPlace = null;
-let currentAttractionState = null;
-
-function openAttractionsModal(placeName, state) {
-    const stateData = travelData[state];
-    if (!stateData) return;
-    
-    const place = stateData.places.find(p => p.name === placeName);
-    if (!place || !place.attractions) return;
-    
-    currentAttractionPlace = placeName;
-    currentAttractionState = state;
-    
-    // Set title and description
-    document.getElementById('attractionsTitle').textContent = placeName;
-    document.getElementById('attractionsSubtitle').textContent = place.desc;
-    
-    // Populate attractions list
-    const attractionsList = document.getElementById('attractionsList');
-    attractionsList.innerHTML = '';
-    
-    place.attractions.forEach(attraction => {
-        const item = document.createElement('div');
-        item.className = 'attraction-item';
-        item.innerHTML = `
-            <div class="attraction-icon"><i class="fas fa-map-pin gold"></i></div>
-            <div class="attraction-name">${attraction}</div>
-        `;
-        attractionsList.appendChild(item);
-    });
-    
-    // Show modal
-    document.getElementById('attractionsModal').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+/* Front image-kku mattum gold glow thara hover logic */
+.slide:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
 }
-
-function closeAttractionsModal() {
-    document.getElementById('attractionsModal').style.display = 'none';
-    document.body.style.overflow = 'auto';
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
-
-function bookPlaceAttraction() {
-    if (currentAttractionPlace && currentAttractionState) {
-        closeAttractionsModal();
-        openBookingOptions(currentAttractionPlace, currentAttractionState);
-    }
-}
-
-// Close modal when clicking outside
-window.addEventListener('click', function(event) {
-    const modal = document.getElementById('attractionsModal');
-    if (event.target === modal) {
-        closeAttractionsModal();
-    }
-});
-
-/// Intha function unga HTML-il irukura onclick="openMap()" oda connect aagum
-function openMap() {
-    // Neenga kudutha puthiya specific Google Maps link
-    const googleMapsUrl = "https://maps.app.goo.gl/9dq2U7crYiuhfwqZA";
-    
-    // Puthiya tab-la map open aagum
-    window.open(googleMapsUrl, '_blank');
-}
-
-// 6. Utility Functions
-function whatsapp(topic) {
-    const phoneNumber = "919585575354"; 
-    const message = `Hi Fundun Holidays, I'm interested in: ${topic}. Please share more details.`;
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-}
-function openMail() {
-    const emailId = "dineshcse142@gmail.com";
-    const subject = "Inquiry regarding Fundun Holidays";
-    const body = "Hello Team,\n\nI am interested in your travel services. Please provide more information.";
-
-    // Open Gmail compose in a new tab with prefilled recipient, subject and body
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(emailId)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.open(gmailUrl, '_blank');
-}
-
-// 7. Event Listeners & Effects
-window.onscroll = function() {
-    // --- Section 7: Event Listeners & Effects (UPDATE THIS PART) ---
-
-window.onscroll = function() {
-    // 1. Navbar color change logic (Old)
-    const navbar = document.getElementById("navbar");
-    navbar.style.background = (window.scrollY > 50) ? "#000" : "rgba(0,0,0,0.8)";
-
-    // 2. Scroll Reveal Logic (New)
-    const reveals = document.querySelectorAll('.reveal');
-    reveals.forEach(el => {
-        const windowHeight = window.innerHeight;
-        const elementTop = el.getBoundingClientRect().top;
-        const revealPoint = 100;
-
-        if (elementTop < windowHeight - revealPoint) {
-            el.classList.add('visible');
-        }    });
-};
-};
-
-window.addEventListener('load', function() {
-    const preloader = document.getElementById('preloader');
-    setTimeout(() => {
-        preloader.classList.add('hide-preloader');
-    }, 1500); 
-});
-// Function to show/hide Login Modal
-function toggleLoginModal(show) {
-    const modal = document.getElementById('loginModal');
-    modal.style.display = show ? 'flex' : 'none';
-    if (show) {
-        document.body.style.overflow = 'hidden';
-        switchAuth('login'); // Default to login view
-    } else {
-        document.body.style.overflow = 'auto';
-    }
-}
-
-// Function to switch between Login and Signup forms
-function switchAuth(type) {
-    const loginBox = document.getElementById('loginBox');
-    const signupBox = document.getElementById('signupBox');
-    
-    if (type === 'signup') {
-        loginBox.style.display = 'none';
-        signupBox.style.display = 'block';
-    } else {
-        loginBox.style.display = 'block';
-        signupBox.style.display = 'none';
-    }
-}
-
-// Close modal if user clicks outside the box
-window.onclick = function(event) {
-    const modal = document.getElementById('loginModal');
-    if (event.target == modal) {
-        toggleLoginModal(false);
-    }
-}
-// Image Gallery Lightbox Functions
-function openLightbox(element) {
-    const lightbox = document.getElementById('imageLightbox');
-    const fullImg = document.getElementById('fullImage');
-    
-    // Element-kulla irukkira img tag-oda src-ai edukkurom
-    const imgSrc = element.querySelector('img').src;
-    
-    fullImg.src = imgSrc;
-    lightbox.style.display = 'flex';
-    document.body.style.overflow = 'hidden'; // Scroll-ai stop seiya
-}
-
-function closeLightbox() {
-    const lightbox = document.getElementById('imageLightbox');
-    lightbox.style.display = 'none';
-    document.body.style.overflow = 'auto'; // Scroll-ai thirumba thodanga
-}
-
-// --- Enhanced UX: reveal animations, parallax, lazy/progressive loading, welcome popup ---
-document.addEventListener('DOMContentLoaded', function() {
-    // Helper: refresh animations and locomotive after content changes or image loads
-    function refreshVisuals() {
-        try {
-            if (typeof AOS !== 'undefined') {
-                if (typeof AOS.refreshHard === 'function') AOS.refreshHard();
-                else if (typeof AOS.refresh === 'function') AOS.refresh();
-            }
-        } catch (e) { console.warn('AOS refresh failed', e); }
-        try { if (window.locoScroll && typeof window.locoScroll.update === 'function') window.locoScroll.update(); } catch (e) { /* ignore */ }
-    }
-
-    // Helper: split text into letter spans and stagger animation
-    function animateTextLetters(selector, delayMs = 40) {
-        const elems = document.querySelectorAll(selector);
-        elems.forEach(el => {
-            if (el.classList.contains('animated-text')) return; // skip if already done
-
-            // Build HTML while preserving existing child elements (so nested spans keep their classes)
-            let charIndex = 0;
-            const parts = [];
-            el.childNodes.forEach(node => {
-                if (node.nodeType === Node.TEXT_NODE) {
-                    const text = node.textContent || '';
-                    for (let i = 0; i < text.length; i++) {
-                        const ch = text[i];
-                        const span = document.createElement('span');
-                        span.className = 'letter';
-                        span.textContent = ch;
-                        span.style.animationDelay = `${charIndex * delayMs}ms`;
-                        parts.push(span.outerHTML);
-                        charIndex++;
-                    }
-                } else if (node.nodeType === Node.ELEMENT_NODE) {
-                    // Preserve element's markup as-is
-                    parts.push(node.outerHTML);
-                    // Increase index roughly by the element's text length so subsequent delays are offset
-                    const innerText = node.textContent || '';
-                    charIndex += innerText.length;
-                }
-            });
-
-            // If no child nodes (fallback), handle whole textContent
-            if (parts.length === 0) {
-                const text = el.textContent || '';
-                for (let i = 0; i < text.length; i++) {
-                    const span = document.createElement('span');
-                    span.className = 'letter';
-                    span.textContent = text[i];
-                    span.style.animationDelay = `${i * delayMs}ms`;
-                    parts.push(span.outerHTML);
-                }
-            }
-
-            el.innerHTML = parts.join('');
-            el.classList.add('animated-text');
-        });
-    }
-
-    /* 1) Reveal on scroll */
-    const revealElems = document.querySelectorAll('.dest-card, .s-item, .contact-card, .offer-card, .gallery-item, .testimonial, .hero-content, .detail-hero-content');
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.12 });
-
-    revealElems.forEach(el => {
-        el.classList.add('reveal');
-        revealObserver.observe(el);
-    });
-
-    /* 2) Progressive / lazy loading for gallery images */
-    const galleryImgs = document.querySelectorAll('.gallery-item img');
-    const imgObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            const img = entry.target;
-            const src = img.dataset.src || img.src;
-            // start blurred placeholder state
-            img.classList.add('blur-up');
-            img.loading = 'lazy';
-
-            const high = new Image();
-            high.src = src;
-            high.onload = function() {
-                img.src = high.src;
-                img.classList.add('loaded');
-                img.classList.remove('blur-up');
-            };
-            imgObserver.unobserve(img);
-        });
-    }, { rootMargin: '200px 0px' });
-
-    galleryImgs.forEach(img => {
-        // keep original src in data-src if not present
-        if (!img.dataset.src) img.dataset.src = img.src;
-        // optionally set a tiny inline placeholder (transparent pixel) to force lazy behavior
-        // img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="9"%3E%3C/svg%3E';
-        imgObserver.observe(img);
-    });
-
-    /* 3) Lazy/progressive backgrounds for .dest-img and .detail-hero */
-    const bgElems = document.querySelectorAll('.dest-img, #detail-hero');
-    const bgObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            const el = entry.target;
-            // read data-bg or inline style
-            let bg = el.dataset.bg;
-            if (!bg) {
-                const inline = el.style.backgroundImage || window.getComputedStyle(el).backgroundImage;
-                if (inline && inline !== 'none') {
-                    // extract url("...")
-                    const m = inline.match(/url\(["']?(.*?)["']?\)/);
-                    if (m) bg = m[1];
-                }
-            }
-            if (bg) {
-                el.classList.add('bg-lazy');
-                const high = new Image();
-                high.src = bg;
-                high.onload = function() {
-                    el.style.backgroundImage = `url('${bg}')`;
-                    el.classList.add('loaded');
-                    el.classList.remove('bg-lazy');
-                };
-            }
-            bgObserver.unobserve(el);
-        });
-    }, { rootMargin: '300px 0px' });
-
-    bgElems.forEach(el => {
-        // move existing inline background to data-bg to avoid immediate load
-        const inline = el.style.backgroundImage || window.getComputedStyle(el).backgroundImage;
-        if (inline && inline !== 'none') {
-            const m = inline.match(/url\(["']?(.*?)["']?\)/);
-            if (m) {
-                el.dataset.bg = m[1];
-                // temporarily clear background so browser doesn't load it immediately
-                el.style.backgroundImage = 'none';
-            }
-        }
-        bgObserver.observe(el);
-    });
-
-    /* 4) Parallax for elements with data-parallax-speed */
-    // set defaults on important elements
-    const heroVideo = document.querySelector('.hero-video');
-    if (heroVideo) heroVideo.dataset.parallaxSpeed = -0.12;
-    const detailHero = document.getElementById('detail-hero');
-    if (detailHero) detailHero.dataset.parallaxSpeed = -0.08;
-
-    const parallaxElems = () => document.querySelectorAll('[data-parallax-speed]');
-
-    function handleParallax() {
-        const y = window.scrollY;
-        parallaxElems().forEach(el => {
-            const speed = parseFloat(el.dataset.parallaxSpeed) || 0;
-            const translate = Math.round(y * speed);
-            el.style.transform = `translateY(${translate}px)`;
-        });
-    }
-    window.addEventListener('scroll', handleParallax, { passive: true });
-    handleParallax();
-
-    /* 5) Small welcome popup (one-time per session) */
-    const welcome = document.getElementById('welcomePopup');
-    if (welcome) {
-        const showWelcome = () => {
-            if (sessionStorage.getItem('seenWelcome')) return;
-            welcome.classList.add('open');
-            sessionStorage.setItem('seenWelcome', '1');
-        };
-        // show after a short delay if user hasn't scrolled far
-        let showed = false;
-        setTimeout(() => { if (!showed) showWelcome(); }, 3000);
-        window.addEventListener('scroll', function onScroll() { if (!showed && window.scrollY > 150) { showWelcome(); showed = true; window.removeEventListener('scroll', onScroll); } });
-        // hook close button
-        const closeBtn = welcome.querySelector('.close-welcome');
-        if (closeBtn) closeBtn.addEventListener('click', () => welcome.classList.remove('open'));
-    }
-
-    // Promo popup behavior
-    (function setupPromoPopup() {
-        const popup = document.getElementById('promoPopup');
-        if (!popup) return;
-        const closeBtns = popup.querySelectorAll('.close-promo, #promoClose');
-        const chatBtn = document.getElementById('promoChat');
-        const exploreBtn = document.getElementById('promoExplore');
-        const dontShow = document.getElementById('promoDontShow');
-
-        const storageKey = 'promoPopupHidden_v1';
-        // initialize checkbox from storage
-        const hidden = localStorage.getItem(storageKey) === '1';
-        if (dontShow) dontShow.checked = hidden;
-
-        function openPopup() {
-            if (localStorage.getItem(storageKey) === '1') return; // respect user's choice
-            popup.classList.add('open');
-            if (window.locoScroll && typeof window.locoScroll.stop === 'function') try { window.locoScroll.stop(); } catch(e){}
-        }
-
-function closePopup() {
-    const popup = document.getElementById('promoPopup');
-    popup.classList.remove('open'); // Idhu dhaan CSS-la namma ezhudhuna 'open' class-a remove pannum
-}
-
-closeBtns.forEach(b => b.addEventListener('click', closePopup));
-
-        if (chatBtn) chatBtn.addEventListener('click', function() {
-            whatsapp('Promo Popup Enquiry');
-            if (dontShow && dontShow.checked) localStorage.setItem(storageKey, '1');
-            closePopup();
-        });
-
-        if (exploreBtn) exploreBtn.addEventListener('click', function() {
-            const offers = document.getElementById('offers');
-            if (offers) {
-                if (window.locoScroll && typeof window.locoScroll.scrollTo === 'function') window.locoScroll.scrollTo(offers);
-                else offers.scrollIntoView({ behavior: 'smooth' });
-            }
-            if (dontShow && dontShow.checked) localStorage.setItem(storageKey, '1');
-            closePopup();
-        });
-
-        if (dontShow) dontShow.addEventListener('change', function() {
-            if (this.checked) localStorage.setItem(storageKey, '1'); else localStorage.removeItem(storageKey);
-        });
-
-        // Show popup after a delay if not previously hidden
-        setTimeout(() => {
-            if (!localStorage.getItem(storageKey)) openPopup();
-        }, 4200);
-    })();
-
-    // Apply text letter animation to headings and large text blocks on page load
-    animateTextLetters('h1, h2, h3, .bold-heading, .section-title');
-    // Optionally animate paragraphs with class 'text-reveal'
-    animateTextLetters('.text-reveal');
-
-    // Hook into AOS to animate text when sections appear
-    document.addEventListener('aos:in', function(event) {
-        const revealed = event.detail;
-        if (revealed) {
-            const textElems = revealed.querySelectorAll('.text-reveal:not(.animated-text)');
-            textElems.forEach(el => {
-                try { animateTextLetters(el); } catch(e){}
-            });
-        }
-    });
-
-    // After images load, re-animate text if new content was injected
-    const origAnimateText = animateTextLetters;
-    window.animateTextLetters = function(sel, delay) {
-        origAnimateText(sel, delay);
-        try { refreshVisuals(); } catch(e){}
-    };
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const studentOfferCard = document.querySelector('.student-offer-video-card');
-    const offerVideo = studentOfferCard ? studentOfferCard.querySelector('.offer-video') : null;
-
-    if (studentOfferCard && offerVideo) {
-        // Play video when mouse enters the card
-        studentOfferCard.addEventListener('mouseenter', () => {
-            offerVideo.play().catch(error => {
-                console.log("Video autoplay prevented:", error);
-                // Handle autoplay prevention (e.g., show a play button)
-            });
-        });
-
-        // Pause video when mouse leaves the card
-        studentOfferCard.addEventListener('mouseleave', () => {
-            offerVideo.pause();
-        });
-
-        // For touch devices, play on first tap and pause on second tap
-        let isVideoPlaying = false;
-        studentOfferCard.addEventListener('click', (event) => {
-            // Prevent toggling if a button inside the card is clicked
-            if (event.target.tagName === 'BUTTON' || event.target.closest('button')) {
-                return;
-            }
-            if (isVideoPlaying) {
-                offerVideo.pause();
-                isVideoPlaying = false;
-            } else {
-                offerVideo.play().catch(error => {
-                    console.log("Video autoplay prevented on click:", error);
-                });
-                isVideoPlaying = true;
-            }
-        });
-    }
-});
-// Page refresh aagum pothu scroll-ah top-ku kondu poga
-window.onbeforeunload = function () {
-    window.scrollTo(0, 0);
-};
-
-// Locomotive Scroll use pandreengana, ithu scroll-ah reset pannum
-document.addEventListener("DOMContentLoaded", function() {
-    if (typeof scroll !== 'undefined') {
-        scroll.scrollTo(0, {duration: 0, disableLerp: true});
-    } else {
-        window.scrollTo(0, 0);
-    }
-});
 
