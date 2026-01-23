@@ -1337,48 +1337,66 @@ footer { padding: 60px 0 20px; background: #080808; border-top: 2px solid var(--
 }
 /* --- GSAP CONCAVE GALLERY START --- */
 
+/* Gallery Viewport - Full Width setup */
 .gallery-viewport {
-    perspective: 2500px; /* Curve depth visibility */
-    width: 100%;
-    height: 550px; /* Reflection sethu theriya height konjam kootiruken */
+    perspective: 2500px; 
+    width: 100vw; /* Screen width full-ah edukkum */
+    height: 800px;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     background: #000;
-    margin-top: 40px;
+    margin-left: calc(-50vw + 50%); /* Container-ah vittu veliya full width-ku vara intha trick use panrom */
+    margin-right: calc(-50vw + 50%);
+    position: relative;
 }
 
 .gsap-slider-wrapper {
     position: relative;
-    width: 220px;
-    height: 320px;
+    width: 250px; /* Poster size konjam kootalam */
+    height: 380px;
     transform-style: preserve-3d;
+    will-change: transform;
 }
 
 .slide {
     position: absolute;
-    width: 220px;
-    height: 320px;
-    border-radius: 15px;
+    width: 250px;
+    height: 380px;
+    border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
     border: 1px solid rgba(212, 175, 55, 0.2);
-    /* Reflect effect - Luxury look */
-    -webkit-box-reflect: below 15px linear-gradient(transparent, rgba(0,0,0,0.2));
-    transition: filter 0.5s ease, border-color 0.3s ease;
+    
+    /* 1. MIRROR REFLECTION: 
+       'below 10px' means reflection starts 10px after the image.
+       'linear-gradient' makes the reflection fade out beautifully. */
+    -webkit-box-reflect: below 10px linear-gradient(transparent 50%, rgba(0,0,0,0.3));
+
+    /* 2. PREMIUM SHADOW: 
+       Gives a 3D feel and prevents the image from looking flat. */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5), 
+                0 0 15px rgba(212, 175, 55, 0.1);
+
+    transition: transform 0.4s ease, border-color 0.3s ease;
+    will-change: transform, opacity;
 }
 
+/* Hover-la shadow and reflection innum bright aaga */
+.slide:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+    filter: brightness(1.1);
+}
+/* Front image-kku mattum gold glow thara hover logic */
+.slide:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+}
 .slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.slide:hover {
-    border-color: var(--gold);
-    filter: brightness(1.2);
-    z-index: 100;
-}
-
-/* --- GSAP CONCAVE GALLERY END --- */
