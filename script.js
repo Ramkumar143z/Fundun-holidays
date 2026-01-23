@@ -231,62 +231,34 @@ window.addEventListener('click', function(event) {
 });
 
 // Marquee Functionality
-let currentMarqueeData = null;
+document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('.slide');
+    const numSlides = slides.length;
+    const angleStep = 360 / numSlides; 
+    const radius = 550; // Curve distance
 
-function initializeMarquee() {
-    const wrapper = document.getElementById('marqueeWrapper');
-    if (!wrapper) return;
-    
-    wrapper.innerHTML = '';
-    
-    // Collect all places from all states
-    let allPlaces = [];
-    Object.keys(travelData).forEach(state => {
-        travelData[state].places.forEach(place => {
-            allPlaces.push({
-                name: place.name,
-                img: place.img,
-                desc: place.desc,
-                state: state
-            });
+    // Initial arrangement
+    slides.forEach((slide, index) => {
+        gsap.set(slide, {
+            rotationY: index * angleStep,
+            z: radius,
+            transformOrigin: `50% 50% ${-radius}px`
         });
     });
-    
-    // Create marquee items
-    allPlaces.forEach(place => {
-        const item = document.createElement('div');
-        item.className = 'marquee-item';
-        item.onclick = () => openMarqueeModal(place);
-        item.innerHTML = `
-            <div class="marquee-item-img" style="background-image: url('${place.img}');"></div>
-            <div class="marquee-item-info">
-                <h4>${place.name}</h4>
-                <p>${place.state}</p>
-            </div>
-        `;
-        wrapper.appendChild(item);
+
+    // Rotation Animation
+    const animation = gsap.to(".gsap-slider-wrapper", {
+        rotationY: 360,
+        duration: 30, // Speed of rotation
+        ease: "none",
+        repeat: -1
     });
-}
 
-function openMarqueeModal(placeData) {
-    currentMarqueeData = placeData;
-    document.getElementById('marqueeModalTitle').textContent = placeData.name;
-    document.getElementById('marqueeModalState').textContent = placeData.state;
-    document.getElementById('marqueeModalDesc').textContent = placeData.desc;
-    document.getElementById('marqueeModalImg').style.backgroundImage = `url('${placeData.img}')`;
-    document.getElementById('marqueeModal').style.display = 'flex';
-}
-
-function closeMarqueeModal() {
-    document.getElementById('marqueeModal').style.display = 'none';
-}
-
-function openMarqueeDestination() {
-    if (currentMarqueeData) {
-        closeMarqueeModal();
-        openDestinationPage(currentMarqueeData.state);
-    }
-}
+    // Pause on Hover
+    const viewport = document.querySelector('.gallery-viewport');
+    viewport.addEventListener('mouseenter', () => animation.pause());
+    viewport.addEventListener('mouseleave', () => animation.play());
+});
 
 // Close modal when clicking outside
 window.addEventListener('click', function(event) {
