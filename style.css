@@ -1335,3 +1335,50 @@ footer { padding: 60px 0 20px; background: #080808; border-top: 2px solid var(--
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
+/* --- GSAP CONCAVE GALLERY START --- */
+
+.gallery-viewport {
+    perspective: 2500px; /* Curve depth visibility */
+    width: 100%;
+    height: 550px; /* Reflection sethu theriya height konjam kootiruken */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #000;
+    margin-top: 40px;
+}
+
+.gsap-slider-wrapper {
+    position: relative;
+    width: 220px;
+    height: 320px;
+    transform-style: preserve-3d;
+}
+
+.slide {
+    position: absolute;
+    width: 220px;
+    height: 320px;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    /* Reflect effect - Luxury look */
+    -webkit-box-reflect: below 15px linear-gradient(transparent, rgba(0,0,0,0.2));
+    transition: filter 0.5s ease, border-color 0.3s ease;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide:hover {
+    border-color: var(--gold);
+    filter: brightness(1.2);
+    z-index: 100;
+}
+
+/* --- GSAP CONCAVE GALLERY END --- */
