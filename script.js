@@ -211,21 +211,32 @@ function openDestinationPage(title) {
         grid.innerHTML = ""; 
 
         data.places.forEach(place => {
-            grid.innerHTML += `
-                <div class="dest-card">
-                    <div class="dest-img" data-bg="${place.img}"></div>
-                    <div class="dest-info">
-                        <h3 class="gold">${place.name}</h3>
-                        <p style="font-size: 0.9rem; color: #ccc;">${place.desc}</p>
-                        <div class="dest-buttons" style="display: flex; gap: 10px; margin-top: 10px;">
-                            <button class="btn-card" onclick="openAttractionsModal('${place.name}', '${title}')" style="flex: 1;">View Details</button>
-                            <button class="btn-card" onclick="openBookingOptions('${place.name}', '${title}')" style="flex: 1;">Book Now</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
-        // After injecting, progressively load the newly added background images
+    const card = document.createElement('div');
+    card.className = "dest-card";
+    
+    // Inga dhaan unga existing HTML structure-a apply pandroom
+    card.innerHTML = `
+        <div class="dest-img" data-bg="${place.img}" style="background-image: url('${place.img}')"></div>
+        <div class="dest-info">
+            <h3 class="gold">${place.name}</h3>
+            <p style="font-size: 0.9rem; color: #ccc;">${place.desc}</p>
+            <div class="dest-buttons" style="display: flex; gap: 10px; margin-top: 10px;">
+                <button class="view-btn-custom btn-card" style="flex: 1;">View Details</button>
+                <button class="btn-card" onclick="openBookingOptions('${place.name}', '${title}')" style="flex: 1;">Book Now</button>
+            </div>
+        </div>
+    `;
+
+    // 1. Earkanavea irukkura andha 'View Details' button-a namma create panna loop-kulla pick pandroom
+    const viewBtn = card.querySelector('.view-btn-custom');
+    
+    // 2. Adhula namma puthiya showPlaceDetails function-a attach pandroom
+    viewBtn.onclick = () => {
+        showPlaceDetails(place); // Indha function kulla andha place-oda full data pass aagum
+    };
+
+    grid.appendChild(card);
+});    // After injecting, progressively load the newly added background images
         const newBgEls = grid.querySelectorAll('.dest-img');
         newBgEls.forEach(el => {
             const bg = el.dataset.bg;
@@ -264,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const angleStep = 360 / numSlides; 
     
     // Radius 1000 to 1200 means a wider, full-screen curve
-    const radius = 700; 
+    const radius = 500; 
 
     // Arrange images in a cylinder
     slides.forEach((slide, index) => {
@@ -278,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Infinite rotation animation
     const rotation = gsap.to(sliderWrapper, {
         rotationY: 360,
-        duration: 25, // Wider arc-ku duration kootunaa smooth-ah irukkum
+        duration: 50, // Wider arc-ku duration kootunaa smooth-ah irukkum
         ease: "none",
         repeat: -1,
     });
@@ -319,7 +330,7 @@ function openBookingOptions(placeName, stateName) {
     const waBtn = document.getElementById('modalWaBtn');
     waBtn.innerHTML = `<i class="fab fa-whatsapp"></i> WhatsApp Booking`;
     waBtn.onclick = function() {
-        const phoneNumber = "919585575354";
+        const phoneNumber = "+917010954360";
         const message = `Hi Fundun Holidays, I am interested in [${selectedServiceType}] for [${placeName}, ${stateName}].`;
         window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
         closeBookingModal();
@@ -412,12 +423,12 @@ function openMap() {
 
 // 6. Utility Functions
 function whatsapp(topic) {
-    const phoneNumber = "919585575354"; 
+    const phoneNumber = "+917010954360"; 
     const message = `Hi Fundun Holidays, I'm interested in: ${topic}. Please share more details.`;
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
 }
 function openMail() {
-    const emailId = "dineshcse142@gmail.com";
+    const emailId = "fundunholidays@gmail.com";
     const subject = "Inquiry regarding Fundun Holidays";
     const body = "Hello Team,\n\nI am interested in your travel services. Please provide more information.";
 
@@ -807,4 +818,74 @@ document.addEventListener("DOMContentLoaded", function() {
         window.scrollTo(0, 0);
     }
 });
+// Step 1: விவரங்களைக் காட்டும் Modal-ஐ உருவாக்கும் பங்க்ஷன்
+function showPlaceDetails(place) {
+    const detailsModal = document.createElement('div');
+    detailsModal.id = 'placeDetailsModal';
+    // ஸ்டைலிங்: இது முழு திரையையும் மறைக்கும் கருப்பு நிற விண்டோ
+    detailsModal.style.cssText = `
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.95); z-index: 10003;
+        overflow-y: auto; animation: fadeIn 0.3s ease;
+    `;
 
+    const content = document.createElement('div');
+    content.style.cssText = `max-width: 900px; margin: 0 auto; padding: 40px 20px;`;
+
+    // Close Button: விண்டோவை மூட
+    const closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+    closeBtn.style.cssText = `
+        position: fixed; top: 20px; right: 20px; background: #D4AF37;
+        border: none; color: white; font-size: 24px; padding: 10px 15px;
+        cursor: pointer; border-radius: 50%; z-index: 10004; width: 50px; height: 50px;
+    `;
+    closeBtn.onclick = () => {
+        detailsModal.remove();
+        document.body.style.overflow = 'auto'; // ஸ்க்ரோலிங் மீண்டும் தொடங்கும்
+    };
+
+    // இடத்தின் புகைப்படம், தலைப்பு மற்றும் விவரங்களைச் சேர்த்தல்
+    content.innerHTML = `
+        <img src="${place.img}" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 10px; margin-bottom: 30px;">
+        <h1 style="color: #D4AF37; font-size: 40px; margin-bottom: 10px;">${place.name}</h1>
+        <p style="color: #ccc; font-size: 18px; margin-bottom: 30px; line-height: 1.6;">${place.desc}</p>
+        <h2 style="color: #D4AF37; font-size: 28px; margin-bottom: 20px;">Things to Do & See</h2>
+    `;
+
+    // Attractions: பார்க்க வேண்டிய இடங்களின் பட்டியலை உருவாக்குதல்
+    if (place.attractions && place.attractions.length > 0) {
+        const attractionsList = document.createElement('ul');
+        attractionsList.style.cssText = "list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;";
+        place.attractions.forEach(attr => {
+            attractionsList.innerHTML += `
+                <li style="padding: 12px 15px; background: #1a1a1a; border-left: 4px solid #D4AF37; color: #ccc; border-radius: 5px;">
+                    <i class="fas fa-check" style="color: #D4AF37; margin-right: 10px;"></i>${attr}
+                </li>`;
+        });
+        content.appendChild(attractionsList);
+    }
+
+    detailsModal.appendChild(content);
+    detailsModal.appendChild(closeBtn);
+    document.body.appendChild(detailsModal);
+    document.body.style.overflow = 'hidden'; // விண்டோ திறந்திருக்கும் போது பின்னணி ஸ்க்ரோலிங்கை நிறுத்தும்
+}
+document.querySelectorAll('.dest-card').forEach(card => {
+    card.onclick = function() {
+        // Card-oda 'data-location' attribute-ai edukkurom
+        let location = this.getAttribute('data-location');
+        
+        // Oru velai data-location illana, parent state-container-la irunthu kandu pidikalam
+        if (!location) {
+            const stateTitle = this.closest('.state-container').querySelector('.state-title').innerText;
+            // "Tamil Nadu Culture" nu iruntha athula "Tamil Nadu" mattum edukka:
+            if(stateTitle.includes("Tamil Nadu")) location = "Tamil Nadu";
+            else if(stateTitle.includes("Kerala")) location = "Kerala";
+            else if(stateTitle.includes("Karnataka")) location = "Karnataka";
+        }
+
+        console.log("Opening details for: " + location);
+        openDestinationPage(location);
+    };
+});
