@@ -43,32 +43,7 @@
             </div>
         </div>
     </nav>
-<div id="loginModal" class="detail-page-overlay" style="display:none; z-index: 6000;">
-    <div class="auth-container">
-        <button class="close-auth" onclick="toggleLoginModal(false)">&times;</button>
-        
-        <div class="auth-box" id="loginBox">
-            <h2 class="gold">LOGIN</h2>
-            <form onsubmit="event.preventDefault(); alert('Login successful!')">
-                <input type="email" placeholder="Email Address" required class="auth-input">
-                <input type="password" placeholder="Password" required class="auth-input">
-                <button type="submit" class="btn-gold w-100">Login</button>
-            </form>
-            <p class="auth-switch">Don't have an account? <a href="javascript:void(0)" onclick="switchAuth('signup')" class="gold">Sign Up</a></p>
-        </div>
 
-        <div class="auth-box" id="signupBox" style="display:none;">
-            <h2 class="gold">SIGN UP</h2>
-            <form onsubmit="event.preventDefault(); alert('Account created!')">
-                <input type="text" placeholder="Full Name" required class="auth-input">
-                <input type="email" placeholder="Email Address" required class="auth-input">
-                <input type="password" placeholder="Create Password" required class="auth-input">
-                <button type="submit" class="btn-gold w-100">Create Account</button>
-            </form>
-            <p class="auth-switch">Already have an account? <a href="javascript:void(0)" onclick="switchAuth('login')" class="gold">Login</a></p>
-        </div>
-    </div>
-</div>
     <div id="aboutPage" class="detail-page-overlay">
         <div class="detail-header">
             <button class="btn-back" onclick="toggleAbout(false)"><i class="fas fa-arrow-left"></i> Back</button>
@@ -117,18 +92,18 @@
         <div class="state-container" style="margin-bottom: 60px; " >
             <h3 class="state-title" >Tamil Nadu <span class="gold">Culture</span></h3>
             <div class="dest-grid">
-                <div class="dest-card">
-                    <div class="dest-img" style="background-image: url('img/img5.jpg');"></div>
-                    <div class="dest-info"><h3>Ooty</h3></div>
-                </div>
-                <div class="dest-card">
-                    <div class="dest-img" style="background-image: url('img/img6.jpg');"></div>
-                    <div class="dest-info"><h3>Kodaikanal</h3></div>
-                </div>
-                <div class="dest-card">
-                    <div class="dest-img" style="background-image: url('img/img7.jpg');"></div>
-                    <div class="dest-info"><h3>Kanniyakumari</h3></div>
-                </div>
+                <div class="dest-card" data-location="Tamil Nadu">
+    <div class="dest-img" style="background-image: url('img/img5.jpg');"></div>
+    <div class="dest-info"><h3>Ooty</h3></div>
+</div>
+                <div class="dest-card" data-location="Tamil Nadu">
+    <div class="dest-img" style="background-image: url('img/img6.jpg');"></div>
+    <div class="dest-info"><h3>Kodaikanal</h3></div>
+</div>
+                <div class="dest-card" data-location="Tamil Nadu">
+    <div class="dest-img" style="background-image: url('img/img7.jpg');"></div>
+    <div class="dest-info"><h3>Kanniyakumari</h3></div>
+</div>
             </div>
             <div class="center" style="margin-top: 20px;">
                 <button class="btn-card" onclick="openDestinationPage('Tamil Nadu')">know More <i class="fas fa-arrow-right"></i></button>
@@ -169,7 +144,7 @@
                 </div>
                 <div class="dest-card">
                     <div class="dest-img" style="background-image: url('img/Bangalore.jpg');"></div>
-                    <div class="dest-info"><h3>Bangalore.</h3></div>
+                    <div class="dest-info"><h3>Bangalore</h3></div>
                 </div>
             </div>
             <div class="center" style="margin-top: 20px;">
@@ -356,14 +331,10 @@
                 <div class="slide" onclick="openLightbox(this)"><img src="img/og/img5.jpg" alt="Travel 5"></div>
                 <div class="slide" onclick="openLightbox(this)"><img src="img/og/img6.jpg" alt="Travel 6"></div>
                 <div class="slide" onclick="openLightbox(this)"><img src="img/og/img7.jpg" alt="Travel 7"></div>
-                <div class="slide" onclick="openLightbox(this)"><img src="img/og/img8.jpg" alt="Travel 8"></div>
-                <div class="slide" onclick="openLightbox(this)"><img src="img/og/img1.jpg" alt="Travel 1"></div>
-                <div class="slide" onclick="openLightbox(this)"><img src="img/og/img2.jpg" alt="Travel 2"></div>
-                <div class="slide" onclick="openLightbox(this)"><img src="img/og/img3.jpg" alt="Travel 3"></div>
-                <div class="slide" onclick="openLightbox(this)"><img src="img/og/img4.jpg" alt="Travel 4"></div>
-                <div class="slide" onclick="openLightbox(this)"><img src="img/og/img5.jpg" alt="Travel 5"></div>
+                 <div class="slide" onclick="openLightbox(this)"><img src="img/og/img5.jpg" alt="Travel 5"></div>
                 <div class="slide" onclick="openLightbox(this)"><img src="img/og/img6.jpg" alt="Travel 6"></div>
-             
+                <div class="slide" onclick="openLightbox(this)"><img src="img/og/img7.jpg" alt="Travel 7"></div>
+               
 
             </div>
         </div>
