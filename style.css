@@ -1493,79 +1493,55 @@ footer { padding: 60px 0 20px; background: #080808; border-top: 2px solid var(--
 }
 /* ============================================================
    MOBILE VIEW - FINAL RESPONSIVE CODE (Paste at the bottom)
-   ============================================================ */
-/* ============================================================
-   MOBILE RESPONSIVE - ALL FIXES (Paste at the very bottom)
+ /* ============================================================
+   MOBILE VIEW - FINAL CORRECTED CODE (Paste at the very bottom)
    ============================================================ */
 
 @media (max-width: 768px) {
-    /* 1. Navbar & Nav-links Visibility Fix */
-    #navbar {
-        height: auto !important;
-        padding: 10px 0;
-    }
-    .nav-flex {
-        flex-direction: column !important; /* Logo mela, links keela varum */
-        gap: 10px;
-    }
-    .nav-right {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        width: 100%;
-    }
-    .nav-links {
-        display: flex !important; /* Hide aana links ippo theriyum */
-        flex-direction: row !important;
-        gap: 15px !important;
-        overflow-x: auto; /* Space pathalana side-la scroll pannalam */
-        width: 100%;
-        justify-content: center;
-        padding: 5px 0;
-    }
-    .nav-links li a {
-        font-size: 0.7rem !important;
-        white-space: nowrap;
-    }
+    /* 1. Navbar Fix: Logo and Links visibility */
+    #navbar { height: auto !important; padding: 10px 0; }
+    .nav-flex { flex-direction: column !important; gap: 10px; }
+    .nav-right { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
+    .nav-links { display: flex !important; flex-direction: row !important; gap: 15px !important; overflow-x: auto; width: 100%; justify-content: center; padding: 5px 0; }
+    .nav-links li a { font-size: 0.7rem !important; white-space: nowrap; }
 
-    /* 2. Exclusive Offers Text Visibility Fix */
-    #offers .video-offer-card {
-        height: auto !important;
-        min-height: 280px !important;
-        padding: 30px 15px !important;
-    }
-    #offers .card-content {
-        position: relative;
-        z-index: 10;
-        width: 100%;
-    }
-    #offers .price.gold {
-        font-size: 0.9rem !important;
-        white-space: normal !important; /* Text cut aagama adutha line varum */
-        margin: 10px 0 !important;
-    }
-
-    /* 3. Containers Flex-Basis (Horizontal Scroll Logic) */
-    .dest-grid {
+    /* 2. STATE CONTAINERS ONLY: Horizontal Scroll (Desktop Appearance) */
+    .state-container .dest-grid {
         display: flex !important;
         flex-wrap: nowrap !important;
         overflow-x: auto !important;
         gap: 15px;
-        padding: 10px 5px 30px 5px;
+        padding-bottom: 25px;
         -webkit-overflow-scrolling: touch;
     }
-    .dest-grid .dest-card {
-        flex: 0 0 80% !important; /* 80% width kudutha appearance nalla irukum */
-        min-width: 260px;
+    .state-container .dest-card {
+        flex: 0 0 80% !important; /* Mobile-la side-by-side view */
+        min-width: 250px;
     }
 
-    /* 4. Hero Section & General Fixes */
-    .bold-heading {
-        font-size: 2.1rem !important;
-        line-height: 1.2;
+    /* 3. VERTICAL STACK: Matha ella sections-um vertical-ah vara fix */
+    /* Offers, Testimonials, Upcoming Tours, Services ellam stack aagum */
+    #offers .dest-grid, 
+    #services .service-flex,
+    #contact .contact-grid,
+    #offers .dest-grid,
+    .section:not(.state-container) .dest-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important; /* Oru card mattum theriya */
+        gap: 20px;
     }
-    .about-grid {
-        grid-template-columns: 1fr !important;
+
+    /* 4. Exclusive Offers Text Visibility Fix */
+    #offers .video-offer-card {
+        height: auto !important;
+        min-height: 250px !important;
+        padding: 40px 20px !important;
     }
+    #offers .card-content { width: 100%; }
+    #offers .price.gold { font-size: 1rem !important; white-space: normal !important; }
+
+    /* 5. General Mobile Layout Fixes */
+    .bold-heading { font-size: 2.1rem !important; }
+    .about-grid { grid-template-columns: 1fr !important; }
+    .footer-grid { grid-template-columns: 1fr !important; text-align: center; }
 }
