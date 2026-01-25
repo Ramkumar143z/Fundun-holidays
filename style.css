@@ -1352,35 +1352,34 @@ footer { padding: 60px 0 20px; background: #080808; border-top: 2px solid var(--
     position: relative;
 }
 
+/* Optimized smaller dimensions for 2026 luxury layouts */
 .gsap-slider-wrapper {
     position: relative;
-    width: 250px; /* Poster size konjam kootalam */
-    height: 380px;
+    width: 180px;  /* Reduced from 250px */
+    height: 280px; /* Reduced from 380px */
     transform-style: preserve-3d;
     will-change: transform;
 }
 
 .slide {
     position: absolute;
-    width: 250px;
-    height: 380px;
-    border-radius: 12px;
+    width: 180px; 
+    height: 280px;
+    border-radius: 10px;
     overflow: hidden;
-    cursor: pointer;
     border: 1px solid rgba(212, 175, 55, 0.2);
-    
-    /* 1. MIRROR REFLECTION: 
-       'below 10px' means reflection starts 10px after the image.
-       'linear-gradient' makes the reflection fade out beautifully. */
-    -webkit-box-reflect: below 10px linear-gradient(transparent 50%, rgba(0,0,0,0.3));
+    background: #000; /* Prevents flickering during 3D rotation */
 
-    /* 2. PREMIUM SHADOW: 
-       Gives a 3D feel and prevents the image from looking flat. */
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5), 
+    /* Optimized Reflection: Starts closer (8px) for a tighter look */
+    -webkit-box-reflect: below 8px linear-gradient(transparent 65%, rgba(0,0,0,0.1) 85%, rgba(0,0,0,0.25));
+
+    /* Premium Layered Shadow: Deep depth + subtle gold glow */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.7), 
                 0 0 15px rgba(212, 175, 55, 0.1);
 
-    transition: transform 0.4s ease, border-color 0.3s ease;
-    will-change: transform, opacity;
+    /* Performance & Smoothness */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+    will-change: transform; 
 }
 
 /* Hover-la shadow and reflection innum bright aaga */
@@ -1399,4 +1398,8 @@ footer { padding: 60px 0 20px; background: #080808; border-top: 2px solid var(--
     height: 100%;
     object-fit: cover;
 }
-
+.dest-card {
+  position: relative;
+  z-index: 50;
+  pointer-events: auto;
+}
