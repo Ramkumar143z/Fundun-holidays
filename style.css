@@ -1458,3 +1458,114 @@ footer { padding: 60px 0 20px; background: #080808; border-top: 2px solid var(--
     .section-title { font-size: 1.6rem; }
     .state-title { font-size: 1.2rem; }
 }
+@media (max-width: 768px) {
+    /* Main container settings */
+    .container {
+        width: 100%; /* Mobile-la full width edukkanum */
+        padding: 0 10px;
+        overflow-x: hidden;
+    }
+
+    /* State Container & Dest-Grid adjustments */
+    .dest-grid {
+        display: flex !important; /* Grid-ah Flex-ah maathuna thaan flex-basis work aagum */
+        flex-wrap: nowrap; /* Wrap aagama ore line-la iruka */
+        overflow-x: auto; /* Pakkathula scroll panni paaka */
+        gap: 15px;
+        padding-bottom: 20px;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling for mobile */
+    }
+
+    /* Ovvoru card-um ore line-la 3 theriyanum na (33% size) */
+    .dest-grid .dest-card {
+        flex: 0 0 33.33% !important; /* Idhu thaan neenga kettathula flex-basis 3 nu fix pannum */
+        min-width: 150px; /* Layout break aagama iruka safe limit */
+    }
+
+    /* Image and text size adjustments for small cards */
+    .dest-grid .dest-card .dest-img {
+        height: 120px; /* Height-ah kuraichalam appo thaan pakkava irukum */
+    }
+
+    .dest-info h3 {
+        font-size: 0.8rem; /* Chinna screen-ku etha maari title size */
+    }
+}
+/* ============================================================
+   MOBILE VIEW - FINAL RESPONSIVE CODE (Paste at the bottom)
+   ============================================================ */
+/* ============================================================
+   MOBILE RESPONSIVE - ALL FIXES (Paste at the very bottom)
+   ============================================================ */
+
+@media (max-width: 768px) {
+    /* 1. Navbar & Nav-links Visibility Fix */
+    #navbar {
+        height: auto !important;
+        padding: 10px 0;
+    }
+    .nav-flex {
+        flex-direction: column !important; /* Logo mela, links keela varum */
+        gap: 10px;
+    }
+    .nav-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    }
+    .nav-links {
+        display: flex !important; /* Hide aana links ippo theriyum */
+        flex-direction: row !important;
+        gap: 15px !important;
+        overflow-x: auto; /* Space pathalana side-la scroll pannalam */
+        width: 100%;
+        justify-content: center;
+        padding: 5px 0;
+    }
+    .nav-links li a {
+        font-size: 0.7rem !important;
+        white-space: nowrap;
+    }
+
+    /* 2. Exclusive Offers Text Visibility Fix */
+    #offers .video-offer-card {
+        height: auto !important;
+        min-height: 280px !important;
+        padding: 30px 15px !important;
+    }
+    #offers .card-content {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+    }
+    #offers .price.gold {
+        font-size: 0.9rem !important;
+        white-space: normal !important; /* Text cut aagama adutha line varum */
+        margin: 10px 0 !important;
+    }
+
+    /* 3. Containers Flex-Basis (Horizontal Scroll Logic) */
+    .dest-grid {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        gap: 15px;
+        padding: 10px 5px 30px 5px;
+        -webkit-overflow-scrolling: touch;
+    }
+    .dest-grid .dest-card {
+        flex: 0 0 80% !important; /* 80% width kudutha appearance nalla irukum */
+        min-width: 260px;
+    }
+
+    /* 4. Hero Section & General Fixes */
+    .bold-heading {
+        font-size: 2.1rem !important;
+        line-height: 1.2;
+    }
+    .about-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
