@@ -265,6 +265,7 @@ function openDestinationPage(title) {
     }
 }
 // --- GSAP CONCAVE SLIDER LOGIC ---
+// --- GSAP CONCAVE SLIDER LOGIC (Modified for Mobile) ---
 document.addEventListener('DOMContentLoaded', () => {
     const sliderWrapper = document.querySelector('.gsap-slider-wrapper');
     const slides = document.querySelectorAll('.slide');
@@ -274,10 +275,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const numSlides = slides.length;
     const angleStep = 360 / numSlides; 
     
-    // Radius 1000 to 1200 means a wider, full-screen curve
-    const radius = 500; 
+    // Mobile-la radius kammiya irukanum, Desktop-la 500 nalla irukum
+    const radius = window.innerWidth < 768 ? 250 : 500; 
 
-    // Arrange images in a cylinder
     slides.forEach((slide, index) => {
         gsap.set(slide, {
             rotationY: index * angleStep,
@@ -286,15 +286,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Infinite rotation animation
     const rotation = gsap.to(sliderWrapper, {
         rotationY: 360,
-        duration: 50, // Wider arc-ku duration kootunaa smooth-ah irukkum
+        duration: 50,
         ease: "none",
         repeat: -1,
     });
-
-   
 });
 function closeDetailPage() {
     document.getElementById('detailPage').style.display = 'none';
