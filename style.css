@@ -1545,3 +1545,198 @@ footer { padding: 60px 0 20px; background: #080808; border-top: 2px solid var(--
     .about-grid { grid-template-columns: 1fr !important; }
     .footer-grid { grid-template-columns: 1fr !important; text-align: center; }
 }
+/* Carousel Styles */
+.carousel-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.carousel-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out; /* ஸ்மூத் அனிமேஷன் */
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+/* Hero Content Fix */
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    z-index: 0;
+}
+/* Carousel Slide Transition */
+.carousel-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0; /* Default-ah hide aagi irukanum */
+    transition: opacity 1.5s ease-in-out; /* Smooth transition */
+}
+
+.carousel-slide.active {
+    opacity: 1; /* Active slide mattum theriyanum */
+}
+/* ============================================================
+   LUXURY CINEMATIC ANIMATION – ADD AT CSS LAST
+   ============================================================ */
+
+/* HERO CINEMATIC INTRO */
+.hero-content{
+  animation: heroCinematic 1.4s cubic-bezier(.2,.9,.2,1) both;
+}
+@keyframes heroCinematic{
+  from{opacity:0;transform:translateY(30px) scale(1.08);filter:blur(6px)}
+  to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+}
+
+/* PREMIUM SCROLL REVEAL (override) */
+.reveal{
+  opacity:0;
+  transform:translateY(40px) scale(.96);
+  filter:blur(8px);
+  transition:all 1s cubic-bezier(.2,.9,.2,1);
+}
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  filter:blur(0);
+}
+
+/* DESTINATION CARD – LUXURY FLOAT */
+#destinations .dest-card{
+  transition:transform .7s cubic-bezier(.2,.9,.2,1),box-shadow .7s ease;
+}
+#destinations .dest-card:hover{
+  transform:translateY(-14px) scale(1.03);
+  box-shadow:0 25px 50px rgba(0,0,0,.8),0 0 30px rgba(212,175,55,.25);
+}
+#destinations .dest-card .dest-img{
+  transition:transform 1.3s ease,filter .6s ease;
+}
+#destinations .dest-card:hover .dest-img{
+  transform:scale(1.12);
+  filter:brightness(.65);
+}
+
+/* GOLD TEXT – SOFT ROYAL GLOW */
+.gold{
+  animation:goldGlow 4s ease-in-out infinite;
+}
+@keyframes goldGlow{
+  0%{text-shadow:0 0 0 rgba(212,175,55,0)}
+  50%{text-shadow:0 0 18px rgba(212,175,55,.6)}
+  100%{text-shadow:0 0 0 rgba(212,175,55,0)}
+}
+
+/* PREMIUM BUTTON PRESS */
+.btn-gold,.btn-white{
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.btn-gold:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 28px rgba(212,175,55,.5);
+}
+.btn-gold:active,.btn-white:active{
+  transform:scale(.96);
+}
+
+/* NAVBAR – GLASS SCROLL FEEL */
+#navbar{
+  transition:background-color .4s ease,backdrop-filter .4s ease;
+}
+#navbar.scrolled{
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(12px);
+}
+
+/* OFFER / SERVICE / CONTACT – SOFT LIFT */
+.offer-card,.s-item,.contact-card{
+  transition:transform .5s cubic-bezier(.2,.9,.2,1),box-shadow .5s ease;
+}
+.offer-card:hover,.s-item:hover,.contact-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 20px 40px rgba(0,0,0,.7);
+}
+
+/* MOBILE PERFORMANCE */
+@media (max-width:768px){
+  .reveal{transform:translateY(25px);filter:blur(4px)}
+}
+/* ============================================================
+   CINEMATIC LIGHT SWEEP – FORCE VISIBLE VERSION
+   ============================================================ */
+
+/* Make sure base is visible */
+html, body{
+  background:#000;
+}
+
+/* Light sweep layer */
+body::after{
+  content:'';
+  position:fixed;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,215,120,0.18) 45%,
+    rgba(255,215,120,0.08) 50%,
+    transparent 65%
+  );
+  animation:cinematicSweep 18s linear infinite;
+  z-index:0;
+  pointer-events:none;
+}
+
+/* Push content above sweep */
+body > *{
+  position:relative;
+  z-index:1;
+}
+
+@keyframes cinematicSweep{
+  from{
+    transform:translateX(-30%);
+  }
+  to{
+    transform:translateX(30%);
+  }
+}
+
+/* Mobile */
+@media(max-width:768px){
+  body::after{
+    opacity:.6;
+  }
+}
