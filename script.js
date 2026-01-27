@@ -2,41 +2,41 @@
 const travelData = {
     "Tamil Nadu": {
         subtitle: "Experience the Rich Culture & Heritage",
-        heroImg: "img/img1.jpg",
+        heroImg: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/img1_dcfvxp.jpgmg/img1.jpg",
         places: [
             { 
                 name: "Ooty", 
-                img: "img/img5.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239791/img5_g7ovbn.webpg5.jpg", 
                 desc: "Queen of Hill Stations.",
                 attractions: ["Boat House", "Pykara Dam", "Pykara Lake", "Rose Garden", "Tea Museum", "Pine Forest", "Shooting Point", "Karnataka Garden", "Doddapetta Peak"]
             },
             { 
                 name: "Kodaikanal", 
-                img: "img/img6.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239792/img6_pb9ann.jpg", 
                 desc: "The Princess of Hill Stations.",
                 attractions: ["Silver Falls", "Kodaikanal Lake", "Bryant Park", "Coakers Park", "Poombarai", "Kookal", "Pillar Rock", "Guna Caves"]
             },
             { 
                 name: "Kanyakumari", 
-                img: "img/img7.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/img7_pmlqbt.jpg", 
                 desc: "Meeting point of three oceans.",
                 attractions: ["Thiruvalluvar Statue", "Vivekananda Memorial Rock", "Sunset View Point", "Beach", "Padmanabhapuram Palace", "Papanasam Temple", "Manimuthar Dam", "Kuttralam"]
             },
             { 
                 name: "Pondicherry", 
-                img: "img/img8.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/img8_q9q4t1.jpg", 
                 desc: "The French Riviera of the East.",
                 attractions: ["French Colony", "Paradise Beach", "Sacred Heart Basilica", "Rock Beach", "Auroville Beach", "Promenade Beach", "Chunnambar Boat House"]
             },
             { 
                 name: "Chennai", 
-                img: "img/Chennai.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239788/Chennai_pqoiyu.webp", 
                 desc: "Gateway to South India.",
                 attractions: ["Marina Beach", "Mahabalipuram", "Santhome Church", "Birla Planetorium", "Elliotts Beach", "Kapaleeshwar Temple", "VGP Amusement Park"]
             },
             { 
                 name: "yercaud", 
-                img: "img/yercaud.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239860/yercaud_vplyl4.jpg", 
                 desc: "Jewel of the South.",
                 attractions: ["Yercaud Lake", "Pagoda Point", "Loop Road", "Bears Cave", "Kiliyur Water Falls", "Servarayan Temple"]
             }
@@ -45,53 +45,53 @@ const travelData = {
     },
     "Kerala": {
         subtitle: "Relax in God's Own Country",
-        heroImg: "img/img3.jpg",
+        heroImg: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769444611/img3_keunot.jpghttps://res.cloudinary.com/drlg1t6pk/image/upload/v1769444611/img3_keunot.jpg",
         places: [
             { 
                 name: "Munnar", 
-                img: "img/munar.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/munar_mc80wo.webp", 
                 desc: "Kashmir of South India.",
                 attractions: ["Mattupetty Dam", "Tea Museum", "Echo Point", "Top Station", "Kundala Lake", "Photo Point", "Rose Garden"]
             },
             { 
                 name: "Cochin", 
-                img: "img/cochi.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/cochi_m11tfv.jpg", 
                 desc: "Queen of the Arabian Sea.",
                 attractions: ["Chotanikara Bhagavathy Temple", "Athi Rampadi Water Falls", "Cherai Beach", "Mattancherry Palace", "Hill Palace Museum", "Wonderla", "Bolgatti Palace", "Lulu Mall", "Vypen Beach"]
             },
             { 
                 name: "Wayanad", 
-                img: "img/Wayanad.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/Wayanad_uyjw0d.jpg", 
                 desc: "eco-tourism and adventure camping.",
                 attractions: ["Edakkal Caves", "Chembra Peak", "Lakkidi View Point", "Soochippara Water Falls", "Meenmutty Falls", "Banasurasagar Dam"]
             },
             { 
                 name: "Alleppey", 
-                img: "img/Alleppey.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769499860/Alleppey_mttbda.jpg", 
                 desc: "Venice of the East",
                 attractions: ["Backwaters", "Alappuzha Beach", "Light House", "St. Mary Forane Church", "Vembanad Lake"]
             },
             { 
                 name: "Vagamon",  
-                img: "img/Vagamon.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239860/Wayanad_m5cas0.webp", 
                 desc: "Scotland of Asia",
                 attractions: ["Thangalpara", "Kurushimala", "Pine Forest", "Vagamon Meadows", "Ulupunni Tunnel", "Echo Point", "Idukki Dam", "Marmala Falls"]
             },
             { 
                 name: "Trivandrum", 
-                img: "img/Trivandrum.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239859/Trivandrum_i17o5x.jpg", 
                 desc: "Evergreen City of India.",
                 attractions: ["Padmanabha Swamy Temple", "Chithra Art Gallery", "Zoological Park", "Napier Museum", "Magic Planet", "Mall of Travancore", "Kovalam Light House", "Kovalam Beach"]
             },
             { 
                 name: "Varkala", 
-                img: "img/Varkala.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239860/Varkala_it9rvu.webp", 
                 desc: "Goa of Kerala.",
                 attractions: ["Varkala Beach", "Varkala Cliff", "Odayam Beach", "Anjengo Fort Lighthouse"]
             },
             { 
                 name: "Thekkady", 
-                img: "img/Thekkady.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239859/Thekkady_zvi6b9.webp", 
                 desc: "famous wildlife reserves in South India.",
                 attractions: ["Periyar National Park", "Thekkady Lake", "Hill King", "Vandiperiyar"]
             }
@@ -99,53 +99,53 @@ const travelData = {
     },
     "Karnataka": {
         subtitle: "Nature Sings in green hills",
-        heroImg: "img/img2.jpg",
+        heroImg: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/Dandeli_j6pokq.webp",
         places: [
             { 
                 name: "Mysore", 
-                img: "img/mysore.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/mysore_jt2vdj.webp", 
                 desc: "Cultural Capital of Karnataka.",
                 attractions: ["Mysore Palace", "Mysore Zoo", "Shuka Vana", "Brindavan Garden", "Chamundeshwari Temple", "Balmuri Falls", "St. Philomena Church", "GRS Fantasy Amusement Park"]
             },
             { 
                 name: "Coorg", 
-                img: "img/Coorg.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/Coorg_g6wtuj.jpg", 
                 desc: "picturesque hill station in Karnataka.",
                 attractions: ["Golden Temple", "Kaveri Nisargadhama", "Dubare Forest", "Harangi Dam", "White Water River Rafting", "Chiklihole Reservoir", "Abbey Falls", "Raja Seat", "Mandalpete Jeep Trekking"]
             },
             { 
                 name: "Bangalore",
-                img: "img/Bangalore.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239788/Bangalore_bcxmfa.webp", 
                 desc: "Silicon Valley of India.",
                 attractions: ["Wonderla", "Lalbagh Garden", "Bannerghatta National Park", "Bangalore Palace", "Cubbon Park", "Iskcon Temple", "Triusultan Palace", "Commercial Street Shopping", "Visvesvaraya Museum", "UB City Mall"]
             },
             { 
                 name: "Chikmagalur", 
-                img: "img/Chikmagalur.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/Chikmagalur_kserth.jpg", 
                 desc: "A serene hill station.",
                 attractions: ["Siri Statue", "Mullayanagiri", "Baba Budan Giri", "Seethalayangiri", "Z-Point Trekking", "Honnamana Halla", "Ukkada Water Falls", "Jhari Falls", "Bandi Kallu Gudda Sunset Point"]
             },
             { 
                 name: "Mangalore", 
-                img: "img/mang.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239788/mang_mzbhe7.webp", 
                 desc: "A vibrant coastal city famous for its beaches, temples, and delicious seafood cuisine.",
                 attractions: ["Panambur Beach", "Pilikula Tourism", "Tannirbhavi Beach", "Mangaladevi Temple", "Someshwar Beach", "Forum Fiza Mall"]
             },
             { 
                 name: "Murudeshwar", 
-                img: "img/Mangalore.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/Mangalore_oesega.webp", 
                 desc: "statue of Lord Shiva overlooking the Arabian Sea.",
                 attractions: ["Shiva Temple", "Murudeshwar Beach", "Murudeshwar Fort", "Jog Falls"]
             },
             { 
                 name: "Gokarna & Udupi", 
-                img: "img/udipi.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239859/udipi_nrrgs1.jpg", 
                 desc: "Spiritual and coastal destinations known for pristine beaches, ancient temples, and peaceful vibes.",
                 attractions: ["Om Beach", "Paradise Beach", "Kudle Beach", "Mahabaleshwara Temple", "Water Sports", "Yana Caves", "Halfmoon Beach", "St. Mary's Island", "Krishna Temple", "Anantheshwara Temple"]
             },
             { 
                 name: "Dandeli", 
-                img: "img/Dandeli.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/Dandeli_j6pokq.webp", 
                 desc: "An adventure hotspot celebrated for river rafting, dense forests, and rich wildlife.",
                 attractions: ["Moulangi Eco Park", "Disney Park", "Supa Dam", "Kali River Water Sports", "Zorbing", "Rafting", "Jacuzzi Bath", "Zipline Activities", "Trekking", "Kayaking"]
             }
@@ -885,4 +885,58 @@ document.querySelectorAll('.dest-card').forEach(card => {
         console.log("Opening details for: " + location);
         openDestinationPage(location);
     };
+});// --- Cloudinary Link Fixer (Add at the end of script.js) ---
+(function fixCloudinaryLinks() {
+    if (typeof travelData !== 'undefined') {
+        // Tamil Nadu Fix
+        if (travelData["Tamil Nadu"]) {
+            travelData["Tamil Nadu"].heroImg = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/img1_dcfvxp.jpg";
+            
+            const tnPlaces = travelData["Tamil Nadu"].places;
+            if (tnPlaces[0]) tnPlaces[0].img = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239791/img5_g7ovbn.webp"; // Ooty
+            if (tnPlaces[1]) tnPlaces[1].img = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239792/img6_pb9ann.jpg"; // Kodaikanal
+            if (tnPlaces[2]) tnPlaces[2].img = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/img7_pmlqbt.jpg"; // Kanyakumari
+        }
+
+        // Kerala Fix
+        if (travelData["Kerala"]) {
+            travelData["Kerala"].heroImg = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/Alleppey_wo9ngp.jpg";
+            
+            const klPlaces = travelData["Kerala"].places;
+            if (klPlaces[0]) klPlaces[0].img = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/munar_mc80wo.webp"; // Munnar
+            if (klPlaces[3]) klPlaces[3].img = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/Alleppey_wo9ngp.jpg"; // Alleppey
+            if (klPlaces[2]) klPlaces[2].img = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239860/Wayanad_m5cas0.webp"; // Wayanad
+        }
+
+        // Karnataka Fix
+        if (travelData["Karnataka"]) {
+            travelData["Karnataka"].heroImg = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/mysore_jt2vdj.webp";
+            
+            const kaPlaces = travelData["Karnataka"].places;
+            if (kaPlaces[0]) kaPlaces[0].img = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/mysore_jt2vdj.webp"; // Mysore
+            if (kaPlaces[1]) kaPlaces[1].img = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/Coorg_g6wtuj.jpg"; // Coorg
+            if (kaPlaces[2]) kaPlaces[2].img = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239788/Bangalore_bcxmfa.webp"; // Bangalore
+        }
+        
+        console.log("Cloudinary links patched successfully!");
+    }
+})();
+document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelectorAll('.carousel-slide');
+    let currentSlide = 0;
+    const slideInterval = 5000; // 5000ms = 5 Seconds
+
+    function nextSlide() {
+        // Current slide-la irunthu 'active' class-ah remove panrom
+        slides[currentSlide].classList.remove('active');
+        
+        // Adutha slide number-ah calculate panrom
+        currentSlide = (currentSlide + 1) % slides.length;
+        
+        // Adutha slide-ku 'active' class-ah add panrom
+        slides[currentSlide].classList.add('active');
+    }
+
+    // Automatic transition start panrom
+    setInterval(nextSlide, slideInterval);
 });
