@@ -940,4 +940,3 @@ document.addEventListener('DOMContentLoaded', function() {
     // Automatic transition start panrom
     setInterval(nextSlide, slideInterval);
 });
-
