@@ -10,9 +10,50 @@
     <link rel="stylesheet" href="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" />
 </head>
 <body>
+<div id="flight-container">
+    <img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769499215/jet_e6degz.png" id="flight-img" alt="Flight Cursor">
+</div>
+
+<style>
+    /* Default arrow-a hide panrom */
+    * {
+        cursor: none !important;
+    }
+
+    #flight-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 60px; /* Unga image size-ku etha maari mathikonga */
+        height: 60px;
+        pointer-events: none;
+        z-index: 9999999;
+        display: block;
+        will-change: transform;
+        transform: translate(-50%, -50%);
+    }
+
+    #flight-img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.1s ease-out; /* Turning smoothness */
+    }
+
+    /* Take-off Animation */
+    .take-off-active {
+        animation: flyAway 0.8s ease-in forwards;
+    }
+
+    @keyframes flyAway {
+        0% { transform: scale(1) translateY(0); opacity: 1; }
+        50% { transform: scale(2.5) translateY(-50px); opacity: 0.6; }
+        100% { transform: scale(4) translateY(-200px); opacity: 0; }
+    }
+</style>
 <div id="preloader">
     <div class="preloader-content">
-        <img src="img/img4.png" alt="Fundun Logo" class="loader-logo">
+        <img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239791/img4-removebg-preview_ltwiue.png" alt="Fundun Logo" class="loader-logo">
         <div class="loader-logo"></div>
     </div>
 </div>
@@ -26,7 +67,7 @@
     <nav id="navbar">
         <div class="nav-container nav-flex">
             <div class="logo-box">
-                <img src="img/img4-removebg-preview.png" alt="Fundun Logo" class="nav-logo" style="width: 40px; height: 40px;">
+                <img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239791/img4-removebg-preview_ltwiue.png" alt="Fundun Logo" class="nav-logo" style="width: 40px; height: 40px;">
                 <div class="logo-text">FUNDUN <span class="gold">HOLIDAYS</span></div>
             </div>
             <div class="nav-right">
@@ -70,19 +111,23 @@
         </div>
     </div>
 
-    <header id="home" class="hero">
-        <!-- Poster image replacing video for faster load and consistent behavior -->
-        <img src="img/POSTER.png" alt="Explore the extraordinary" class="hero-poster" aria-hidden="true" style="filter: brightness(1.3);">
-        <div class="hero-overlay"></div>
-        <div class="hero-content" data-scroll-section>
-            <h1 class="bold-heading text-reveal">EXPLORE THE <span class="gold">EXTRAORDINARY</span></h1>
-            <p class="text-reveal">Your Trusted Partner for Luxury Domestic & International World Tours.</p>
-            <div class="hero-btns">
-                <button onclick="scrollToSection('destinations')" class="btn-gold">Plan Your Trip</button>
-                <button onclick="whatsapp('Chatting from Hero Section')" class="btn-white">Chat on WhatsApp</button>
-            </div>
+   <header id="home" class="hero">
+    <div class="carousel-container">
+        <div class="carousel-slide active" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239861/POSTER_bvgobj.png');"></div>
+        <div class="carousel-slide" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239791/img5_g7ovbn.webp');"></div>
+        <div class="carousel-slide" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/munar_mc80wo.webp');"></div>
+    </div>
+    
+    <div class="hero-overlay"></div>
+    <div class="hero-content" data-scroll-section>
+        <h1 class="bold-heading text-reveal">EXPLORE THE <span class="gold">EXTRAORDINARY</span></h1>
+        <p class="text-reveal">Your Trusted Partner for Luxury Domestic & International World Tours.</p>
+        <div class="hero-btns">
+            <button onclick="scrollToSection('destinations')" class="btn-gold">Plan Your Trip</button>
+            <button onclick="whatsapp('Chatting from Hero Section')" class="btn-white">Chat on WhatsApp</button>
         </div>
-    </header>
+    </div>
+</header>
   <div class="dest-card reveal"> 
     <section id="destinations" class="section">
     <div class="container">
@@ -92,15 +137,15 @@
             <h3 class="state-title" >Tamil Nadu <span class="gold">Culture</span></h3>
             <div class="dest-grid">
                 <div class="dest-card" data-location="Tamil Nadu">
-    <div class="dest-img" style="background-image: url('img/img5.jpg');"></div>
+    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239791/img5_g7ovbn.webp');"></div>
     <div class="dest-info"><h3>Ooty</h3></div>
 </div>
                 <div class="dest-card" data-location="Tamil Nadu">
-    <div class="dest-img" style="background-image: url('img/img6.jpg');"></div>
+    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239792/img6_pb9ann.jpg');"></div>
     <div class="dest-info"><h3>Kodaikanal</h3></div>
 </div>
                 <div class="dest-card" data-location="Tamil Nadu">
-    <div class="dest-img" style="background-image: url('img/img7.jpg');"></div>
+    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/img7_pmlqbt.jpg');"></div>
     <div class="dest-info"><h3>Kanniyakumari</h3></div>
 </div>
             </div>
@@ -113,15 +158,15 @@
             <h3 class="state-title">Kerala <span class="gold">Special</span></h3>
             <div class="dest-grid">
                 <div class="dest-card">
-                    <div class="dest-img" style="background-image: url('img/munar.jpg');"></div>
+                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/munar_mc80wo.webp');"></div>
                     <div class="dest-info"><h3>Munnar</h3></div>
                 </div>
                 <div class="dest-card">
-                    <div class="dest-img" style="background-image: url('img/alleppey.jpg');"></div>
+                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/Alleppey_wo9ngp.jpg');"></div>
                     <div class="dest-info"><h3>Alleppey</h3></div>
                 </div>
                 <div class="dest-card">
-                    <div class="dest-img" style="background-image: url('img/wayanad.jpg');"></div>
+                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239860/Wayanad_m5cas0.webp');"></div>
                     <div class="dest-info"><h3>Wayanad</h3></div>
                 </div>
             </div>
@@ -134,15 +179,15 @@
             <h3 class="state-title">Karnataka <span class="gold">Diaries</span></h3>
             <div class="dest-grid">
                 <div class="dest-card">
-                    <div class="dest-img" style="background-image: url('img/mysore.jpg');"></div>
+                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/mysore_jt2vdj.webp');"></div>
                     <div class="dest-info"><h3>Mysore</h3></div>
                 </div>
                 <div class="dest-card">
-                    <div class="dest-img" style="background-image: url('img/coorg.jpg');"></div>
+                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/Coorg_g6wtuj.jpg');"></div>
                     <div class="dest-info"><h3>Coorg</h3></div>
                 </div>
                 <div class="dest-card">
-                    <div class="dest-img" style="background-image: url('img/Bangalore.jpg');"></div>
+                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239788/Bangalore_bcxmfa.webp');"></div>
                     <div class="dest-info"><h3>Bangalore</h3></div>
                 </div>
             </div>
@@ -221,7 +266,7 @@
             <div class="offer-card video-offer-card">
                 <div class="video-background-container">
                     <video class="offer-video" loop muted playsinline autoplay>
-                        <source src="vid/vid3.mp4" type="video/mp4">
+                        <source src="https://res.cloudinary.com/drlg1t6pk/video/upload/v1769239869/vid2_usmb81.mp4" type="video/mp4">
                     </video>
                     <div class="video-overlay"></div>
                 </div>
@@ -236,7 +281,7 @@
             <div class="offer-card video-offer-card">
                 <div class="video-background-container">
                     <video class="offer-video" loop muted playsinline autoplay>
-                        <source src="vid/vid2.mp4" type="video/mp4">
+                        <source src="https://res.cloudinary.com/drlg1t6pk/video/upload/v1769239874/vid3_zzki7z.mp4" type="video/mp4">
                     </video>
                     <div class="video-overlay"></div>
                 </div>
@@ -251,7 +296,7 @@
             <div class="offer-card video-offer-card">
                 <div class="video-background-container">
                     <video class="offer-video" loop muted playsinline autoplay>
-                        <source src="vid/vid4.mp4" type="video/mp4">
+                        <source src="https://res.cloudinary.com/drlg1t6pk/video/upload/v1769239862/vid4_e8jmrr.mp4" type="video/mp4">
                     </video>
                     <div class="video-overlay"></div>
                 </div>
@@ -323,16 +368,16 @@
        <h2 class="section-title">OUR<span class="gold">GALLERY</span></h2> 
         <div class="gallery-viewport">
             <div class="gsap-slider-wrapper">
-                <div class="slide" onclick="openLightbox(this)"><img src="img/og/img1.jpg" alt="Travel 1"></div>
-                <div class="slide" onclick="openLightbox(this)"><img src="img/og/img2.jpg" alt="Travel 2"></div>
-                <div class="slide" onclick="openLightbox(this)"><img src="img/og/img3.jpg" alt="Travel 3"></div>
-                <div class="slide" onclick="openLightbox(this)"><img src="img/og/img4.jpg" alt="Travel 4"></div>
-                <div class="slide" onclick="openLightbox(this)"><img src="img/og/img5.jpg" alt="Travel 5"></div>
-                <div class="slide" onclick="openLightbox(this)"><img src="img/og/img6.jpg" alt="Travel 6"></div>
-                <div class="slide" onclick="openLightbox(this)"><img src="img/og/img7.jpg" alt="Travel 7"></div>
+                <div class="slide" onclick="openLightbox(this)"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239846/img7_mljqvp.jpg" alt="Travel 1"></div>
+                <div class="slide" onclick="openLightbox(this)"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239845/img36_ip4jcv.jpg" alt="Travel 2"></div>
+                <div class="slide" onclick="openLightbox(this)"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239845/img32_ntyjbc.jpg" alt="Travel 3"></div>
+                <div class="slide" onclick="openLightbox(this)"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239792/img12_bl8rzq.jpg" alt="Travel 4"></div>
+                <div class="slide" onclick="openLightbox(this)"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239792/img11_m3c0kq.jpg" alt="Travel 5"></div>
+                <div class="slide" onclick="openLightbox(this)"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239844/img29_jeheip.jpg" alt="Travel 6"></div>
+                <div class="slide" onclick="openLightbox(this)"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239860/Varkala_it9rvu.webp" alt="Travel 7"></div>
                  <div class="slide" onclick="openLightbox(this)"><img src="img/og/img5.jpg" alt="Travel 5"></div>
                 <div class="slide" onclick="openLightbox(this)"><img src="img/og/img6.jpg" alt="Travel 6"></div>
-                <div class="slide" onclick="openLightbox(this)"><img src="img/og/img7.jpg" alt="Travel 7"></div>
+                <div class="slide" onclick="openLightbox(this)"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239793/img2_gipffk.jpg" alt="Travel 7"></div>
                
 
             </div>
@@ -406,7 +451,7 @@
     <footer>
         <div class="container footer-grid">
             <div class="f-about">
-                <img src="img/img4-removebg-preview.png" alt="Footer Logo" class="footer-logo"/>
+                <img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239791/img4-removebg-preview_ltwiue.png" alt="Footer Logo" class="footer-logo"/>
                 <p>Luxury and Trustworthy brand for all your travel needs.</p>
                 <div class="social-icons">
                     <i class="fa fa-plane gold"></i>
@@ -477,6 +522,54 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     
     <script src="script.js"></script>
+   <script>
+    const container = document.getElementById('flight-container');
+    const img = document.getElementById('flight-img');
+    let lastX = 0;
+    let lastY = 0;
+    let currentAngle = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        const x = e.clientX;
+        const y = e.clientY;
+
+        const dx = x - lastX;
+        const dy = y - lastY;
+
+        // Auto-Rotate Calculation
+        if (Math.abs(dx) > 1 || Math.abs(dy) > 1) {
+            // Flight rotate aaga Math.atan2 use panrom
+            // Note: If your image faces right, change +90 to 0
+            const targetAngle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
+            currentAngle = targetAngle;
+        }
+
+        // Follow mouse position
+        container.style.left = x + 'px';
+        container.style.top = y + 'px';
+
+        // Apply rotation only if not in take-off animation
+        if (!img.classList.contains('take-off-active')) {
+            img.style.transform = `rotate(${currentAngle}deg)`;
+        }
+
+        lastX = x;
+        lastY = y;
+    });
+
+    // Take-off when clicking buttons or links
+    document.addEventListener('mousedown', (e) => {
+        const clickable = e.target.closest('a, button, [role="button"]');
+        if (clickable) {
+            img.classList.add('take-off-active');
+            
+            // Reset after animation
+            setTimeout(() => {
+                img.classList.remove('take-off-active');
+            }, 800);
+        }
+    });
+</script>
 </body>
 </body>
 </html>
