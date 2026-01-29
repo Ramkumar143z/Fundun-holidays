@@ -1,12 +1,14 @@
-// 1. Data Object
+// 1. Data Object - Fully Fixed
 const travelData = {
     "Tamil Nadu": {
         subtitle: "Experience the Rich Culture & Heritage",
-        heroImg: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/img1_dcfvxp.jpgmg/img1.jpg",
+        heroImg: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/img1_dcfvxp.jpg",
         places: [
             { 
                 name: "Ooty", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239791/img5_g7ovbn.webpg5.jpg", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239791/img5_g7ovbn.jpg",
+                price: "₹12,500", 
+                offer: "15% OFF", 
                 desc: "Queen of Hill Stations.",
                 attractions: ["Boat House", "Pykara Dam", "Pykara Lake", "Rose Garden", "Tea Museum", "Pine Forest", "Shooting Point", "Karnataka Garden", "Doddapetta Peak"]
             },
@@ -40,12 +42,11 @@ const travelData = {
                 desc: "Jewel of the South.",
                 attractions: ["Yercaud Lake", "Pagoda Point", "Loop Road", "Bears Cave", "Kiliyur Water Falls", "Servarayan Temple"]
             }
-            
         ]
     },
     "Kerala": {
         subtitle: "Relax in God's Own Country",
-        heroImg: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769444611/img3_keunot.jpghttps://res.cloudinary.com/drlg1t6pk/image/upload/v1769444611/img3_keunot.jpg",
+        heroImg: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769444611/img3_keunot.jpg",
         places: [
             { 
                 name: "Munnar", 
@@ -148,11 +149,60 @@ const travelData = {
                 img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/Dandeli_j6pokq.webp", 
                 desc: "An adventure hotspot celebrated for river rafting, dense forests, and rich wildlife.",
                 attractions: ["Moulangi Eco Park", "Disney Park", "Supa Dam", "Kali River Water Sports", "Zorbing", "Rafting", "Jacuzzi Bath", "Zipline Activities", "Trekking", "Kayaking"]
+            }, // Fixed: Added missing comma here
+            {
+                name: "Goa", 
+                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769626372/goa_eba8v5.png", 
+                desc: "A sun-soaked paradise where Portuguese heritage, golden beaches, and vibrant nightlife create the ultimate coastal escape.",
+                attractions: ["Anjuna Beach", "Colva Beach", "Grand Island", "Mandovi River", "Dudhsagar Falls", "Palolem Beach", "Old Goa"]
             }
+            
+            
         ]
-    }
+    },
+    "Hyderabad": {
+    subtitle: "A Blend of Nizami Heritage & Modern Marvels",
+    heroImg: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769667474/hydrabad_hero_ayq45a.jpg", // Replace with your actual Cloudinary link
+    places: [
+        { 
+            name: "Charminar & Old City", 
+            img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769626372/charminar.jpg", 
+            desc: "The iconic symbol of Hyderabad known for its stunning architecture and bustling markets.",
+            attractions: ["Charminar", "Mecca Masjid", "Laad Bazaar (Bangle Market)", "Chowmahalla Palace", "Nimrah Cafe (Irani Chai)"]
+        },
+        { 
+            name: "Golconda Fort", 
+            img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769626372/golconda.jpg", 
+            desc: "A majestic citadel with incredible acoustic effects and a rich history of the Qutb Shahi dynasty.",
+            attractions: ["Sound & Light Show", "Qutb Shahi Tombs", "Fateh Darwaza", "Bala Hissar Pavillion"]
+        },
+        { 
+            name: "Ramoji Film City", 
+            img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769626372/ramoji.jpg", 
+            desc: "The world's largest integrated film city and a major amusement destination.",
+            attractions: ["Movie Sets", "Bahubali Set", "Eureka", "Bird Park", "Adventure Sports", "Studio Tour"]
+        },
+        { 
+            name: "Hussain Sagar & Birla Mandir", 
+            img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769626372/hussainsagar.jpg", 
+            desc: "Experience peace at the white marble temple and enjoy the breeze by the massive heart-shaped lake.",
+            attractions: ["Buddha Statue", "Lumbini Park (Laser Show)", "Birla Mandir", "Birla Planetarium", "Tank Bund Road"]
+        },
+        { 
+            name: "Modern Hyderabad (HITEC City)", 
+            img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769626372/hitechcity.jpg", 
+            desc: "The tech hub of the city featuring massive malls, luxury dining, and nightlife.",
+            attractions: ["Inorbit Mall", "Shilparamam (Arts & Crafts)", "IKEA", "DLF Cyber City Food Court", "Cable Bridge (Night View)"]
+        },
+        { 
+            name: "Salar Jung Museum", 
+            img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769626372/salarjung.jpg", 
+            desc: "One of the three National Museums of India with a massive collection of antiques.",
+            attractions: ["Musical Clock", "Veiled Rebecca", "Jade Room", "Nizam’s Jewels (Rarely displayed)"]
+        }
+    ]
+}
 };
-
 // 2. Variables & State
 let selectedServiceType = "General Tour"; 
 
@@ -939,4 +989,162 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Automatic transition start panrom
     setInterval(nextSlide, slideInterval);
+});
+function toggleCalculator(show) {
+    const heroText = document.getElementById('main-hero-text');
+    const formSection = document.getElementById('calc-form-container');
+
+    if (show) {
+        heroText.style.display = 'none';
+        formSection.style.display = 'block';
+    } else {
+        heroText.style.display = 'block';
+        formSection.style.display = 'none';
+    }
+}
+
+// Form Submit Action
+document.getElementById("heroCalcForm").onsubmit = function(e) {
+    e.preventDefault();
+    alert("Thank you! Our team will contact you soon.");
+    this.reset();
+    toggleCalculator(false); // Thirumba hero text-ke poyidum
+};
+function initEffects() {
+    // 1) Scroll Reveal
+    const revealElems = document.querySelectorAll('.dest-card, .s-item, .contact-card');
+    const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    revealElems.forEach(el => {
+        el.classList.add('reveal');
+        revealObserver.observe(el);
+    });
+
+    // 2) Lazy / Progressive Images
+    const imgs = document.querySelectorAll('.gallery-item img, .dest-img, #detail-hero');
+    const imgObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const img = entry.target;
+            const src = img.dataset.src || img.src;
+            const high = new Image();
+            high.src = src;
+            high.onload = () => {
+                img.src = src;
+                img.classList.add('loaded');
+            };
+            imgObserver.unobserve(img);
+        });
+    }, { rootMargin: '200px 0px' });
+
+    imgs.forEach(img => imgObserver.observe(img));
+
+    // 3) Parallax
+    const parallaxElems = document.querySelectorAll('[data-parallax-speed]');
+    function handleParallax() {
+        const y = window.scrollY;
+        parallaxElems.forEach(el => {
+            const speed = parseFloat(el.dataset.parallaxSpeed) || 0;
+            el.style.transform = `translateY(${y * speed}px)`;
+        });
+    }
+    window.addEventListener('scroll', handleParallax, { passive: true });
+    handleParallax();
+
+    // 4) GSAP Slider (if exists)
+    const sliderWrapper = document.querySelector('.gsap-slider-wrapper');
+    const slides = document.querySelectorAll('.slide');
+    if (sliderWrapper && slides.length) {
+        const numSlides = slides.length;
+        const angleStep = 360 / numSlides;
+        const radius = window.innerWidth < 768 ? 250 : 500;
+        slides.forEach((slide, index) => {
+            gsap.set(slide, {
+                rotationY: index * angleStep,
+                z: radius,
+                transformOrigin: `50% 50% ${-radius}px`
+            });
+        });
+        gsap.to(sliderWrapper, {
+            rotationY: 360,
+            duration: 50,
+            ease: "none",
+            repeat: -1
+        });
+    }
+}
+document.addEventListener('DOMContentLoaded', () => {
+    initEffects();
+});
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ===== 1) Scroll Reveal =====
+  const revealElems = document.querySelectorAll('.reveal');
+
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  revealElems.forEach(el => revealObserver.observe(el));
+
+  // ===== 2) Lazy / Progressive Backgrounds =====
+  const lazyBgElems = document.querySelectorAll('.dest-img, #detail-hero');
+
+  lazyBgElems.forEach(el => {
+    const bg = el.dataset.bg || el.style.backgroundImage.replace(/url\(["']?(.*?)["']?\)/,'$1');
+    if(bg){
+      el.classList.add('bg-lazy');
+      const high = new Image();
+      high.src = bg;
+      high.onload = () => {
+        el.style.backgroundImage = `url('${bg}')`;
+        el.classList.add('loaded');
+        el.classList.remove('bg-lazy');
+      };
+    }
+  });
+
+  // ===== 3) Lazy / Progressive Images =====
+  const lazyImgs = document.querySelectorAll('img[data-src]');
+  lazyImgs.forEach(img => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(!entry.isIntersecting) return;
+        const src = img.dataset.src;
+        const high = new Image();
+        high.src = src;
+        high.onload = () => {
+          img.src = src;
+          img.classList.add('loaded');
+          img.classList.remove('blur-up');
+        };
+        observer.unobserve(img);
+      });
+    }, { rootMargin: '200px 0px' });
+    observer.observe(img);
+  });
+
+  // ===== 4) Parallax =====
+  function handleParallax() {
+    const y = window.scrollY;
+    document.querySelectorAll('[data-parallax-speed]').forEach(el => {
+      const speed = parseFloat(el.dataset.parallaxSpeed) || 0;
+      const translate = Math.round(y * speed);
+      el.style.transform = `translateY(${translate}px)`;
+    });
+  }
+  window.addEventListener('scroll', handleParallax, { passive: true });
+  handleParallax(); // initial
 });
