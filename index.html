@@ -13,44 +13,6 @@
 <div id="flight-container">
     <img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769499215/jet_e6degz.png" id="flight-img" alt="Flight Cursor">
 </div>
-
-<style>
-    /* Default arrow-a hide panrom */
-    * {
-        cursor: none !important;
-    }
-
-    #flight-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 60px; /* Unga image size-ku etha maari mathikonga */
-        height: 60px;
-        pointer-events: none;
-        z-index: 9999999;
-        display: block;
-        will-change: transform;
-        transform: translate(-50%, -50%);
-    }
-
-    #flight-img {
-        width: 100%;
-        height: auto;
-        display: block;
-        transition: transform 0.1s ease-out; /* Turning smoothness */
-    }
-
-    /* Take-off Animation */
-    .take-off-active {
-        animation: flyAway 0.8s ease-in forwards;
-    }
-
-    @keyframes flyAway {
-        0% { transform: scale(1) translateY(0); opacity: 1; }
-        50% { transform: scale(2.5) translateY(-50px); opacity: 0.6; }
-        100% { transform: scale(4) translateY(-200px); opacity: 0; }
-    }
-</style>
 <div id="preloader">
     <div class="preloader-content">
         <img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239791/img4-removebg-preview_ltwiue.png" alt="Fundun Logo" class="loader-logo">
@@ -111,92 +73,422 @@
         </div>
     </div>
 
-   <header id="home" class="hero">
+  <header id="home" class="hero">
     <div class="carousel-container">
         <div class="carousel-slide active" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239861/POSTER_bvgobj.png');"></div>
-        <div class="carousel-slide" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239791/img5_g7ovbn.webp');"></div>
-        <div class="carousel-slide" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/munar_mc80wo.webp');"></div>
+        <div class="carousel-slide" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769595950/hero_image_2_dxwrxu.png');"></div>
+        <div class="carousel-slide" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769620540/img_post_rbz4dd.png');"></div>
     </div>
     
     <div class="hero-overlay"></div>
-    <div class="hero-content" data-scroll-section>
+
+    <div id="main-hero-text" class="hero-content" data-scroll-section>
         <h1 class="bold-heading text-reveal">EXPLORE THE <span class="gold">EXTRAORDINARY</span></h1>
         <p class="text-reveal">Your Trusted Partner for Luxury Domestic & International World Tours.</p>
         <div class="hero-btns">
             <button onclick="scrollToSection('destinations')" class="btn-gold">Plan Your Trip</button>
-            <button onclick="whatsapp('Chatting from Hero Section')" class="btn-white">Chat on WhatsApp</button>
+            <button onclick="toggleCalculator(true)" class="btn-white">Calculate My Packages</button>
+        </div>
+    </div>
+
+    <div  id="calc-form-container" class="hero-content" style="display: none; z-index: 100;">
+        <div class="form-card-direct">
+            <h2 style="font-size: 1.8rem; margin-bottom: 20px;">PACKAGE <span class="gold">CALCULATOR</span></h2>
+            <form id="heroCalcForm">
+                <div class="form-row-custom">
+                    <div class="f-group"><label>Name</label><input type="text" id="cName" required></div>
+                    <div class="f-group"><label>WhatsApp</label><input type="tel" id="cPhone" required></div>
+                </div>
+                <div class="form-row-custom">
+                    <div class="f-group">
+                        <label>Destination</label>
+                        <select id="cLoc">
+                            <option>Ooty</option><option>Kodaikanal</option>
+                            <option>Munnar</option><option>Alleppey</option>
+                            <option>Mysore</option><option>Coorg</option>
+                        </select>
+                    </div>
+                    <div class="f-group"><label>Persons</label><input type="number" id="cSeats" min="1" required></div>
+                </div>
+                <div class="form-row-custom">
+                    <div class="f-group"><label>Days</label><input type="number" id="cDays" min="1" required></div>
+                    <div class="f-group">
+                        <label>&nbsp;</label>
+                        <button type="submit" class="btn-gold" style="width:100%; border:none; padding:12px;">SUBMIT</button>
+                    </div>
+                </div>
+                <p onclick="toggleCalculator(false)" style="margin-top:15px; cursor:pointer; font-size:13px; opacity:0.7;">← Back to Home</p>
+            </form>
         </div>
     </div>
 </header>
-  <div class="dest-card reveal"> 
-    <section id="destinations" class="section">
+  <section id="destinations" class="section">
     <div class="container">
         <h2 class="section-title">DESTIN <span class="gold">ATIONS</span></h2>
-        
-        <div class="state-container" style="margin-bottom: 60px; " >
-            <h3 class="state-title" >Tamil Nadu <span class="gold">Culture</span></h3>
+
+        <div class="state-container" style="margin-bottom: 60px;">
+            <h3 class="state-title">Tamil Nadu <span class="gold">Culture</span></h3>
             <div class="dest-grid">
                 <div class="dest-card" data-location="Tamil Nadu">
-    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239791/img5_g7ovbn.webp');"></div>
-    <div class="dest-info"><h3>Ooty</h3></div>
-</div>
+                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239791/img5_g7ovbn.webp');">
+                        <div class="mini-slides">
+                            <span class="slide-link">📍 Doddabetta Peak</span>
+                            <span class="slide-link">📍 Pine Forest</span>
+                            <span class="slide-link">📍 Pykara Lake</span>
+                            <span class="slide-link">📍 Rose Garden</span>
+                        </div>
+                        <div class="card-badge">POPULAR</div>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Ooty: Green Serenity</h3>
+                        <div class="card-meta-container">
+                            <div class="meta-row">
+                                <span class="meta-item"><i class="fas fa-mountain"></i> Hill Station</span>
+                                <span class="meta-item"><i class="fas fa-users"></i> Group Tour</span>
+                            </div>
+                            <div class="meta-row second-row">
+                                <span class="meta-item liked"><i class="fas fa-heart"></i> 750+ Booked</span>
+                                <span class="meta-item trending"><i class="fas fa-fire"></i> Trending</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-explore-now" onclick="openDestinationPage('Tamil Nadu')">EXPLORE NOW</button>
+                            <button class="btn-save-later"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="dest-card" data-location="Tamil Nadu">
-    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239792/img6_pb9ann.jpg');"></div>
-    <div class="dest-info"><h3>Kodaikanal</h3></div>
-</div>
+                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239792/img6_pb9ann.jpg');">
+                        <div class="mini-slides">
+                            <span class="slide-link">📍 Pillar Rocks</span>
+                            <span class="slide-link">📍 Guna Caves</span>
+                            <span class="slide-link">📍 Coaker's Walk</span>
+                            <span class="slide-link">📍 Silver Cascade</span>
+                        </div>
+                        <div class="card-badge flash">FLASH SALE</div>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Kodaikanal: Misty Escape</h3>
+                        <div class="card-meta-container">
+                            <div class="meta-row">
+                                <span class="meta-item"><i class="fas fa-cloud"></i> Misty Charm</span>
+                                <span class="meta-item"><i class="fas fa-tags"></i> Save ₹2K</span>
+                            </div>
+                            <div class="meta-row second-row">
+                                <span class="meta-item liked"><i class="fas fa-clock"></i> 1 Slot Left!</span>
+                                <span class="meta-item trending"><i class="fas fa-bolt"></i> Fast Filling</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-explore-now" onclick="openDestinationPage('Tamil Nadu')">EXPLORE NOW</button>
+                            <button class="btn-save-later"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="dest-card" data-location="Tamil Nadu">
-    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/img7_pmlqbt.jpg');"></div>
-    <div class="dest-info"><h3>Kanniyakumari</h3></div>
-</div>
-            </div>
-            <div class="center" style="margin-top: 20px;">
-                <button class="btn-card" onclick="openDestinationPage('Tamil Nadu')">know More <i class="fas fa-arrow-right"></i></button>
+                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/img7_pmlqbt.jpg');">
+                        <div class="mini-slides">
+                            <span class="slide-link">📍 Vivekananda Rock</span>
+                            <span class="slide-link">📍 Statue</span>
+                            <span class="slide-link">📍 Sunset Point</span>
+                            <span class="slide-link">📍 Bhagavathi Temple</span>
+                        </div>
+                        <div class="card-badge">MUST VISIT</div>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Kanniyakumari: Sunset</h3>
+                        <div class="card-meta-container">
+                            <div class="meta-row">
+                                <span class="meta-item"><i class="fas fa-sun"></i> Sunrise Point</span>
+                                <span class="meta-item"><i class="fas fa-map-marker-alt"></i> South End</span>
+                            </div>
+                            <div class="meta-row second-row">
+                                <span class="meta-item liked"><i class="fas fa-thumbs-up"></i> 450+ Liked</span>
+                                <span class="meta-item trending"><i class="fas fa-star"></i> Top Rated</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-explore-now" onclick="openDestinationPage('Tamil Nadu')">EXPLORE NOW</button>
+                            <button class="btn-save-later"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="state-container" style="margin-bottom: 60px;">
             <h3 class="state-title">Kerala <span class="gold">Special</span></h3>
             <div class="dest-grid">
-                <div class="dest-card">
-                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/munar_mc80wo.webp');"></div>
-                    <div class="dest-info"><h3>Munnar</h3></div>
+                <div class="dest-card" data-location="Kerala">
+                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/munar_mc80wo.webp');">
+                        <div class="mini-slides">
+                            <span class="slide-link">📍 Tea Museum</span>
+                            <span class="slide-link">📍 Eravikulam Park</span>
+                            <span class="slide-link">📍 Mattupetty Dam</span>
+                        </div>
+                        <div class="card-badge">TOP SELLING</div>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Munnar: Tea Paradise</h3>
+                        <div class="card-meta-container">
+                            <div class="meta-row">
+                                <span class="meta-item"><i class="fas fa-leaf"></i> Nature Walk</span>
+                                <span class="meta-item"><i class="fas fa-cloud-sun"></i> Cool Climate</span>
+                            </div>
+                            <div class="meta-row second-row">
+                                <span class="meta-item liked"><i class="fas fa-heart"></i> 1.2k+ Booked</span>
+                                <span class="meta-item trending"><i class="fas fa-award"></i> Best Value</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-explore-now" onclick="openDestinationPage('Kerala')">EXPLORE NOW</button>
+                            <button class="btn-save-later"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
                 </div>
-                <div class="dest-card">
-                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/Alleppey_wo9ngp.jpg');"></div>
-                    <div class="dest-info"><h3>Alleppey</h3></div>
+
+                <div class="dest-card" data-location="Kerala">
+                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/Alleppey_wo9ngp.jpg');">
+                        <div class="mini-slides">
+                            <span class="slide-link">📍 Houseboat Stay</span>
+                            <span class="slide-link">📍 Backwaters</span>
+                            <span class="slide-link">📍 Marari Beach</span>
+                        </div>
+                        <div class="card-badge flash">HOT DEAL</div>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Alleppey: Backwaters</h3>
+                        <div class="card-meta-container">
+                            <div class="meta-row">
+                                <span class="meta-item"><i class="fas fa-ship"></i> Houseboat</span>
+                                <span class="meta-item"><i class="fas fa-water"></i> Serene View</span>
+                            </div>
+                            <div class="meta-row second-row">
+                                <span class="meta-item liked"><i class="fas fa-fire"></i> Fast Filling</span>
+                                <span class="meta-item trending"><i class="fas fa-percent"></i> 15% Off</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-explore-now" onclick="openDestinationPage('Kerala')">EXPLORE NOW</button>
+                            <button class="btn-save-later"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
                 </div>
-                <div class="dest-card">
-                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239860/Wayanad_m5cas0.webp');"></div>
-                    <div class="dest-info"><h3>Wayanad</h3></div>
+
+                <div class="dest-card" data-location="Kerala">
+                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239860/Wayanad_m5cas0.webp');">
+                        <div class="mini-slides">
+                            <span class="slide-link">📍 Banasura Dam</span>
+                            <span class="slide-link">📍 Edakkal Caves</span>
+                            <span class="slide-link">📍 Soochipara Falls</span>
+                        </div>
+                        <div class="card-badge">ADVENTURE</div>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Wayanad: Wild Escape</h3>
+                        <div class="card-meta-container">
+                            <div class="meta-row">
+                                <span class="meta-item"><i class="fas fa-tree"></i> Jungle Safari</span>
+                                <span class="meta-item"><i class="fas fa-hiking"></i> Trekking</span>
+                            </div>
+                            <div class="meta-row second-row">
+                                <span class="meta-item liked"><i class="fas fa-star"></i> 4.8 Rating</span>
+                                <span class="meta-item trending"><i class="fas fa-map"></i> Hidden Gem</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-explore-now" onclick="openDestinationPage('Kerala')">EXPLORE NOW</button>
+                            <button class="btn-save-later"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="center" style="margin-top: 20px;">
-                <button class="btn-card" onclick="openDestinationPage('Kerala')">know More<i class="fas fa-arrow-right"></i></button>
             </div>
         </div>
 
         <div class="state-container" style="margin-bottom: 60px;">
             <h3 class="state-title">Karnataka <span class="gold">Diaries</span></h3>
             <div class="dest-grid">
-                <div class="dest-card">
-                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/mysore_jt2vdj.webp');"></div>
-                    <div class="dest-info"><h3>Mysore</h3></div>
+                <div class="dest-card" data-location="Karnataka">
+                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/mysore_jt2vdj.webp');">
+                        <div class="mini-slides">
+                            <span class="slide-link">📍 Mysore Palace</span>
+                            <span class="slide-link">📍 Chamundi Hills</span>
+                            <span class="slide-link">📍 Zoo Garden</span>
+                        </div>
+                        <div class="card-badge">HERITAGE</div>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Mysore: Royal City</h3>
+                        <div class="card-meta-container">
+                            <div class="meta-row">
+                                <span class="meta-item"><i class="fas fa-landmark"></i> Palaces</span>
+                                <span class="meta-item"><i class="fas fa-history"></i> History</span>
+                            </div>
+                            <div class="meta-row second-row">
+                                <span class="meta-item liked"><i class="fas fa-check-circle"></i> Family Choice</span>
+                                <span class="meta-item trending"><i class="fas fa-camera"></i> Iconic</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-explore-now" onclick="openDestinationPage('Karnataka')">EXPLORE NOW</button>
+                            <button class="btn-save-later"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
                 </div>
-                <div class="dest-card">
-                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/Coorg_g6wtuj.jpg');"></div>
-                    <div class="dest-info"><h3>Coorg</h3></div>
+
+                <div class="dest-card" data-location="Karnataka">
+                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/Coorg_g6wtuj.jpg');">
+                        <div class="mini-slides">
+                            <span class="slide-link">📍 Abbey Falls</span>
+                            <span class="slide-link">📍 Raja's Seat</span>
+                            <span class="slide-link">📍 Coffee Estate</span>
+                        </div>
+                        <div class="card-badge flash">LIMITED</div>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Coorg: Coffee Capital</h3>
+                        <div class="card-meta-container">
+                            <div class="meta-row">
+                                <span class="meta-item"><i class="fas fa-coffee"></i> Estates</span>
+                                <span class="meta-item"><i class="fas fa-wind"></i> Misty Air</span>
+                            </div>
+                            <div class="meta-row second-row">
+                                <span class="meta-item liked"><i class="fas fa-user-friends"></i> Couple Goal</span>
+                                <span class="meta-item trending"><i class="fas fa-hourglass-half"></i> Few Slots</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-explore-now" onclick="openDestinationPage('Karnataka')">EXPLORE NOW</button>
+                            <button class="btn-save-later"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
                 </div>
-                <div class="dest-card">
-                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239788/Bangalore_bcxmfa.webp');"></div>
-                    <div class="dest-info"><h3>Bangalore</h3></div>
+
+                <div class="dest-card" data-location="Goa">
+                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769626372/goa_eba8v5.png');">
+                        <div class="mini-slides">
+                            <span class="slide-link">📍 Anjuna Beach</span>
+                            <span class="slide-link">📍 Colva Beach</span>
+                            <span class="slide-link">📍 Grande Island</span>
+                        </div>
+                        <div class="card-badge">CITY LIFE</div>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Goa: Sun & Sand</h3>
+                        <div class="card-meta-container">
+                            <div class="meta-row">
+                                <span class="meta-item"><i class="fas fa-umbrella-beach"></i> Beach Bliss</span>
+                                <span class="meta-item"><i class="fas fa-cocktail"></i> Party Hub</span>
+                            </div>
+                            <div class="meta-row second-row">
+                                <span class="meta-item liked"><i class="fas fa-swimmer"></i> Water Sports</span>
+                                <span class="meta-item trending"><i class="fas fa-fire"></i> Trending</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-explore-now" onclick="openDestinationPage('Goa')">EXPLORE NOW</button>
+                            <button class="btn-save-later"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="center" style="margin-top: 20px;">
-                <button class="btn-card" onclick="openDestinationPage('Karnataka')">know More<i class="fas fa-arrow-right"></i></button>
             </div>
         </div>
+
+        <div class="state-container" style="margin-bottom: 60px;">
+            <h3 class="state-title">Hyderabad <span class="gold">Diaries</span></h3>
+            <div class="dest-grid">
+                
+                <div class="dest-card" data-location="Hyderabad">
+                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769666577/charmina_bpg1wb.jpg');">
+                        <div class="mini-slides">
+                            <span class="slide-link">📍 Charminar</span>
+                            <span class="slide-link">📍 Laad Bazaar</span>
+                            <span class="slide-link">📍 Mecca Masjid</span>
+                            <span class="slide-link">📍 Chowmahalla Palace</span>
+                        </div>
+                        <div class="card-badge">HERITAGE</div>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Charminar: Iconic Pearl</h3>
+                        <div class="card-meta-container">
+                            <div class="meta-row">
+                                <span class="meta-item"><i class="fas fa-monument"></i> Historic Site</span>
+                                <span class="meta-item"><i class="fas fa-utensils"></i> Famous Biryani</span>
+                            </div>
+                            <div class="meta-row second-row">
+                                <span class="meta-item liked"><i class="fas fa-gem"></i> Pearl Market</span>
+                                <span class="meta-item trending"><i class="fas fa-star"></i> Top Rated</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-explore-now" onclick="openDestinationPage('Hyderabad')">EXPLORE NOW</button>
+                            <button class="btn-save-later"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dest-card" data-location="Hyderabad">
+                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769666704/golgonda_aqxzrx.jpg');">
+                        <div class="mini-slides">
+                            <span class="slide-link">📍 Fort Entrance</span>
+                            <span class="slide-link">📍 Sound & Light</span>
+                            <span class="slide-link">📍 Qutub Tombs</span>
+                        </div>
+                        <div class="card-badge flash">MUST VISIT</div>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Golconda: Whispers of Past</h3>
+                        <div class="card-meta-container">
+                            <div class="meta-row">
+                                <span class="meta-item"><i class="fas fa-fort-awesome"></i> Ancient Fort</span>
+                                <span class="meta-item"><i class="fas fa-volume-up"></i> Sound & Light</span>
+                            </div>
+                            <div class="meta-row second-row">
+                                <span class="meta-item liked"><i class="fas fa-camera"></i> Scenic View</span>
+                                <span class="meta-item trending"><i class="fas fa-bolt"></i> Trending</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-explore-now" onclick="openDestinationPage('Hyderabad')">EXPLORE NOW</button>
+                            <button class="btn-save-later"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dest-card" data-location="Hyderabad">
+                    <div class="dest-img" style="background-image: url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769666935/ramoji_kdnuqd.jpg');">
+                        <div class="mini-slides">
+                            <span class="slide-link">📍 Film Sets</span>
+                            <span class="slide-link">📍 Bahubali Set</span>
+                            <span class="slide-link">📍 Studio Tour</span>
+                        </div>
+                        <div class="card-badge">FILMY FUN</div>
+                    </div>
+                    <div class="dest-info">
+                        <h3>Ramoji: Reel World Magic</h3>
+                        <div class="card-meta-container">
+                            <div class="meta-row">
+                                <span class="meta-item"><i class="fas fa-film"></i> Studio Tours</span>
+                                <span class="meta-item"><i class="fas fa-mask"></i> Live Shows</span>
+                            </div>
+                            <div class="meta-row second-row">
+                                <span class="meta-item liked"><i class="fas fa-users"></i> Family Fun</span>
+                                <span class="meta-item trending"><i class="fas fa-award"></i> Best Value</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-explore-now" onclick="openDestinationPage('Hyderabad')">EXPLORE NOW</button>
+                            <button class="btn-save-later"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-</section></div>
+</section>
 
     <div id="detailPage" class="detail-page-overlay">
         <div class="detail-header">
@@ -448,43 +740,54 @@
     <div id="google_translate_element" style="padding: 10px; text-align: right;"></div>
 
 
-    <footer>
-        <div class="container footer-grid">
-            <div class="f-about">
-                <img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239791/img4-removebg-preview_ltwiue.png" alt="Footer Logo" class="footer-logo"/>
-                <p>Luxury and Trustworthy brand for all your travel needs.</p>
-                <div class="social-icons">
-                    <i class="fa fa-plane gold"></i>
-                     <i class="fa fa-bus gold"></i>
-                     <h6>24/7 Premium Support</h6>
-                </div>
+   <footer>
+    <div class="container footer-grid">
+        <div class="f-about">
+            <img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239791/img4-removebg-preview_ltwiue.png" alt="Footer Logo" class="footer-logo"/>
+            <p>Luxury and Trustworthy brand for all your travel needs.</p>
+            
+            <div class="trust-badge" style="margin-top: 10px; font-size: 0.9rem; color: #d4af37;">
+                <i class="fas fa-certificate"></i> <span>ISO Certified Agency</span>
             </div>
-            <div class="f-links">
-                <h4>Quick Links</h4>
-                <a href="#home"> <span class="gold">home</span></a><br>
-                <a href="javascript:void(0)" onclick="toggleAbout(true)"><span class="gold">About Us</span></a><br>
-                <a href="#destinations"> <span class="gold">Destinations</span></a><br>
-                <a href="#offers"> <span class="gold">Offers</span></a>
-            </div>
-            <div class="f-social">
-                <h4>Follow Us</h4>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/fundun_holidays" target="_blank" style="color: inherit;">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="https://www.instagram.com/fundun_holidays" target="_blank" style="color: inherit;">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="mailto:dineshcse142@gmail.com" style="color: inherit; text-decoration: none;">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div><br>
-                <button class="btn-gold" onclick="whatsapp('Footer Button Enquiry')">WhatsApp Us</button>
+
+            <div class="social-icons">
+                <i class="fa fa-plane gold"></i>
+                <i class="fa fa-bus gold"></i>
+                <h6>24/7 Premium Support</h6>
             </div>
         </div>
-        <hr class="f-hr">
-        <p class="center">© 2026 Fundun Holidays | All Rights Reserved.</p>
-    </footer>
+
+        <div class="f-links">
+            <h4>Quick Links</h4>
+            <a href="#home"> <span class="gold">home</span></a><br>
+            <a href="javascript:void(0)" onclick="toggleAbout(true)"><span class="gold">About Us</span></a><br>
+            <a href="#destinations"> <span class="gold">Destinations</span></a><br>
+            <a href="#offers"> <span class="gold">Offers</span></a><br>
+            
+            <a href="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769533023/fundun_pdf_gmnf3a.pdf" target="_blank">
+                <span class="gold"><i class="fas fa-file-pdf"></i> View Certificate</span>
+            </a>
+        </div>
+
+        <div class="f-social">
+            <h4>Follow Us</h4>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/fundun_holidays" target="_blank" style="color: inherit;">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/fundun_holidays" target="_blank" style="color: inherit;">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="mailto:dineshcse142@gmail.com" style="color: inherit; text-decoration: none;">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div><br>
+            <button class="btn-gold" onclick="whatsapp('Footer Button Enquiry')">WhatsApp Us</button>
+        </div>
+    </div>
+    <hr class="f-hr">
+    <p class="center">© 2026 Fundun Holidays | All Rights Reserved.</p>
+</footer>
     <script src="script.js"></script>
     <div id="bookingModal" class="detail-page-overlay" style="display:none; align-items: center; justify-content: center; z-index: 7000;">
     <div class="auth-box" style="text-align: center; max-width: 400px; padding: 40px;">
@@ -570,6 +873,21 @@
         }
     });
 </script>
-</body>
+<script>
+document.querySelectorAll(".mini-slides").forEach(slideBox => {
+  const slides = slideBox.querySelectorAll(".slide-link");
+  let index = 0;
+
+  slides[index].classList.add("active");
+
+  setInterval(() => {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+  }, 2500); // 2.5 seconds
+});
+</script>
+<canvas id="goldSwirlCanvas"></canvas>
+
 </body>
 </html>
