@@ -5,6 +5,43 @@
     --white: #ffffff;
 }
 
+    /* Default arrow-a hide panrom */
+    * {
+        cursor: none !important;
+    }
+
+    #flight-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 60px; /* Unga image size-ku etha maari mathikonga */
+        height: 60px;
+        pointer-events: none;
+        z-index: 9999999;
+        display: block;
+        will-change: transform;
+        transform: translate(-50%, -50%);
+    }
+
+    #flight-img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.1s ease-out; /* Turning smoothness */
+    }
+
+    /* Take-off Animation */
+    .take-off-active {
+        animation: flyAway 0.8s ease-in forwards;
+    }
+
+    @keyframes flyAway {
+        0% { transform: scale(1) translateY(0); opacity: 1; }
+        50% { transform: scale(2.5) translateY(-50px); opacity: 0.6; }
+        100% { transform: scale(4) translateY(-200px); opacity: 0; }
+    }
+
+
 * { margin:0; padding:0; box-sizing: border-box; }
 body { font-family: 'Inter', sans-serif; background-color: var(--black); color: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
 
@@ -1690,53 +1727,390 @@ footer { padding: 60px 0 20px; background: #080808; border-top: 2px solid var(--
 @media (max-width:768px){
   .reveal{transform:translateY(25px);filter:blur(4px)}
 }
-/* ============================================================
-   CINEMATIC LIGHT SWEEP – FORCE VISIBLE VERSION
-   ============================================================ */
 
-/* Make sure base is visible */
-html, body{
-  background:#000;
+.form-card-direct {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border: 1px solid #c5a059;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    max-width: 550px;
+    margin: 0 auto;
+    
+}
+.form-row-custom {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.f-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.f-group label {
+    color: #c5a059;
+    font-size: 11px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+.f-group input, .f-group select {
+    padding: 10px;
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+    border-radius: 5px;
+}
+@media (max-width: 600px) {
+    .form-row-custom { flex-direction: column; gap: 10px; }
+    .form-card-direct { padding: 20px; width: 95%; }
+}
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
-/* Light sweep layer */
-body::after{
-  content:'';
-  position:fixed;
-  top:-50%;
-  left:-50%;
-  width:200%;
-  height:200%;
-  background:linear-gradient(
-    120deg,
-    transparent 30%,
-    rgba(255,215,120,0.18) 45%,
-    rgba(255,215,120,0.08) 50%,
-    transparent 65%
+body {
+  background: #0b0b0b;
+  color: #fff;
+}
+
+/* ===== SECTION ===== */
+.section {
+  padding: 50px 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 1300px;
+  margin: auto;
+}
+
+.section-title {
+  font-size: 34px;
+  margin-bottom: 30px;
+}
+
+.gold {
+  color: #f5c542;
+}
+
+/* ===== STATE ===== */
+.state-title {
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+/* ===== GRID ===== */
+.dest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+/* ===== CARD ===== */
+.dest-card {
+  background: #111;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dest-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+}
+
+/* ===== IMAGE ===== */
+.dest-img {
+  height: 220px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* dark overlay */
+.dest-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+
+/* ===== BADGE ===== */
+.card-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #2ecc71;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 6px;
+  z-index: 2;
+}
+
+.card-badge.flash {
+  background: #e74c3c;
+}
+
+/* ===== MINI SLIDES ===== */
+.mini-slides {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  z-index: 2;
+}
+
+.slide-link {
+  background: rgba(0,0,0,0.65);
+  padding: 4px 8px;
+  font-size: 11px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* ===== INFO ===== */
+.dest-info {
+  padding: 16px;
+}
+
+.dest-info h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* ===== META ===== */
+.card-meta-container {
+  margin-bottom: 12px;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.meta-item {
+  font-size: 12px;
+  color: #ccc;
+}
+
+.meta-item i {
+  margin-right: 4px;
+  color: #f5c542;
+}
+
+.meta-item.liked {
+  color: #2ecc71;
+}
+
+.meta-item.trending {
+  color: #ff6b6b;
+}
+
+/* ===== ACTIONS ===== */
+.card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-explore-now {
+  flex: 1;
+  padding: 10px;
+  background: #3498db;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-explore-now:hover {
+  background: #2980b9;
+}
+
+.btn-save-later {
+  width: 45px;
+  background: #222;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-save-later:hover {
+  background: #333;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .section-title {
+    font-size: 26px;
+  }
+  .state-title {
+    font-size: 22px;
+  }
+}
+/* ===== MINI SLIDES SLIDESHOW ===== */
+.mini-slides {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  z-index: 2;
+  width: 90%;
+  overflow: hidden;
+}
+
+.slide-link {
+  display: none;
+  background: rgba(0,0,0,0.7);
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  animation: fadeSlide 1s ease;
+}
+
+.slide-link.active {
+  display: inline-block;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.btn-explore-now {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* GOLDEN ENERGY */
+.golden-swish {
+  position: absolute;
+  top: -50%;
+  left: -120%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    rgba(212,175,55,0.9),
+    transparent 40%
   );
-  animation:cinematicSweep 18s linear infinite;
-  z-index:0;
-  pointer-events:none;
+  opacity: 0;
+  filter: blur(10px);
+  animation: none;
+  pointer-events: none;
 }
 
-/* Push content above sweep */
-body > *{
-  position:relative;
-  z-index:1;
+/* Hover trigger */
+.btn-explore-now:hover .golden-swish {
+  opacity: 1;
+  animation: swirlMove 1.2s linear infinite;
 }
 
-@keyframes cinematicSweep{
-  from{
-    transform:translateX(-30%);
+@keyframes swirlMove {
+  from {
+    transform: rotate(0deg) translateX(0);
   }
-  to{
-    transform:translateX(30%);
+  to {
+    transform: rotate(360deg) translateX(0);
   }
 }
 
-/* Mobile */
-@media(max-width:768px){
-  body::after{
-    opacity:.6;
-  }
+/* Text always on top */
+.btn-text {
+  position: relative;
+  z-index: 2;
+}
+#goldSwirlCanvas{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Card border light travel */
+.dest-card{
+  position: relative;
+  overflow: hidden;
+}
+.dest-card::before{
+  content:"";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    rgba(212,175,55,0.8),
+    transparent 40%
+  );
+  filter: blur(15px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+/* ===== Scroll Reveal ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Lazy / Progressive Images ===== */
+.bg-lazy {
+  filter: blur(10px);
+  transition: filter 0.6s ease, opacity 0.6s ease;
+}
+
+.bg-lazy.loaded {
+  filter: blur(0);
+  opacity: 1;
+}
+
+/* ===== Parallax ===== */
+[data-parallax-speed] {
+  will-change: transform;
+}
+
+/* Optional: Hero / big images fade in */
+#detail-hero.bg-lazy {
+  opacity: 0.7;
+  transition: opacity 1s ease;
+}
+#detail-hero.loaded {
+  opacity: 1;
+}
+
+/* Small utility */
+.blur-up {
+  filter: blur(10px);
+  transition: filter 0.6s ease, opacity 0.6s ease;
+}
+.blur-up.loaded {
+  filter: blur(0);
+  opacity: 1;
 }
