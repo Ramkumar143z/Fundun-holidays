@@ -1,1150 +1,759 @@
-// 1. Data Object - Fully Fixed
-const travelData = {
+// Smooth scroll for navigation
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+// Scroll Reveal Logic (throttled with requestAnimationFrame, passive listener)
+let _scrollTicking = false;
+window.addEventListener('scroll', function() {
+    if (!_scrollTicking) {
+        window.requestAnimationFrame(function() {
+            reveal();
+            _scrollTicking = false;
+        });
+        _scrollTicking = true;
+    }
+}, { passive: true });
+
+function reveal() {
+    var reveals = document.querySelectorAll('.section, .card, .service-card, .about-text');
+
+    for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var revealTop = reveals[i].getBoundingClientRect().top;
+        var revealPoint = 150;
+
+        if (revealTop < windowHeight - revealPoint) {
+            reveals[i].classList.add('active');
+        }
+    }
+}
+
+// Initial check on load
+window.onload = reveal;
+
+// Calculator logic (same as before but with a small bounce effect)
+function calculateTotal() {
+    const resultDiv = document.getElementById("calc-result");
+    resultDiv.style.opacity = "0";
+    
+    setTimeout(() => {
+        const destinationRate = document.getElementById("dest-select").value;
+        const travelers = document.getElementById("travelers").value;
+
+        if (travelers > 0) {
+            const total = destinationRate * travelers;
+            resultDiv.innerHTML = `
+                <div style="transform: scale(1.1); transition: 0.3s; color: #c5a059; font-weight: bold;">
+                    <p>EXCLUSIVE QUOTE</p>
+                    <h2 style="font-size: 2.5rem;">₹${total.toLocaleString('en-IN')}</h2>
+                </div>
+            `;
+            resultDiv.style.opacity = "1";
+        }
+    }, 300);
+}
+
+// Destination data
+const destinations = {
     "Tamil Nadu": {
-        subtitle: "Experience the Rich Culture & Heritage",
-        heroImg: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/img1_dcfvxp.jpg",
-        places: [
-            { 
-                name: "Ooty", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239791/img5_g7ovbn.jpg",
-                price: "₹12,500", 
-                offer: "15% OFF", 
-                desc: "Queen of Hill Stations.",
-                attractions: ["Boat House", "Pykara Dam", "Pykara Lake", "Rose Garden", "Tea Museum", "Pine Forest", "Shooting Point", "Karnataka Garden", "Doddapetta Peak"]
-            },
-            { 
-                name: "Kodaikanal", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239792/img6_pb9ann.jpg", 
-                desc: "The Princess of Hill Stations.",
-                attractions: ["Silver Falls", "Kodaikanal Lake", "Bryant Park", "Coakers Park", "Poombarai", "Kookal", "Pillar Rock", "Guna Caves"]
-            },
-            { 
-                name: "Kanyakumari", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/img7_pmlqbt.jpg", 
-                desc: "Meeting point of three oceans.",
-                attractions: ["Thiruvalluvar Statue", "Vivekananda Memorial Rock", "Sunset View Point", "Beach", "Padmanabhapuram Palace", "Papanasam Temple", "Manimuthar Dam", "Kuttralam"]
-            },
-            { 
-                name: "Pondicherry", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/img8_q9q4t1.jpg", 
-                desc: "The French Riviera of the East.",
-                attractions: ["French Colony", "Paradise Beach", "Sacred Heart Basilica", "Rock Beach", "Auroville Beach", "Promenade Beach", "Chunnambar Boat House"]
-            },
-            { 
-                name: "Chennai", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239788/Chennai_pqoiyu.webp", 
-                desc: "Gateway to South India.",
-                attractions: ["Marina Beach", "Mahabalipuram", "Santhome Church", "Birla Planetorium", "Elliotts Beach", "Kapaleeshwar Temple", "VGP Amusement Park"]
-            },
-            { 
-                name: "yercaud", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239860/yercaud_vplyl4.jpg", 
-                desc: "Jewel of the South.",
-                attractions: ["Yercaud Lake", "Pagoda Point", "Loop Road", "Bears Cave", "Kiliyur Water Falls", "Servarayan Temple"]
-            }
-        ]
+    "title": "Tamil Nadu Destinations",
+    "subtitle": "Explore the rich culture and natural beauty of Tamil Nadu",
+    "places": {
+        "Ooty": {
+            description: "Ooty, also known as Udhagamandalam, is a popular hill station in Tamil Nadu famous for its tea estates, botanical gardens, and colonial architecture.",
+            image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850347/Ooty_sm1awg.png",
+            places: ["Boat House", "Pykara Dam", "Pykara Lake", "Rose Garden", "Tea Museum", "Pine Forest", "Shooting Point", "Karnataka Garden", "Doddapetta Peak"]
+        },
+        "Kodaikanal": {
+            description: "Kodaikanal is a charming hill town known for its pristine lakes, waterfalls, and scenic viewpoints.",
+            image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850389/kodaikanal_rrm80l.png",
+            places: ["Silver Falls", "Kodaikanal Lake", "Bryant Park", "Coakers Park", "Poombarai", "Kookal", "Pillar Rock", "Guna Caves"]
+        },
+        "Yercaud": {
+            description: "Yercaud is a serene hill station known for its coffee plantations, lakes, and panoramic views.",
+            image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850504/yercadu_vpquei.png",
+            places: ["Yercaud Lake", "Pagoda Point", "Loop Road", "Bears Cave", "Kiliyur Water Falls", "Servarayan Temple"]
+        },
+        "Kanyakumari": {
+            description: "Kanyakumari is the southernmost tip of India, famous for its stunning sunrise and sunset views, temples, and memorials.",
+            image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850491/Kannayakumari_dsszcl.png",
+            places: ["Thiruvalluvar Statue", "Vivekananda Memorial Rock", "Sunset View Point", "Beach", "Padmanabhapuram Palace", "Papanasam Temple", "Manimuthar Dam", "Kuttralam"]
+        },
+        "Chennai": {
+            description: "Chennai, the capital of Tamil Nadu, is a vibrant city with rich history, temples, beaches, and modern attractions.",
+            image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850626/chennai_tyxhra.png",
+            places: ["Marina Beach", "Mahabalipuram", "Santhome Church", "Birla Planetorium", "Elliotts Beach", "Kapaleeshwar Temple", "VGP Amusement Park"]
+        },
+        "Pondicherry": {
+            description: "Pondicherry, a former French colony, offers a blend of Indian and French cultures with beautiful beaches and colonial architecture.",
+            image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850641/pondicherry_ffgflu.png",
+            places: ["French Colony", "Paradise Beach", "Sacred Heart Basilica", "Rock Beach", "Auroville Beach", "Promenade Beach", "Chunnambar Boat House"]
+        }
+    }
     },
-    "Kerala": {
-        subtitle: "Relax in God's Own Country",
-        heroImg: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769444611/img3_keunot.jpg",
-        places: [
-            { 
-                name: "Munnar", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/munar_mc80wo.webp", 
-                desc: "Kashmir of South India.",
-                attractions: ["Mattupetty Dam", "Tea Museum", "Echo Point", "Top Station", "Kundala Lake", "Photo Point", "Rose Garden"]
+    "kerala": {
+        title: "Kerala Destinations",
+        subtitle: "Experience God's Own Country with its backwaters and hills",
+        places: {
+            "Cochin": {
+                description: "Cochin, also known as Kochi, is a vibrant city blending history, culture, and modernity with Chinese fishing nets and colonial architecture.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/cochi_m11tfv.jpg",
+                places: ["Chotanikara Bhagavathy Temple", "Athi Rampadi Water Falls", "Cherai Beach", "Mattancherry Palace", "Hill Palace Museum", "Wonderla", "Bolgatti Palace", "Lulu Mall", "Vypen Beach"]
             },
-            { 
-                name: "Cochin", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/cochi_m11tfv.jpg", 
-                desc: "Queen of the Arabian Sea.",
-                attractions: ["Chotanikara Bhagavathy Temple", "Athi Rampadi Water Falls", "Cherai Beach", "Mattancherry Palace", "Hill Palace Museum", "Wonderla", "Bolgatti Palace", "Lulu Mall", "Vypen Beach"]
+            "Munnar": {
+                description: "Munnar is a picturesque hill station famous for its sprawling tea plantations, misty mountains, and wildlife sanctuaries.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850359/munnar_bjo4pq.png",
+                places: ["Mattupetty Dam", "Tea Museum", "Echo Point", "Top Station", "Kundala Lake", "Photo Point", "Rose Garden"]
             },
-            { 
-                name: "Wayanad", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/Wayanad_uyjw0d.jpg", 
-                desc: "eco-tourism and adventure camping.",
-                attractions: ["Edakkal Caves", "Chembra Peak", "Lakkidi View Point", "Soochippara Water Falls", "Meenmutty Falls", "Banasurasagar Dam"]
+            "Wayanad": {
+                description: "Wayanad is a district known for its wildlife, waterfalls, and ancient caves, offering a perfect blend of nature and adventure.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850416/wayanadu_gpawkt.png",
+                places: ["Edakkal Caves", "Chembra Peak", "Lakkidi View Point", "Soochippara Water Falls", "Meenmutty Falls", "Banasurasagar Dam"]
             },
-            { 
-                name: "Alleppey", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769499860/Alleppey_mttbda.jpg", 
-                desc: "Venice of the East",
-                attractions: ["Backwaters", "Alappuzha Beach", "Light House", "St. Mary Forane Church", "Vembanad Lake"]
+            "Alleppey": {
+                description: "Alleppey, famous for its backwaters, is a serene destination for houseboat cruises and coastal relaxation.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850439/alleppey_eg4fs5.png",
+                places: ["Backwaters", "Alappuzha Beach", "Light House", "St. Mary Forane Church", "Vembanad Lake"]
             },
-            { 
-                name: "Vagamon",  
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239860/Wayanad_m5cas0.webp", 
-                desc: "Scotland of Asia",
-                attractions: ["Thangalpara", "Kurushimala", "Pine Forest", "Vagamon Meadows", "Ulupunni Tunnel", "Echo Point", "Idukki Dam", "Marmala Falls"]
+            "Vagamon": {
+                description: "Vagamon is a tranquil hill station with meadows, pine forests, and panoramic views of the Western Ghats.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850545/vagamon_xoktr4.png",
+                places: ["Thangalpara", "Kurushimala", "Pine Forest", "Vagamon Meadows", "Ulupunni Tunnel", "Echo Point", "Idukki Dam", "Marmala Falls"]
             },
-            { 
-                name: "Trivandrum", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239859/Trivandrum_i17o5x.jpg", 
-                desc: "Evergreen City of India.",
-                attractions: ["Padmanabha Swamy Temple", "Chithra Art Gallery", "Zoological Park", "Napier Museum", "Magic Planet", "Mall of Travancore", "Kovalam Light House", "Kovalam Beach"]
+            "Trivandrum": {
+                description: "Trivandrum, the capital of Kerala, is known for its temples, museums, and beautiful beaches.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850569/thiruvandrum_zxqmjj.png",
+                places: ["Padmanabha Swamy Temple", "Chithra Art Gallery", "Zoological Park", "Napier Museum", "Magic Planet", "Mall of Travancore", "Kovalam Light House", "Kovalam Beach"]
             },
-            { 
-                name: "Varkala", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239860/Varkala_it9rvu.webp", 
-                desc: "Goa of Kerala.",
-                attractions: ["Varkala Beach", "Varkala Cliff", "Odayam Beach", "Anjengo Fort Lighthouse"]
+            "Varkala": {
+                description: "Varkala is a coastal town famous for its red cliffs, pristine beaches, and Ayurvedic treatments.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850657/varkala_cjyrib.png",
+                places: ["Varkala Beach", "Varkala Cliff", "Odayam Beach", "Anjengo Fort Lighthouse"]
             },
-            { 
-                name: "Thekkady", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239859/Thekkady_zvi6b9.webp", 
-                desc: "famous wildlife reserves in South India.",
-                attractions: ["Periyar National Park", "Thekkady Lake", "Hill King", "Vandiperiyar"]
+            "Thekkady": {
+                description: "Thekkady is home to Periyar National Park, offering wildlife safaris and boat rides on the lake.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850674/thekkady_j99sk0.png",
+                places: ["Periyar National Park", "Thekkady Lake", "Hill King", "Vandiperiyar"]
             }
-        ]
+        }
     },
-    "Karnataka": {
-        subtitle: "Nature Sings in green hills",
-        heroImg: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/Dandeli_j6pokq.webp",
-        places: [
-            { 
-                name: "Mysore", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/mysore_jt2vdj.webp", 
-                desc: "Cultural Capital of Karnataka.",
-                attractions: ["Mysore Palace", "Mysore Zoo", "Shuka Vana", "Brindavan Garden", "Chamundeshwari Temple", "Balmuri Falls", "St. Philomena Church", "GRS Fantasy Amusement Park"]
+    "karnataka": {
+        title: "Karnataka Destinations",
+        subtitle: "Discover the heritage and adventure in Karnataka",
+        places: {
+            "Mysore": {
+                description: "Mysore, the cultural capital of Karnataka, is renowned for its palaces, gardens, and rich heritage.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769851229/mysore_aatmtu.png",
+                places: ["Mysore Palace", "Mysore Zoo", "Shuka Vana", "Brindavan Garden", "Chamundeshwari Temple", "Balmuri Falls", "St. Philomena Church", "GRS Fantasy Amusement Park"]
             },
-            { 
-                name: "Coorg", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/Coorg_g6wtuj.jpg", 
-                desc: "picturesque hill station in Karnataka.",
-                attractions: ["Golden Temple", "Kaveri Nisargadhama", "Dubare Forest", "Harangi Dam", "White Water River Rafting", "Chiklihole Reservoir", "Abbey Falls", "Raja Seat", "Mandalpete Jeep Trekking"]
+            "Coorg": {
+                description: "Coorg, known as the Scotland of India, offers coffee plantations, waterfalls, and adventure activities.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769942817/coorg_hc1qce.jpg",
+                places: ["Golden Temple", "Kaveri Nisargadhama", "Dubare Forest", "Harangi Dam", "White Water River Rafting", "Chiklihole Reservoir", "Abbey Falls", "Raja Seat", "Mandalpete Jeep Trekking"]
             },
-            { 
-                name: "Bangalore",
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239788/Bangalore_bcxmfa.webp", 
-                desc: "Silicon Valley of India.",
-                attractions: ["Wonderla", "Lalbagh Garden", "Bannerghatta National Park", "Bangalore Palace", "Cubbon Park", "Iskcon Temple", "Triusultan Palace", "Commercial Street Shopping", "Visvesvaraya Museum", "UB City Mall"]
+            "Bangalore": {
+                description: "Bangalore, the Silicon Valley of India, is a bustling city with parks, palaces, and modern attractions.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850454/Bangalore_ja0ghv.png",
+                places: ["Wonderla", "Lalbagh Garden", "Bannerghatta National Park", "Bangalore Palace", "Cubbon Park", "Iskcon Temple", "Triusultan Palace", "Commercial Street Shopping", "Visvesvaraya Museum", "UB City Mall"]
             },
-            { 
-                name: "Chikmagalur", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/Chikmagalur_kserth.jpg", 
-                desc: "A serene hill station.",
-                attractions: ["Siri Statue", "Mullayanagiri", "Baba Budan Giri", "Seethalayangiri", "Z-Point Trekking", "Honnamana Halla", "Ukkada Water Falls", "Jhari Falls", "Bandi Kallu Gudda Sunset Point"]
+            "Chikmagalur": {
+                description: "Chikmagalur is a coffee-growing region famous for its hills, waterfalls, and trekking spots.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850466/chikmangalore_e3duxj.png",
+                places: ["Siri Statue", "Mullayanagiri", "Baba Budan Giri", "Seethalayangiri", "Z-Point Trekking", "Honnamana Halla", "Ukkada Water Falls", "Jhari Falls", "Bandi Kallu Gudda Sunset Point"]
             },
-            { 
-                name: "Mangalore", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239788/mang_mzbhe7.webp", 
-                desc: "A vibrant coastal city famous for its beaches, temples, and delicious seafood cuisine.",
-                attractions: ["Panambur Beach", "Pilikula Tourism", "Tannirbhavi Beach", "Mangaladevi Temple", "Someshwar Beach", "Forum Fiza Mall"]
+            "Mangalore": {
+                description: "Mangalore is a coastal city known for its beaches, temples, and seafood cuisine.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850586/mangalore_xyki1k.png",
+                places: ["Panambur Beach", "Pilikula Tourism", "Tannirbhavi Beach", "Mangaladevi Temple", "Someshwar Beach", "Forum Fiza Mall"]
             },
-            { 
-                name: "Murudeshwar", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/Mangalore_oesega.webp", 
-                desc: "statue of Lord Shiva overlooking the Arabian Sea.",
-                attractions: ["Shiva Temple", "Murudeshwar Beach", "Murudeshwar Fort", "Jog Falls"]
+            "Murudeshwar": {
+                description: "Murudeshwar is famous for its giant Shiva statue, beach, and the Murudeshwar Fort.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850601/murudeshwar_kr4vv6.png",
+                places: ["Shiva Temple", "Murudeshwar Beach", "Murudeshwar Fort", "Jog Falls"]
             },
-            { 
-                name: "Gokarna & Udupi", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239859/udipi_nrrgs1.jpg", 
-                desc: "Spiritual and coastal destinations known for pristine beaches, ancient temples, and peaceful vibes.",
-                attractions: ["Om Beach", "Paradise Beach", "Kudle Beach", "Mahabaleshwara Temple", "Water Sports", "Yana Caves", "Halfmoon Beach", "St. Mary's Island", "Krishna Temple", "Anantheshwara Temple"]
+            "Gokarna & Udupi": {
+                description: "Gokarna and Udupi offer pristine beaches, ancient temples, and spiritual retreats.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850700/gokarna_udupi_idsedu.png",
+                places: ["Om Beach", "Paradise Beach", "Kudle Beach", "Mahabaleshwara Temple", "Water Sports", "Yana Caves", "Halfmoon Beach", "St. Mary's Island", "Krishna Temple", "Anantheshwara Temple"]
             },
-            { 
-                name: "Dandeli", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/Dandeli_j6pokq.webp", 
-                desc: "An adventure hotspot celebrated for river rafting, dense forests, and rich wildlife.",
-                attractions: ["Moulangi Eco Park", "Disney Park", "Supa Dam", "Kali River Water Sports", "Zorbing", "Rafting", "Jacuzzi Bath", "Zipline Activities", "Trekking", "Kayaking"]
-            }, // Fixed: Added missing comma here
-            {
-                name: "Goa", 
-                img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769626372/goa_eba8v5.png", 
-                desc: "A sun-soaked paradise where Portuguese heritage, golden beaches, and vibrant nightlife create the ultimate coastal escape.",
-                attractions: ["Anjuna Beach", "Colva Beach", "Grand Island", "Mandovi River", "Dudhsagar Falls", "Palolem Beach", "Old Goa"]
+            "Dandeli": {
+                description: "Dandeli is an adventure hub with river rafting, wildlife, and eco-tourism activities.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850712/dandeli_ebgqug.png",
+                places: ["Moulangi Eco Park", "Disney Park", "Supa Dam", "Kali River Water Sports", "Zorbing", "Rafting", "Jacuzzi Bath", "Zipline Activities", "Trekking", "Kayaking"]
             }
-            
-            
-        ]
+        }
     },
     "Hyderabad": {
-    subtitle: "A Blend of Nizami Heritage & Modern Marvels",
-    heroImg: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769667474/hydrabad_hero_ayq45a.jpg", // Replace with your actual Cloudinary link
-    places: [
-        { 
-            name: "Charminar & Old City", 
-            img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769626372/charminar.jpg", 
-            desc: "The iconic symbol of Hyderabad known for its stunning architecture and bustling markets.",
-            attractions: ["Charminar", "Mecca Masjid", "Laad Bazaar (Bangle Market)", "Chowmahalla Palace", "Nimrah Cafe (Irani Chai)"]
-        },
-        { 
-            name: "Golconda Fort", 
-            img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769626372/golconda.jpg", 
-            desc: "A majestic citadel with incredible acoustic effects and a rich history of the Qutb Shahi dynasty.",
-            attractions: ["Sound & Light Show", "Qutb Shahi Tombs", "Fateh Darwaza", "Bala Hissar Pavillion"]
-        },
-        { 
-            name: "Ramoji Film City", 
-            img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769626372/ramoji.jpg", 
-            desc: "The world's largest integrated film city and a major amusement destination.",
-            attractions: ["Movie Sets", "Bahubali Set", "Eureka", "Bird Park", "Adventure Sports", "Studio Tour"]
-        },
-        { 
-            name: "Hussain Sagar & Birla Mandir", 
-            img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769626372/hussainsagar.jpg", 
-            desc: "Experience peace at the white marble temple and enjoy the breeze by the massive heart-shaped lake.",
-            attractions: ["Buddha Statue", "Lumbini Park (Laser Show)", "Birla Mandir", "Birla Planetarium", "Tank Bund Road"]
-        },
-        { 
-            name: "Modern Hyderabad (HITEC City)", 
-            img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769626372/hitechcity.jpg", 
-            desc: "The tech hub of the city featuring massive malls, luxury dining, and nightlife.",
-            attractions: ["Inorbit Mall", "Shilparamam (Arts & Crafts)", "IKEA", "DLF Cyber City Food Court", "Cable Bridge (Night View)"]
-        },
-        { 
-            name: "Salar Jung Museum", 
-            img: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769626372/salarjung.jpg", 
-            desc: "One of the three National Museums of India with a massive collection of antiques.",
-            attractions: ["Musical Clock", "Veiled Rebecca", "Jade Room", "Nizam’s Jewels (Rarely displayed)"]
+        title: "Hyderabad Destinations",
+        subtitle: "Explore the city of pearls and its historical sites",
+        places: {
+            "Charminar": {
+                description: "Charminar is an iconic monument symbolizing Hyderabad's rich history and architecture.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769666577/charmina_bpg1wb.jpg",
+                places: ["Charminar", "Laad Bazaar", "Mecca Masjid", "Chowmahalla Palace"]
+            },
+            "Golconda": {
+                description: "Golconda Fort is a magnificent fortress known for its acoustics and historical significance.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769666704/golgonda_aqxzrx.jpg",
+                places: ["Fort Entrance", "Sound & Light", "Qutub Tombs", "Taramati Baradari"]
+            },
+            "Ramoji Film City": {
+                description: "Ramoji Film City is Asia's largest film studio offering tours and entertainment.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769629047/ramoj_lhqfct.jpg",
+                places: ["Film Sets", "Bahubali Set", "Studio Tour", "Adventure Park"]
+            },
+            "Hussain Sagar": {
+                description: "Hussain Sagar is a large lake with the Buddha statue, perfect for boating and picnics.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769944988/hussian_duqbik.jpg",
+                places: ["Hussain Sagar Lake", "Buddha Statue"]
+            },
+            "Birla Mandir": {
+                description: "Birla Mandir is a beautiful Hindu temple made of white marble with intricate carvings.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769945004/birla_nsnjea.jpg",
+                places: ["Birla Temple", "Hindu Temple"]
+            }
         }
-    ]
-}
+    }
 };
-// 2. Variables & State
-let selectedServiceType = "General Tour"; 
 
-// 3. Core Navigation & Layout Functions
-function toggleAbout(show) {
-    const aboutPage = document.getElementById('aboutPage');
-    aboutPage.style.display = show ? 'block' : 'none';
-    document.body.style.overflow = show ? 'hidden' : 'auto';
-}
+// EXISTING openDestinationPage FUNCTION-LA INTHA LOGIC-A REPLACE PANNINGA
+function openDestinationPage(state) {
+    const data = destinations[state];
+    if (!data) return;
 
-function selectServiceAndScroll(serviceName) {
-    selectedServiceType = serviceName; 
-    // Use unified scroll helper
-    scrollToSection('destinations');
-}
-
-function scrollToSection(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    if (window.locoScroll && typeof window.locoScroll.scrollTo === 'function') {
-        window.locoScroll.scrollTo(el);
-    } else {
-        el.scrollIntoView({ behavior: 'smooth' });
-    }
-}
-// Close modal when clicking outside
-window.addEventListener('click', function(event) {
-    const modal = document.getElementById('marqueeModal');
-    if (event.target === modal) {
-        closeMarqueeModal();
-    }
-});
-
-/// 4. Destination Detail Page Logic (REPLACED VERSION)
-function openDestinationPage(title) {
-    const data = travelData[title];
-    const detailPage = document.getElementById('detailPage');
+    document.getElementById("detail-title").innerHTML = data.title;
+    document.getElementById("detail-subtitle").innerText = data.subtitle;
     
-    if (data) {
-        document.getElementById('detail-title').innerText = title;
-        document.getElementById('detail-subtitle').innerText = data.subtitle;
-        const detailHeroEl = document.getElementById('detail-hero');
-        // set background progressively
-        detailHeroEl.dataset.bg = data.heroImg;
-        detailHeroEl.style.backgroundImage = 'none';
-        detailHeroEl.classList.add('bg-lazy');
-        const heroHigh = new Image();
-        heroHigh.src = data.heroImg;
-        heroHigh.onload = function() {
-            detailHeroEl.style.backgroundImage = `url('${data.heroImg}')`;
-            detailHeroEl.classList.add('loaded');
-            detailHeroEl.classList.remove('bg-lazy');
-        };
+    // Smooth transition effect
+    const detailPage = document.getElementById("detailPage");
+    detailPage.style.display = "block";
+    detailPage.style.opacity = "0";
+    setTimeout(() => detailPage.style.opacity = "1", 10);
+
+    const placesGrid = document.getElementById("places-grid");
+    placesGrid.innerHTML = "";
+
+    for (const [city, cityData] of Object.entries(data.places)) {
+        // Random number for FOMO (Psychological effect)
+        const randomBookings = Math.floor(Math.random() * 15) + 5;
         
-        const grid = document.getElementById('places-grid');
-        grid.innerHTML = ""; 
+        const cityDiv = document.createElement("div");
+        cityDiv.className = "dest-card safari-card";
+        cityDiv.addEventListener('click', () => viewCityDetails(state, city));
 
-        data.places.forEach(place => {
-    const card = document.createElement('div');
-    card.className = "dest-card";
-    
-    // Inga dhaan unga existing HTML structure-a apply pandroom
-    card.innerHTML = `
-        <div class="dest-img" data-bg="${place.img}" style="background-image: url('${place.img}')"></div>
-        <div class="dest-info">
-            <h3 class="gold">${place.name}</h3>
-            <p style="font-size: 0.9rem; color: #ccc;">${place.desc}</p>
-            <div class="dest-buttons" style="display: flex; gap: 10px; margin-top: 10px;">
-                <button class="view-btn-custom btn-card" style="flex: 1;">View Details</button>
-                <button class="btn-card" onclick="openBookingOptions('${place.name}', '${title}')" style="flex: 1;">Book Now</button>
-            </div>
+        const fomo = document.createElement('div');
+        fomo.className = 'fomo-badge';
+        fomo.textContent = `🔥 ${randomBookings} booked today`;
+
+        const cardImage = document.createElement('div');
+        cardImage.className = 'card-image';
+        cardImage.style.cssText = `background-image: url('${cityData.image}'); height: 180px; background-size: cover; background-position: center; border-radius: 15px 15px 0 0; overflow:hidden;`;
+
+        const destInfo = document.createElement('div');
+        destInfo.className = 'dest-info';
+
+        const h3 = document.createElement('h3');
+        h3.style.color = '#d4af37';
+        h3.textContent = city;
+
+        const p = document.createElement('p');
+        p.style.cssText = 'margin: 10px 0; color: #aaa; font-size: 13px; line-height:1.4;';
+        p.textContent = cityData.description;
+
+        const btnWrap = document.createElement('div');
+        btnWrap.style.cssText = 'display: flex; gap: 10px; margin-top: 15px;';
+
+        const btnExplore = document.createElement('button');
+        btnExplore.className = 'btn-explore-now';
+        btnExplore.style.cssText = 'flex:1; font-size:11px;';
+        btnExplore.textContent = 'VIEW PLACES';
+        btnExplore.addEventListener('click', function(e){ e.stopPropagation(); viewCityDetails(state, city); });
+
+        const btnReserve = document.createElement('button');
+        btnReserve.className = 'btn-gold';
+        btnReserve.style.cssText = 'flex:1; font-size:11px;';
+        btnReserve.textContent = 'RESERVE NOW';
+        btnReserve.addEventListener('click', function(e){ e.stopPropagation(); showBookingOptions(state, city); });
+
+        btnWrap.appendChild(btnExplore);
+        btnWrap.appendChild(btnReserve);
+
+        destInfo.appendChild(h3);
+        destInfo.appendChild(p);
+        destInfo.appendChild(btnWrap);
+
+        cityDiv.appendChild(fomo);
+        cityDiv.appendChild(cardImage);
+        cityDiv.appendChild(destInfo);
+
+        placesGrid.appendChild(cityDiv);
+    }
+
+    document.getElementById("detailPage").style.display = "block";
+    document.getElementById("final-wa-btn").onclick = () => showBookingOptions(state);
+}
+
+function closeDetailPage() {
+    document.getElementById("detailPage").style.display = "none";
+}
+
+function viewCityDetails(state, city) {
+    const places = destinations[state].places[city].places;
+    const modal = document.createElement("div");
+    modal.style.position = "fixed";
+    modal.style.top = "0";
+    modal.style.left = "0";
+    modal.style.width = "100%";
+    modal.style.height = "100%";
+    modal.style.backgroundColor = "rgba(0,0,0,0.9)";
+    modal.style.display = "flex";
+    modal.style.justifyContent = "center";
+    modal.style.alignItems = "center";
+    modal.style.zIndex = "10000";
+
+    modal.innerHTML = `
+        <div style="background: linear-gradient(135deg, rgba(20,20,20,0.95), rgba(5,5,5,0.95)); border: 1px solid rgba(212,175,55,0.3); padding: 30px; border-radius: 25px; text-align: center; max-width: 500px; max-height: 80%; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.8);">
+            <h3 style="color: #c5a059; margin-bottom: 20px; font-family: 'Inter', sans-serif;">Places in ${city}</h3>
+            <ul style="list-style: none; padding: 0; text-align: left; color: #fff;">
+                ${places.map(place => `<li style="margin: 15px 0; padding: 10px; border-bottom: 1px solid rgba(212,175,55,0.2); background: rgba(255,255,255,0.05); border-radius: 10px;"><i class="fas fa-map-marker-alt" style="color: #d4af37; margin-right: 10px;"></i> ${place}</li>`).join("")}
+            </ul>
+            <button onclick="closeModal()" style="background: linear-gradient(135deg, #d4af37, #b8962e); color: #000; border: none; padding: 12px 28px; margin-top: 20px; border-radius: 50px; cursor: pointer; font-weight: 600; transition: 0.3s;">Close</button>
         </div>
     `;
 
-    // 1. Earkanavea irukkura andha 'View Details' button-a namma create panna loop-kulla pick pandroom
-    const viewBtn = card.querySelector('.view-btn-custom');
-    
-    // 2. Adhula namma puthiya showPlaceDetails function-a attach pandroom
-    viewBtn.onclick = () => {
-        showPlaceDetails(place); // Indha function kulla andha place-oda full data pass aagum
+    document.body.appendChild(modal);
+
+    window.closeModal = () => {
+        document.body.removeChild(modal);
     };
+}
 
-    grid.appendChild(card);
-});    // After injecting, progressively load the newly added background images
-        const newBgEls = grid.querySelectorAll('.dest-img');
-        newBgEls.forEach(el => {
-            const bg = el.dataset.bg;
-            if (bg) {
-                el.classList.add('bg-lazy');
-                const high = new Image();
-                high.src = bg;
-                high.onload = function() {
-                    el.style.backgroundImage = `url('${bg}')`;
-                    el.classList.add('loaded');
-                    el.classList.remove('bg-lazy');
-                };
-            }
-        });
+function showBookingOptions(state, city = '') {
+    const location = city ? `${city}, ${state}` : state;
+    
+    // Create calculator modal
+    const modal = document.createElement("div");
+    modal.style.position = "fixed";
+    modal.style.top = "0";
+    modal.style.left = "0";
+    modal.style.width = "100%";
+    modal.style.height = "100%";
+    modal.style.backgroundColor = "rgba(0,0,0,0.9)";
+    modal.style.display = "flex";
+    modal.style.justifyContent = "center";
+    modal.style.alignItems = "center";
+    modal.style.zIndex = "10000";
+    modal.style.overflowY = "auto";
+    modal.id = "bookingModal";
 
-        const finalBtn = document.getElementById('final-wa-btn');
-        finalBtn.innerText = `Book Full ${title} Package`;
+    modal.innerHTML = `
+        <div style="background: linear-gradient(135deg, rgba(20,20,20,0.95), rgba(5,5,5,0.95)); border: 1px solid rgba(212,175,55,0.3); padding: 40px; border-radius: 25px; max-width: 500px; box-shadow: 0 20px 60px rgba(0,0,0,0.8); color: #fff; margin: 20px;">
+            <h2 style="color: #d4af37; margin-bottom: 20px; text-align: center; font-size: 24px;">PACKAGE CALCULATOR</h2>
+            <p style="text-align: center; color: #aaa; margin-bottom: 25px;">📍 ${location}</p>
+            
+            <form id="bookingCalcForm" style="display: flex; flex-direction: column; gap: 15px;">
+                <div>
+                    <label style="display: block; margin-bottom: 8px; font-size: 14px; color: #d4af37;">Full Name *</label>
+                    <input type="text" id="booking-name" placeholder="Your Name" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #333; background: #0c0c0c; color: #fff; outline: none; font-family: inherit; box-sizing: border-box;">
+                </div>
+                
+                <div>
+                    <label style="display: block; margin-bottom: 8px; font-size: 14px; color: #d4af37;">WhatsApp Number *</label>
+                    <input type="tel" id="booking-phone" placeholder="+91 XXXXXXXXXX" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #333; background: #0c0c0c; color: #fff; outline: none; font-family: inherit; box-sizing: border-box;">
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; font-size: 14px; color: #d4af37;">Number of Persons *</label>
+                        <input type="number" id="booking-persons" min="1" value="1" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #333; background: #0c0c0c; color: #fff; outline: none; font-family: inherit; box-sizing: border-box;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; font-size: 14px; color: #d4af37;">Number of Days *</label>
+                        <input type="number" id="booking-days" min="1" value="3" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #333; background: #0c0c0c; color: #fff; outline: none; font-family: inherit; box-sizing: border-box;">
+                    </div>
+                </div>
+                
+                <!-- Price calculation removed as requested -->
+                
+                <button type="submit" style="background: linear-gradient(135deg, #d4af37, #b8962e); color: #000; border: none; padding: 14px; border-radius: 25px; font-weight: 600; cursor: pointer; font-size: 16px; transition: 0.3s; font-family: inherit;">
+                    SEND ENQUIRY VIA WHATSAPP
+                </button>
+                
+                <button type="button" onclick="closeBookingModal()" style="background: transparent; border: 1px solid #666; color: #aaa; padding: 10px; border-radius: 25px; cursor: pointer; transition: 0.3s; font-family: inherit;">
+                    Cancel
+                </button>
+            </form>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+    
+    // Form submission (no automatic price calculation)
+    document.getElementById("bookingCalcForm").addEventListener('submit', function(e) {
+        e.preventDefault();
         
-        // Intha vari thaan WhatsApp/Email Modal-ai open pannum
-        finalBtn.onclick = function() {
-            openBookingOptions(`Full Package`, title);
-        };
+        const name = document.getElementById("booking-name").value;
+        const phone = document.getElementById("booking-phone").value;
+        const persons = document.getElementById("booking-persons").value;
+        const days = document.getElementById("booking-days").value;
+        
+        const msg = `Hi Fundun Holidays, I'm ${name}. I want to book a package for ${location} for ${persons} persons for ${days} days. My WhatsApp: ${phone}`;
 
-        detailPage.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
-}
-// --- GSAP CONCAVE SLIDER LOGIC ---
-// --- GSAP CONCAVE SLIDER LOGIC (Modified for Mobile) ---
-document.addEventListener('DOMContentLoaded', () => {
-    const sliderWrapper = document.querySelector('.gsap-slider-wrapper');
-    const slides = document.querySelectorAll('.slide');
-    
-    if (!sliderWrapper || slides.length === 0) return;
-
-    const numSlides = slides.length;
-    const angleStep = 360 / numSlides; 
-    
-    // Mobile-la radius kammiya irukanum, Desktop-la 500 nalla irukum
-    const radius = window.innerWidth < 768 ? 250 : 500; 
-
-    slides.forEach((slide, index) => {
-        gsap.set(slide, {
-            rotationY: index * angleStep,
-            z: radius,
-            transformOrigin: `50% 50% ${-radius}px`
-        });
-    });
-
-    const rotation = gsap.to(sliderWrapper, {
-        rotationY: 360,
-        duration: 50,
-        ease: "none",
-        repeat: -1,
-    });
-});
-function closeDetailPage() {
-    document.getElementById('detailPage').style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-// Detail Image Modal Functions
-function openDetailImageModal(placeName, imageUrl, description) {
-    document.getElementById('detailModalPlaceName').textContent = placeName;
-    document.getElementById('detailModalImage').src = imageUrl;
-    document.getElementById('detailModalPlaceDesc').textContent = description;
-    document.getElementById('detailImageModal').style.display = 'flex';
-}
-
-function closeDetailImageModal() {
-    document.getElementById('detailImageModal').style.display = 'none';
-}
-
-// Close modal when clicking outside
-window.addEventListener('click', function(event) {
-    const modal = document.getElementById('detailImageModal');
-    if (event.target === modal) {
-        closeDetailImageModal();
-    }
-});
-
-function openBookingOptions(placeName, stateName) {
-    const modal = document.getElementById('bookingModal');
-    const displayTitle = `${selectedServiceType}: ${placeName}`;
-    document.getElementById('selectedServiceName').innerText = displayTitle;
-    
-    // WhatsApp Action
-    const waBtn = document.getElementById('modalWaBtn');
-    waBtn.innerHTML = `<i class="fab fa-whatsapp"></i> WhatsApp Booking`;
-    waBtn.onclick = function() {
-        const phoneNumber = "+917010954360";
-        const message = `Hi Fundun Holidays, I am interested in [${selectedServiceType}] for [${placeName}, ${stateName}].`;
-        window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-        closeBookingModal();
-    };
-
-    // Instagram Action
-    const instaBtn = document.getElementById('modalMailBtn');
-    instaBtn.innerHTML = `<i class="fab fa-instagram"></i> Instagram DM`;
-    instaBtn.className = 'insta-btn-premium'; // New class for premium look
-    instaBtn.onclick = function() {
-        const instaUsername = "fundun_holidays"; 
-        window.open(`https://www.instagram.com/${instaUsername}/`, '_blank');
-        closeBookingModal();
-    };
-
-    modal.style.display = 'flex'; 
-    document.body.style.overflow = 'hidden';
-}
-
-function closeBookingModal() {
-    document.getElementById('bookingModal').style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-// ======== ATTRACTIONS MODAL FUNCTIONS ========
-let currentAttractionPlace = null;
-let currentAttractionState = null;
-
-function openAttractionsModal(placeName, state) {
-    const stateData = travelData[state];
-    if (!stateData) return;
-    
-    const place = stateData.places.find(p => p.name === placeName);
-    if (!place || !place.attractions) return;
-    
-    currentAttractionPlace = placeName;
-    currentAttractionState = state;
-    
-    // Set title and description
-    document.getElementById('attractionsTitle').textContent = placeName;
-    document.getElementById('attractionsSubtitle').textContent = place.desc;
-    
-    // Populate attractions list
-    const attractionsList = document.getElementById('attractionsList');
-    attractionsList.innerHTML = '';
-    
-    place.attractions.forEach(attraction => {
-        const item = document.createElement('div');
-        item.className = 'attraction-item';
-        item.innerHTML = `
-            <div class="attraction-icon"><i class="fas fa-map-pin gold"></i></div>
-            <div class="attraction-name">${attraction}</div>
-        `;
-        attractionsList.appendChild(item);
     });
     
-    // Show modal
-    document.getElementById('attractionsModal').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-}
-
-function closeAttractionsModal() {
-    document.getElementById('attractionsModal').style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-function bookPlaceAttraction() {
-    if (currentAttractionPlace && currentAttractionState) {
-        closeAttractionsModal();
-        openBookingOptions(currentAttractionPlace, currentAttractionState);
-    }
-}
-
-// Close modal when clicking outside
-window.addEventListener('click', function(event) {
-    const modal = document.getElementById('attractionsModal');
-    if (event.target === modal) {
-        closeAttractionsModal();
-    }
-});
-
-/// Intha function unga HTML-il irukura onclick="openMap()" oda connect aagum
-function openMap() {
-    // Neenga kudutha puthiya specific Google Maps link
-    const googleMapsUrl = "https://maps.app.goo.gl/9dq2U7crYiuhfwqZA";
-    
-    // Puthiya tab-la map open aagum
-    window.open(googleMapsUrl, '_blank');
-}
-
-// 6. Utility Functions
-function whatsapp(topic) {
-    const phoneNumber = "+917010954360"; 
-    const message = `Hi Fundun Holidays, I'm interested in: ${topic}. Please share more details.`;
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-}
-function openMail() {
-    const emailId = "fundunholidays@gmail.com";
-    const subject = "Inquiry regarding Fundun Holidays";
-    const body = "Hello Team,\n\nI am interested in your travel services. Please provide more information.";
-
-    // Open Gmail compose in a new tab with prefilled recipient, subject and body
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(emailId)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.open(gmailUrl, '_blank');
-}
-
-// 7. Event Listeners & Effects
-window.onscroll = function() {
-    // --- Section 7: Event Listeners & Effects (UPDATE THIS PART) ---
-
-window.onscroll = function() {
-    // 1. Navbar color change logic (Old)
-    const navbar = document.getElementById("navbar");
-    navbar.style.background = (window.scrollY > 50) ? "#000" : "rgba(0,0,0,0.8)";
-
-    // 2. Scroll Reveal Logic (New)
-    const reveals = document.querySelectorAll('.reveal');
-    reveals.forEach(el => {
-        const windowHeight = window.innerHeight;
-        const elementTop = el.getBoundingClientRect().top;
-        const revealPoint = 100;
-
-        if (elementTop < windowHeight - revealPoint) {
-            el.classList.add('visible');
-        }    });
-};
-};
-
-window.addEventListener('load', function() {
-    const preloader = document.getElementById('preloader');
-    setTimeout(() => {
-        preloader.classList.add('hide-preloader');
-    }, 1500); 
-});
-// Function to switch between Login and Signup forms
-function switchAuth(type) {
-    const loginBox = document.getElementById('loginBox');
-    const signupBox = document.getElementById('signupBox');
-    
-    if (type === 'signup') {
-        loginBox.style.display = 'none';
-        signupBox.style.display = 'block';
-    } else {
-        loginBox.style.display = 'block';
-        signupBox.style.display = 'none';
-    }
-}
-
-// Close modal if user clicks outside the box
-window.onclick = function(event) {
-    const modal = document.getElementById('loginModal');
-    if (event.target == modal) {
-        toggleLoginModal(false);
-    }
-}
-// Image Gallery Lightbox Functions
-function openLightbox(element) {
-    const lightbox = document.getElementById('imageLightbox');
-    const fullImg = document.getElementById('fullImage');
-    
-    // Element-kulla irukkira img tag-oda src-ai edukkurom
-    const imgSrc = element.querySelector('img').src;
-    
-    fullImg.src = imgSrc;
-    lightbox.style.display = 'flex';
-    document.body.style.overflow = 'hidden'; // Scroll-ai stop seiya
-}
-
-function closeLightbox() {
-    const lightbox = document.getElementById('imageLightbox');
-    lightbox.style.display = 'none';
-    document.body.style.overflow = 'auto'; // Scroll-ai thirumba thodanga
-}
-
-// --- Enhanced UX: reveal animations, parallax, lazy/progressive loading, welcome popup ---
-document.addEventListener('DOMContentLoaded', function() {
-    // Helper: refresh animations and locomotive after content changes or image loads
-    function refreshVisuals() {
-        try {
-            if (typeof AOS !== 'undefined') {
-                if (typeof AOS.refreshHard === 'function') AOS.refreshHard();
-                else if (typeof AOS.refresh === 'function') AOS.refresh();
-            }
-        } catch (e) { console.warn('AOS refresh failed', e); }
-        try { if (window.locoScroll && typeof window.locoScroll.update === 'function') window.locoScroll.update(); } catch (e) { /* ignore */ }
-    }
-
-    // Helper: split text into letter spans and stagger animation
-    function animateTextLetters(selector, delayMs = 40) {
-        const elems = document.querySelectorAll(selector);
-        elems.forEach(el => {
-            if (el.classList.contains('animated-text')) return; // skip if already done
-
-            // Build HTML while preserving existing child elements (so nested spans keep their classes)
-            let charIndex = 0;
-            const parts = [];
-            el.childNodes.forEach(node => {
-                if (node.nodeType === Node.TEXT_NODE) {
-                    const text = node.textContent || '';
-                    for (let i = 0; i < text.length; i++) {
-                        const ch = text[i];
-                        const span = document.createElement('span');
-                        span.className = 'letter';
-                        span.textContent = ch;
-                        span.style.animationDelay = `${charIndex * delayMs}ms`;
-                        parts.push(span.outerHTML);
-                        charIndex++;
-                    }
-                } else if (node.nodeType === Node.ELEMENT_NODE) {
-                    // Preserve element's markup as-is
-                    parts.push(node.outerHTML);
-                    // Increase index roughly by the element's text length so subsequent delays are offset
-                    const innerText = node.textContent || '';
-                    charIndex += innerText.length;
-                }
-            });
-
-            // If no child nodes (fallback), handle whole textContent
-            if (parts.length === 0) {
-                const text = el.textContent || '';
-                for (let i = 0; i < text.length; i++) {
-                    const span = document.createElement('span');
-                    span.className = 'letter';
-                    span.textContent = text[i];
-                    span.style.animationDelay = `${i * delayMs}ms`;
-                    parts.push(span.outerHTML);
-                }
-            }
-
-            el.innerHTML = parts.join('');
-            el.classList.add('animated-text');
-        });
-    }
-
-    /* 1) Reveal on scroll */
-    const revealElems = document.querySelectorAll('.dest-card, .s-item, .contact-card, .offer-card, .gallery-item, .testimonial, .hero-content, .detail-hero-content');
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.12 });
-
-    revealElems.forEach(el => {
-        el.classList.add('reveal');
-        revealObserver.observe(el);
-    });
-
-    /* 2) Progressive / lazy loading for gallery images */
-    const galleryImgs = document.querySelectorAll('.gallery-item img');
-    const imgObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            const img = entry.target;
-            const src = img.dataset.src || img.src;
-            // start blurred placeholder state
-            img.classList.add('blur-up');
-            img.loading = 'lazy';
-
-            const high = new Image();
-            high.src = src;
-            high.onload = function() {
-                img.src = high.src;
-                img.classList.add('loaded');
-                img.classList.remove('blur-up');
-            };
-            imgObserver.unobserve(img);
-        });
-    }, { rootMargin: '200px 0px' });
-
-    galleryImgs.forEach(img => {
-        // keep original src in data-src if not present
-        if (!img.dataset.src) img.dataset.src = img.src;
-        // optionally set a tiny inline placeholder (transparent pixel) to force lazy behavior
-        // img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="9"%3E%3C/svg%3E';
-        imgObserver.observe(img);
-    });
-
-    /* 3) Lazy/progressive backgrounds for .dest-img and .detail-hero */
-    const bgElems = document.querySelectorAll('.dest-img, #detail-hero');
-    const bgObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            const el = entry.target;
-            // read data-bg or inline style
-            let bg = el.dataset.bg;
-            if (!bg) {
-                const inline = el.style.backgroundImage || window.getComputedStyle(el).backgroundImage;
-                if (inline && inline !== 'none') {
-                    // extract url("...")
-                    const m = inline.match(/url\(["']?(.*?)["']?\)/);
-                    if (m) bg = m[1];
-                }
-            }
-            if (bg) {
-                el.classList.add('bg-lazy');
-                const high = new Image();
-                high.src = bg;
-                high.onload = function() {
-                    el.style.backgroundImage = `url('${bg}')`;
-                    el.classList.add('loaded');
-                    el.classList.remove('bg-lazy');
-                };
-            }
-            bgObserver.unobserve(el);
-        });
-    }, { rootMargin: '300px 0px' });
-
-    bgElems.forEach(el => {
-        // move existing inline background to data-bg to avoid immediate load
-        const inline = el.style.backgroundImage || window.getComputedStyle(el).backgroundImage;
-        if (inline && inline !== 'none') {
-            const m = inline.match(/url\(["']?(.*?)["']?\)/);
-            if (m) {
-                el.dataset.bg = m[1];
-                // temporarily clear background so browser doesn't load it immediately
-                el.style.backgroundImage = 'none';
-            }
+    window.closeBookingModal = () => {
+        const bookingModal = document.getElementById("bookingModal");
+        if(bookingModal && bookingModal.parentNode) {
+            document.body.removeChild(bookingModal);
         }
-        bgObserver.observe(el);
-    });
-
-    /* 4) Parallax for elements with data-parallax-speed */
-    // set defaults on important elements
-    const heroVideo = document.querySelector('.hero-video');
-    if (heroVideo) heroVideo.dataset.parallaxSpeed = -0.12;
-    const detailHero = document.getElementById('detail-hero');
-    if (detailHero) detailHero.dataset.parallaxSpeed = -0.08;
-
-    const parallaxElems = () => document.querySelectorAll('[data-parallax-speed]');
-
-    function handleParallax() {
-        const y = window.scrollY;
-        parallaxElems().forEach(el => {
-            const speed = parseFloat(el.dataset.parallaxSpeed) || 0;
-            const translate = Math.round(y * speed);
-            el.style.transform = `translateY(${translate}px)`;
-        });
-    }
-    window.addEventListener('scroll', handleParallax, { passive: true });
-    handleParallax();
-
-    /* 5) Small welcome popup (one-time per session) */
-    const welcome = document.getElementById('welcomePopup');
-    if (welcome) {
-        const showWelcome = () => {
-            if (sessionStorage.getItem('seenWelcome')) return;
-            welcome.classList.add('open');
-            sessionStorage.setItem('seenWelcome', '1');
-        };
-        // show after a short delay if user hasn't scrolled far
-        let showed = false;
-        setTimeout(() => { if (!showed) showWelcome(); }, 3000);
-        window.addEventListener('scroll', function onScroll() { if (!showed && window.scrollY > 150) { showWelcome(); showed = true; window.removeEventListener('scroll', onScroll); } });
-        // hook close button
-        const closeBtn = welcome.querySelector('.close-welcome');
-        if (closeBtn) closeBtn.addEventListener('click', () => welcome.classList.remove('open'));
-    }
-
-    // Promo popup behavior
-    (function setupPromoPopup() {
-        const popup = document.getElementById('promoPopup');
-        if (!popup) return;
-        const closeBtns = popup.querySelectorAll('.close-promo, #promoClose');
-        const chatBtn = document.getElementById('promoChat');
-        const exploreBtn = document.getElementById('promoExplore');
-        const dontShow = document.getElementById('promoDontShow');
-
-        const storageKey = 'promoPopupHidden_v1';
-        // initialize checkbox from storage
-        const hidden = localStorage.getItem(storageKey) === '1';
-        if (dontShow) dontShow.checked = hidden;
-
-        function openPopup() {
-            if (localStorage.getItem(storageKey) === '1') return; // respect user's choice
-            popup.classList.add('open');
-            if (window.locoScroll && typeof window.locoScroll.stop === 'function') try { window.locoScroll.stop(); } catch(e){}
-        }
-
-function closePopup() {
-    const popup = document.getElementById('promoPopup');
-    popup.classList.remove('open'); // Idhu dhaan CSS-la namma ezhudhuna 'open' class-a remove pannum
+    };
 }
 
-closeBtns.forEach(b => b.addEventListener('click', closePopup));
+function bookViaWhatsApp(state) {
+    const msg = `Hi Fundun Holidays, I want to book a package for ${state}.`;
+    const phone = "919585575354";
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+    window.open(url, "_blank");
+}
 
-        if (chatBtn) chatBtn.addEventListener('click', function() {
-            whatsapp('Promo Popup Enquiry');
-            if (dontShow && dontShow.checked) localStorage.setItem(storageKey, '1');
-            closePopup();
-        });
+function bookViaInstagram(state) {
+    const msg = `Hi Fundun Holidays, I want to book a package for ${state}.`;
+    const url = `https://www.instagram.com/fundun_holidays`;
+    window.open(url, "_blank");
+}
 
-        if (exploreBtn) exploreBtn.addEventListener('click', function() {
-            const offers = document.getElementById('offers');
-            if (offers) {
-                if (window.locoScroll && typeof window.locoScroll.scrollTo === 'function') window.locoScroll.scrollTo(offers);
-                else offers.scrollIntoView({ behavior: 'smooth' });
-            }
-            if (dontShow && dontShow.checked) localStorage.setItem(storageKey, '1');
-            closePopup();
-        });
+function sendToWhatsApp(message) {
+    const phone = "919585575354";
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+}
 
-        if (dontShow) dontShow.addEventListener('change', function() {
-            if (this.checked) localStorage.setItem(storageKey, '1'); else localStorage.removeItem(storageKey);
-        });
+function whatsapp(message){
+    const phone = "919585575354";
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent("Hi Fundun Holidays, " + message)}`;
+    window.open(url, "_blank");
+}
 
-        // Show popup after a delay if not previously hidden
-        setTimeout(() => {
-            if (!localStorage.getItem(storageKey)) openPopup();
-        }, 4200);
-    })();
+function toggleAbout(show){
+    document.getElementById("aboutPage").style.display = show ? "block" : "none";
+}
 
-    // Apply text letter animation to headings and large text blocks on page load
-    animateTextLetters('h1, h2, h3, .bold-heading, .section-title');
-    // Optionally animate paragraphs with class 'text-reveal'
-    animateTextLetters('.text-reveal');
+function scrollToSection(id){
+    document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
 
-    // Hook into AOS to animate text when sections appear
-    document.addEventListener('aos:in', function(event) {
-        const revealed = event.detail;
-        if (revealed) {
-            const textElems = revealed.querySelectorAll('.text-reveal:not(.animated-text)');
-            textElems.forEach(el => {
-                try { animateTextLetters(el); } catch(e){}
-            });
-        }
-    });
+function openMail(){
+    window.location.href = "mailto:dineshcse142@gmail.com";
+}
 
-    // After images load, re-animate text if new content was injected
-    const origAnimateText = animateTextLetters;
-    window.animateTextLetters = function(sel, delay) {
-        origAnimateText(sel, delay);
-        try { refreshVisuals(); } catch(e){}
-    };
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const studentOfferCard = document.querySelector('.student-offer-video-card');
-    const offerVideo = studentOfferCard ? studentOfferCard.querySelector('.offer-video') : null;
-
-    if (studentOfferCard && offerVideo) {
-        // Play video when mouse enters the card
-        studentOfferCard.addEventListener('mouseenter', () => {
-            offerVideo.play().catch(error => {
-                console.log("Video autoplay prevented:", error);
-                // Handle autoplay prevention (e.g., show a play button)
-            });
-        });
-
-        // Pause video when mouse leaves the card
-        studentOfferCard.addEventListener('mouseleave', () => {
-            offerVideo.pause();
-        });
-
-        // For touch devices, play on first tap and pause on second tap
-        let isVideoPlaying = false;
-        studentOfferCard.addEventListener('click', (event) => {
-            // Prevent toggling if a button inside the card is clicked
-            if (event.target.tagName === 'BUTTON' || event.target.closest('button')) {
-                return;
-            }
-            if (isVideoPlaying) {
-                offerVideo.pause();
-                isVideoPlaying = false;
-            } else {
-                offerVideo.play().catch(error => {
-                    console.log("Video autoplay prevented on click:", error);
-                });
-                isVideoPlaying = true;
-            }
-        });
-    }
-});
-// Page refresh aagum pothu scroll-ah top-ku kondu poga
-window.onbeforeunload = function () {
-    window.scrollTo(0, 0);
-};
-
-// Locomotive Scroll use pandreengana, ithu scroll-ah reset pannum
+// Form submit handler
 document.addEventListener("DOMContentLoaded", function() {
-    if (typeof scroll !== 'undefined') {
-        scroll.scrollTo(0, {duration: 0, disableLerp: true});
-    } else {
-        window.scrollTo(0, 0);
-    }
-});
-// Step 1: விவரங்களைக் காட்டும் Modal-ஐ உருவாக்கும் பங்க்ஷன்
-function showPlaceDetails(place) {
-    const detailsModal = document.createElement('div');
-    detailsModal.id = 'placeDetailsModal';
-    // ஸ்டைலிங்: இது முழு திரையையும் மறைக்கும் கருப்பு நிற விண்டோ
-    detailsModal.style.cssText = `
-        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.95); z-index: 10003;
-        overflow-y: auto; animation: fadeIn 0.3s ease;
-    `;
-
-    const content = document.createElement('div');
-    content.style.cssText = `max-width: 900px; margin: 0 auto; padding: 40px 20px;`;
-
-    // Close Button: விண்டோவை மூட
-    const closeBtn = document.createElement('button');
-    closeBtn.innerHTML = '<i class="fas fa-times"></i>';
-    closeBtn.style.cssText = `
-        position: fixed; top: 20px; right: 20px; background: #D4AF37;
-        border: none; color: white; font-size: 24px; padding: 10px 15px;
-        cursor: pointer; border-radius: 50%; z-index: 10004; width: 50px; height: 50px;
-    `;
-    closeBtn.onclick = () => {
-        detailsModal.remove();
-        document.body.style.overflow = 'auto'; // ஸ்க்ரோலிங் மீண்டும் தொடங்கும்
-    };
-
-    // இடத்தின் புகைப்படம், தலைப்பு மற்றும் விவரங்களைச் சேர்த்தல்
-    content.innerHTML = `
-        <img src="${place.img}" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 10px; margin-bottom: 30px;">
-        <h1 style="color: #D4AF37; font-size: 40px; margin-bottom: 10px;">${place.name}</h1>
-        <p style="color: #ccc; font-size: 18px; margin-bottom: 30px; line-height: 1.6;">${place.desc}</p>
-        <h2 style="color: #D4AF37; font-size: 28px; margin-bottom: 20px;">Things to Do & See</h2>
-    `;
-
-    // Attractions: பார்க்க வேண்டிய இடங்களின் பட்டியலை உருவாக்குதல்
-    if (place.attractions && place.attractions.length > 0) {
-        const attractionsList = document.createElement('ul');
-        attractionsList.style.cssText = "list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;";
-        place.attractions.forEach(attr => {
-            attractionsList.innerHTML += `
-                <li style="padding: 12px 15px; background: #1a1a1a; border-left: 4px solid #D4AF37; color: #ccc; border-radius: 5px;">
-                    <i class="fas fa-check" style="color: #D4AF37; margin-right: 10px;"></i>${attr}
-                </li>`;
+    const form = document.getElementById("heroCalcForm");
+    if (form) {
+        form.addEventListener("submit", function(e){
+            e.preventDefault();
+            const name = document.getElementById("cName").value;
+            const phone = document.getElementById("cPhone").value;
+            const loc = document.getElementById("cLoc").value;
+            const seats = document.getElementById("cSeats").value;
+            const days = document.getElementById("cDays").value;
+            const msg = `Hi Fundun Holidays, I'm ${name}. I want a package for ${loc} for ${seats} persons for ${days} days. My number is ${phone}.`;
+            whatsapp(msg);
         });
-        content.appendChild(attractionsList);
     }
 
-    detailsModal.appendChild(content);
-    detailsModal.appendChild(closeBtn);
-    document.body.appendChild(detailsModal);
-    document.body.style.overflow = 'hidden'; // விண்டோ திறந்திருக்கும் போது பின்னணி ஸ்க்ரோலிங்கை நிறுத்தும்
-}
-document.querySelectorAll('.dest-card').forEach(card => {
-    card.onclick = function() {
-        // Card-oda 'data-location' attribute-ai edukkurom
-        let location = this.getAttribute('data-location');
-        
-        // Oru velai data-location illana, parent state-container-la irunthu kandu pidikalam
-        if (!location) {
-            const stateTitle = this.closest('.state-container').querySelector('.state-title').innerText;
-            // "Tamil Nadu Culture" nu iruntha athula "Tamil Nadu" mattum edukka:
-            if(stateTitle.includes("Tamil Nadu")) location = "Tamil Nadu";
-            else if(stateTitle.includes("Kerala")) location = "Kerala";
-            else if(stateTitle.includes("Karnataka")) location = "Karnataka";
-        }
-
-        console.log("Opening details for: " + location);
-        openDestinationPage(location);
-    };
-});// --- Cloudinary Link Fixer (Add at the end of script.js) ---
-(function fixCloudinaryLinks() {
-    if (typeof travelData !== 'undefined') {
-        // Tamil Nadu Fix
-        if (travelData["Tamil Nadu"]) {
-            travelData["Tamil Nadu"].heroImg = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/img1_dcfvxp.jpg";
-            
-            const tnPlaces = travelData["Tamil Nadu"].places;
-            if (tnPlaces[0]) tnPlaces[0].img = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239791/img5_g7ovbn.webp"; // Ooty
-            if (tnPlaces[1]) tnPlaces[1].img = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239792/img6_pb9ann.jpg"; // Kodaikanal
-            if (tnPlaces[2]) tnPlaces[2].img = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/img7_pmlqbt.jpg"; // Kanyakumari
-        }
-
-        // Kerala Fix
-        if (travelData["Kerala"]) {
-            travelData["Kerala"].heroImg = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/Alleppey_wo9ngp.jpg";
-            
-            const klPlaces = travelData["Kerala"].places;
-            if (klPlaces[0]) klPlaces[0].img = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/munar_mc80wo.webp"; // Munnar
-            if (klPlaces[3]) klPlaces[3].img = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/Alleppey_wo9ngp.jpg"; // Alleppey
-            if (klPlaces[2]) klPlaces[2].img = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239860/Wayanad_m5cas0.webp"; // Wayanad
-        }
-
-        // Karnataka Fix
-        if (travelData["Karnataka"]) {
-            travelData["Karnataka"].heroImg = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/mysore_jt2vdj.webp";
-            
-            const kaPlaces = travelData["Karnataka"].places;
-            if (kaPlaces[0]) kaPlaces[0].img = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/mysore_jt2vdj.webp"; // Mysore
-            if (kaPlaces[1]) kaPlaces[1].img = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239790/Coorg_g6wtuj.jpg"; // Coorg
-            if (kaPlaces[2]) kaPlaces[2].img = "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239788/Bangalore_bcxmfa.webp"; // Bangalore
-        }
-        
-        console.log("Cloudinary links patched successfully!");
-    }
-})();
-document.addEventListener('DOMContentLoaded', function() {
-    const slides = document.querySelectorAll('.carousel-slide');
-    let currentSlide = 0;
-    const slideInterval = 5000; // 5000ms = 5 Seconds
-
-    function nextSlide() {
-        // Current slide-la irunthu 'active' class-ah remove panrom
-        slides[currentSlide].classList.remove('active');
-        
-        // Adutha slide number-ah calculate panrom
-        currentSlide = (currentSlide + 1) % slides.length;
-        
-        // Adutha slide-ku 'active' class-ah add panrom
-        slides[currentSlide].classList.add('active');
-    }
-
-    // Automatic transition start panrom
-    setInterval(nextSlide, slideInterval);
-});
-function toggleCalculator(show) {
-    const heroText = document.getElementById('main-hero-text');
-    const formSection = document.getElementById('calc-form-container');
-
-    if (show) {
-        heroText.style.display = 'none';
-        formSection.style.display = 'block';
-    } else {
-        heroText.style.display = 'block';
-        formSection.style.display = 'none';
-    }
-}
-
-// Form Submit Action
-document.getElementById("heroCalcForm").onsubmit = function(e) {
-    e.preventDefault();
-    alert("Thank you! Our team will contact you soon.");
-    this.reset();
-    toggleCalculator(false); // Thirumba hero text-ke poyidum
-};
-function initEffects() {
-    // 1) Scroll Reveal
-    const revealElems = document.querySelectorAll('.dest-card, .s-item, .contact-card');
-    const revealObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    revealElems.forEach(el => {
-        el.classList.add('reveal');
-        revealObserver.observe(el);
+    // Make images lazy and hint the browser for GPU-accelerated transforms
+    document.querySelectorAll('img').forEach(img => {
+        if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+        try {
+            img.style.willChange = 'transform, opacity';
+            img.style.backfaceVisibility = 'hidden';
+            img.style.transform = 'translateZ(0)';
+        } catch (e) {}
     });
-
-    // 2) Lazy / Progressive Images
-    const imgs = document.querySelectorAll('.gallery-item img, .dest-img, #detail-hero');
-    const imgObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            const img = entry.target;
-            const src = img.dataset.src || img.src;
-            const high = new Image();
-            high.src = src;
-            high.onload = () => {
-                img.src = src;
-                img.classList.add('loaded');
-            };
-            imgObserver.unobserve(img);
-        });
-    }, { rootMargin: '200px 0px' });
-
-    imgs.forEach(img => imgObserver.observe(img));
-
-    // 3) Parallax
-    const parallaxElems = document.querySelectorAll('[data-parallax-speed]');
-    function handleParallax() {
-        const y = window.scrollY;
-        parallaxElems.forEach(el => {
-            const speed = parseFloat(el.dataset.parallaxSpeed) || 0;
-            el.style.transform = `translateY(${y * speed}px)`;
-        });
-    }
-    window.addEventListener('scroll', handleParallax, { passive: true });
-    handleParallax();
-
-    // 4) GSAP Slider (if exists)
-    const sliderWrapper = document.querySelector('.gsap-slider-wrapper');
-    const slides = document.querySelectorAll('.slide');
-    if (sliderWrapper && slides.length) {
-        const numSlides = slides.length;
-        const angleStep = 360 / numSlides;
-        const radius = window.innerWidth < 768 ? 250 : 500;
-        slides.forEach((slide, index) => {
-            gsap.set(slide, {
-                rotationY: index * angleStep,
-                z: radius,
-                transformOrigin: `50% 50% ${-radius}px`
-            });
-        });
-        gsap.to(sliderWrapper, {
-            rotationY: 360,
-            duration: 50,
-            ease: "none",
-            repeat: -1
-        });
-    }
-}
-document.addEventListener('DOMContentLoaded', () => {
-    initEffects();
 });
-document.addEventListener('DOMContentLoaded', () => {
+/**************** HERO LEFT BOTTOM ROTATING REVIEWS ****************/
 
-  // ===== 1) Scroll Reveal =====
-  const revealElems = document.querySelectorAll('.reveal');
+const heroReviews = [
+  { name: "Arun", stars: 5, text: "Amazing trip planning and great support throughout our journey!" },
+  { name: "Priya", stars: 5, text: "Best travel experience ever. Hotels and transport were perfect." },
+  { name: "Karthik", stars: 4, text: "Very smooth and well-organized tour. Totally worth it!" },
+  { name: "Meena", stars: 5, text: "Friendly team and excellent service. Highly recommended!" },
+  { name: "Suresh", stars: 4, text: "Wonderful destinations and great coordination." },
+  { name: "Divya", stars: 5, text: "Loved the entire trip. Everything was taken care of!" },
+  { name: "Vignesh", stars: 5, text: "Professional service and very polite staff. Superb experience." },
+  { name: "Anitha", stars: 4, text: "Good packages and nice hotels. Will book again." },
+  { name: "Ravi", stars: 5, text: "Memorable journey with my family. Thank you Fundun Holidays!" },
+  { name: "Lakshmi", stars: 5, text: "Perfect planning and quick response. Totally satisfied!" }
+];
 
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
+const reviewSlider = document.getElementById("reviewSlider");
+let reviewIndex = 0;
 
-  revealElems.forEach(el => revealObserver.observe(el));
+function renderSingleReview() {
+  if (!reviewSlider) return;
 
-  // ===== 2) Lazy / Progressive Backgrounds =====
-  const lazyBgElems = document.querySelectorAll('.dest-img, #detail-hero');
+  reviewSlider.innerHTML = "";
+  const review = heroReviews[reviewIndex];
 
-  lazyBgElems.forEach(el => {
-    const bg = el.dataset.bg || el.style.backgroundImage.replace(/url\(["']?(.*?)["']?\)/,'$1');
-    if(bg){
-      el.classList.add('bg-lazy');
-      const high = new Image();
-      high.src = bg;
-      high.onload = () => {
-        el.style.backgroundImage = `url('${bg}')`;
-        el.classList.add('loaded');
-        el.classList.remove('bg-lazy');
-      };
-    }
+  const card = document.createElement("div");
+  card.className = "review-card";
+  card.innerHTML = `
+    <div class="review-header">
+      <div class="review-avatar">${review.name.charAt(0)}</div>
+      <div>
+        <div class="review-name">${review.name}</div>
+        <div class="review-stars">${"★".repeat(review.stars)}</div>
+      </div>
+    </div>
+    <div class="review-text">${review.text}</div>
+  `;
+
+  reviewSlider.appendChild(card);
+  reviewIndex = (reviewIndex + 1) % heroReviews.length;
+}
+
+renderSingleReview();
+setInterval(renderSingleReview, 3500);
+/* ===== Image Popup Script ===== */
+const popup = document.createElement("div");
+popup.classList.add("image-popup");
+popup.innerHTML = `
+  <span class="popup-close">&times;</span>
+  <img id="popupImg">
+`;
+document.body.appendChild(popup);
+
+const popupImg = document.getElementById("popupImg");
+const closeBtn = popup.querySelector(".popup-close");
+
+/* Open popup on slide image click */
+document.querySelectorAll(".slide img").forEach(img => {
+  img.addEventListener("click", () => {
+    popupImg.src = img.src;
+    popup.classList.add("active");
   });
+});
 
-  // ===== 3) Lazy / Progressive Images =====
-  const lazyImgs = document.querySelectorAll('img[data-src]');
-  lazyImgs.forEach(img => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(!entry.isIntersecting) return;
-        const src = img.dataset.src;
-        const high = new Image();
-        high.src = src;
-        high.onload = () => {
-          img.src = src;
-          img.classList.add('loaded');
-          img.classList.remove('blur-up');
-        };
-        observer.unobserve(img);
-      });
-    }, { rootMargin: '200px 0px' });
-    observer.observe(img);
-  });
+/* Close popup */
+closeBtn.addEventListener("click", () => {
+  popup.classList.remove("active");
+});
 
-  // ===== 4) Parallax =====
-  function handleParallax() {
-    const y = window.scrollY;
-    document.querySelectorAll('[data-parallax-speed]').forEach(el => {
-      const speed = parseFloat(el.dataset.parallaxSpeed) || 0;
-      const translate = Math.round(y * speed);
-      el.style.transform = `translateY(${translate}px)`;
-    });
+popup.addEventListener("click", (e) => {
+  if(e.target === popup){
+    popup.classList.remove("active");
   }
-  window.addEventListener('scroll', handleParallax, { passive: true });
-  handleParallax(); // initial
 });
+// Navbar scroll effect
+const navbar = document.getElementById('navbar');
+
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 50){   // scroll threshold
+    navbar.classList.add('fixed');
+  } else {
+    navbar.classList.remove('fixed');
+  }
+});
+document.querySelectorAll('.s-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const serviceName = item.querySelector('h4').textContent;
+
+    // Show in details box first for psychological feedback
+    document.getElementById('service-title').textContent = serviceName;
+    document.getElementById('service-desc').textContent = `Click to explore destinations for ${serviceName}.`;
+
+    // Map services to states/destination pages
+    const serviceMap = {
+      "School & College Package": "Tamil Nadu",
+      "Corporate Tours": "karnataka",
+      "Family Tours": "kerala",
+      "Custom Planning": "Tamil Nadu",
+      "Honeymoon Tours": "kerala"
+    };
+
+    // Open destination overlay page like Navbar
+    openDestinationPage(serviceMap[serviceName]);
+  });
+});
+// HERO IMAGE SLIDER
+const heroImages = [
+  'https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239861/POSTER_bvgobj.png', 
+  'https://res.cloudinary.com/drlg1t6pk/image/upload/v1769595950/hero_image_2_dxwrxu.png', 
+  'https://res.cloudinary.com/drlg1t6pk/image/upload/v1769620540/img_post_rbz4dd.png',
+];
+
+const carouselContainer = document.querySelector('.carousel-container');
+
+// Create slide divs dynamically
+heroImages.forEach((img, index) => {
+    const slide = document.createElement('div');
+    slide.classList.add('carousel-slide');
+    if(index === 0) slide.classList.add('active'); // first image active
+    slide.style.backgroundImage = `url('${img}')`;
+    carouselContainer.appendChild(slide);
+});
+
+const slides = document.querySelectorAll('.carousel-slide');
+let currentSlide = 0;
+
+// Function to show next slide
+function nextSlide() {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+}
+
+// Auto-slide every 5 seconds
+setInterval(nextSlide, 5000);
+// 1. Mouse Tracking for Body Glow (Spotlight Effect)
+document.addEventListener('mousemove', e => {
+    document.body.style.setProperty('--x', e.clientX + 'px');
+    document.body.style.setProperty('--y', e.clientY + 'px');
+});
+
+// 2. Updated openDestinationPage with "Social Validation" logic
+function openDestinationPage(state) {
+    const data = destinations[state];
+    if (!data) return;
+
+    const detailPage = document.getElementById("detailPage");
+    const placesGrid = document.getElementById("places-grid");
+    
+    // Header updates
+    document.getElementById("detail-title").innerHTML = data.title;
+    document.getElementById("detail-subtitle").innerText = data.subtitle;
+
+    // Clear and build the slider
+    placesGrid.innerHTML = "";
+
+    // 1. Create Navigation Buttons
+    const navDiv = document.createElement("div");
+    navDiv.className = "slider-nav";
+    navDiv.innerHTML = `
+        <button onclick="moveSlider('prev')"><i class="fas fa-arrow-left"></i></button>
+        <button onclick="moveSlider('next')"><i class="fas fa-arrow-right"></i></button>
+    `;
+
+    // 2. Generate Cards from Destination Data
+    for (const [city, cityData] of Object.entries(data.places)) {
+        const card = document.createElement("div");
+        card.className = "safari-card";
+        card.style.backgroundImage = `url('${cityData.image}')`;
+
+        const destInfo = document.createElement('div');
+        destInfo.className = 'dest-info';
+
+        const title = document.createElement('h1');
+        title.style.cssText = 'font-size: 50px; font-weight: 800; color: #d4af37;';
+        title.textContent = city.toUpperCase();
+
+        const desc = document.createElement('p');
+        desc.style.cssText = 'margin: 20px 0; font-size: 16px; line-height: 1.6;';
+        desc.textContent = cityData.description;
+
+        const btnWrap = document.createElement('div');
+        btnWrap.style.cssText = 'display:flex; gap:15px;';
+
+        const reserveBtn = document.createElement('button');
+        reserveBtn.className = 'btn-gold';
+        reserveBtn.textContent = 'RESERVE NOW';
+        reserveBtn.addEventListener('click', (e) => { e.stopPropagation(); showBookingOptions(state, city); });
+
+        const viewBtn = document.createElement('button');
+        viewBtn.className = 'btn-white';
+        viewBtn.style.cssText = 'background:transparent; border:1px solid #fff; color:#fff; border-radius:30px; padding:10px 20px; cursor:pointer;';
+        viewBtn.textContent = 'VIEW PLACES';
+        viewBtn.addEventListener('click', (e) => { e.stopPropagation(); viewCityDetails(state, city); });
+
+        btnWrap.appendChild(reserveBtn);
+        btnWrap.appendChild(viewBtn);
+
+        destInfo.appendChild(title);
+        destInfo.appendChild(desc);
+        destInfo.appendChild(btnWrap);
+
+        card.appendChild(destInfo);
+        placesGrid.appendChild(card);
+    }
+
+    // Add navigation to grid
+    placesGrid.appendChild(navDiv);
+
+    // Show Detail Page
+    detailPage.style.display = "block";
+    setTimeout(() => detailPage.style.opacity = "1", 10);
+}
+
+// 3. Slider Movement Logic
+function moveSlider(direction) {
+    const items = document.querySelectorAll('.safari-card');
+    const grid = document.getElementById('places-grid');
+    
+    if (direction === 'next') {
+        grid.appendChild(items[0]); // Move first to last
+    } else {
+        grid.prepend(items[items.length - 1]); // Move last to first
+    }
+}
+function openServiceBooking(serviceName) {
+    // Service name-aa location field-la pass pannrom
+    showBookingOptions(serviceName);
+}
+/************ VIEW DETAILS – ONLY VIEW BUTTON HOVER + CLICK ************/
+
+function enableViewDetailsOnlyOnButton(state) {
+
+    document.querySelectorAll('.safari-card').forEach(card => {
+
+        const viewBtn = card.querySelector('.btn-white'); // VIEW PLACES
+        if (!viewBtn) return;
+
+        let hoverTimer;
+
+        const city = card.querySelector('h1')?.textContent;
+        if (!city) return;
+
+        const cityName = city.charAt(0) + city.slice(1).toLowerCase();
+
+        const openDetails = (e) => {
+            e.stopPropagation();
+            viewCityDetails(state, cityName);
+        };
+
+        // ✅ CLICK
+        viewBtn.addEventListener('click', openDetails);
+
+        // ✅ HOVER (Desktop only)
+        viewBtn.addEventListener('mouseenter', (e) => {
+            if ('ontouchstart' in window) return; // mobile ignore
+
+            hoverTimer = setTimeout(() => {
+                openDetails(e);
+            }, 300); // smooth delay
+        });
+
+        viewBtn.addEventListener('mouseleave', () => {
+            clearTimeout(hoverTimer);
+        });
+
+        // ❌ Stop bubbling to card
+        viewBtn.addEventListener('mousedown', e => e.stopPropagation());
+    });
+}
+
+/* ===== HOOK INTO DESTINATION PAGE ===== */
+const _originalOpenDestinationPage = openDestinationPage;
+
+openDestinationPage = function(state) {
+    _originalOpenDestinationPage(state);
+
+    setTimeout(() => {
+        enableViewDetailsOnlyOnButton(state);
+    }, 200);
+};
