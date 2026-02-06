@@ -2051,3 +2051,178 @@ body::before {
         padding-top: 20px;
     }
 }
+/* =======================================================
+   MOBILE PREMIUM OVERLAY - FULL CSS FIX
+   ======================================================= */
+@media (max-width: 768px) {
+    /* 1. Background Scroll & Joystick Fix */
+    #detailPage {
+        position: fixed !important; /* Screen-oda lock aagidum */
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: #000 !important;
+        z-index: 999999 !important; /* Home page joystick-ku mela irukkum */
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+
+    /* 2. Header - Zero Space Alignment */
+    .detail-header {
+        height: 65px !important;
+        padding: 0 15px !important;
+        margin: 0 !important;
+        background: #000 !important;
+        border-bottom: 1px solid #222;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    /* 3. Hero Image - Removing top/bottom gaps */
+    #detail-hero {
+        height: 200px !important;
+        width: 100% !important;
+        margin: 0 !important; 
+        padding: 0 !important;
+        border-radius: 0 !important;
+        background-size: cover;
+        background-position: center;
+    }
+
+    /* 4. Horizontal Grid - Full View Logic */
+    #places-grid {
+        display: flex !important;
+        flex-direction: row !important; /* Horizontal layout */
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+        padding: 15px 20px 40px !important; /* Bottom breathing space */
+        gap: 20px !important;
+        margin: 0 !important;
+        height: auto !important;
+        position: relative !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #places-grid::-webkit-scrollbar {
+        display: none; /* Clean UI */
+    }
+
+    /* 5. Card Dimensions & Visibility */
+    .safari-card {
+        flex: 0 0 85% !important; /* Side-la adutha card peek aagum */
+        min-width: 85% !important;
+        height: 440px !important; /* Card full-ah theriya fix panna height */
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        transform: none !important;
+        opacity: 1 !important;
+        display: block !important;
+        scroll-snap-align: center;
+        border-radius: 25px !important;
+        border: 1px solid rgba(212, 175, 55, 0.3) !important;
+        overflow: hidden !important;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+
+    /* 6. Text Overlay Fix */
+    .safari-card .dest-info {
+        display: block !important;
+        position: absolute !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        padding: 25px 20px !important;
+        background: linear-gradient(to top, rgba(0,0,0,1) 50%, transparent) !important;
+        transform: none !important;
+        animation: none !important;
+        text-align: left !important;
+    }
+
+    .safari-card .dest-info h1 {
+        font-size: 26px !important;
+        color: #d4af37 !important;
+        margin-bottom: 8px !important;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .safari-card .dest-info p {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 20px !important;
+        color: #fff !important;
+        display: block !important;
+    }
+
+    /* Close/Back Button - Guaranteed Click */
+    .btn-back {
+        z-index: 100 !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+    }
+}
+/* =======================================================
+   DESKTOP NAVIGATION OVERRIDE (BACK TO CLASSIC LINKS)
+   ======================================================= */
+@media (min-width: 769px) {
+    /* Hamburger toggle-ah desktop-la thookiduvom */
+    .menu-toggle {
+        display: none !important;
+    }
+
+    /* Nav links-ah horizontal-ah mathi, mobile menu styles-ah reset panrom */
+    .nav-links {
+        display: flex !important;
+        position: static !important;
+        flex-direction: row !important;
+        width: auto !important;
+        height: auto !important;
+        background: transparent !important;
+        padding: 0 !important;
+        border: none !important;
+        backdrop-filter: none !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: none !important;
+        gap: 30px !important; /* Unga palaya spacing */
+    }
+
+    .nav-links li {
+        margin: 0 !important;
+    }
+
+    .nav-links li a {
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        opacity: 0.85 !important;
+        transition: 0.3s !important;
+        display: inline-block !important;
+    }
+
+    .nav-links li a:hover {
+        color: #d4af37 !important;
+        opacity: 1 !important;
+    }
+
+    /* Logo and Nav container alignment fix */
+    .nav-flex {
+        justify-content: space-between !important;
+    }
+
+    .logo-box .logo-text {
+        display: block !important; /* Desktop-la brand name theriya vaikurom */
+    }
+}
+
+/* MOBILE FIX: Hamburger toggle phone-la mattum theriya */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block !important;
+    }
+}
