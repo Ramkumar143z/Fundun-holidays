@@ -68,6 +68,7 @@ img { max-width: 100%; }
 .nav-logo {
   width: 55px;
   height: 45px;
+  
 }
 
 .logo-text {
@@ -1347,26 +1348,101 @@ body::before {
    MOBILE & SMALL SCREEN FIX
 ========================================= */
 @media (max-width: 768px) {
+    /* HERO SECTION WRAPPER */
+    .hero {
+        height: 100vh; /* Mobile full screen fix */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-  /* Reviews box mobile-la inline-aa varum */
-  .hero-reviews {
-    position: relative;
-    bottom: auto;
-    left: auto;
-    margin-top: 25px;
-    width: 100%;
-    max-width: 100%;
-  }
+    .hero-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center !important; /* Mobile-la center alignment thaan premium-ah irukum */
+        padding: 0 25px;
+        padding-top: 60px; /* Navbar-kaga gap */
+        gap: 20px;
+    }
 
-  /* Extra bottom space theva illa */
-  .hero-wrapper {
-    padding-bottom: 60px;
-  }
+    .hero-content {
+        text-align: center !important;
+        width: 100%;
+    }
 
-  /* Buttons always visible */
-  .hero-btns {
-    justify-content: flex-start;
-  }
+    /* TYPOGRAPHY */
+    .bold-heading {
+        font-size: 32px !important; /* Oversize aagama readable-ah irukum */
+        line-height: 1.2;
+        margin-bottom: 10px;
+    }
+
+    .hero-content p {
+        font-size: 15px !important;
+        max-width: 90%;
+        margin: 0 auto;
+        opacity: 0.9;
+    }
+
+    /* BUTTONS SPACING */
+    .hero-btns {
+        justify-content: center !important;
+        margin-top: 25px;
+        gap: 15px;
+    }
+
+    .btn-gold {
+        width: 100%; /* Mobile-la full width button thaan premium touch-ku set aagum */
+        max-width: 280px;
+        padding: 15px 30px !important;
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+
+    /* REVIEWS SECTION - DECENT PRESENTATION */
+    .hero-reviews {
+        position: relative !important; /* Desktop absolute mathurom */
+        bottom: auto !important;
+        left: auto !important;
+        margin-top: 40px !important; /* Button-kukum review-kukum gap */
+        width: 100% !important;
+        max-width: 320px !important;
+        margin-left: auto;
+        margin-right: auto;
+        background: rgba(255, 255, 255, 0.08) !important; /* Super subtle look */
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        padding: 10px !important;
+        border-radius: 20px !important;
+    }
+
+    .hero-reviews h3 {
+        font-size: 12px !important;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        color: #d4af37;
+    }
+
+    .review-slider {
+        height: 90px !important; /* Mobile compact height */
+    }
+
+    .review-card {
+        padding: 10px !important;
+        background: rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .review-text {
+        font-size: 13px !important;
+        color: #eee !important;
+    }
+    
+    .review-avatar {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 12px !important;
+    }
 }
 
 /* =========================================
@@ -1414,73 +1490,67 @@ body::before {
 
 /* Mobile adjustment */
 @media (max-width: 768px) {
-  .gsap-slider-wrapper .slide img {
-    width: 180px;
-    height: 270px;
-  }
-}
-.dest-card-img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 14px 14px 0 0;
-  display: block;
-}
-
-.dest-card {
-  overflow: hidden;
-}
-/* =========================================
-   MOBILE 3-COLUMN LAYOUT (PLACE AT BOTTOM)
-   ========================================= */
-@media (max-width: 768px) {
-    /* Destination Grid-a 3 columns-a mathurom */
+    /* Destination Section Setup */
     #destinations .dest-grid {
-        grid-template-columns: repeat(3, 1fr) !important; 
-        gap: 6px !important; /* Gap romba kammiya irukanum */
-        padding: 0 5px !important;
+        display: flex !important;
+        flex-wrap: nowrap !important; /* One line-la irukanum */
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+        gap: 12px !important; /* Chinna gap */
+        padding: 10px 15px 30px !important; /* Side padding */
+        -webkit-overflow-scrolling: touch;
     }
 
-    /* Cards size-a adjust panrom */
+    #destinations .dest-grid::-webkit-scrollbar {
+        display: none; /* Hide scrollbar for clean UI */
+    }
+
+    /* CARD WIDTH OPTIMIZATION */
     .dest-card {
-        border-radius: 8px !important;
-        min-height: auto !important;
+        flex: 0 0 68% !important; /* 80%-la irunthu 68%-ku koraichuten - Ippo side-la adutha card nalla theriyum */
+        min-width: 68% !important;
+        scroll-snap-align: center;
+        border-radius: 15px !important;
+        background: rgba(20, 20, 20, 0.8) !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
     }
 
+    /* IMAGE HEIGHT ADJUSTMENT */
     .dest-img {
-        height: 80px !important; /* Chinna screen-ku etha image height */
+        height: 140px !important; /* Card width-ku etha maari image height-ah balance panrom */
     }
 
-    /* Content-a romba simplify panrom */
+    /* TEXT & BUTTON SIZES */
     .dest-info {
-        padding: 5px !important;
-        text-align: center;
+        padding: 12px !important;
     }
 
     .dest-info h3 {
-        font-size: 9px !important; /* Font romba chinnatha irukanum layout break aagama irukka */
-        margin-bottom: 4px !important;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+        font-size: 14px !important; /* Readable but compact */
+        margin-bottom: 8px !important;
     }
 
-    /* Idham pathathunu intha elements-a hide panrom */
-    .card-meta-container, 
-    .card-badge, 
-    .mini-slides {
-        display: none !important;
+    /* Meta items-ah horizontal-ah align panrom space save panna */
+    .card-meta-container {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap;
+        gap: 5px !important;
+        margin-bottom: 12px !important;
     }
 
-    /* Button-a chinna pillai size-ku mathurom */
+    .meta-item {
+        font-size: 10px !important;
+        padding: 3px 8px !important;
+    }
+
     .btn-explore-now {
-        padding: 4px 0 !important;
-        font-size: 7px !important;
         width: 100% !important;
-        border-radius: 4px !important;
-        letter-spacing: 0 !important;
+        padding: 8px 0 !important;
+        font-size: 11px !important;
+        letter-spacing: 1px !important;
     }
+}
     /* --- SERVICES SECTION MOBILE FIX --- */
     .service-flex {
         grid-template-columns: repeat(3, 1fr) !important; /* 3 columns for services */
@@ -1552,6 +1622,62 @@ body::before {
         font-size: 14px !important;
         width: auto !important; /* Full width-ku bathula content size */
         display: inline-block;
+    }
+}
+@media (max-width: 768px) {
+    /* FOOTER CONTAINER - 3 COLUMNS FIX */
+    .footer-container {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr 1fr !important; /* EXACT 3 COLUMNS */
+        gap: 10px !important;
+        padding: 40px 10px !important;
+        align-items: start;
+    }
+
+    /* First Box (Brand/Desc) - Content-ah simplify panrom */
+    .footer-box:nth-child(1) {
+        grid-column: span 3; /* Brand name & desc mattum top-la full width iruntha nalla irukum */
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Links & Destinations - 3 columns-ah align panrom */
+    .footer-box {
+        margin-bottom: 0 !important;
+    }
+
+    .footer-box h4 {
+        font-size: 11px !important; /* Chinna font for 3 columns */
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 12px !important;
+        color: #d4af37;
+    }
+
+    .footer-box ul li {
+        font-size: 10px !important; /* Text cut aagama iruka */
+        margin-bottom: 8px !important;
+    }
+
+    /* Social Icons align panrom */
+    .footer-social {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    /* Footer Bottom Text */
+    .footer-bottom {
+        font-size: 9px !important;
+        padding: 15px 5px !important;
+    }
+
+    /* Hide unnecessary long description in footer box 1 for mobile */
+    .footer-desc {
+        font-size: 12px;
+        max-width: 80%;
+        margin: 0 auto;
     }
 }
     /* --- GALLERY SECTION MOBILE FIX --- */
@@ -1669,7 +1795,7 @@ body::before {
     }
     
 
-}
+
 /* =======================================================
    MASTER MOBILE RESPONSIVE BLOCK (3-COLUMN LAYOUT)
    ======================================================= */
@@ -1863,4 +1989,65 @@ body::before {
     }
 }
 
+}
+@media (max-width: 768px) {
+    /* FOOTER CONTAINER */
+    .footer-container {
+        display: grid !important;
+        /* Top Destinations hide pannathala, 2 equal columns better-ah irukum */
+        grid-template-columns: 1fr 1fr !important; 
+        gap: 20px 10px !important;
+        padding: 40px 20px !important;
+    }
+
+    /* 1. BRAND BOX - Full width top-la irukanum */
+    .footer-box:nth-child(1) {
+        grid-column: span 2; 
+        text-align: center;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        padding-bottom: 20px;
+        margin-bottom: 10px;
+    }
+
+    /* 2. QUICK LINKS - Left column */
+    .footer-box:nth-child(2) {
+        grid-column: span 1;
+    }
+
+    /* 3. TOP DESTINATIONS - HIDE THIS */
+    .footer-box:nth-child(3) {
+        display: none !important; /* Inga thaan namma section-ah hide panrom */
+    }
+
+    /* 4. CONTACT US - Right column */
+    .footer-box:nth-child(4) {
+        grid-column: span 1;
+    }
+
+    /* TEXT ADJUSTMENTS */
+    .footer-box h4 {
+        font-size: 13px !important;
+        color: #d4af37;
+        margin-bottom: 15px !important;
+        text-transform: uppercase;
+    }
+
+    .footer-box ul li, 
+    .footer-box p {
+        font-size: 11px !important;
+        line-height: 1.6;
+        margin-bottom: 10px !important;
+    }
+
+    .footer-social {
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    .footer-bottom {
+        font-size: 10px;
+        margin-top: 30px;
+        border-top: 1px solid #222;
+        padding-top: 20px;
+    }
 }
