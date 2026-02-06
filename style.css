@@ -44,7 +44,7 @@ img { max-width: 100%; }
   backdrop-filter: blur(10px);
   z-index: 999;
   border-bottom: 1px solid #111;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+
 }
 
 .nav-container {
@@ -66,8 +66,8 @@ img { max-width: 100%; }
 }
 
 .nav-logo {
-  width: 60px;
-  height: 40px;
+  width: 55px;
+  height: 45px;
 }
 
 .logo-text {
@@ -1504,44 +1504,56 @@ body::before {
     }
 
     /* --- OFFERS SECTION MOBILE FIX --- */
+   @media (max-width: 768px) {
+    /* Offers Section - Horizontal Swipe */
     #offers .dest-grid {
-        grid-template-columns: repeat(3, 1fr) !important; /* 3 columns for offers */
-        gap: 6px !important;
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+        gap: 20px !important;
+        padding: 10px 20px 40px !important;
+        -webkit-overflow-scrolling: touch;
     }
 
+    #offers .dest-grid::-webkit-scrollbar { display: none; }
+
     .video-offer-card {
-        border-radius: 10px !important;
+        flex: 0 0 85% !important; /* Mobile-la 85% width for peeking effect */
+        min-width: 85% !important;
+        scroll-snap-align: center;
+        border-radius: 20px !important;
+        height: auto !important;
     }
 
     .video-background-container {
-        height: 70px !important; /* Video height-a nalla kuraichutom */
+        height: 180px !important; /* Video-va perusa theriya vaikurom */
     }
 
-    .video-offer-card .card-content {
-        padding: 6px !important;
-    }
-
+    /* Text & Buttons - Font sizes-a optimize panrom */
     .video-offer-card h3 {
-        font-size: 9px !important;
-        margin-bottom: 3px !important;
+        font-size: 18px !important;
+        margin-bottom: 8px !important;
     }
 
     .video-offer-card p {
-        font-size: 7px !important;
-        line-height: 1 !important;
-        display: none; /* Description-a hide panna innum neat-ah irukkum */
+        display: block !important; /* Hide panni iruntha description-a theriya vaikurom */
+        font-size: 14px !important;
+        margin-bottom: 10px !important;
+        opacity: 0.8;
     }
 
     .video-offer-card .price {
-        font-size: 8px !important;
-        margin: 4px 0 !important;
+        font-size: 16px !important;
+        margin: 10px 0 !important;
     }
 
     .video-offer-card .btn-gold {
-        padding: 4px 2px !important;
-        font-size: 7px !important;
-        width: 100% !important;
+        padding: 12px 20px !important;
+        font-size: 14px !important;
+        width: auto !important; /* Full width-ku bathula content size */
+        display: inline-block;
     }
+}
     /* --- GALLERY SECTION MOBILE FIX --- */
     .gallery-viewport {
         height: auto !important;
@@ -1662,164 +1674,193 @@ body::before {
    MASTER MOBILE RESPONSIVE BLOCK (3-COLUMN LAYOUT)
    ======================================================= */
 @media (max-width: 768px) {
-
-    /* 1. SECTION TITLES - Mobile-la font size kuraikrom */
-    .section-title {
-        font-size: 20px !important;
-        margin-bottom: 30px !important;
+    /* 1. Resetting the 3-column mess to a premium horizontal scroll */
+    .dest-grid {
+        display: flex !important; /* Grid-ah Flex-ah mathurom */
+        overflow-x: auto !important; /* Horizontal scroll enable panrom */
+        scroll-snap-type: x mandatory;
+        gap: 15px !important;
+        padding: 10px 20px 30px !important; /* Side-la padding */
+        -webkit-overflow-scrolling: touch;
     }
 
-    /* 2. UNIVERSAL 3-COLUMN GRID (ALL SECTIONS) */
-    .dest-grid, 
-    .service-flex, 
-    .gsap-slider-wrapper,
-    .contact-grid {
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 6px !important;
-        padding: 0 5px !important;
+    .dest-grid::-webkit-scrollbar { display: none; } /* Scrollbar hide panrom */
+
+    .dest-card {
+        min-width: 80% !important; /* Card size perusa irukum, side-la adutha card "peek" pannum */
+        scroll-snap-align: center;
+        flex-shrink: 0;
     }
 
-    /* 3. INDIVIDUAL CARD ADJUSTMENTS (DESTINATIONS & BLOGS) */
-    .dest-card, .blog-post {
-        border-radius: 8px !important;
-    }
-
-    .dest-img, .dest-card-img {
-        height: 80px !important; /* Image height-a nalla kuraichutom */
-    }
-
-    .dest-info {
-        padding: 5px !important;
-    }
-
-    .dest-info h3, .blog-post h3 {
-        font-size: 9px !important;
-        line-height: 1.1 !important;
-        margin-bottom: 3px !important;
-    }
-
-    /* 4. SERVICES & OFFERS ADJUSTMENTS */
-    .s-item {
-        padding: 12px 4px !important;
-    }
-
-    .s-item i {
+    /* 2. Text visibility - Font size-ah increase panrom (Min 14px) */
+    .dest-info h3 {
         font-size: 16px !important;
-        margin-bottom: 5px !important;
-    }
-
-    .s-item h4 {
-        font-size: 8px !important;
-    }
-
-    .video-background-container {
-        height: 60px !important;
-    }
-
-    /* 5. TESTIMONIALS 3-COLUMN FIX */
-    .contact-card.testimonial {
-        padding: 8px 5px !important;
-    }
-
-    .testimonial i {
-        font-size: 14px !important; /* Quote icon size */
-        margin-bottom: 5px !important;
-    }
-
-    .testimonial p {
-        font-size: 7px !important;
-        line-height: 1.1 !important;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
-    .testimonial h4 {
-        font-size: 7px !important;
-        margin-top: 4px !important;
-    }
-
-    /* 6. HIDING ELEMENTS (Space illathathala hide panrom) */
-    .card-meta-container, 
-    .card-badge, 
-    .mini-slides, 
-    .blog-post p,
-    .hero-reviews { 
-        display: none !important; 
-    }
-
-    /* 7. BUTTONS (Mobile size) */
-    .btn-explore-now, .btn-gold, .btn-card {
-        padding: 4px 0 !important;
-        font-size: 7px !important;
-        width: 100% !important;
-        border-radius: 4px !important;
-    }
-
-    /* 8. NAVBAR TOGGLE (Mobile only) */
-    .menu-toggle {
         display: block !important;
     }
 
-    .nav-links {
-        display: none; /* JS mulyama toggle aagum */
+    /* 3. Re-enabling Meta for context */
+    .card-meta-container {
+        display: flex !important;
+        flex-direction: row !important;
+        font-size: 11px !important;
     }
-    /* --- FOOTER MOBILE COMPACT FIX --- */
-    .footer-container {
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important; /* Footer box-ayum 3 columns-ah mathurom */
-        gap: 10px !important;
-        padding: 20px 10px !important;
-        text-align: center !important;
+    
+    /* 4. Service Icons - 3 Columns is okay, but needs better spacing */
+    .service-flex {
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 is better for readability */
+        gap: 15px !important;
     }
-
-    .footer-box {
-        margin-bottom: 0 !important;
-    }
-
-    .footer-logo {
-        font-size: 14px !important; /* Brand name size */
-        margin-bottom: 5px !important;
-    }
-
-    .footer-desc, .footer-box p {
-        font-size: 8px !important; /* Description text */
-        line-height: 1.2 !important;
-    }
-
-    .footer-box h4 {
-        font-size: 10px !important; /* Headings like "Quick Links" */
-        margin-bottom: 8px !important;
+    
+    .s-item h4 { font-size: 13px !important; }
+    @media (max-width: 768px) {
+    /* Stacked effect-ah mobile-la remove panrom */
+    #places-grid {
+        height: auto !important; /* Fixed height-ah remove panrom */
+        display: flex !important;
+        overflow-x: auto !important; /* Side-la scroll panna */
+        scroll-snap-type: x mandatory; /* Cards oru snap effect-oda nirkum */
+        gap: 20px !important;
+        padding: 20px !important;
+        perspective: none !important;
+        position: static !important;
     }
 
-    .footer-box ul li {
-        font-size: 8px !important;
-        margin-bottom: 4px !important;
+    /* Ovoru card-um mobile screen-la 85% width edukkum */
+    .safari-card {
+        position: relative !important;
+        flex: 0 0 85% !important; /* Width constant-ah irukkum */
+        height: 400px !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        scroll-snap-align: center;
+        opacity: 1 !important;
+        display: block !important;
+        border-radius: 25px !important;
     }
 
-    /* Footer Social Icons */
-    .footer-social a {
-        font-size: 12px !important;
-        margin-right: 5px !important;
+    /* Card ulla irukkura info-va mobile screen-ku adjust panrom */
+    .safari-card .dest-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 25px;
+        background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        display: block !important;
+        transform: none !important;
     }
 
-    /* Footer Buttons (WhatsApp etc) */
-    .footer-btn {
-        padding: 5px 2px !important;
-        font-size: 7px !important;
+    .safari-card .dest-info h1 {
+        font-size: 28px !important;
+        margin-bottom: 5px;
+    }
+
+    /* Hide Navigation buttons for mobile since we use touch swipe */
+    .slider-nav {
+        display: none !important;
+
+    }
+    
+    
+}
+@media (max-width: 768px) {
+    .mobile-hint { display: block !important; }
+    
+}
+}
+/* =======================================================
+   MOBILE MASTER RESPONSIVE BLOCK (768px and below)
+   ======================================================= */
+@media (max-width: 768px) {
+
+    /* ... munnadi kudutha Destinations, Offers styles ellam inga irukum ... */
+
+    /* ⬇️ TESTIMONIALS CAROUSEL SECTION - INGA ADD PANNINGA ⬇️ */
+    @media (max-width: 768px) {
+    #testimonial-slider {
+        display: flex !important;
+        flex-wrap: nowrap !important; /* One line-la varaikurom */
+        overflow-x: auto !important;
+        scroll-behavior: smooth !important;
+        -webkit-overflow-scrolling: touch;
+        gap: 20px !important;
+        padding: 20px !important;
         width: 100% !important;
     }
 
-    .footer-bottom {
-        font-size: 8px !important;
-        margin-top: 15px !important;
-        padding-top: 10px !important;
+    .testimonial {
+        flex: 0 0 85% !important; /* Card width fix */
+        min-width: 85% !important;
+    }
+    @media (max-width: 768px) {
+    /* Logo-box layout-ah change panrom */
+    .logo-box {
+        display: flex;
+        justify-content: center; /* Logo-va center-la vaikkom */
+        width: 100%;
+        gap: 0 !important;
     }
 
-    /* Branding description romba perusa iruntha hide pannalam to save space */
-    .footer-desc {
-        display: none !important; 
+    /* Brand Name (Text)-ah hide panrom */
+    .logo-box .logo-text {
+        display: none !important;
     }
+
+    /* Logo size-ah mobile-ku optimized-ah mathurom */
+    .nav-logo {
+        width: 50px !important; /* Unga logo shape-ku etha maari adjust pannunga */
+        height: auto !important;
+        margin-left: 40px; /* Menu toggle-kum logo-kum gap vara */
+    }
+
+    /* Navbar container spacing fix */
+    .nav-container {
+        padding: 10px 15px !important;
+    }
+    @media (max-width: 768px) {
+    /* Logo-box-ah left-align panrom */
+    .logo-box {
+        display: flex;
+        justify-content: flex-start; /* Logo left-la irukanum */
+        flex: 1;
+    }
+
+    /* Brand Name-ah hide panrom */
+    .logo-box .logo-text {
+        display: none !important;
+    }
+
+    /* Logo size optimization */
+    .nav-logo {
+        width: 45px !important; /* Mobile-ku etha compact size */
+        height: auto !important;
+    }
+
+    /* Navbar alignment: Logo (Left) and Menu Toggle (Right) */
+    .nav-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    /* Menu Toggle-ah right-la position panrom */
+    .menu-toggle {
+        order: 1; /* Menu right side-ku poyidum */
+        padding: 5px;
+    }
+}
+}
+
+}
+@media (max-width: 768px) {
+    /* Hiding unnecessary sections for a cleaner mobile UI */
+    #contact, 
+    section:has(.blog-post), 
+    section:has(.dotted-box) {
+        display: none !important;
+    }
+}
+
 }
