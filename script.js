@@ -227,76 +227,149 @@ function openDestinationPage(state) {
     const data = destinations[state];
     if (!data) return;
 
+    const detailPage = document.getElementById("detailPage");
+    const placesGrid = document.getElementById("places-grid");
+    
     document.getElementById("detail-title").innerHTML = data.title;
     document.getElementById("detail-subtitle").innerText = data.subtitle;
-    
-    // Smooth transition effect
-    const detailPage = document.getElementById("detailPage");
-    detailPage.style.display = "block";
-    detailPage.style.opacity = "0";
-    setTimeout(() => detailPage.style.opacity = "1", 10);
 
-    const placesGrid = document.getElementById("places-grid");
     placesGrid.innerHTML = "";
 
+    // Mobile check logic
+    const isMobile = window.innerWidth <= 768;
+
     for (const [city, cityData] of Object.entries(data.places)) {
-        // Random number for FOMO (Psychological effect)
-        const randomBookings = Math.floor(Math.random() * 15) + 5;
+        const card = document.createElement("div");
+        // Mobile-la 'safari-card' class irukkum ana CSS logic vera maari work aagum
+        card.className = "safari-card"; 
+        card.style.backgroundImage = `url('${cityData.image}')`;
+
+        // Card content creation logic... (Unga existing code logic same thaan)
+        const destInfo = document.createElement('div');
+        destInfo.className = 'dest-info';
         
-        const cityDiv = document.createElement("div");
-        cityDiv.className = "dest-card safari-card";
-        cityDiv.addEventListener('click', () => viewCityDetails(state, city));
+        destInfo.innerHTML = `
+            <h1 style="color: #d4af37;">${city.toUpperCase()}</h1>
+            <p style="margin: 15px 0; font-size: 14px; color: #eee;">${cityData.description}</p>
+            <div style="display:flex; gap:10px;">
+                <button class="btn-gold" onclick="event.stopPropagation(); showBookingOptions('${state}', '${city}')">RESERVE</button>
+                <button class="btn-white" style="border:1px solid #fff; background:transparent; color:#fff; padding:8px 15px; border-radius:20px;" onclick="event.stopPropagation(); viewCityDetails('${state}', '${city}')">VIEW</button>
+            </div>
+        `;
 
-        const fomo = document.createElement('div');
-        fomo.className = 'fomo-badge';
-        fomo.textContent = `🔥 ${randomBookings} booked today`;
+        card.appendChild(destInfo);
+        placesGrid.appendChild(card);
+    }
 
-        const cardImage = document.createElement('div');
-        cardImage.className = 'card-image';
-        cardImage.style.cssText = `background-image: url('${cityData.image}'); height: 180px; background-size: cover; background-position: center; border-radius: 15px 15px 0 0; overflow:hidden;`;
+    // Desktop-ku mattum navigation buttons venum
+    if (!isMobile) {
+        const navDiv = document.createElement("div");
+        navDiv.className = "slider-nav";
+        navDiv.innerHTML = `
+            <button onclick="moveSlider('prev')"><i class="fas fa-arrow-left"></i></button>
+            <button onclick="moveSlider('next')"><i class="fas fa-arrow-right"></i></button>
+        `;
+        placesGrid.appendChild(navDiv);
+    }
+
+    detailPage.style.display = "block";
+    setTimeout(() => detailPage.style.opacity = "1", 10);
+}
+// EXISTING openDestinationPage FUNCTION-AH FULL-AH REPLACE PANNINGA
+function openDestinationPage(state) {
+    const data = destinations[state];
+    if (!data) return;
+
+    const detailPage = document.getElementById("detailPage");
+    const placesGrid = document.getElementById("places-grid");
+    
+    // Header Content Update
+    document.getElementById("detail-title").innerHTML = data.title;
+    document.getElementById("detail-subtitle").innerText = data.subtitle;
+
+    // Grid-ah clear panrom
+    placesGrid.innerHTML = "";
+
+    // Mobile check boolean
+    const isMobile = window.innerWidth <= 768;
+
+    // Generate Cards
+    for (const [city, cityData] of Object.entries(data.places)) {
+        const card = document.createElement("div");
+        card.className = "safari-card";
+        card.style.backgroundImage = `url('${cityData.image}')`;
+
+        // Card Click Handler
+        card.onclick = () => {
+            if(!isMobile) return; // Desktop-la slider move aagum, mobile-la click panna detail open aagum
+            viewCityDetails(state, city);
+        };
 
         const destInfo = document.createElement('div');
         destInfo.className = 'dest-info';
 
-        const h3 = document.createElement('h3');
-        h3.style.color = '#d4af37';
-        h3.textContent = city;
+        // Title & Description (Mobile-la size optimized-ah irukum via CSS)
+        const title = document.createElement('h1');
+        title.style.color = '#d4af37';
+        title.textContent = city.toUpperCase();
 
-        const p = document.createElement('p');
-        p.style.cssText = 'margin: 10px 0; color: #aaa; font-size: 13px; line-height:1.4;';
-        p.textContent = cityData.description;
+        const desc = document.createElement('p');
+        desc.textContent = cityData.description;
 
         const btnWrap = document.createElement('div');
-        btnWrap.style.cssText = 'display: flex; gap: 10px; margin-top: 15px;';
+        btnWrap.style.display = 'flex';
+        btnWrap.style.gap = '10px';
+        btnWrap.style.marginTop = '15px';
 
-        const btnExplore = document.createElement('button');
-        btnExplore.className = 'btn-explore-now';
-        btnExplore.style.cssText = 'flex:1; font-size:11px;';
-        btnExplore.textContent = 'VIEW PLACES';
-        btnExplore.addEventListener('click', function(e){ e.stopPropagation(); viewCityDetails(state, city); });
+        const reserveBtn = document.createElement('button');
+        reserveBtn.className = 'btn-gold';
+        reserveBtn.textContent = isMobile ? 'BOOK' : 'RESERVE NOW'; // Mobile-la chinna text
+        reserveBtn.onclick = (e) => { e.stopPropagation(); showBookingOptions(state, city); };
 
-        const btnReserve = document.createElement('button');
-        btnReserve.className = 'btn-gold';
-        btnReserve.style.cssText = 'flex:1; font-size:11px;';
-        btnReserve.textContent = 'RESERVE NOW';
-        btnReserve.addEventListener('click', function(e){ e.stopPropagation(); showBookingOptions(state, city); });
+        const viewBtn = document.createElement('button');
+        viewBtn.className = 'btn-white';
+        viewBtn.style.cssText = 'background:transparent; border:1px solid #fff; color:#fff; border-radius:30px; padding:10px 20px; cursor:pointer; font-size: 12px;';
+        viewBtn.textContent = 'VIEW';
+        viewBtn.onclick = (e) => { e.stopPropagation(); viewCityDetails(state, city); };
 
-        btnWrap.appendChild(btnExplore);
-        btnWrap.appendChild(btnReserve);
+        btnWrap.appendChild(reserveBtn);
+        btnWrap.appendChild(viewBtn);
 
-        destInfo.appendChild(h3);
-        destInfo.appendChild(p);
+        destInfo.appendChild(title);
+        destInfo.appendChild(desc);
         destInfo.appendChild(btnWrap);
 
-        cityDiv.appendChild(fomo);
-        cityDiv.appendChild(cardImage);
-        cityDiv.appendChild(destInfo);
-
-        placesGrid.appendChild(cityDiv);
+        card.appendChild(destInfo);
+        placesGrid.appendChild(card);
     }
 
-    document.getElementById("detailPage").style.display = "block";
-    document.getElementById("final-wa-btn").onclick = () => showBookingOptions(state);
+    // 3. Navigation Buttons - Desktop-ku mattum
+    if (!isMobile) {
+        const navDiv = document.createElement("div");
+        navDiv.className = "slider-nav";
+        navDiv.innerHTML = `
+            <button onclick="moveSlider('prev')"><i class="fas fa-arrow-left"></i></button>
+            <button onclick="moveSlider('next')"><i class="fas fa-arrow-right"></i></button>
+        `;
+        placesGrid.appendChild(navDiv);
+    }
+
+    // Show with transition
+    detailPage.style.display = "block";
+    setTimeout(() => detailPage.style.opacity = "1", 10);
+}
+
+// Slider Movement Logic (Intha logic constant-ah irukatum for desktop)
+function moveSlider(direction) {
+    const items = document.querySelectorAll('.safari-card');
+    const grid = document.getElementById('places-grid');
+    if (items.length === 0) return;
+
+    if (direction === 'next') {
+        grid.appendChild(items[0]);
+    } else {
+        grid.prepend(items[items.length - 1]);
+    }
 }
 
 function closeDetailPage() {
