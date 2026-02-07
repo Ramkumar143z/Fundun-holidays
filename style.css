@@ -36,19 +36,10 @@ img { max-width: 100%; }
 .bg-dark { background: #0a0a0a; }
 
 /* NAVBAR */
-#navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(0,0,0,0.85);
-  backdrop-filter: blur(10px);
-  z-index: 999;
-  border-bottom: 1px solid #111;
 
-}
 
 .nav-container {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: auto;
   padding: 15px 25px;
 }
@@ -68,7 +59,6 @@ img { max-width: 100%; }
 .nav-logo {
   width: 55px;
   height: 45px;
-  
 }
 
 .logo-text {
@@ -199,7 +189,7 @@ img { max-width: 100%; }
 .hero-wrapper {
   position: relative;
   z-index: 2;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: auto;
   height: 100%;
   padding: 0 20px;
@@ -1348,101 +1338,26 @@ body::before {
    MOBILE & SMALL SCREEN FIX
 ========================================= */
 @media (max-width: 768px) {
-    /* HERO SECTION WRAPPER */
-    .hero {
-        height: 100vh; /* Mobile full screen fix */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
 
-    .hero-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center !important; /* Mobile-la center alignment thaan premium-ah irukum */
-        padding: 0 25px;
-        padding-top: 60px; /* Navbar-kaga gap */
-        gap: 20px;
-    }
+  /* Reviews box mobile-la inline-aa varum */
+  .hero-reviews {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-top: 25px;
+    width: 100%;
+    max-width: 100%;
+  }
 
-    .hero-content {
-        text-align: center !important;
-        width: 100%;
-    }
+  /* Extra bottom space theva illa */
+  .hero-wrapper {
+    padding-bottom: 60px;
+  }
 
-    /* TYPOGRAPHY */
-    .bold-heading {
-        font-size: 32px !important; /* Oversize aagama readable-ah irukum */
-        line-height: 1.2;
-        margin-bottom: 10px;
-    }
-
-    .hero-content p {
-        font-size: 15px !important;
-        max-width: 90%;
-        margin: 0 auto;
-        opacity: 0.9;
-    }
-
-    /* BUTTONS SPACING */
-    .hero-btns {
-        justify-content: center !important;
-        margin-top: 25px;
-        gap: 15px;
-    }
-
-    .btn-gold {
-        width: 100%; /* Mobile-la full width button thaan premium touch-ku set aagum */
-        max-width: 280px;
-        padding: 15px 30px !important;
-        font-size: 14px;
-        letter-spacing: 1px;
-    }
-
-    /* REVIEWS SECTION - DECENT PRESENTATION */
-    .hero-reviews {
-        position: relative !important; /* Desktop absolute mathurom */
-        bottom: auto !important;
-        left: auto !important;
-        margin-top: 40px !important; /* Button-kukum review-kukum gap */
-        width: 100% !important;
-        max-width: 320px !important;
-        margin-left: auto;
-        margin-right: auto;
-        background: rgba(255, 255, 255, 0.08) !important; /* Super subtle look */
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        padding: 10px !important;
-        border-radius: 20px !important;
-    }
-
-    .hero-reviews h3 {
-        font-size: 12px !important;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 8px;
-        color: #d4af37;
-    }
-
-    .review-slider {
-        height: 90px !important; /* Mobile compact height */
-    }
-
-    .review-card {
-        padding: 10px !important;
-        background: rgba(0, 0, 0, 0.3) !important;
-    }
-
-    .review-text {
-        font-size: 13px !important;
-        color: #eee !important;
-    }
-    
-    .review-avatar {
-        width: 30px !important;
-        height: 30px !important;
-        font-size: 12px !important;
-    }
+  /* Buttons always visible */
+  .hero-btns {
+    justify-content: flex-start;
+  }
 }
 
 /* =========================================
@@ -1490,739 +1405,335 @@ body::before {
 
 /* Mobile adjustment */
 @media (max-width: 768px) {
-    /* Destination Section Setup */
-    #destinations .dest-grid {
-        display: flex !important;
-        flex-wrap: nowrap !important; /* One line-la irukanum */
-        overflow-x: auto !important;
-        scroll-snap-type: x mandatory;
-        gap: 12px !important; /* Chinna gap */
-        padding: 10px 15px 30px !important; /* Side padding */
-        -webkit-overflow-scrolling: touch;
-    }
-
-    #destinations .dest-grid::-webkit-scrollbar {
-        display: none; /* Hide scrollbar for clean UI */
-    }
-
-    /* CARD WIDTH OPTIMIZATION */
-    .dest-card {
-        flex: 0 0 68% !important; /* 80%-la irunthu 68%-ku koraichuten - Ippo side-la adutha card nalla theriyum */
-        min-width: 68% !important;
-        scroll-snap-align: center;
-        border-radius: 15px !important;
-        background: rgba(20, 20, 20, 0.8) !important;
-        border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    }
-
-    /* IMAGE HEIGHT ADJUSTMENT */
-    .dest-img {
-        height: 140px !important; /* Card width-ku etha maari image height-ah balance panrom */
-    }
-
-    /* TEXT & BUTTON SIZES */
-    .dest-info {
-        padding: 12px !important;
-    }
-
-    .dest-info h3 {
-        font-size: 14px !important; /* Readable but compact */
-        margin-bottom: 8px !important;
-    }
-
-    /* Meta items-ah horizontal-ah align panrom space save panna */
-    .card-meta-container {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap;
-        gap: 5px !important;
-        margin-bottom: 12px !important;
-    }
-
-    .meta-item {
-        font-size: 10px !important;
-        padding: 3px 8px !important;
-    }
-
-    .btn-explore-now {
-        width: 100% !important;
-        padding: 8px 0 !important;
-        font-size: 11px !important;
-        letter-spacing: 1px !important;
-    }
-}
-    /* --- SERVICES SECTION MOBILE FIX --- */
-    .service-flex {
-        grid-template-columns: repeat(3, 1fr) !important; /* 3 columns for services */
-        gap: 8px !important;
-        padding: 0 5px !important;
-    }
-
-    .s-item {
-        padding: 15px 5px !important;
-        border-radius: 12px !important;
-    }
-
-    .s-item i {
-        font-size: 18px !important; /* Icons-a chinna-thaakkiyaachu */
-        margin-bottom: 8px !important;
-    }
-
-    .s-item h4 {
-        font-size: 8px !important; /* Text overlap aagama irukka chinna size */
-        line-height: 1.1;
-    }
-
-    /* --- OFFERS SECTION MOBILE FIX --- */
-   @media (max-width: 768px) {
-    /* Offers Section - Horizontal Swipe */
-    #offers .dest-grid {
-        display: flex !important;
-        overflow-x: auto !important;
-        scroll-snap-type: x mandatory;
-        gap: 20px !important;
-        padding: 10px 20px 40px !important;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    #offers .dest-grid::-webkit-scrollbar { display: none; }
-
-    .video-offer-card {
-        flex: 0 0 85% !important; /* Mobile-la 85% width for peeking effect */
-        min-width: 85% !important;
-        scroll-snap-align: center;
-        border-radius: 20px !important;
-        height: auto !important;
-    }
-
-    .video-background-container {
-        height: 180px !important; /* Video-va perusa theriya vaikurom */
-    }
-
-    /* Text & Buttons - Font sizes-a optimize panrom */
-    .video-offer-card h3 {
-        font-size: 18px !important;
-        margin-bottom: 8px !important;
-    }
-
-    .video-offer-card p {
-        display: block !important; /* Hide panni iruntha description-a theriya vaikurom */
-        font-size: 14px !important;
-        margin-bottom: 10px !important;
-        opacity: 0.8;
-    }
-
-    .video-offer-card .price {
-        font-size: 16px !important;
-        margin: 10px 0 !important;
-    }
-
-    .video-offer-card .btn-gold {
-        padding: 12px 20px !important;
-        font-size: 14px !important;
-        width: auto !important; /* Full width-ku bathula content size */
-        display: inline-block;
-    }
-}
-@media (max-width: 768px) {
-    /* FOOTER CONTAINER - 3 COLUMNS FIX */
-    .footer-container {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr 1fr !important; /* EXACT 3 COLUMNS */
-        gap: 10px !important;
-        padding: 40px 10px !important;
-        align-items: start;
-    }
-
-    /* First Box (Brand/Desc) - Content-ah simplify panrom */
-    .footer-box:nth-child(1) {
-        grid-column: span 3; /* Brand name & desc mattum top-la full width iruntha nalla irukum */
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    /* Links & Destinations - 3 columns-ah align panrom */
-    .footer-box {
-        margin-bottom: 0 !important;
-    }
-
-    .footer-box h4 {
-        font-size: 11px !important; /* Chinna font for 3 columns */
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 12px !important;
-        color: #d4af37;
-    }
-
-    .footer-box ul li {
-        font-size: 10px !important; /* Text cut aagama iruka */
-        margin-bottom: 8px !important;
-    }
-
-    /* Social Icons align panrom */
-    .footer-social {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin-top: 10px;
-    }
-
-    /* Footer Bottom Text */
-    .footer-bottom {
-        font-size: 9px !important;
-        padding: 15px 5px !important;
-    }
-
-    /* Hide unnecessary long description in footer box 1 for mobile */
-    .footer-desc {
-        font-size: 12px;
-        max-width: 80%;
-        margin: 0 auto;
-    }
-}
-    /* --- GALLERY SECTION MOBILE FIX --- */
-    .gallery-viewport {
-        height: auto !important;
-        perspective: none !important; /* 3D effect-a mobile-la remove panrom for 3-column layout */
-        overflow: visible !important;
-    }
-
-    .gsap-slider-wrapper {
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important; /* Gallery-lum 3 columns */
-        gap: 6px !important;
-        animation: none !important; /* Auto-spin-a stop panrom neat-ah theriya */
-        width: 100% !important;
-        position: static !important;
-        transform: none !important;
-    }
-
-    .slide {
-        position: static !important;
-        width: 100% !important;
-        height: auto !important;
-        margin: 0 !important;
-        transform: none !important; /* 3D positions-a cancel panrom */
-    }
-
-    .slide img {
-        width: 100% !important;
-        height: 100px !important; /* Photos-a chinna rectangle-ah mathurom */
-        border-radius: 6px !important;
-        object-fit: cover !important;
-    }
-
-    /* --- BLOG SECTION MOBILE FIX --- */
-    #blog .dest-grid, 
-    section:has(.blog-post) .dest-grid {
-        grid-template-columns: repeat(2, 1fr) !important; 
-        gap: 6px !important;
-    }
-
-    .blog-post {
-        border-radius: 8px !important;
-    }
-
-    .blog-post .dest-card-img {
-        height: 70px !important; /* Blog image-a chinnathaakkiyaachu */
-    }
-
-    .blog-post .dest-info {
-        padding: 5px !important;
-    }
-
-    .blog-post small {
-        font-size: 6px !important; /* Category text (TRAVEL TIPS) */
-        letter-spacing: 0 !important;
-    }
-
-    .blog-post h3 {
-        font-size: 8px !important;
-        line-height: 1.1 !important;
-        margin: 3px 0 !important;
-        /* Text 3 line-ku mela pogaama hide pannum */
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
-    .blog-post p {
-        display: none !important; /* Description-a hide panna thaan 3 column-la fit aagum */
-    }
+  .gsap-slider-wrapper .slide img {
+    width: 180px;
+    height: 270px;
+  }
+  @media (max-width: 768px) {
     
-    /* 1. Toggle Button-a theriya vaikurom */
-    .menu-toggle {
-        display: block !important;
-        font-size: 24px;
-        color: #d4af37;
-        cursor: pointer;
-        z-index: 1001;
+    /* 1. NAVBAR & LOGO FIX */
+    #navbar {
+        padding: 10px 15px !important;
+        background: rgba(0, 0, 0, 0.95) !important; /* Mobile-la always dark better */
     }
-    
-    
 
-    /* 2. Nav Links-a mobile menu-va mathurom */
+    .nav-flex {
+        justify-content: space-between !important;
+    }
+
+    .logo-box .logo-text {
+        font-size: 15px !important;
+        display: block !important; /* Logo text theriya vaikuroom */
+    }
+
+    .nav-logo {
+        width: 45px !important; /* Compact size */
+        height: 35px !important;
+    }
+
+    /* 2. SIDE DRAWER MENU (Modern Style) */
     .nav-links {
-        display: flex !important;
-        flex-direction: column;
         position: fixed;
+        right: -100%;
         top: 0;
-        right: -100%; /* Initially hidden on the right */
-        width: 70%;
         height: 100vh;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
-        padding-top: 80px;
-        transition: 0.4s ease-in-out;
-        z-index: 1000;
+        width: 80%;
+        background: rgba(10, 10, 10, 0.98);
+        flex-direction: column !important;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         border-left: 1px solid #d4af37;
+        backdrop-filter: blur(20px);
+        z-index: 9999;
     }
 
-    /* 3. Menu open aagum pothu intha class add aagum */
     .nav-links.active {
         right: 0;
     }
 
     .nav-links li {
         margin: 20px 0;
-        text-align: center;
     }
 
     .nav-links li a {
-        font-size: 18px !important;
-        display: block;
+        font-size: 20px !important;
+        color: #fff;
     }
-    
 
+    /* 3. HERO SECTION OPTIMIZATION */
+    .hero-wrapper {
+        grid-template-columns: 1fr !important; /* Stack vertically */
+        text-align: center;
+        padding-top: 120px !important;
+        padding-bottom: 40px !important;
+        height: auto !important;
+        min-height: 100vh;
+    }
 
-/* =======================================================
-   MASTER MOBILE RESPONSIVE BLOCK (3-COLUMN LAYOUT)
-   ======================================================= */
-@media (max-width: 768px) {
-    /* 1. Resetting the 3-column mess to a premium horizontal scroll */
-    .dest-grid {
-        display: flex !important; /* Grid-ah Flex-ah mathurom */
-        overflow-x: auto !important; /* Horizontal scroll enable panrom */
+    .bold-heading {
+        font-size: 34px !important;
+        line-height: 1.2;
+    }
+
+    .hero-btns {
+        justify-content: center !important;
+    }
+
+    .hero-reviews {
+        position: relative !important;
+        margin: 40px auto 0 !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        max-width: 320px;
+    }
+
+    /* 4. PREMIUM CARD SWIPER (Destinations, Offers, Testimonials) */
+    .dest-grid, .service-flex, #testimonial-slider {
+        display: flex !important;
+        overflow-x: auto !important;
         scroll-snap-type: x mandatory;
         gap: 15px !important;
-        padding: 10px 20px 30px !important; /* Side-la padding */
+        padding: 10px 20px 30px !important;
         -webkit-overflow-scrolling: touch;
+        grid-template-columns: none !important; /* Kill the grid */
     }
 
-    .dest-grid::-webkit-scrollbar { display: none; } /* Scrollbar hide panrom */
+    .dest-grid::-webkit-scrollbar { display: none; }
 
-    .dest-card {
-        min-width: 80% !important; /* Card size perusa irukum, side-la adutha card "peek" pannum */
+    .dest-card, .offer-card, .testimonial, .s-item {
+        flex: 0 0 85% !important; /* Card peeking effect */
+        min-width: 85% !important;
         scroll-snap-align: center;
-        flex-shrink: 0;
+        margin-bottom: 10px;
     }
 
-    /* 2. Text visibility - Font size-ah increase panrom (Min 14px) */
-    .dest-info h3 {
-        font-size: 16px !important;
-        display: block !important;
+    /* 5. OVERLAY (About/Detail Page) FIX */
+    .detail-page-overlay {
+        padding-top: 60px;
     }
 
-    /* 3. Re-enabling Meta for context */
-    .card-meta-container {
-        display: flex !important;
-        flex-direction: row !important;
-        font-size: 11px !important;
-    }
-    
-    /* 4. Service Icons - 3 Columns is okay, but needs better spacing */
-    .service-flex {
-        grid-template-columns: repeat(2, 1fr) !important; /* 2 is better for readability */
-        gap: 15px !important;
-    }
-    
-    .s-item h4 { font-size: 13px !important; }
-    @media (max-width: 768px) {
-    /* Stacked effect-ah mobile-la remove panrom */
     #places-grid {
-        height: auto !important; /* Fixed height-ah remove panrom */
-        display: flex !important;
-        overflow-x: auto !important; /* Side-la scroll panna */
-        scroll-snap-type: x mandatory; /* Cards oru snap effect-oda nirkum */
-        gap: 20px !important;
+        display: flex !important; /* Mobile-la 3D slider-a swipe-a mathurom */
+        overflow-x: auto !important;
+        height: auto !important;
         padding: 20px !important;
-        perspective: none !important;
-        position: static !important;
+        gap: 20px !important;
     }
 
-    /* Ovoru card-um mobile screen-la 85% width edukkum */
     .safari-card {
         position: relative !important;
-        flex: 0 0 85% !important; /* Width constant-ah irukkum */
-        height: 400px !important;
-        top: auto !important;
+        flex: 0 0 85% !important;
+        height: 450px !important;
         left: auto !important;
         transform: none !important;
-        scroll-snap-align: center;
-        opacity: 1 !important;
+        border-radius: 20px !important;
         display: block !important;
-        border-radius: 25px !important;
     }
 
-    /* Card ulla irukkura info-va mobile screen-ku adjust panrom */
-    .safari-card .dest-info {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        padding: 25px;
-        background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-        display: block !important;
-        transform: none !important;
-    }
-
-    .safari-card .dest-info h1 {
-        font-size: 28px !important;
-        margin-bottom: 5px;
-    }
-
-    /* Hide Navigation buttons for mobile since we use touch swipe */
-    .slider-nav {
-        display: none !important;
-
-    }
-    
-    
-}
-@media (max-width: 768px) {
-    .mobile-hint { display: block !important; }
-    
-}
-}
-/* =======================================================
-   MOBILE MASTER RESPONSIVE BLOCK (768px and below)
-   ======================================================= */
-@media (max-width: 768px) {
-
-    /* ... munnadi kudutha Destinations, Offers styles ellam inga irukum ... */
-
-    /* ⬇️ TESTIMONIALS CAROUSEL SECTION - INGA ADD PANNINGA ⬇️ */
-    @media (max-width: 768px) {
-    #testimonial-slider {
-        display: flex !important;
-        flex-wrap: nowrap !important; /* One line-la varaikurom */
-        overflow-x: auto !important;
-        scroll-behavior: smooth !important;
-        -webkit-overflow-scrolling: touch;
-        gap: 20px !important;
-        padding: 20px !important;
-        width: 100% !important;
-    }
-
-    .testimonial {
-        flex: 0 0 85% !important; /* Card width fix */
-        min-width: 85% !important;
-    }
-    @media (max-width: 768px) {
-    /* Logo-box layout-ah change panrom */
-    .logo-box {
-        display: flex;
-        justify-content: center; /* Logo-va center-la vaikkom */
-        width: 100%;
-        gap: 0 !important;
-    }
-
-    /* Brand Name (Text)-ah hide panrom */
-    .logo-box .logo-text {
+    /* 6. HIDING UNNECESSARY MOBILE CLUTTER */
+    .mini-slides, .slider-nav, .mobile-hint {
         display: none !important;
     }
-
-    /* Logo size-ah mobile-ku optimized-ah mathurom */
-    .nav-logo {
-        width: 50px !important; /* Unga logo shape-ku etha maari adjust pannunga */
-        height: auto !important;
-        margin-left: 40px; /* Menu toggle-kum logo-kum gap vara */
+    /* 7. FOOTER CLEAN-UP */
+    .main-footer {
+        padding: 40px 20px 20px !important;
     }
 
-    /* Navbar container spacing fix */
-    .nav-container {
-        padding: 10px 15px !important;
-    }
-    @media (max-width: 768px) {
-    /* Logo-box-ah left-align panrom */
-    .logo-box {
-        display: flex;
-        justify-content: flex-start; /* Logo left-la irukanum */
-        flex: 1;
-    }
-
-    /* Brand Name-ah hide panrom */
-    .logo-box .logo-text {
-        display: none !important;
-    }
-
-    /* Logo size optimization */
-    .nav-logo {
-        width: 45px !important; /* Mobile-ku etha compact size */
-        height: auto !important;
-    }
-
-    /* Navbar alignment: Logo (Left) and Menu Toggle (Right) */
-    .nav-flex {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-    }
-
-    /* Menu Toggle-ah right-la position panrom */
-    .menu-toggle {
-        order: 1; /* Menu right side-ku poyidum */
-        padding: 5px;
-    }
-}
-}
-
-}
-@media (max-width: 768px) {
-    /* Hiding unnecessary sections for a cleaner mobile UI */
-    #contact, 
-    section:has(.blog-post), 
-    section:has(.dotted-box) {
-        display: none !important;
-    }
-}
-
-}
-@media (max-width: 768px) {
-    /* FOOTER CONTAINER */
     .footer-container {
         display: grid !important;
-        /* Top Destinations hide pannathala, 2 equal columns better-ah irukum */
-        grid-template-columns: 1fr 1fr !important; 
-        gap: 20px 10px !important;
-        padding: 40px 20px !important;
+        grid-template-columns: 1fr 1fr !important; /* 2 Columns logic */
+        gap: 30px 15px !important;
+        text-align: left !important;
     }
 
-    /* 1. BRAND BOX - Full width top-la irukanum */
+    /* Top Destinations Hide Panroom */
+    .footer-box:nth-child(3) { 
+        display: none !important; 
+    }
+
+    /* Brand Box (First box) full width-la center-ah iruntha nalla irukkum */
     .footer-box:nth-child(1) {
-        grid-column: span 2; 
+        grid-column: span 2 !important;
         text-align: center;
         border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         padding-bottom: 20px;
         margin-bottom: 10px;
     }
 
-    /* 2. QUICK LINKS - Left column */
-    .footer-box:nth-child(2) {
-        grid-column: span 1;
-    }
-
-    /* 3. TOP DESTINATIONS - HIDE THIS */
-    .footer-box:nth-child(3) {
-        display: none !important; /* Inga thaan namma section-ah hide panrom */
-    }
-
-    /* 4. CONTACT US - Right column */
-    .footer-box:nth-child(4) {
-        grid-column: span 1;
-    }
-
-    /* TEXT ADJUSTMENTS */
-    .footer-box h4 {
-        font-size: 13px !important;
-        color: #d4af37;
-        margin-bottom: 15px !important;
-        text-transform: uppercase;
-    }
-
-    .footer-box ul li, 
-    .footer-box p {
-        font-size: 11px !important;
-        line-height: 1.6;
-        margin-bottom: 10px !important;
-    }
-
+    /* Social Icons center align */
     .footer-social {
-        justify-content: center;
+        justify-content: center !important;
+        display: flex;
+        gap: 15px;
         margin-top: 15px;
     }
 
-    .footer-bottom {
-        font-size: 10px;
-        margin-top: 30px;
-        border-top: 1px solid #222;
-        padding-top: 20px;
-    }
-}
-/* =======================================================
-   MOBILE PREMIUM OVERLAY - FULL CSS FIX
-   ======================================================= */
-@media (max-width: 768px) {
-    /* 1. Background Scroll & Joystick Fix */
-    #detailPage {
-        position: fixed !important; /* Screen-oda lock aagidum */
-        top: 0 !important;
-        left: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        background: #000 !important;
-        z-index: 999999 !important; /* Home page joystick-ku mela irukkum */
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
+    .footer-box h4 {
+        font-size: 16px !important;
+        color: #d4af37;
+        margin-bottom: 15px !important;
     }
 
-    /* 2. Header - Zero Space Alignment */
-    .detail-header {
-        height: 65px !important;
-        padding: 0 15px !important;
-        margin: 0 !important;
-        background: #000 !important;
-        border-bottom: 1px solid #222;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: sticky;
-        top: 0;
-        z-index: 10;
+    .footer-box ul li {
+        font-size: 13px !important;
+        margin-bottom: 10px !important;
     }
 
-    /* 3. Hero Image - Removing top/bottom gaps */
-    #detail-hero {
-        height: 200px !important;
+    .footer-box p {
+        font-size: 13px !important;
+        line-height: 1.5;
+    }
+
+    /* Footer Button size optimize */
+    .footer-btn {
         width: 100% !important;
-        margin: 0 !important; 
-        padding: 0 !important;
-        border-radius: 0 !important;
-        background-size: cover;
-        background-position: center;
+        padding: 10px !important;
+        font-size: 12px !important;
     }
-
-    /* 4. Horizontal Grid - Full View Logic */
-    #places-grid {
-        display: flex !important;
-        flex-direction: row !important; /* Horizontal layout */
-        flex-wrap: nowrap !important;
-        overflow-x: auto !important;
-        scroll-snap-type: x mandatory;
-        padding: 15px 20px 40px !important; /* Bottom breathing space */
-        gap: 20px !important;
-        margin: 0 !important;
-        height: auto !important;
-        position: relative !important;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    #places-grid::-webkit-scrollbar {
-        display: none; /* Clean UI */
-    }
-
-    /* 5. Card Dimensions & Visibility */
-    .safari-card {
-        flex: 0 0 85% !important; /* Side-la adutha card peek aagum */
-        min-width: 85% !important;
-        height: 440px !important; /* Card full-ah theriya fix panna height */
-        position: relative !important;
-        left: auto !important;
-        top: auto !important;
-        transform: none !important;
-        opacity: 1 !important;
-        display: block !important;
-        scroll-snap-align: center;
-        border-radius: 25px !important;
-        border: 1px solid rgba(212, 175, 55, 0.3) !important;
-        overflow: hidden !important;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-    }
-
-    /* 6. Text Overlay Fix */
-    .safari-card .dest-info {
-        display: block !important;
-        position: absolute !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        padding: 25px 20px !important;
-        background: linear-gradient(to top, rgba(0,0,0,1) 50%, transparent) !important;
-        transform: none !important;
-        animation: none !important;
-        text-align: left !important;
-    }
-
-    .safari-card .dest-info h1 {
-        font-size: 26px !important;
-        color: #d4af37 !important;
-        margin-bottom: 8px !important;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .safari-card .dest-info p {
-        font-size: 14px !important;
-        line-height: 1.5 !important;
-        margin-bottom: 20px !important;
-        color: #fff !important;
-        display: block !important;
-    }
-
-    /* Close/Back Button - Guaranteed Click */
-    .btn-back {
-        z-index: 100 !important;
-        pointer-events: auto !important;
-        cursor: pointer !important;
-    }
-}
-/* =======================================================
-   DESKTOP NAVIGATION OVERRIDE (BACK TO CLASSIC LINKS)
-   ======================================================= */
-@media (min-width: 769px) {
-    /* Hamburger toggle-ah desktop-la thookiduvom */
-    .menu-toggle {
+    /* 8. HIDING UNNECESSARY SECTIONS FOR CLEAN MOBILE UI */
+    
+    /* Upcoming Tours, Travel Blog, and Contact Sections-a thookurom */
+    section:has(.dotted-box), 
+    section:has(.blog-post),
+    #contact {
         display: none !important;
     }
 
-    /* Nav links-ah horizontal-ah mathi, mobile menu styles-ah reset panrom */
-    .nav-links {
-        display: flex !important;
-        position: static !important;
-        flex-direction: row !important;
-        width: auto !important;
-        height: auto !important;
-        background: transparent !important;
-        padding: 0 !important;
-        border: none !important;
-        backdrop-filter: none !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        transform: none !important;
-        gap: 30px !important; /* Unga palaya spacing */
+    /* Oru velai "Travel Blog" section-ku id irundha idha use pannunga */
+    #blog {
+        display: none !important;
+    }
+    /* 11. PREMIUM 3D COVERFLOW CAROUSEL FOR TESTIMONIALS */
+    #testimonials {
+        perspective: 1200px; /* Essential for 3D depth */
+        overflow: hidden;
     }
 
-    .nav-links li {
-        margin: 0 !important;
+    #testimonial-slider {
+        display: flex !important;
+        align-items: center;
+        height: 450px !important;
+        overflow-x: auto !important;
+        padding: 20px 50px !important; /* Space for tilted cards */
+        gap: 10px !important;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        transform-style: preserve-3d;
+        animation: none !important; /* Infinite scroll-a thookidunga */
+    }
+
+    #testimonial-slider::-webkit-scrollbar { display: none; }
+
+    .testimonial {
+        flex: 0 0 260px !important;
+        min-width: 260px !important;
+        height: 320px !important;
+        background: #050505 !important;
+        border-radius: 20px !important;
+        padding: 30px !important;
+        position: relative;
+        scroll-snap-align: center;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+        
+        /* Initial 3D Tilt */
+        transform: rotateY(-25deg) scale(0.9);
+        opacity: 0.6;
+        border: 1px solid  rgba(212, 175, 55, 0.3)
+        
+    }
+
+    /* JavaScript mulyama 'active' class add pannuvom, 
+       antha card mattum straight-ah theriya */
+    .testimonial.active-card {
+        transform: rotateY(0deg) scale(1.1);
+        opacity: 1;
+        border-color: #d4af37;
+        z-index: 10;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Cards tilted to the other side after passing center */
+    .testimonial.passed-card {
+        transform: rotateY(25deg) scale(0.9);
+    }
+
+    .testimonial i {
+        font-size: 30px;
+        color: #d4af37;
+        margin-bottom: 15px;
+    }
+
+    .testimonial h4 {
+        margin-top: auto;
+        color: #d4af37;
+        font-size: 14px;
+    }
+}
+.dest-card-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 14px 14px 0 0;
+  display: block;
+}
+
+.dest-card {
+  overflow: hidden;
+}
+/* 12. PREMIUM HAMBURGER & SIDE DRAWER */
+    
+    /* Menu Toggle Button Style */
+    .menu-toggle {
+        display: block !important;
+        font-size: 22px;
+        color: #d4af37;
+        cursor: pointer;
+        z-index: 10001; /* Menu-ku mela irukanum */
+        transition: 0.3s;
+    }
+
+    /* Side Drawer Navigation */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Initially hidden */
+        width: 75%;
+        height: 100vh;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(15px); /* Premium Glassmorphism */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        transition: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+        border-left: 1px solid rgba(212, 175, 55, 0.3);
+        z-index: 10000;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    }
+
+    /* Menu Active State */
+    .nav-links.active {
+        right: 0;
     }
 
     .nav-links li a {
-        font-size: 14px !important;
-        font-weight: 500 !important;
-        opacity: 0.85 !important;
-        transition: 0.3s !important;
-        display: inline-block !important;
+        font-size: 20px !important;
+        font-weight: 600;
+        letter-spacing: 2px;
+        color: #fff;
+        text-transform: uppercase;
     }
 
-    .nav-links li a:hover {
-        color: #d4af37 !important;
-        opacity: 1 !important;
+    /* Hamburger "X" Animation (Optional but Premium) */
+    .menu-toggle.open i::before {
+        content: "\f00d"; /* FontAwesome Close Icon */
     }
+    
+/* =======================================================
+   MASTER PREMIUM MOBILE RESPONSIVE BLOCK (768px and below)
+   ======================================================= */
 
-    /* Logo and Nav container alignment fix */
-    .nav-flex {
-        justify-content: space-between !important;
-    }
-
-    .logo-box .logo-text {
-        display: block !important; /* Desktop-la brand name theriya vaikurom */
-    }
-}
-
-/* MOBILE FIX: Hamburger toggle phone-la mattum theriya */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block !important;
-    }
-}
+  }
