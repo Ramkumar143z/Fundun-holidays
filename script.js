@@ -1,883 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="travel, holidays, south india, tamil nadu, kerala, karnataka, hyderabad, ooty, kodaikanal, kanyakumari, pondicherry, chennai, yercaud, munnar, cochin, wayanad, alleppey, vagamon, trivandrum, varkala, thekkady, mysore, coorg, bangalore, chikmagalur, mangalore, murudeshwar, gokarna, udupi, dandeli, goa, charminar, golconda, ramoji film city, hussain sagar, birla mandir, luxury travel">
+    <title>Fundun Holidays | Luxury Travels</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
 
-// Smooth scroll for navigation
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
-// Scroll Reveal Logic (throttled with requestAnimationFrame, passive listener)
-let _scrollTicking = false;
-window.addEventListener('scroll', function() {
-    if (!_scrollTicking) {
-        window.requestAnimationFrame(function() {
-            reveal();
-            _scrollTicking = false;
-        });
-        _scrollTicking = true;
-    }
-}, { passive: true });
+<a href="javascript:void(0)" onclick="whatsapp('General Enquiry')" class="whatsapp-float">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
-function reveal() {
-    var reveals = document.querySelectorAll('.section, .card, .service-card, .about-text');
-
-    for (var i = 0; i < reveals.length; i++) {
-        var windowHeight = window.innerHeight;
-        var revealTop = reveals[i].getBoundingClientRect().top;
-        var revealPoint = 150;
-
-        if (revealTop < windowHeight - revealPoint) {
-            reveals[i].classList.add('active');
-        }
-    }
-}
-
-// Initial check on load
-window.onload = reveal;
-
-// Calculator logic (same as before but with a small bounce effect)
-function calculateTotal() {
-    const resultDiv = document.getElementById("calc-result");
-    resultDiv.style.opacity = "0";
-    
-    setTimeout(() => {
-        const destinationRate = document.getElementById("dest-select").value;
-        const travelers = document.getElementById("travelers").value;
-
-        if (travelers > 0) {
-            const total = destinationRate * travelers;
-            resultDiv.innerHTML = `
-                <div style="transform: scale(1.1); transition: 0.3s; color: #c5a059; font-weight: bold;">
-                    <p>EXCLUSIVE QUOTE</p>
-                    <h2 style="font-size: 2.5rem;">₹${total.toLocaleString('en-IN')}</h2>
-                </div>
-            `;
-            resultDiv.style.opacity = "1";
-        }
-    }, 300);
-}
-
-// Destination data
-const destinations = {
-    "Tamil Nadu": {
-    "title": "Tamil Nadu Destinations",
-    "subtitle": "Explore the rich culture and natural beauty of Tamil Nadu",
-    "places": {
-        "Ooty": {
-            description: "Ooty, also known as Udhagamandalam, is a popular hill station in Tamil Nadu famous for its tea estates, botanical gardens, and colonial architecture.",
-            image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850347/Ooty_sm1awg.png",
-            places: ["Boat House", "Pykara Dam", "Pykara Lake", "Rose Garden", "Tea Museum", "Pine Forest", "Shooting Point", "Karnataka Garden", "Doddapetta Peak"]
-        },
-        "Kodaikanal": {
-            description: "Kodaikanal is a charming hill town known for its pristine lakes, waterfalls, and scenic viewpoints.",
-            image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850389/kodaikanal_rrm80l.png",
-            places: ["Silver Falls", "Kodaikanal Lake", "Bryant Park", "Coakers Park", "Poombarai", "Kookal", "Pillar Rock", "Guna Caves"]
-        },
-        "Yercaud": {
-            description: "Yercaud is a serene hill station known for its coffee plantations, lakes, and panoramic views.",
-            image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850504/yercadu_vpquei.png",
-            places: ["Yercaud Lake", "Pagoda Point", "Loop Road", "Bears Cave", "Kiliyur Water Falls", "Servarayan Temple"]
-        },
-        "Kanyakumari": {
-            description: "Kanyakumari is the southernmost tip of India, famous for its stunning sunrise and sunset views, temples, and memorials.",
-            image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850491/Kannayakumari_dsszcl.png",
-            places: ["Thiruvalluvar Statue", "Vivekananda Memorial Rock", "Sunset View Point", "Beach", "Padmanabhapuram Palace", "Papanasam Temple", "Manimuthar Dam", "Kuttralam"]
-        },
-        "Chennai": {
-            description: "Chennai, the capital of Tamil Nadu, is a vibrant city with rich history, temples, beaches, and modern attractions.",
-            image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850626/chennai_tyxhra.png",
-            places: ["Marina Beach", "Mahabalipuram", "Santhome Church", "Birla Planetorium", "Elliotts Beach", "Kapaleeshwar Temple", "VGP Amusement Park"]
-        },
-        "Pondicherry": {
-            description: "Pondicherry, a former French colony, offers a blend of Indian and French cultures with beautiful beaches and colonial architecture.",
-            image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850641/pondicherry_ffgflu.png",
-            places: ["French Colony", "Paradise Beach", "Sacred Heart Basilica", "Rock Beach", "Auroville Beach", "Promenade Beach", "Chunnambar Boat House"]
-        }
-    }
-    },
-    "kerala": {
-        title: "Kerala Destinations",
-        subtitle: "Experience God's Own Country with its backwaters and hills",
-        places: {
-            "Cochin": {
-                description: "Cochin, also known as Kochi, is a vibrant city blending history, culture, and modernity with Chinese fishing nets and colonial architecture.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239789/cochi_m11tfv.jpg",
-                places: ["Chotanikara Bhagavathy Temple", "Athi Rampadi Water Falls", "Cherai Beach", "Mattancherry Palace", "Hill Palace Museum", "Wonderla", "Bolgatti Palace", "Lulu Mall", "Vypen Beach"]
-            },
-            "Munnar": {
-                description: "Munnar is a picturesque hill station famous for its sprawling tea plantations, misty mountains, and wildlife sanctuaries.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850359/munnar_bjo4pq.png",
-                places: ["Mattupetty Dam", "Tea Museum", "Echo Point", "Top Station", "Kundala Lake", "Photo Point", "Rose Garden"]
-            },
-            "Wayanad": {
-                description: "Wayanad is a district known for its wildlife, waterfalls, and ancient caves, offering a perfect blend of nature and adventure.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850416/wayanadu_gpawkt.png",
-                places: ["Edakkal Caves", "Chembra Peak", "Lakkidi View Point", "Soochippara Water Falls", "Meenmutty Falls", "Banasurasagar Dam"]
-            },
-            "Alleppey": {
-                description: "Alleppey, famous for its backwaters, is a serene destination for houseboat cruises and coastal relaxation.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850439/alleppey_eg4fs5.png",
-                places: ["Backwaters", "Alappuzha Beach", "Light House", "St. Mary Forane Church", "Vembanad Lake"]
-            },
-            "Vagamon": {
-                description: "Vagamon is a tranquil hill station with meadows, pine forests, and panoramic views of the Western Ghats.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850545/vagamon_xoktr4.png",
-                places: ["Thangalpara", "Kurushimala", "Pine Forest", "Vagamon Meadows", "Ulupunni Tunnel", "Echo Point", "Idukki Dam", "Marmala Falls"]
-            },
-            "Trivandrum": {
-                description: "Trivandrum, the capital of Kerala, is known for its temples, museums, and beautiful beaches.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850569/thiruvandrum_zxqmjj.png",
-                places: ["Padmanabha Swamy Temple", "Chithra Art Gallery", "Zoological Park", "Napier Museum", "Magic Planet", "Mall of Travancore", "Kovalam Light House", "Kovalam Beach"]
-            },
-            "Varkala": {
-                description: "Varkala is a coastal town famous for its red cliffs, pristine beaches, and Ayurvedic treatments.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850657/varkala_cjyrib.png",
-                places: ["Varkala Beach", "Varkala Cliff", "Odayam Beach", "Anjengo Fort Lighthouse"]
-            },
-            "Thekkady": {
-                description: "Thekkady is home to Periyar National Park, offering wildlife safaris and boat rides on the lake.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850674/thekkady_j99sk0.png",
-                places: ["Periyar National Park", "Thekkady Lake", "Hill King", "Vandiperiyar"]
-            }
-        }
-    },
-    "karnataka": {
-        title: "Karnataka Destinations",
-        subtitle: "Discover the heritage and adventure in Karnataka",
-        places: {
-            "Mysore": {
-                description: "Mysore, the cultural capital of Karnataka, is renowned for its palaces, gardens, and rich heritage.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769851229/mysore_aatmtu.png",
-                places: ["Mysore Palace", "Mysore Zoo", "Shuka Vana", "Brindavan Garden", "Chamundeshwari Temple", "Balmuri Falls", "St. Philomena Church", "GRS Fantasy Amusement Park"]
-            },
-            "Coorg": {
-                description: "Coorg, known as the Scotland of India, offers coffee plantations, waterfalls, and adventure activities.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769942817/coorg_hc1qce.jpg",
-                places: ["Golden Temple", "Kaveri Nisargadhama", "Dubare Forest", "Harangi Dam", "White Water River Rafting", "Chiklihole Reservoir", "Abbey Falls", "Raja Seat", "Mandalpete Jeep Trekking"]
-            },
-            "Bangalore": {
-                description: "Bangalore, the Silicon Valley of India, is a bustling city with parks, palaces, and modern attractions.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850454/Bangalore_ja0ghv.png",
-                places: ["Wonderla", "Lalbagh Garden", "Bannerghatta National Park", "Bangalore Palace", "Cubbon Park", "Iskcon Temple", "Triusultan Palace", "Commercial Street Shopping", "Visvesvaraya Museum", "UB City Mall"]
-            },
-            "Chikmagalur": {
-                description: "Chikmagalur is a coffee-growing region famous for its hills, waterfalls, and trekking spots.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850466/chikmangalore_e3duxj.png",
-                places: ["Siri Statue", "Mullayanagiri", "Baba Budan Giri", "Seethalayangiri", "Z-Point Trekking", "Honnamana Halla", "Ukkada Water Falls", "Jhari Falls", "Bandi Kallu Gudda Sunset Point"]
-            },
-            "Mangalore": {
-                description: "Mangalore is a coastal city known for its beaches, temples, and seafood cuisine.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850586/mangalore_xyki1k.png",
-                places: ["Panambur Beach", "Pilikula Tourism", "Tannirbhavi Beach", "Mangaladevi Temple", "Someshwar Beach", "Forum Fiza Mall"]
-            },
-            "Murudeshwar": {
-                description: "Murudeshwar is famous for its giant Shiva statue, beach, and the Murudeshwar Fort.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850601/murudeshwar_kr4vv6.png",
-                places: ["Shiva Temple", "Murudeshwar Beach", "Murudeshwar Fort", "Jog Falls"]
-            },
-            "Gokarna & Udupi": {
-                description: "Gokarna and Udupi offer pristine beaches, ancient temples, and spiritual retreats.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850700/gokarna_udupi_idsedu.png",
-                places: ["Om Beach", "Paradise Beach", "Kudle Beach", "Mahabaleshwara Temple", "Water Sports", "Yana Caves", "Halfmoon Beach", "St. Mary's Island", "Krishna Temple", "Anantheshwara Temple"]
-            },
-            "Dandeli": {
-                description: "Dandeli is an adventure hub with river rafting, wildlife, and eco-tourism activities.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850712/dandeli_ebgqug.png",
-                places: ["Moulangi Eco Park", "Disney Park", "Supa Dam", "Kali River Water Sports", "Zorbing", "Rafting", "Jacuzzi Bath", "Zipline Activities", "Trekking", "Kayaking"]
-            }
-        }
-    },
-    "Hyderabad": {
-        title: "Hyderabad Destinations",
-        subtitle: "Explore the city of pearls and its historical sites",
-        places: {
-            "Charminar": {
-                description: "Charminar is an iconic monument symbolizing Hyderabad's rich history and architecture.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769666577/charmina_bpg1wb.jpg",
-                places: ["Charminar", "Laad Bazaar", "Mecca Masjid", "Chowmahalla Palace"]
-            },
-            "Golconda": {
-                description: "Golconda Fort is a magnificent fortress known for its acoustics and historical significance.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769666704/golgonda_aqxzrx.jpg",
-                places: ["Fort Entrance", "Sound & Light", "Qutub Tombs", "Taramati Baradari"]
-            },
-            "Ramoji Film City": {
-                description: "Ramoji Film City is Asia's largest film studio offering tours and entertainment.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769629047/ramoj_lhqfct.jpg",
-                places: ["Film Sets", "Bahubali Set", "Studio Tour", "Adventure Park"]
-            },
-            "Hussain Sagar": {
-                description: "Hussain Sagar is a large lake with the Buddha statue, perfect for boating and picnics.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769944988/hussian_duqbik.jpg",
-                places: ["Hussain Sagar Lake", "Buddha Statue"]
-            },
-            "Birla Mandir": {
-                description: "Birla Mandir is a beautiful Hindu temple made of white marble with intricate carvings.",
-                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769945004/birla_nsnjea.jpg",
-                places: ["Birla Temple", "Hindu Temple"]
-            }
-        }
-    }
-};
-
-// EXISTING openDestinationPage FUNCTION-LA INTHA LOGIC-A REPLACE PANNINGA
-// Cleaned & Master Destination Page Logic
-function openDestinationPage(state) {
-    const data = destinations[state];
-    if (!data) return;
-
-    const detailPage = document.getElementById("detailPage");
-    const placesGrid = document.getElementById("places-grid");
-    
-    // Header updates
-    document.getElementById("detail-title").innerHTML = data.title;
-    document.getElementById("detail-subtitle").innerText = data.subtitle;
-
-    placesGrid.innerHTML = "";
-    const isMobile = window.innerWidth <= 768;
-
-    for (const [city, cityData] of Object.entries(data.places)) {
-        const card = document.createElement("div");
-        card.className = "safari-card";
-        card.style.backgroundImage = `url('${cityData.image}')`;
-
-        // Mobile-la click panna detail open aaganum
-        card.onclick = () => { if(isMobile) viewCityDetails(state, city); };
-
-        const destInfo = document.createElement('div');
-        destInfo.className = 'dest-info';
-
-        destInfo.innerHTML = `
-            <h1 style="color: #d4af37;">${city.toUpperCase()}</h1>
-            <p>${cityData.description}</p>
-            <div style="display:flex; gap:10px; margin-top:15px;">
-                <button class="btn-gold" onclick="event.stopPropagation(); showBookingOptions('${state}', '${city}')">BOOK NOW</button>
-                <button class="btn-white" onclick="event.stopPropagation(); viewCityDetails('${state}', '${city}')">VIEW PLACES</button>
+<!-- ABOUT OVERLAY -->
+<div id="aboutPage" class="detail-page-overlay">
+    <div class="detail-header">
+        <button class="btn-back" onclick="toggleAbout(false)"><i class="fas fa-arrow-left"></i> Back</button>
+        <div class="logo-text">FUNDUN <span class="gold">HOLIDAYS</span></div>
+    </div>
+    <div class="container section">
+        <h2 class="section-title">ABOUT <span class="gold">US</span></h2>
+        <div class="about-grid">
+            <div>
+                <h3 class="gold">Company Introduction</h3>
+                <p>Fundun Holidays is a premium travel brand dedicated to curating bespoke travel experiences with reliability, luxury, and personal care.</p>
+                <h3 class="gold" style="margin-top:20px;">Mission & Vision</h3>
+                <p>Our mission is to deliver world-class travel services with a personal touch. Our vision is to become India's most trusted luxury travel partner.</p>
             </div>
-        `;
+            <div class="about-card">
+                <h3 class="gold">Why Choose Us?</h3>
+                <ul class="benefit-list">
+                    <li><i class="fas fa-check gold"></i> Expert Travel Team</li>
+                    <li><i class="fas fa-check gold"></i> Customized Packages</li>
+                    <li><i class="fas fa-check gold"></i> Affordable Luxury</li>
+                    <li><i class="fas fa-check gold"></i> 24/7 Premium Support</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
-        card.appendChild(destInfo);
-        placesGrid.appendChild(card);
-    }
-
-    // Desktop-ku mattum navigation buttons
-    if (!isMobile) {
-        const navDiv = document.createElement("div");
-        navDiv.className = "slider-nav";
-        navDiv.innerHTML = `
-            <button onclick="moveSlider('prev')"><i class="fas fa-arrow-left"></i></button>
-            <button onclick="moveSlider('next')"><i class="fas fa-arrow-right"></i></button>
-        `;
-        placesGrid.appendChild(navDiv);
-    }
-
-    detailPage.style.display = "block";
-    setTimeout(() => detailPage.style.opacity = "1", 10);
-}   
-// EXISTING openDestinationPage FUNCTION-AH FULL-AH REPLACE PANNINGA
-function openDestinationPage(state) {
-    const data = destinations[state];
-    if (!data) return;
-
-    const detailPage = document.getElementById("detailPage");
-    const placesGrid = document.getElementById("places-grid");
-    
-    // Header Content Update
-    document.getElementById("detail-title").innerHTML = data.title;
-    document.getElementById("detail-subtitle").innerText = data.subtitle;
-
-    // Grid-ah clear panrom
-    placesGrid.innerHTML = "";
-
-    // Mobile check boolean
-    const isMobile = window.innerWidth <= 768;
-
-    // Generate Cards
-    for (const [city, cityData] of Object.entries(data.places)) {
-        const card = document.createElement("div");
-        card.className = "safari-card";
-        card.style.backgroundImage = `url('${cityData.image}')`;
-
-        // Card Click Handler
-        card.onclick = () => {
-            if(!isMobile) return; // Desktop-la slider move aagum, mobile-la click panna detail open aagum
-            viewCityDetails(state, city);
-        };
-
-        const destInfo = document.createElement('div');
-        destInfo.className = 'dest-info';
-
-        // Title & Description (Mobile-la size optimized-ah irukum via CSS)
-        const title = document.createElement('h1');
-        title.style.color = '#d4af37';
-        title.textContent = city.toUpperCase();
-
-        const desc = document.createElement('p');
-        desc.textContent = cityData.description;
-
-        const btnWrap = document.createElement('div');
-        btnWrap.style.display = 'flex';
-        btnWrap.style.gap = '10px';
-        btnWrap.style.marginTop = '15px';
-
-        const reserveBtn = document.createElement('button');
-        reserveBtn.className = 'btn-gold';
-        reserveBtn.textContent = isMobile ? 'BOOK' : 'RESERVE NOW'; // Mobile-la chinna text
-        reserveBtn.onclick = (e) => { e.stopPropagation(); showBookingOptions(state, city); };
-
-        const viewBtn = document.createElement('button');
-        viewBtn.className = 'btn-white';
-        viewBtn.style.cssText = 'background:transparent; border:1px solid #fff; color:#fff; border-radius:30px; padding:10px 20px; cursor:pointer; font-size: 12px;';
-        viewBtn.textContent = 'VIEW';
-        viewBtn.onclick = (e) => { e.stopPropagation(); viewCityDetails(state, city); };
-
-        btnWrap.appendChild(reserveBtn);
-        btnWrap.appendChild(viewBtn);
-
-        destInfo.appendChild(title);
-        destInfo.appendChild(desc);
-        destInfo.appendChild(btnWrap);
-
-        card.appendChild(destInfo);
-        placesGrid.appendChild(card);
-    }
-
-    // 3. Navigation Buttons - Desktop-ku mattum
-    if (!isMobile) {
-        const navDiv = document.createElement("div");
-        navDiv.className = "slider-nav";
-        navDiv.innerHTML = `
-            <button onclick="moveSlider('prev')"><i class="fas fa-arrow-left"></i></button>
-            <button onclick="moveSlider('next')"><i class="fas fa-arrow-right"></i></button>
-        `;
-        placesGrid.appendChild(navDiv);
-    }
-
-    // Show with transition
-    detailPage.style.display = "block";
-    setTimeout(() => detailPage.style.opacity = "1", 10);
-}
-
-// Slider Movement Logic (Intha logic constant-ah irukatum for desktop)
-function moveSlider(direction) {
-    const items = document.querySelectorAll('.safari-card');
-    const grid = document.getElementById('places-grid');
-    if (items.length === 0) return;
-
-    if (direction === 'next') {
-        grid.appendChild(items[0]);
-    } else {
-        grid.prepend(items[items.length - 1]);
-    }
-}
-
-function closeDetailPage() {
-    document.getElementById("detailPage").style.display = "none";
-}
-
-function viewCityDetails(state, city) {
-    const places = destinations[state].places[city].places;
-    const modal = document.createElement("div");
-    
-    // Modal unique ID
-    modal.id = "city-details-modal";
-    
-    modal.style.cssText = `
-        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.95); display: flex; justify-content: center;
-        align-items: center; z-index: 10000; backdrop-filter: blur(5px);
-    `;
-
-    modal.innerHTML = `
-        <div style="background: linear-gradient(135deg, rgba(20,20,20,0.98), rgba(5,5,5,0.98)); 
-                    border: 1px solid rgba(212,175,55,0.4); padding: 35px; border-radius: 25px; 
-                    text-align: center; max-width: 500px; width: 90%; max-height: 85%; 
-                    overflow-y: auto; box-shadow: 0 30px 70px rgba(0,0,0,1);">
-            
-            <h3 style="color: #d4af37; margin-bottom: 25px; font-family: 'Poppins', sans-serif; letter-spacing: 1px;">
-                PLACES IN ${city.toUpperCase()}
-            </h3>
-            
-            <ul style="list-style: none; padding: 0; text-align: left; color: #fff;">
-                ${places.map(place => `
-                    <li style="margin-bottom: 12px; padding: 12px; border-bottom: 1px solid rgba(212,175,55,0.15); 
-                               background: rgba(255,255,255,0.03); border-radius: 12px; display: flex; align-items: center;">
-                        <i class="fas fa-map-marker-alt" style="color: #d4af37; margin-right: 12px; font-size: 14px;"></i> 
-                        <span style="font-size: 15px;">${place}</span>
-                    </li>
-                `).join("")}
+<!-- HERO -->
+<header id="home" class="hero">
+    <!-- NAVBAR INSIDE HERO -->
+    <nav id="navbar">
+        <div class="nav-container nav-flex">
+            <div class="logo-box">
+                <img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239791/img4-removebg-preview_ltwiue.png" alt="Fundun Logo" class="nav-logo">
+                <div class="logo-text">FUNDUN <span class="gold">HOLIDAYS</span></div>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+    <i class="fas fa-bars"></i>
+</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="javascript:void(0)" onclick="toggleAbout(true)">About Us</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#offers">Offers</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-
-            <button id="close-modal-btn" style="background: linear-gradient(135deg, #d4af37, #b8962e); 
-                    color: #000; border: none; padding: 14px 40px; margin-top: 25px; 
-                    border-radius: 50px; cursor: pointer; font-weight: 700; transition: 0.3s; 
-                    text-transform: uppercase; letter-spacing: 1px;">
-                CLOSE
-            </button>
         </div>
-    `;
+        
+        <!-- ✅ CERTIFICATE IMAGE - Desktop (Right Top, Below Nav) -->
+        <img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1770580699/certificate.jpg_ddoepv.jpg" 
+             alt="Certificate" 
+             class="nav-certificate">
+    </nav>
 
-    document.body.appendChild(modal);
+    <!-- HERO CONTENT -->
+    <div class="carousel-container"></div>
+    <div class="hero-overlay"></div>
 
-    // ✅ DIRECT EVENT LISTENER (No more window.closeModal needed)
-    const closeBtn = modal.querySelector("#close-modal-btn");
-    closeBtn.addEventListener('click', () => {
-        modal.remove(); // Direct-ah antha modal node-aye remove pannidum
-    });
-
-    // Background click panna close aaga
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.remove();
-    });
-}
-
-function showBookingOptions(state, city = '') {
-    const location = city ? `${city}, ${state}` : state;
-    
-    // Create calculator modal
-    const modal = document.createElement("div");
-    modal.style.position = "fixed";
-    modal.style.top = "0";
-    modal.style.left = "0";
-    modal.style.width = "100%";
-    modal.style.height = "100%";
-    modal.style.backgroundColor = "rgba(0,0,0,0.9)";
-    modal.style.display = "flex";
-    modal.style.justifyContent = "center";
-    modal.style.alignItems = "center";
-    modal.style.zIndex = "10000";
-    modal.style.overflowY = "auto";
-    modal.id = "bookingModal";
-
-    modal.innerHTML = `
-        <div style="background: linear-gradient(135deg, rgba(20,20,20,0.95), rgba(5,5,5,0.95)); border: 1px solid rgba(212,175,55,0.3); padding: 40px; border-radius: 25px; max-width: 500px; box-shadow: 0 20px 60px rgba(0,0,0,0.8); color: #fff; margin: 20px;">
-            <h2 style="color: #d4af37; margin-bottom: 20px; text-align: center; font-size: 24px;">PACKAGE CALCULATOR</h2>
-            <p style="text-align: center; color: #aaa; margin-bottom: 25px;">📍 ${location}</p>
-            
-            <form id="bookingCalcForm" style="display: flex; flex-direction: column; gap: 15px;">
-                <div>
-                    <label style="display: block; margin-bottom: 8px; font-size: 14px; color: #d4af37;">Full Name *</label>
-                    <input type="text" id="booking-name" placeholder="Your Name" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #333; background: #0c0c0c; color: #fff; outline: none; font-family: inherit; box-sizing: border-box;">
-                </div>
-                
-                <div>
-                    <label style="display: block; margin-bottom: 8px; font-size: 14px; color: #d4af37;">WhatsApp Number *</label>
-                    <input type="tel" id="booking-phone" placeholder="+91 XXXXXXXXXX" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #333; background: #0c0c0c; color: #fff; outline: none; font-family: inherit; box-sizing: border-box;">
-                </div>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <div>
-                        <label style="display: block; margin-bottom: 8px; font-size: 14px; color: #d4af37;">Number of Persons *</label>
-                        <input type="number" id="booking-persons" min="1" value="1" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #333; background: #0c0c0c; color: #fff; outline: none; font-family: inherit; box-sizing: border-box;">
-                    </div>
-                    <div>
-                        <label style="display: block; margin-bottom: 8px; font-size: 14px; color: #d4af37;">Number of Days *</label>
-                        <input type="number" id="booking-days" min="1" value="3" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #333; background: #0c0c0c; color: #fff; outline: none; font-family: inherit; box-sizing: border-box;">
-                    </div>
-                </div>
-                
-                <!-- Price calculation removed as requested -->
-                
-                <button type="submit" style="background: linear-gradient(135deg, #d4af37, #b8962e); color: #000; border: none; padding: 14px; border-radius: 25px; font-weight: 600; cursor: pointer; font-size: 16px; transition: 0.3s; font-family: inherit;">
-                    SEND ENQUIRY VIA WHATSAPP
-                </button>
-                
-                <button type="button" onclick="closeBookingModal()" style="background: transparent; border: 1px solid #666; color: #aaa; padding: 10px; border-radius: 25px; cursor: pointer; transition: 0.3s; font-family: inherit;">
-                    Cancel
-                </button>
-            </form>
+    <div class="hero-wrapper">
+        <div id="main-hero-text" class="hero-content">
+            <h1 class="bold-heading">EXPLORE THE <span class="gold">EXTRAORDINARY</span></h1>
+            <p>Your Trusted Partner for Luxury Domestic & International World Tours.</p>
+            <div class="hero-btns">
+                <button onclick="scrollToSection('destinations')" class="btn-gold">Plan Your Trip Now</button>
+            </div>
         </div>
-    `;
 
-    document.body.appendChild(modal);
-    
-    // Form submission (no automatic price calculation)
-    document.getElementById("bookingCalcForm").addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const name = document.getElementById("booking-name").value;
-        const phone = document.getElementById("booking-phone").value;
-        const persons = document.getElementById("booking-persons").value;
-        const days = document.getElementById("booking-days").value;
-        
-        const msg = `Hi Fundun Holidays, I'm ${name}. I want to book a package for ${location} for ${persons} persons for ${days} days. My WhatsApp: ${phone}`;
+        <!-- REVIEWS -->
+        <section class="hero-reviews">
+            <h3>What Our Travelers Say</h3>
+            <div class="review-slider" id="reviewSlider"></div>
+        </section>
+    </div>
+</header>
 
-    });
-    
-    window.closeBookingModal = () => {
-        const bookingModal = document.getElementById("bookingModal");
-        if(bookingModal && bookingModal.parentNode) {
-            document.body.removeChild(bookingModal);
-        }
-    };
-}
 
-function bookViaWhatsApp(state) {
-    const msg = `Hi Fundun Holidays, I want to book a package for ${state}.`;
-    const phone = "919585575354";
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-    window.open(url, "_blank");
-}
 
-function bookViaInstagram(state) {
-    const msg = `Hi Fundun Holidays, I want to book a package for ${state}.`;
-    const url = `https://www.instagram.com/fundun_holidays`;
-    window.open(url, "_blank");
-}
 
-function sendToWhatsApp(message) {
-    const phone = "919585575354";
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
-}
 
-function whatsapp(message){
-    const phone = "919585575354";
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent("Hi Fundun Holidays, " + message)}`;
-    window.open(url, "_blank");
-}
+<!-- DESTINATIONS -->
+<section id="destinations" class="section">
+<div class="container">
+<h2 class="section-title">DESTIN <span class="gold">ATIONS</span></h2>
 
-function toggleAbout(show){
-    document.getElementById("aboutPage").style.display = show ? "block" : "none";
-}
+<!-- TAMIL NADU -->
+<div class="state-container">
+<h3 class="state-title">Tamil Nadu <span class="gold">Culture</span></h3>
+<div class="dest-grid">
 
-function scrollToSection(id){
-    document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}
+<!-- OOTY -->
+<div class="dest-card">
+<div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850347/Ooty_sm1awg.png');">
+<div class="mini-slides">
+<span class="slide-link">📍 Doddabetta Peak</span>
+<span class="slide-link">📍 Pine Forest</span>
+<span class="slide-link">📍 Pykara Lake</span>
+<span class="slide-link">📍 Rose Garden</span>
+</div>
+<div class="card-badge">POPULAR</div>
+</div>
+<div class="dest-info">
+<h3>Ooty: Green Serenity</h3>
+<div class="card-meta-container">
+<div class="meta-row">
+<span class="meta-item"><i class="fas fa-mountain"></i> Hill Station</span>
+<span class="meta-item"><i class="fas fa-users"></i> Group Tour</span>
+</div>
+<div class="meta-row second-row">
+<span class="meta-item liked"><i class="fas fa-heart"></i> 750+ Booked</span>
+<span class="meta-item trending"><i class="fas fa-fire"></i> Trending</span>
+</div>
+</div>
+<div class="card-actions">
+<button class="btn-explore-now" onclick="openDestinationPage('Tamil Nadu')">EXPLORE NOW</button>
+</div>
+</div>
+</div>
 
-function openMail(){
-    window.location.href = "mailto:dineshcse142@gmail.com";
-}
+<!-- KODAIKANAL -->
+<div class="dest-card">
+<div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850389/kodaikanal_rrm80l.png');">
+<div class="mini-slides">
+<span class="slide-link">📍 Pillar Rocks</span>
+<span class="slide-link">📍 Guna Caves</span>
+<span class="slide-link">📍 Coaker's Walk</span>
+<span class="slide-link">📍 Silver Cascade</span>
+</div>
+<div class="card-badge flash">FLASH SALE</div>
+</div>
+<div class="dest-info">
+<h3>Kodaikanal: Misty Escape</h3>
+<div class="card-meta-container">
+<div class="meta-row">
+<span class="meta-item"><i class="fas fa-mountain"></i> Hill Station</span>
+<span class="meta-item"><i class="fas fa-heart"></i> Honeymoon</span>
+</div>
+<div class="meta-row second-row">
+<span class="meta-item liked"><i class="fas fa-heart"></i> 520+ Booked</span>
+<span class="meta-item trending"><i class="fas fa-fire"></i> Hot Deal</span>
+</div>
+</div>
+<div class="card-actions">
+<button class="btn-explore-now" onclick="openDestinationPage('Tamil Nadu')">EXPLORE NOW</button>
+</div>
+</div>
+</div>
 
-// Form submit handler
-document.addEventListener("DOMContentLoaded", function() {
-    const form = document.getElementById("heroCalcForm");
-    if (form) {
-        form.addEventListener("submit", function(e){
-            e.preventDefault();
-            const name = document.getElementById("cName").value;
-            const phone = document.getElementById("cPhone").value;
-            const loc = document.getElementById("cLoc").value;
-            const seats = document.getElementById("cSeats").value;
-            const days = document.getElementById("cDays").value;
-            const msg = `Hi Fundun Holidays, I'm ${name}. I want a package for ${loc} for ${seats} persons for ${days} days. My number is ${phone}.`;
-            whatsapp(msg);
-        });
-    }
+<!-- KANYAKUMARI -->
+<div class="dest-card">
+<div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850491/Kannayakumari_dsszcl.png');">
+<div class="mini-slides">
+<span class="slide-link">📍 Vivekananda Rock</span>
+<span class="slide-link">📍 Thiruvalluvar Statue</span>
+<span class="slide-link">📍 Sunset Point</span>
+<span class="slide-link">📍 Bhagavathi Temple</span>
+</div>
+<div class="card-badge">MUST VISIT</div>
+</div>
+<div class="dest-info">
+<h3>Kanyakumari: Sunset City</h3>
+<div class="card-meta-container">
+<div class="meta-row">
+<span class="meta-item"><i class="fas fa-landmark"></i> Heritage</span>
+<span class="meta-item"><i class="fas fa-users"></i> Family Tour</span>
+</div>
+<div class="meta-row second-row">
+<span class="meta-item liked"><i class="fas fa-heart"></i> 600+ Booked</span>
+<span class="meta-item trending"><i class="fas fa-fire"></i> Popular</span>
+</div>
+</div>
+<div class="card-actions">
+<button class="btn-explore-now" onclick="openDestinationPage('Tamil Nadu')">EXPLORE NOW</button>
+</div>
+</div>
+</div>
 
-    // Make images lazy and hint the browser for GPU-accelerated transforms
-    document.querySelectorAll('img').forEach(img => {
-        if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
-        try {
-            img.style.willChange = 'transform, opacity';
-            img.style.backfaceVisibility = 'hidden';
-            img.style.transform = 'translateZ(0)';
-        } catch (e) {}
-    });
-});
-/**************** HERO LEFT BOTTOM ROTATING REVIEWS ****************/
+</div>
+</div>
 
-const heroReviews = [
-  { name: "Arun", stars: 5, text: "Amazing trip planning and great support throughout our journey!" },
-  { name: "Priya", stars: 5, text: "Best travel experience ever. Hotels and transport were perfect." },
-  { name: "Karthik", stars: 4, text: "Very smooth and well-organized tour. Totally worth it!" },
-  { name: "Meena", stars: 5, text: "Friendly team and excellent service. Highly recommended!" },
-  { name: "Suresh", stars: 4, text: "Wonderful destinations and great coordination." },
-  { name: "Divya", stars: 5, text: "Loved the entire trip. Everything was taken care of!" },
-  { name: "Vignesh", stars: 5, text: "Professional service and very polite staff. Superb experience." },
-  { name: "Anitha", stars: 4, text: "Good packages and nice hotels. Will book again." },
-  { name: "Ravi", stars: 5, text: "Memorable journey with my family. Thank you Fundun Holidays!" },
-  { name: "Lakshmi", stars: 5, text: "Perfect planning and quick response. Totally satisfied!" }
-];
+<!-- KERALA -->
+<div class="state-container">
+<h3 class="state-title">Kerala <span class="gold">Special</span></h3>
+<div class="dest-grid">
 
-const reviewSlider = document.getElementById("reviewSlider");
-let reviewIndex = 0;
+<!-- MUNNAR -->
+<div class="dest-card">
+<div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850359/munnar_bjo4pq.png');">
+<div class="mini-slides">
+<span class="slide-link">📍 Tea Museum</span>
+<span class="slide-link">📍 Eravikulam Park</span>
+<span class="slide-link">📍 Mattupetty Dam</span>
+<span class="slide-link">📍 Top Station</span>
+</div>
+<div class="card-badge">TOP SELLING</div>
+</div>
+<div class="dest-info">
+<h3>Munnar: Tea Paradise</h3>
+<div class="card-meta-container">
+<div class="meta-row">
+<span class="meta-item"><i class="fas fa-leaf"></i> Nature</span>
+<span class="meta-item"><i class="fas fa-heart"></i> Honeymoon</span>
+</div>
+<div class="meta-row second-row">
+<span class="meta-item liked"><i class="fas fa-heart"></i> 800+ Booked</span>
+<span class="meta-item trending"><i class="fas fa-fire"></i> Best Seller</span>
+</div>
+</div>
+<div class="card-actions">
+<button class="btn-explore-now" onclick="openDestinationPage('kerala')">EXPLORE NOW</button>
+</div>
+</div>
+</div>
 
-function renderSingleReview() {
-  if (!reviewSlider) return;
+<!-- ALLEPPEY -->
+<div class="dest-card">
+<div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850439/alleppey_eg4fs5.png');">
+<div class="mini-slides">
+<span class="slide-link">📍 Houseboat Stay</span>
+<span class="slide-link">📍 Backwaters</span>
+<span class="slide-link">📍 Marari Beach</span>
+<span class="slide-link">📍 Alappuzha Beach</span>
+</div>
+<div class="card-badge flash">HOT DEAL</div>
+</div>
+<div class="dest-info">
+<h3>Alleppey: Backwaters</h3>
+<div class="card-meta-container">
+<div class="meta-row">
+<span class="meta-item"><i class="fas fa-water"></i> Backwaters</span>
+<span class="meta-item"><i class="fas fa-ship"></i> Houseboat</span>
+</div>
+<div class="meta-row second-row">
+<span class="meta-item liked"><i class="fas fa-heart"></i> 700+ Booked</span>
+<span class="meta-item trending"><i class="fas fa-fire"></i> Trending</span>
+</div>
+</div>
+<div class="card-actions">
+<button class="btn-explore-now" onclick="openDestinationPage('kerala')">EXPLORE NOW</button>
+</div>
+</div>
+</div>
 
-  reviewSlider.innerHTML = "";
-  const review = heroReviews[reviewIndex];
+<!-- WAYANAD -->
+<div class="dest-card">
+<div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850416/wayanadu_gpawkt.png');">
+<div class="mini-slides">
+<span class="slide-link">📍 Banasura Dam</span>
+<span class="slide-link">📍 Edakkal Caves</span>
+<span class="slide-link">📍 Soochipara Falls</span>
+<span class="slide-link">📍 Pookode Lake</span>
+</div>
+<div class="card-badge">ADVENTURE</div>
+</div>
+<div class="dest-info">
+<h3>Wayanad: Wild Escape</h3>
+<div class="card-meta-container">
+<div class="meta-row">
+<span class="meta-item"><i class="fas fa-tree"></i> Adventure</span>
+<span class="meta-item"><i class="fas fa-users"></i> Group Tour</span>
+</div>
+<div class="meta-row second-row">
+<span class="meta-item liked"><i class="fas fa-heart"></i> 450+ Booked</span>
+<span class="meta-item trending"><i class="fas fa-fire"></i> Explorer Pick</span>
+</div>
+</div>
+<div class="card-actions">
+<button class="btn-explore-now" onclick="openDestinationPage('kerala')">EXPLORE NOW</button>
+</div>
+</div>
+</div>
 
-  const card = document.createElement("div");
-  card.className = "review-card";
-  card.innerHTML = `
-    <div class="review-header">
-      <div class="review-avatar">${review.name.charAt(0)}</div>
-      <div>
-        <div class="review-name">${review.name}</div>
-        <div class="review-stars">${"★".repeat(review.stars)}</div>
+</div>
+</div>
+
+<!-- KARNATAKA -->
+<div class="state-container">
+<h3 class="state-title">Karnataka <span class="gold">Diaries</span></h3>
+<div class="dest-grid">
+
+<!-- MYSORE -->
+<div class="dest-card">
+<div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769851229/mysore_aatmtu.png');">
+<div class="mini-slides">
+<span class="slide-link">📍 Mysore Palace</span>
+<span class="slide-link">📍 Chamundi Hills</span>
+<span class="slide-link">📍 Zoo Garden</span>
+<span class="slide-link">📍 Brindavan Gardens</span>
+</div>
+<div class="card-badge">HERITAGE</div>
+</div>
+<div class="dest-info">
+<h3>Mysore: Royal City</h3>
+<div class="card-meta-container">
+<div class="meta-row">
+<span class="meta-item"><i class="fas fa-landmark"></i> Heritage</span>
+<span class="meta-item"><i class="fas fa-users"></i> Family Tour</span>
+</div>
+<div class="meta-row second-row">
+<span class="meta-item liked"><i class="fas fa-heart"></i> 650+ Booked</span>
+<span class="meta-item trending"><i class="fas fa-fire"></i> Royal Pick</span>
+</div>
+</div>
+<div class="card-actions">
+<button class="btn-explore-now" onclick="openDestinationPage('karnataka')">EXPLORE NOW</button>
+</div>
+</div>
+</div>
+
+<!-- COORG -->
+<div class="dest-card">
+<div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769942817/coorg_hc1qce.jpg');">
+<div class="mini-slides">
+<span class="slide-link">📍 Abbey Falls</span>
+<span class="slide-link">📍 Raja's Seat</span>
+<span class="slide-link">📍 Coffee Estate</span>
+<span class="slide-link">📍 Dubare Elephant Camp</span>
+</div>
+<div class="card-badge flash">LIMITED</div>
+</div>
+<div class="dest-info">
+<h3>Coorg: Coffee Capital</h3>
+<div class="card-meta-container">
+<div class="meta-row">
+<span class="meta-item"><i class="fas fa-mug-hot"></i> Coffee Trails</span>
+<span class="meta-item"><i class="fas fa-heart"></i> Honeymoon</span>
+</div>
+<div class="meta-row second-row">
+<span class="meta-item liked"><i class="fas fa-heart"></i> 580+ Booked</span>
+<span class="meta-item trending"><i class="fas fa-fire"></i> Romantic</span>
+</div>
+</div>
+<div class="card-actions">
+<button class="btn-explore-now" onclick="openDestinationPage('karnataka')">EXPLORE NOW</button>
+</div>
+</div>
+</div>
+
+<!-- GOA -->
+<div class="dest-card">
+<div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769626372/goa_eba8v5.png');">
+<div class="mini-slides">
+<span class="slide-link">📍 Anjuna Beach</span>
+<span class="slide-link">📍 Colva Beach</span>
+<span class="slide-link">📍 Grande Island</span>
+<span class="slide-link">📍 Dudhsagar Falls</span>
+</div>
+<div class="card-badge">CITY LIFE</div>
+</div>
+<div class="dest-info">
+<h3>Goa: Sun & Sand</h3>
+<div class="card-meta-container">
+<div class="meta-row">
+<span class="meta-item"><i class="fas fa-umbrella-beach"></i> Beach</span>
+<span class="meta-item"><i class="fas fa-users"></i> Friends Trip</span>
+</div>
+<div class="meta-row second-row">
+<span class="meta-item liked"><i class="fas fa-heart"></i> 900+ Booked</span>
+<span class="meta-item trending"><i class="fas fa-fire"></i> Party Hub</span>
+</div>
+</div>
+<div class="card-actions">
+<button class="btn-explore-now" onclick="openDestinationPage('karnataka')">EXPLORE NOW</button>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- HYDERABAD -->
+<div class="state-container">
+<h3 class="state-title">Hyderabad <span class="gold">Diaries</span></h3>
+<div class="dest-grid">
+
+<!-- CHARMINAR -->
+<div class="dest-card">
+<div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769666577/charmina_bpg1wb.jpg');">
+<div class="mini-slides">
+<span class="slide-link">📍 Charminar</span>
+<span class="slide-link">📍 Laad Bazaar</span>
+<span class="slide-link">📍 Mecca Masjid</span>
+<span class="slide-link">📍 Chowmahalla Palace</span>
+</div>
+<div class="card-badge">HERITAGE</div>
+</div>
+<div class="dest-info">
+<h3>Charminar: Iconic Pearl</h3>
+<div class="card-meta-container">
+<div class="meta-row">
+<span class="meta-item"><i class="fas fa-landmark"></i> Heritage</span>
+<span class="meta-item"><i class="fas fa-users"></i> City Tour</span>
+</div>
+<div class="meta-row second-row">
+<span class="meta-item liked"><i class="fas fa-heart"></i> 400+ Booked</span>
+<span class="meta-item trending"><i class="fas fa-fire"></i> City Icon</span>
+</div>
+</div>
+<div class="card-actions">
+<button class="btn-explore-now" onclick="openDestinationPage('Hyderabad')">EXPLORE NOW</button>
+</div>
+</div>
+</div>
+
+<!-- GOLCONDA -->
+<div class="dest-card">
+<div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769666704/golgonda_aqxzrx.jpg');">
+<div class="mini-slides">
+<span class="slide-link">📍 Fort Entrance</span>
+<span class="slide-link">📍 Sound & Light</span>
+<span class="slide-link">📍 Qutub Tombs</span>
+<span class="slide-link">📍 Taramati Baradari</span>
+</div>
+<div class="card-badge flash">MUST VISIT</div>
+</div>
+<div class="dest-info">
+<h3>Golconda: Whispers of Past</h3>
+<div class="card-meta-container">
+<div class="meta-row">
+<span class="meta-item"><i class="fas fa-fort-awesome"></i> Fort</span>
+<span class="meta-item"><i class="fas fa-users"></i> Heritage Walk</span>
+</div>
+<div class="meta-row second-row">
+<span class="meta-item liked"><i class="fas fa-heart"></i> 350+ Booked</span>
+<span class="meta-item trending"><i class="fas fa-fire"></i> Must Visit</span>
+</div>
+</div>
+<div class="card-actions">
+<button class="btn-explore-now" onclick="openDestinationPage('Hyderabad')">EXPLORE NOW</button>
+</div>
+</div>
+</div>
+
+<!-- RAMOJI -->
+<div class="dest-card">
+<div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769666935/ramoji_kdnuqd.jpg');">
+<div class="mini-slides">
+<span class="slide-link">📍 Film Sets</span>
+<span class="slide-link">📍 Bahubali Set</span>
+<span class="slide-link">📍 Studio Tour</span>
+<span class="slide-link">📍 Adventure Park</span>
+</div>
+<div class="card-badge">FILMY FUN</div>
+</div>
+<div class="dest-info">
+<h3>Ramoji: Reel World Magic</h3>
+<div class="card-meta-container">
+<div class="meta-row">
+<span class="meta-item"><i class="fas fa-film"></i> Film City</span>
+<span class="meta-item"><i class="fas fa-users"></i> Family Fun</span>
+</div>
+<div class="meta-row second-row">
+<span class="meta-item liked"><i class="fas fa-heart"></i> 500+ Booked</span>
+<span class="meta-item trending"><i class="fas fa-fire"></i> Entertainment</span>
+</div>
+</div>
+<div class="card-actions">
+<button class="btn-explore-now" onclick="openDestinationPage('Hyderabad')">EXPLORE NOW</button>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <div class="container">
+    <h2 class="section-title">OUR <span class="gold">SERVICES</span></h2>
+
+    <div class="service-flex">
+      <div class="s-item" onclick="openServiceBooking('School & College Package')">
+        <i class="fas fa-graduation-cap"></i>
+        <h4>School & College Package</h4>
+      </div>
+
+      <div class="s-item" onclick="openServiceBooking('Corporate Tours')">
+        <i class="fas fa-building"></i>
+        <h4>Corporate Tours</h4>
+      </div>
+
+      <div class="s-item" onclick="openServiceBooking('Family Tours')">
+        <i class="fas fa-users"></i>
+        <h4>Family Tours</h4>
+      </div>
+
+      <div class="s-item" onclick="openServiceBooking('Custom Planning')">
+        <i class="fas fa-map-marked-alt"></i>
+        <h4>Custom Planning</h4>
+      </div>
+
+      <div class="s-item" onclick="openServiceBooking('Honeymoon Tours')">
+        <i class="fas fa-heart"></i>
+        <h4>Honeymoon Tours</h4>
       </div>
     </div>
-    <div class="review-text">${review.text}</div>
-  `;
+  </div>
+</section>
 
-  reviewSlider.appendChild(card);
-  reviewIndex = (reviewIndex + 1) % heroReviews.length;
-}
 
-renderSingleReview();
-setInterval(renderSingleReview, 3500);
-/* ===== Image Popup Script ===== */
-const popup = document.createElement("div");
-popup.classList.add("image-popup");
-popup.innerHTML = `
-  <span class="popup-close">&times;</span>
-  <img id="popupImg">
-`;
-document.body.appendChild(popup);
+<!-- OFFERS -->
+<section id="offers" class="section bg-dark">
+<div class="container">
+<h2 class="section-title">EXCLUSIVE <span class="gold">OFFERS</span></h2>
+<p class="mobile-hint" style="display: none; text-align: center; color: #d4af37; font-size: 12px; margin-top: -20px; margin-bottom: 20px;">
+    Swipe left to explore <i class="fas fa-arrow-right"></i>
+</p>
+<div class="dest-grid">
+<div class="offer-card video-offer-card">
+<div class="video-background-container">
+<video class="offer-video" loop muted autoplay>
+<source src="https://res.cloudinary.com/drlg1t6pk/video/upload/v1769239869/vid2_usmb81.mp4" type="video/mp4">
+</video>
+<div class="video-overlay"></div>
+</div>
+<div class="card-content">
+<h3>Students Offers</h3>
+<p>Ooty + Kodaikanal (5 Days)</p>
+<div class="price gold">Save 20% + 5% Extra Discount</div>
+<button class="btn-gold" onclick="whatsapp('Students Offer')">Book Combo Now</button>
+</div>
+</div>
 
-const popupImg = document.getElementById("popupImg");
-const closeBtn = popup.querySelector(".popup-close");
+<div class="offer-card video-offer-card">
+<div class="video-background-container">
+<video class="offer-video" loop muted autoplay>
+<source src="https://res.cloudinary.com/drlg1t6pk/video/upload/v1769239874/vid3_zzki7z.mp4" type="video/mp4">
+</video>
+<div class="video-overlay"></div>
+</div>
+<div class="card-content">
+<h3>Friends & Family</h3>
+<p>Munnar + Alleppey (7 Days)</p>
+<div class="price gold">Special Group Discount</div>
+<button class="btn-gold" onclick="whatsapp('Friends & Family Offer')">Book Combo Now</button>
+</div>
+</div>
 
-/* Open popup on slide image click */
-document.querySelectorAll(".slide img").forEach(img => {
-  img.addEventListener("click", () => {
-    popupImg.src = img.src;
-    popup.classList.add("active");
-  });
-});
+<div class="offer-card video-offer-card">
+<div class="video-background-container">
+<video class="offer-video" loop muted autoplay>
+<source src="https://res.cloudinary.com/drlg1t6pk/video/upload/v1769239862/vid4_e8jmrr.mp4" type="video/mp4">
+</video>
+<div class="video-overlay"></div>
+</div>
+<div class="card-content">
+<h3>Instagram Special</h3>
+<p>Follow our official page</p>
+<div class="price gold">Get 5% Instant Discount</div>
+<button class="btn-gold" onclick="window.open('https://www.instagram.com/fundun_holidays','_blank')">Follow & Claim</button>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-/* Close popup */
-closeBtn.addEventListener("click", () => {
-  popup.classList.remove("active");
-});
+<!-- UPCOMING TOURS -->
+<section class="section bg-dark">
+<div class="container">
+<h2 class="section-title">UPCOMING <span class="gold">TOURS</span></h2>
+<div class="dest-grid">
+<div class="offer-card dotted-box">
+<div class="date-badge gold">Jan 2026</div>
+<h3>Kerala</h3>
+<p>Vagamon & Alleppey</p>
+<button class="btn-card" onclick="whatsapp('Enquiry for Kerala Tour Jan')">Enquire via WhatsApp</button>
+</div>
+<div class="offer-card dotted-box">
+<div class="date-badge gold">Feb 2026</div>
+<h3>Tamil Nadu</h3>
+<p>Ooty & Yercaud</p>
+<button class="btn-card" onclick="whatsapp('Enquiry for Tamil Nadu Tour Feb')">Enquire via WhatsApp</button>
+</div>
+<div class="offer-card dotted-box">
+<div class="date-badge gold">Mar 2026</div>
+<h3>Karnataka</h3>
+<p>Mysore & Dandeli</p>
+<button class="btn-card" onclick="whatsapp('Enquiry for Karnataka Tour Mar')">Enquire via WhatsApp</button>
+</div>
+</div>
+</div>
+</section>
 
-popup.addEventListener("click", (e) => {
-  if(e.target === popup){
-    popup.classList.remove("active");
-  }
-});
-// Navbar scroll effect
-const navbar = document.getElementById('navbar');
+<!-- TESTIMONIALS -->
+<section class="section bg-dark">
+<div class="container">
+<h2 class="section-title">TESTI<span class="gold">MONIALS</span></h2>
+<div class="dest-grid">
+<div class="contact-card testimonial">
+    <i class="fas fa-quote-left gold"></i>
+    <p>"The best travel experience ever! Fundun Holidays made our honeymoon truly royal."</p>
+    <div class="stars gold" style="font-size: 12px; margin-bottom: 5px;">
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+    </div>
+    <h4 class="gold">- Arjun & Meera</h4>
+</div>
+<div class="contact-card testimonial">
+<i class="fas fa-quote-left gold"></i>
+<p>"Highly professional team. The Kerala houseboat stay was perfectly arranged."</p>
+<div class="stars gold" style="font-size: 12px; margin-bottom: 5px;">
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+    </div>
+<h4 class="gold">- Rajesh Kumar</h4>
+</div>
+<div class="contact-card testimonial">
+<i class="fas fa-quote-left gold"></i>
+<p>"Affordable luxury is real! We saved a lot on our Malaysia trip. Highly recommend."</p>
+<div class="stars gold" style="font-size: 12px; margin-bottom: 5px;">
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+    </div>
+<h4 class="gold">- Sneha W.</h4>
+</div>
+</div>
+</div>
+</section>
 
-window.addEventListener('scroll', () => {
-  if(window.scrollY > 50){   // scroll threshold
-    navbar.classList.add('fixed');
-  } else {
-    navbar.classList.remove('fixed');
-  }
-});
-document.querySelectorAll('.s-item').forEach(item => {
-  item.addEventListener('click', () => {
-    const serviceName = item.querySelector('h4').textContent;
+<!-- GALLERY -->
+<section class="section bg-dark">
+<div class="container">
+<h2 class="section-title">OUR <span class="gold">GALLERY</span></h2>
+<div class="gallery-viewport">
+<div class="gsap-slider-wrapper">
+<div class="slide"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239846/img7_mljqvp.jpg" alt=""></div>
+<div class="slide"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239845/img36_ip4jcv.jpg" alt=""></div>
+<div class="slide"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239845/img32_ntyjbc.jpg" alt=""></div>
+<div class="slide"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239792/img12_bl8rzq.jpg" alt=""></div>
+<div class="slide"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239792/img11_m3c0kq.jpg" alt=""></div>
+<div class="slide"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239844/img29_jeheip.jpg" alt=""></div>
+<div class="slide"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239860/Varkala_it9rvu.webp" alt=""></div>
+</div>
+</div>
+</div>
+</section>
 
-    // Show in details box first for psychological feedback
-    document.getElementById('service-title').textContent = serviceName;
-    document.getElementById('service-desc').textContent = `Click to explore destinations for ${serviceName}.`;
+<!-- BLOG -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">TRAVEL <span class="gold">BLOG</span></h2>
 
-    // Map services to states/destination pages
-    const serviceMap = {
-      "School & College Package": "Tamil Nadu",
-      "Corporate Tours": "karnataka",
-      "Family Tours": "kerala",
-      "Custom Planning": "Tamil Nadu",
-      "Honeymoon Tours": "kerala"
-    };
+    <div class="dest-grid">
 
-    // Open destination overlay page like Navbar
-    openDestinationPage(serviceMap[serviceName]);
-  });
-});
-// HERO IMAGE SLIDER
-const heroImages = [
-  'https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239861/POSTER_bvgobj.png', 
-  'https://res.cloudinary.com/drlg1t6pk/image/upload/v1769595950/hero_image_2_dxwrxu.png', 
-  'https://res.cloudinary.com/drlg1t6pk/image/upload/v1769620540/img_post_rbz4dd.png',
-];
+     <!-- BLOG 1 : COLLEGE IV -->
+<div class="dest-card blog-post">
+  <img 
+    src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1770012911/Gemini_Generated_Image_54kzgv54kzgv54kz_c6hdjs.png"
+    alt="College Industrial Visit Trip"
+    class="dest-card-img"
+  />
 
-const carouselContainer = document.querySelector('.carousel-container');
+  <div class="dest-info">
+    <small class="gold">TRAVEL TIPS</small>
+    <h3>5 Things Every College Should Plan Before an IV Trip</h3>
+    <p>
+      From student safety to travel planning, learn the most important 
+      things colleges must consider to make an Industrial Visit trip 
+      smooth, educational, and memorable.
+    </p>
+  </div>
+</div>
 
-// Create slide divs dynamically
-heroImages.forEach((img, index) => {
-    const slide = document.createElement('div');
-    slide.classList.add('carousel-slide');
-    if(index === 0) slide.classList.add('active'); // first image active
-    slide.style.backgroundImage = `url('${img}')`;
-    carouselContainer.appendChild(slide);
-});
+<!-- BLOG 2 : TAMIL NADU GUIDE -->
+<div class="dest-card blog-post">
+  <img 
+    src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1770012248/Gemini_Generated_Image_i0wc78i0wc78i0wc_a1jumk.png"
+    alt="Tamil Nadu Travel Guide"
+    class="dest-card-img"
+  />
 
-const slides = document.querySelectorAll('.carousel-slide');
-let currentSlide = 0;
+  <div class="dest-info">
+    <small class="gold">GUIDES</small>
+    <h3>Discovering the Hidden Gems of Tamil Nadu</h3>
+    <p>
+      Beyond the famous temples, explore the unexplored waterfalls 
+      and hill stations...
+    </p>
+  </div>
+</div>
 
-// Function to show next slide
-function nextSlide() {
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add('active');
-}
+</section>
 
-// Auto-slide every 5 seconds
-setInterval(nextSlide, 5000);
-// 1. Mouse Tracking for Body Glow (Spotlight Effect)
-document.addEventListener('mousemove', e => {
-    document.body.style.setProperty('--x', e.clientX + 'px');
-    document.body.style.setProperty('--y', e.clientY + 'px');
-});
+<!-- CONTACT -->
+<section id="contact" class="section bg-dark">
+<div class="container">
+<h2 class="section-title">CONTACT <span class="gold">US</span></h2>
+<div class="contact-grid">
+<div class="contact-card" onclick="whatsapp('General Phone Enquiry')">
+<i class="fas fa-phone"></i>
+<h3>Phone</h3>
+<p>+91 9585575354</p>
+<small>Chat on WhatsApp</small>
+</div>
+<div class="contact-card" onclick="openMail()">
+<i class="fas fa-envelope"></i>
+<h3>Email</h3>
+<p>dineshcse142@gmail.com</p>
+<small>Open Mail App</small>
+</div>
+</div>
+</div>
+</section>
 
-// 2. Updated openDestinationPage with "Social Validation" logic
-function openDestinationPage(state) {
-    const data = destinations[state];
-    if (!data) return;
+<script src="script.js"></script>
+<div id="detailPage" class="detail-page-overlay" style="display:none;">
+  <div class="detail-header">
+    <button class="btn-back" onclick="closeDetailPage()">
+      <i class="fas fa-arrow-left"></i> Back
+    </button>
+    <div class="logo-text">FUNDUN <span class="gold">HOLIDAYS</span></div>
+  </div>
 
-    const detailPage = document.getElementById("detailPage");
-    const placesGrid = document.getElementById("places-grid");
-    
-    // Header updates
-    document.getElementById("detail-title").innerHTML = data.title;
-    document.getElementById("detail-subtitle").innerText = data.subtitle;
+  <div class="container section">
+    <h2 id="detail-title" class="section-title"></h2>
+    <p id="detail-subtitle" style="text-align:center; color:#aaa;"></p>
 
-    // Clear and build the slider
-    placesGrid.innerHTML = "";
+    <div id="detail-hero"
+         style="height:250px; border-radius:15px; background-size:cover;
+                background-position:center; margin:20px 0;"></div>
 
-    // 1. Create Navigation Buttons
-    const navDiv = document.createElement("div");
-    navDiv.className = "slider-nav";
-    navDiv.innerHTML = `
-        <button onclick="moveSlider('prev')"><i class="fas fa-arrow-left"></i></button>
-        <button onclick="moveSlider('next')"><i class="fas fa-arrow-right"></i></button>
-    `;
+    <div id="places-grid" class="dest-grid"></div>
 
-    // 2. Generate Cards from Destination Data
-    for (const [city, cityData] of Object.entries(data.places)) {
-        const card = document.createElement("div");
-        card.className = "safari-card";
-        card.style.backgroundImage = `url('${cityData.image}')`;
+    <div style="text-align:center; margin-top:30px;">
 
-        const destInfo = document.createElement('div');
-        destInfo.className = 'dest-info';
+    </div>
+  </div>
+</div>
+<!-- FOOTER -->
+<footer class="main-footer">
+  <div class="footer-container">
 
-        const title = document.createElement('h1');
-        title.style.cssText = 'font-size: 50px; font-weight: 800; color: #d4af37;';
-        title.textContent = city.toUpperCase();
+    <!-- BRAND -->
+    <div class="footer-box">
+      <div class="footer-logo">
+        FUNDUN <span class="gold">HOLIDAYS</span>
+      </div>
+      <p class="footer-desc">
+        Curating luxury travel experiences across South India & beyond.
+        Trusted by 1000+ happy travelers.
+      </p>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+      
+      <!-- ✅ CERTIFICATE IN FOOTER - Mobile Only -->
+      <img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1770580699/certificate.jpg_ddoepv.jpg" 
+           alt="Certificate" 
+           class="footer-certificate">
+    </div>
 
-        const desc = document.createElement('p');
-        desc.style.cssText = 'margin: 20px 0; font-size: 16px; line-height: 1.6;';
-        desc.textContent = cityData.description;
+    <!-- QUICK LINKS -->
+    <div class="footer-box">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#offers">Offers</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
 
-        const btnWrap = document.createElement('div');
-        btnWrap.style.cssText = 'display:flex; gap:15px;';
+    <!-- TOP DESTINATIONS -->
+    <div class="footer-box">
+  <h4>Top Destinations</h4>
+  <ul class="footer-dest-links">
+    <li onclick="openDestinationPage('Tamil Nadu')">Ooty</li>
+    <li onclick="openDestinationPage('kerala')">Munnar</li>
+    <li onclick="openDestinationPage('karnataka')">Goa</li>
+    <li onclick="openDestinationPage('Tamil Nadu')">Kodaikanal</li>
+    <li onclick="openDestinationPage('kerala')">Alleppey</li>
+  </ul>
+</div>
 
-        const reserveBtn = document.createElement('button');
-        reserveBtn.className = 'btn-gold';
-        reserveBtn.textContent = 'RESERVE NOW';
-        reserveBtn.addEventListener('click', (e) => { e.stopPropagation(); showBookingOptions(state, city); });
 
-        const viewBtn = document.createElement('button');
-        viewBtn.className = 'btn-white';
-        viewBtn.style.cssText = 'background:transparent; border:1px solid #fff; color:#fff; border-radius:30px; padding:10px 20px; cursor:pointer;';
-        viewBtn.textContent = 'VIEW PLACES';
-        viewBtn.addEventListener('click', (e) => { e.stopPropagation(); viewCityDetails(state, city); });
+    <!-- CONTACT -->
+    <div class="footer-box">
+      <h4>Contact Us</h4>
+      <p><i class="fas fa-phone"></i> +91 95855 75354</p>
+      <p><i class="fas fa-envelope"></i> dineshcse142@gmail.com</p>
+      <p><i class="fas fa-map-marker-alt"></i> Tamil Nadu, India</p>
 
-        btnWrap.appendChild(reserveBtn);
-        btnWrap.appendChild(viewBtn);
+      <button class="btn-gold footer-btn" onclick="whatsapp('Footer Enquiry')">
+        Chat on WhatsApp
+      </button>
+    </div>
 
-        destInfo.appendChild(title);
-        destInfo.appendChild(desc);
-        destInfo.appendChild(btnWrap);
+  </div>
 
-        card.appendChild(destInfo);
-        placesGrid.appendChild(card);
-    }
+  <div class="footer-bottom">
+    © 2026 <span class="gold">Fundun Holidays</span>. All Rights Reserved.
+  </div>
+</footer>
 
-    // Add navigation to grid
-    placesGrid.appendChild(navDiv);
-
-    // Show Detail Page
-    detailPage.style.display = "block";
-    setTimeout(() => detailPage.style.opacity = "1", 10);
-}
-
-// 3. Slider Movement Logic
-function moveSlider(direction) {
-    const items = document.querySelectorAll('.safari-card');
-    const grid = document.getElementById('places-grid');
-    
-    if (direction === 'next') {
-        grid.appendChild(items[0]); // Move first to last
-    } else {
-        grid.prepend(items[items.length - 1]); // Move last to first
-    }
-}
-function openServiceBooking(serviceName) {
-    // Service name-aa location field-la pass pannrom
-    showBookingOptions(serviceName);
-}
-/************ VIEW DETAILS – ONLY VIEW BUTTON HOVER + CLICK ************/
-
-function enableViewDetailsOnlyOnButton(state) {
-
-    document.querySelectorAll('.safari-card').forEach(card => {
-
-        const viewBtn = card.querySelector('.btn-white'); // VIEW PLACES
-        if (!viewBtn) return;
-
-        let hoverTimer;
-
-        const city = card.querySelector('h1')?.textContent;
-        if (!city) return;
-
-        const cityName = city.charAt(0) + city.slice(1).toLowerCase();
-
-        const openDetails = (e) => {
-            e.stopPropagation();
-            viewCityDetails(state, cityName);
-        };
-
-        // ✅ CLICK
-        viewBtn.addEventListener('click', openDetails);
-
-        // ✅ HOVER (Desktop only)
-        viewBtn.addEventListener('mouseenter', (e) => {
-            if ('ontouchstart' in window) return; // mobile ignore
-
-            hoverTimer = setTimeout(() => {
-                openDetails(e);
-            }, 300); // smooth delay
-        });
-
-        viewBtn.addEventListener('mouseleave', () => {
-            clearTimeout(hoverTimer);
-        });
-
-        // ❌ Stop bubbling to card
-        viewBtn.addEventListener('mousedown', e => e.stopPropagation());
-    });
-}
-
-/* ===== HOOK INTO DESTINATION PAGE ===== */
-const _originalOpenDestinationPage = openDestinationPage;
-
-openDestinationPage = function(state) {
-    _originalOpenDestinationPage(state);
-
-    setTimeout(() => {
-        enableViewDetailsOnlyOnButton(state);
-    }, 200);
-};
-// MOBILE MENU TOGGLE LOGIC
-const mobileMenu = document.getElementById('mobile-menu');
-const navLinks = document.querySelector('.nav-links');
-
-if (mobileMenu) {
-    mobileMenu.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        // Hamburger icon-ah close icon-ah mathurathuku
-        const icon = mobileMenu.querySelector('i');
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-times');
-    });
-}
-
-// Menu link click panna menu close aaganam
-document.querySelectorAll('.nav-links li a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        const icon = mobileMenu.querySelector('i');
-        icon.classList.add('fa-bars');
-        icon.classList.remove('fa-times');
-    });
-});
+</body>
+</html>
