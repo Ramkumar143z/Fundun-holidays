@@ -1,4 +1,5 @@
 
+
 // Smooth scroll for navigation
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -223,6 +224,7 @@ const destinations = {
 };
 
 // EXISTING openDestinationPage FUNCTION-LA INTHA LOGIC-A REPLACE PANNINGA
+// Cleaned & Master Destination Page Logic
 function openDestinationPage(state) {
     const data = destinations[state];
     if (!data) return;
@@ -230,30 +232,30 @@ function openDestinationPage(state) {
     const detailPage = document.getElementById("detailPage");
     const placesGrid = document.getElementById("places-grid");
     
+    // Header updates
     document.getElementById("detail-title").innerHTML = data.title;
     document.getElementById("detail-subtitle").innerText = data.subtitle;
 
     placesGrid.innerHTML = "";
-
-    // Mobile check logic
     const isMobile = window.innerWidth <= 768;
 
     for (const [city, cityData] of Object.entries(data.places)) {
         const card = document.createElement("div");
-        // Mobile-la 'safari-card' class irukkum ana CSS logic vera maari work aagum
-        card.className = "safari-card"; 
+        card.className = "safari-card";
         card.style.backgroundImage = `url('${cityData.image}')`;
 
-        // Card content creation logic... (Unga existing code logic same thaan)
+        // Mobile-la click panna detail open aaganum
+        card.onclick = () => { if(isMobile) viewCityDetails(state, city); };
+
         const destInfo = document.createElement('div');
         destInfo.className = 'dest-info';
-        
+
         destInfo.innerHTML = `
             <h1 style="color: #d4af37;">${city.toUpperCase()}</h1>
-            <p style="margin: 15px 0; font-size: 14px; color: #eee;">${cityData.description}</p>
-            <div style="display:flex; gap:10px;">
-                <button class="btn-gold" onclick="event.stopPropagation(); showBookingOptions('${state}', '${city}')">RESERVE</button>
-                <button class="btn-white" style="border:1px solid #fff; background:transparent; color:#fff; padding:8px 15px; border-radius:20px;" onclick="event.stopPropagation(); viewCityDetails('${state}', '${city}')">VIEW</button>
+            <p>${cityData.description}</p>
+            <div style="display:flex; gap:10px; margin-top:15px;">
+                <button class="btn-gold" onclick="event.stopPropagation(); showBookingOptions('${state}', '${city}')">BOOK NOW</button>
+                <button class="btn-white" onclick="event.stopPropagation(); viewCityDetails('${state}', '${city}')">VIEW PLACES</button>
             </div>
         `;
 
@@ -261,7 +263,7 @@ function openDestinationPage(state) {
         placesGrid.appendChild(card);
     }
 
-    // Desktop-ku mattum navigation buttons venum
+    // Desktop-ku mattum navigation buttons
     if (!isMobile) {
         const navDiv = document.createElement("div");
         navDiv.className = "slider-nav";
@@ -274,7 +276,7 @@ function openDestinationPage(state) {
 
     detailPage.style.display = "block";
     setTimeout(() => detailPage.style.opacity = "1", 10);
-}
+}   
 // EXISTING openDestinationPage FUNCTION-AH FULL-AH REPLACE PANNINGA
 function openDestinationPage(state) {
     const data = destinations[state];
@@ -379,32 +381,57 @@ function closeDetailPage() {
 function viewCityDetails(state, city) {
     const places = destinations[state].places[city].places;
     const modal = document.createElement("div");
-    modal.style.position = "fixed";
-    modal.style.top = "0";
-    modal.style.left = "0";
-    modal.style.width = "100%";
-    modal.style.height = "100%";
-    modal.style.backgroundColor = "rgba(0,0,0,0.9)";
-    modal.style.display = "flex";
-    modal.style.justifyContent = "center";
-    modal.style.alignItems = "center";
-    modal.style.zIndex = "10000";
+    
+    // Modal unique ID
+    modal.id = "city-details-modal";
+    
+    modal.style.cssText = `
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.95); display: flex; justify-content: center;
+        align-items: center; z-index: 10000; backdrop-filter: blur(5px);
+    `;
 
     modal.innerHTML = `
-        <div style="background: linear-gradient(135deg, rgba(20,20,20,0.95), rgba(5,5,5,0.95)); border: 1px solid rgba(212,175,55,0.3); padding: 30px; border-radius: 25px; text-align: center; max-width: 500px; max-height: 80%; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.8);">
-            <h3 style="color: #c5a059; margin-bottom: 20px; font-family: 'Inter', sans-serif;">Places in ${city}</h3>
+        <div style="background: linear-gradient(135deg, rgba(20,20,20,0.98), rgba(5,5,5,0.98)); 
+                    border: 1px solid rgba(212,175,55,0.4); padding: 35px; border-radius: 25px; 
+                    text-align: center; max-width: 500px; width: 90%; max-height: 85%; 
+                    overflow-y: auto; box-shadow: 0 30px 70px rgba(0,0,0,1);">
+            
+            <h3 style="color: #d4af37; margin-bottom: 25px; font-family: 'Poppins', sans-serif; letter-spacing: 1px;">
+                PLACES IN ${city.toUpperCase()}
+            </h3>
+            
             <ul style="list-style: none; padding: 0; text-align: left; color: #fff;">
-                ${places.map(place => `<li style="margin: 15px 0; padding: 10px; border-bottom: 1px solid rgba(212,175,55,0.2); background: rgba(255,255,255,0.05); border-radius: 10px;"><i class="fas fa-map-marker-alt" style="color: #d4af37; margin-right: 10px;"></i> ${place}</li>`).join("")}
+                ${places.map(place => `
+                    <li style="margin-bottom: 12px; padding: 12px; border-bottom: 1px solid rgba(212,175,55,0.15); 
+                               background: rgba(255,255,255,0.03); border-radius: 12px; display: flex; align-items: center;">
+                        <i class="fas fa-map-marker-alt" style="color: #d4af37; margin-right: 12px; font-size: 14px;"></i> 
+                        <span style="font-size: 15px;">${place}</span>
+                    </li>
+                `).join("")}
             </ul>
-            <button onclick="closeModal()" style="background: linear-gradient(135deg, #d4af37, #b8962e); color: #000; border: none; padding: 12px 28px; margin-top: 20px; border-radius: 50px; cursor: pointer; font-weight: 600; transition: 0.3s;">Close</button>
+
+            <button id="close-modal-btn" style="background: linear-gradient(135deg, #d4af37, #b8962e); 
+                    color: #000; border: none; padding: 14px 40px; margin-top: 25px; 
+                    border-radius: 50px; cursor: pointer; font-weight: 700; transition: 0.3s; 
+                    text-transform: uppercase; letter-spacing: 1px;">
+                CLOSE
+            </button>
         </div>
     `;
 
     document.body.appendChild(modal);
 
-    window.closeModal = () => {
-        document.body.removeChild(modal);
-    };
+    // ✅ DIRECT EVENT LISTENER (No more window.closeModal needed)
+    const closeBtn = modal.querySelector("#close-modal-btn");
+    closeBtn.addEventListener('click', () => {
+        modal.remove(); // Direct-ah antha modal node-aye remove pannidum
+    });
+
+    // Background click panna close aaga
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.remove();
+    });
 }
 
 function showBookingOptions(state, city = '') {
