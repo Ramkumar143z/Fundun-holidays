@@ -392,70 +392,86 @@ img { max-width: 100%; }
   transform: scale(1.05);
 }
 
-/* Safari-like card styling */
+/* ✅ FIXED: DETAIL PAGE GRID - DESKTOP FULL SCREEN CARDS */
+#places-grid {
+  position: relative;
+  width: 100%;
+  height: 600px; /* Increased height */
+  overflow: hidden;
+  display: block;
+  margin-top: 20px;
+}
+
+/* ✅ SAFARI CARD - FULL VIEWPORT SIZE */
 .safari-card {
-  width: 200px;
-  height: 300px;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
+  left: 0;
   background-position: center;
   background-size: cover;
-  border-radius: 20px;
+  background-repeat: no-repeat;
+  border-radius: 0; /* No border radius for full screen */
   transition: 0.8s ease;
   box-shadow: 0 20px 40px rgba(0,0,0,0.5);
   cursor: pointer;
   z-index: 1;
 }
 
-/* First 2 cards become the full background */
-.safari-card:nth-child(1),
-.safari-card:nth-child(2) {
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  transform: none;
-  border-radius: 0;
-  box-shadow: none;
+/* Stack cards to the right on desktop */
+.safari-card:nth-child(1) {
+  z-index: 4;
+  transform: translateX(0);
 }
 
-/* Next cards stacking on the right */
-.safari-card:nth-child(3) { left: 55%; }
-.safari-card:nth-child(4) { left: calc(55% + 220px); }
-.safari-card:nth-child(5) { left: calc(55% + 440px); }
-.safari-card:nth-child(n+6) { left: calc(55% + 660px); opacity: 0; }
+.safari-card:nth-child(2) {
+  z-index: 3;
+  transform: translateX(70%);
+}
 
-/* Content inside the active card (2nd child) */
+.safari-card:nth-child(3) {
+  z-index: 2;
+  transform: translateX(80%);
+}
+
+.safari-card:nth-child(n+4) {
+  z-index: 1;
+  transform: translateX(90%);
+  opacity: 0;
+}
+
+/* Content overlay on safari cards */
 .safari-card .dest-info {
   position: absolute;
-  top: 50%;
-  left: 60px;
-  transform: translateY(-50%);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+  padding: 40px;
   color: #fff;
-  max-width: 450px;
-  display: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.safari-card .dest-info h1 {
+  font-size: 42px;
+  font-weight: 800;
+  color: #d4af37;
   text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
 }
 
-.safari-card:nth-child(2) .dest-info {
-  display: block;
-  animation: slideShow 0.8s ease-in-out forwards;
+.safari-card .dest-info p {
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 600px;
 }
 
-@keyframes slideShow {
-  from { opacity: 0; transform: translateY(40px) scale(0.9); filter: blur(10px); }
-  to { opacity: 1; transform: translateY(-50%) scale(1); filter: blur(0); }
-}
-
-/* DETAIL PAGE SLIDER OVERRIDE */
-#places-grid {
-  position: relative;
-  width: 100%;
-  height: 550px;
-  overflow: hidden;
-  display: block;
-  margin-top: 20px;
+.safari-card .card-btns {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
 }
 
 /* NAVIGATION BUTTONS FOR SLIDER */
@@ -465,6 +481,8 @@ img { max-width: 100%; }
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
+  display: flex;
+  gap: 20px;
 }
 
 .slider-nav button {
@@ -475,7 +493,6 @@ img { max-width: 100%; }
   background: rgba(0,0,0,0.5);
   color: #d4af37;
   cursor: pointer;
-  margin: 0 10px;
   font-size: 20px;
   transition: 0.3s;
 }
@@ -1489,6 +1506,98 @@ body::before {
         max-width: 320px;
     }
 
+    /* ✅ 4. MOBILE DETAIL PAGE - HORIZONTAL SWIPE CARDS */
+    #places-grid {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        height: auto !important;
+        margin-top: 70px !important;
+        padding: 10px 15px 20px !important;
+        gap: 15px !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #places-grid::-webkit-scrollbar { 
+        display: none; 
+    }
+
+    /* Mobile Card Structure */
+    .safari-card {
+        position: relative !important;
+        flex: 0 0 85% !important;
+        min-width: 85% !important;
+        height: 500px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        background: #111 !important;
+        border-radius: 20px !important;
+        overflow: hidden !important;
+        scroll-snap-align: center;
+        transform: none !important;
+        opacity: 1 !important;
+        left: auto !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
+    }
+
+    /* Image Top Area */
+    .card-img-top {
+        width: 100% !important;
+        height: 55% !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        border-bottom: 2px solid #d4af37 !important;
+    }
+
+    /* Details Bottom Area */
+    .safari-card .dest-info {
+        position: relative !important;
+        width: 100% !important;
+        height: 45% !important;
+        background: #000 !important;
+        padding: 15px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        inset: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+    }
+
+    .safari-card .dest-info h1 {
+        font-size: 20px !important;
+        color: #d4af37 !important;
+        margin-bottom: 5px !important;
+        text-shadow: none !important;
+    }
+
+    .safari-card .dest-info p {
+        font-size: 12px !important;
+        color: #ccc !important;
+        height: 50px !important;
+        overflow-y: auto !important;
+        line-height: 1.4 !important;
+    }
+
+    .card-btns {
+        display: flex !important;
+        gap: 10px !important;
+        margin-top: 10px !important;
+    }
+
+    .btn-gold, .btn-white {
+        flex: 1 !important;
+        padding: 12px 0 !important;
+        font-size: 12px !important;
+        text-align: center !important;
+        border-radius: 8px !important;
+    }
+
     /* 4. PREMIUM CARD SWIPER (Destinations, Offers, Testimonials) */
     .dest-grid, .service-flex, #testimonial-slider {
         display: flex !important;
@@ -1514,22 +1623,15 @@ body::before {
         padding-top: 60px;
     }
 
-    #places-grid {
-        display: flex !important; /* Mobile-la 3D slider-a swipe-a mathurom */
-        overflow-x: auto !important;
-        height: auto !important;
-        padding: 20px !important;
-        gap: 20px !important;
-    }
-
-    .safari-card {
-        position: relative !important;
-        flex: 0 0 85% !important;
-        height: 450px !important;
-        left: auto !important;
-        transform: none !important;
-        border-radius: 20px !important;
-        display: block !important;
+    .detail-header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 60px !important;
+        background: #000 !important;
+        z-index: 99999 !important;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3) !important;
     }
 
     /* 6. HIDING UNNECESSARY MOBILE CLUTTER */
@@ -1737,4 +1839,29 @@ body::before {
    ======================================================= */
 
   }
+  /* Desktop - Navbar Certificate */
+.nav-certificate {
+  position: absolute;
+  top: 70px;
+  right: 25px;
+  width: 120px;
+  border: 2px solid #d4af37;
+}
 
+/* Mobile - Footer Certificate */
+.footer-certificate {
+  display: none; /* Desktop-la hide */
+}
+
+@media (max-width: 768px) {
+  .nav-certificate {
+    display: none !important; /* Mobile-la navbar hide */
+  }
+  
+  .footer-certificate {
+    display: block !important; /* Mobile-la footer-la show */
+    width: 100px;
+    height: 50px;
+    margin: 20px auto;
+  }
+}
