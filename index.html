@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="feature-flags-styles.css">
     <link rel="stylesheet" href="overlay-fix.css">
+    <link rel="stylesheet" href="places-grid-shine-effect.css">
+    <link rel="stylesheet" href="overlay-footer.css">
     
     <!-- Primary SEO Meta Tags -->
     <title>Fundun Holidays - Premium South India Tour Packages | Tamil Nadu, Kerala, Karnataka Travel</title>
@@ -190,7 +191,6 @@
     <!-- Stylesheets -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="overlay-footer.css">
     
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -368,12 +368,17 @@
 </div>
 
 <!-- TAMIL NADU -->
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   🎯 TAMIL NADU DESTINATION CARDS - FULL CLICKABLE VERSION
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+
+<!-- TAMIL NADU -->
 <div class="state-container" data-category="tamil-nadu">
 <h3 class="state-title">Tamil Nadu <span class="gold">Tour Packages</span></h3>
 <div class="dest-grid">
 
-<!-- OOTY -->
-<div class="dest-card" data-aos="fade-up">
+<!-- OOTY - FULL CLICKABLE -->
+<div class="dest-card" data-aos="fade-up" onclick="openDestinationPage('Tamil Nadu')" style="cursor: pointer;">
 <div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850347/Ooty_sm1awg.png');">
 <div class="mini-slides">
 <span class="slide-link">📍 Doddabetta Peak</span>
@@ -382,7 +387,7 @@
 <span class="slide-link">📍 Rose Garden</span>
 </div>
 <div class="card-badge">POPULAR</div>
-<div class="wishlist-btn"><i class="far fa-heart"></i></div>
+<div class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this);"><i class="far fa-heart"></i></div>
 </div>
 <div class="dest-info">
 <h3>Ooty Hill Station Tour Package</h3>
@@ -400,16 +405,16 @@
 </div>
 </div>
 <div class="card-actions">
-<button class="btn-explore-now" onclick="openDestinationPage('Tamil Nadu')">EXPLORE</button>
-<button class="btn-quick-quote" onclick="quickQuote('Ooty Tour Package')">
+<button class="btn-explore-now" onclick="event.stopPropagation(); openDestinationPage('Tamil Nadu')">EXPLORE</button>
+<button class="btn-quick-quote" onclick="event.stopPropagation(); quickQuote('Ooty Tour Package')">
     <i class="fas fa-bolt"></i> Quick Quote
 </button>
 </div>
 </div>
 </div>
 
-<!-- KODAIKANAL -->
-<div class="dest-card" data-aos="fade-up" data-aos-delay="100">
+<!-- KODAIKANAL - FULL CLICKABLE -->
+<div class="dest-card" data-aos="fade-up" data-aos-delay="100" onclick="openDestinationPage('Tamil Nadu')" style="cursor: pointer;">
 <div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850389/kodaikanal_rrm80l.png');">
 <div class="mini-slides">
 <span class="slide-link">📍 Pillar Rocks</span>
@@ -418,7 +423,7 @@
 <span class="slide-link">📍 Silver Cascade</span>
 </div>
 <div class="card-badge flash">HOT DEAL</div>
-<div class="wishlist-btn"><i class="far fa-heart"></i></div>
+<div class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this);"><i class="far fa-heart"></i></div>
 </div>
 <div class="dest-info">
 <h3>Kodaikanal Honeymoon Package</h3>
@@ -436,16 +441,16 @@
 </div>
 </div>
 <div class="card-actions">
-<button class="btn-explore-now" onclick="openDestinationPage('Tamil Nadu')">EXPLORE</button>
-<button class="btn-quick-quote" onclick="quickQuote('Kodaikanal Honeymoon Package')">
+<button class="btn-explore-now" onclick="event.stopPropagation(); openDestinationPage('Tamil Nadu')">EXPLORE</button>
+<button class="btn-quick-quote" onclick="event.stopPropagation(); quickQuote('Kodaikanal Honeymoon Package')">
     <i class="fas fa-bolt"></i> Quick Quote
 </button>
 </div>
 </div>
 </div>
 
-<!-- KANYAKUMARI -->
-<div class="dest-card" data-aos="fade-up" data-aos-delay="200">
+<!-- KANYAKUMARI - FULL CLICKABLE -->
+<div class="dest-card" data-aos="fade-up" data-aos-delay="200" onclick="openDestinationPage('Tamil Nadu')" style="cursor: pointer;">
 <div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850491/Kannayakumari_dsszcl.png');">
 <div class="mini-slides">
 <span class="slide-link">📍 Vivekananda Rock</span>
@@ -454,7 +459,7 @@
 <span class="slide-link">📍 Beach Temple</span>
 </div>
 <div class="card-badge">FAMILY TOUR</div>
-<div class="wishlist-btn"><i class="far fa-heart"></i></div>
+<div class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this);"><i class="far fa-heart"></i></div>
 </div>
 <div class="dest-info">
 <h3>Kanyakumari Sightseeing Tour</h3>
@@ -472,8 +477,8 @@
 </div>
 </div>
 <div class="card-actions">
-<button class="btn-explore-now" onclick="openDestinationPage('Tamil Nadu')">EXPLORE</button>
-<button class="btn-quick-quote" onclick="quickQuote('Kanyakumari Tour')">
+<button class="btn-explore-now" onclick="event.stopPropagation(); openDestinationPage('Tamil Nadu')">EXPLORE</button>
+<button class="btn-quick-quote" onclick="event.stopPropagation(); quickQuote('Kanyakumari Tour')">
     <i class="fas fa-bolt"></i> Quick Quote
 </button>
 </div>
@@ -484,12 +489,17 @@
 </div>
 
 <!-- KERALA -->
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   🌴 KERALA DESTINATION CARDS - FULL CLICKABLE VERSION
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+
+<!-- KERALA -->
 <div class="state-container" data-category="kerala">
 <h3 class="state-title">Kerala <span class="gold">Tour Packages</span></h3>
 <div class="dest-grid">
 
-<!-- MUNNAR -->
-<div class="dest-card" data-aos="fade-up">
+<!-- MUNNAR - FULL CLICKABLE -->
+<div class="dest-card" data-aos="fade-up" onclick="openDestinationPage('kerala')" style="cursor: pointer;">
 <div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850359/munnar_bjo4pq.png');">
 <div class="mini-slides">
 <span class="slide-link">📍 Tea Museum</span>
@@ -498,7 +508,7 @@
 <span class="slide-link">📍 Top Station</span>
 </div>
 <div class="card-badge">TOP SELLER</div>
-<div class="wishlist-btn"><i class="far fa-heart"></i></div>
+<div class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this);"><i class="far fa-heart"></i></div>
 </div>
 <div class="dest-info">
 <h3>Munnar Honeymoon Package</h3>
@@ -516,16 +526,16 @@
 </div>
 </div>
 <div class="card-actions">
-<button class="btn-explore-now" onclick="openDestinationPage('kerala')">EXPLORE</button>
-<button class="btn-quick-quote" onclick="quickQuote('Munnar Honeymoon Package')">
+<button class="btn-explore-now" onclick="event.stopPropagation(); openDestinationPage('kerala')">EXPLORE</button>
+<button class="btn-quick-quote" onclick="event.stopPropagation(); quickQuote('Munnar Honeymoon Package')">
     <i class="fas fa-bolt"></i> Quick Quote
 </button>
 </div>
 </div>
 </div>
 
-<!-- ALLEPPEY -->
-<div class="dest-card" data-aos="fade-up" data-aos-delay="100">
+<!-- ALLEPPEY - FULL CLICKABLE -->
+<div class="dest-card" data-aos="fade-up" data-aos-delay="100" onclick="openDestinationPage('kerala')" style="cursor: pointer;">
 <div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850439/alleppey_eg4fs5.png');">
 <div class="mini-slides">
 <span class="slide-link">📍 Houseboat Stay</span>
@@ -534,7 +544,7 @@
 <span class="slide-link">📍 Alappuzha Beach</span>
 </div>
 <div class="card-badge flash">SPECIAL OFFER</div>
-<div class="wishlist-btn"><i class="far fa-heart"></i></div>
+<div class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this);"><i class="far fa-heart"></i></div>
 </div>
 <div class="dest-info">
 <h3>Alleppey Houseboat Package</h3>
@@ -552,16 +562,16 @@
 </div>
 </div>
 <div class="card-actions">
-<button class="btn-explore-now" onclick="openDestinationPage('kerala')">EXPLORE</button>
-<button class="btn-quick-quote" onclick="quickQuote('Alleppey Houseboat Package')">
+<button class="btn-explore-now" onclick="event.stopPropagation(); openDestinationPage('kerala')">EXPLORE</button>
+<button class="btn-quick-quote" onclick="event.stopPropagation(); quickQuote('Alleppey Houseboat Package')">
     <i class="fas fa-bolt"></i> Quick Quote
 </button>
 </div>
 </div>
 </div>
 
-<!-- WAYANAD -->
-<div class="dest-card" data-aos="fade-up" data-aos-delay="200">
+<!-- WAYANAD - FULL CLICKABLE -->
+<div class="dest-card" data-aos="fade-up" data-aos-delay="200" onclick="openDestinationPage('kerala')" style="cursor: pointer;">
 <div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850416/wayanadu_gpawkt.png');">
 <div class="mini-slides">
 <span class="slide-link">📍 Banasura Dam</span>
@@ -570,7 +580,7 @@
 <span class="slide-link">📍 Pookode Lake</span>
 </div>
 <div class="card-badge">ADVENTURE</div>
-<div class="wishlist-btn"><i class="far fa-heart"></i></div>
+<div class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this);"><i class="far fa-heart"></i></div>
 </div>
 <div class="dest-info">
 <h3>Wayanad Nature Tour Package</h3>
@@ -588,8 +598,8 @@
 </div>
 </div>
 <div class="card-actions">
-<button class="btn-explore-now" onclick="openDestinationPage('kerala')">EXPLORE</button>
-<button class="btn-quick-quote" onclick="quickQuote('Wayanad Nature Tour')">
+<button class="btn-explore-now" onclick="event.stopPropagation(); openDestinationPage('kerala')">EXPLORE</button>
+<button class="btn-quick-quote" onclick="event.stopPropagation(); quickQuote('Wayanad Nature Tour')">
     <i class="fas fa-bolt"></i> Quick Quote
 </button>
 </div>
@@ -600,12 +610,17 @@
 </div>
 
 <!-- KARNATAKA -->
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   🏛️ KARNATAKA DESTINATION CARDS - FULL CLICKABLE VERSION
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+
+<!-- KARNATAKA -->
 <div class="state-container" data-category="karnataka">
 <h3 class="state-title">Karnataka <span class="gold">Tour Packages</span></h3>
 <div class="dest-grid">
 
-<!-- MYSORE -->
-<div class="dest-card" data-aos="fade-up">
+<!-- MYSORE - FULL CLICKABLE -->
+<div class="dest-card" data-aos="fade-up" onclick="openDestinationPage('karnataka')" style="cursor: pointer;">
 <div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769851229/mysore_aatmtu.png');">
 <div class="mini-slides">
 <span class="slide-link">📍 Mysore Palace</span>
@@ -614,7 +629,7 @@
 <span class="slide-link">📍 Zoo Garden</span>
 </div>
 <div class="card-badge">HERITAGE</div>
-<div class="wishlist-btn"><i class="far fa-heart"></i></div>
+<div class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this);"><i class="far fa-heart"></i></div>
 </div>
 <div class="dest-info">
 <h3>Mysore Heritage Tour Package</h3>
@@ -632,16 +647,16 @@
 </div>
 </div>
 <div class="card-actions">
-<button class="btn-explore-now" onclick="openDestinationPage('karnataka')">EXPLORE</button>
-<button class="btn-quick-quote" onclick="quickQuote('Mysore Heritage Tour')">
+<button class="btn-explore-now" onclick="event.stopPropagation(); openDestinationPage('karnataka')">EXPLORE</button>
+<button class="btn-quick-quote" onclick="event.stopPropagation(); quickQuote('Mysore Heritage Tour')">
     <i class="fas fa-bolt"></i> Quick Quote
 </button>
 </div>
 </div>
 </div>
 
-<!-- COORG -->
-<div class="dest-card" data-aos="fade-up" data-aos-delay="100">
+<!-- COORG - FULL CLICKABLE -->
+<div class="dest-card" data-aos="fade-up" data-aos-delay="100" onclick="openDestinationPage('karnataka')" style="cursor: pointer;">
 <div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769942817/coorg_hc1qce.jpg');">
 <div class="mini-slides">
 <span class="slide-link">📍 Abbey Falls</span>
@@ -650,7 +665,7 @@
 <span class="slide-link">📍 Dubare Camp</span>
 </div>
 <div class="card-badge flash">PREMIUM</div>
-<div class="wishlist-btn"><i class="far fa-heart"></i></div>
+<div class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this);"><i class="far fa-heart"></i></div>
 </div>
 <div class="dest-info">
 <h3>Coorg Coffee Estate Package</h3>
@@ -668,16 +683,16 @@
 </div>
 </div>
 <div class="card-actions">
-<button class="btn-explore-now" onclick="openDestinationPage('karnataka')">EXPLORE</button>
-<button class="btn-quick-quote" onclick="quickQuote('Coorg Coffee Package')">
+<button class="btn-explore-now" onclick="event.stopPropagation(); openDestinationPage('karnataka')">EXPLORE</button>
+<button class="btn-quick-quote" onclick="event.stopPropagation(); quickQuote('Coorg Coffee Package')">
     <i class="fas fa-bolt"></i> Quick Quote
 </button>
 </div>
 </div>
 </div>
 
-<!-- GOA -->
-<div class="dest-card" data-aos="fade-up" data-aos-delay="200">
+<!-- GOA - FULL CLICKABLE -->
+<div class="dest-card" data-aos="fade-up" data-aos-delay="200" onclick="openDestinationPage('karnataka')" style="cursor: pointer;">
 <div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769626372/goa_eba8v5.png');">
 <div class="mini-slides">
 <span class="slide-link">📍 Anjuna Beach</span>
@@ -686,7 +701,7 @@
 <span class="slide-link">📍 Dudhsagar Falls</span>
 </div>
 <div class="card-badge">BEACH TOUR</div>
-<div class="wishlist-btn"><i class="far fa-heart"></i></div>
+<div class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this);"><i class="far fa-heart"></i></div>
 </div>
 <div class="dest-info">
 <h3>Goa Beach Holiday Package</h3>
@@ -704,8 +719,8 @@
 </div>
 </div>
 <div class="card-actions">
-<button class="btn-explore-now" onclick="openDestinationPage('karnataka')">EXPLORE</button>
-<button class="btn-quick-quote" onclick="quickQuote('Goa Beach Package')">
+<button class="btn-explore-now" onclick="event.stopPropagation(); openDestinationPage('karnataka')">EXPLORE</button>
+<button class="btn-quick-quote" onclick="event.stopPropagation(); quickQuote('Goa Beach Package')">
     <i class="fas fa-bolt"></i> Quick Quote
 </button>
 </div>
@@ -716,12 +731,17 @@
 </div>
 
 <!-- HYDERABAD -->
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   🕌 HYDERABAD DESTINATION CARDS - FULL CLICKABLE VERSION
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+
+<!-- HYDERABAD -->
 <div class="state-container" data-category="hyderabad">
 <h3 class="state-title">Hyderabad <span class="gold">Tour Packages</span></h3>
 <div class="dest-grid">
 
-<!-- CHARMINAR -->
-<div class="dest-card" data-aos="fade-up">
+<!-- CHARMINAR - FULL CLICKABLE -->
+<div class="dest-card" data-aos="fade-up" onclick="openDestinationPage('Hyderabad')" style="cursor: pointer;">
 <div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769666577/charmina_bpg1wb.jpg');">
 <div class="mini-slides">
 <span class="slide-link">📍 Charminar Monument</span>
@@ -730,7 +750,7 @@
 <span class="slide-link">📍 Chowmahalla Palace</span>
 </div>
 <div class="card-badge">HERITAGE</div>
-<div class="wishlist-btn"><i class="far fa-heart"></i></div>
+<div class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this);"><i class="far fa-heart"></i></div>
 </div>
 <div class="dest-info">
 <h3>Charminar Heritage Tour</h3>
@@ -748,16 +768,16 @@
 </div>
 </div>
 <div class="card-actions">
-<button class="btn-explore-now" onclick="openDestinationPage('Hyderabad')">EXPLORE</button>
-<button class="btn-quick-quote" onclick="quickQuote('Charminar Heritage Tour')">
+<button class="btn-explore-now" onclick="event.stopPropagation(); openDestinationPage('Hyderabad')">EXPLORE</button>
+<button class="btn-quick-quote" onclick="event.stopPropagation(); quickQuote('Charminar Heritage Tour')">
     <i class="fas fa-bolt"></i> Quick Quote
 </button>
 </div>
 </div>
 </div>
 
-<!-- GOLCONDA -->
-<div class="dest-card" data-aos="fade-up" data-aos-delay="100">
+<!-- GOLCONDA - FULL CLICKABLE -->
+<div class="dest-card" data-aos="fade-up" data-aos-delay="100" onclick="openDestinationPage('Hyderabad')" style="cursor: pointer;">
 <div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769666704/golgonda_aqxzrx.jpg');">
 <div class="mini-slides">
 <span class="slide-link">📍 Golconda Fort</span>
@@ -766,7 +786,7 @@
 <span class="slide-link">📍 Taramati Baradari</span>
 </div>
 <div class="card-badge flash">SPECIAL</div>
-<div class="wishlist-btn"><i class="far fa-heart"></i></div>
+<div class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this);"><i class="far fa-heart"></i></div>
 </div>
 <div class="dest-info">
 <h3>Golconda Fort Package</h3>
@@ -784,16 +804,16 @@
 </div>
 </div>
 <div class="card-actions">
-<button class="btn-explore-now" onclick="openDestinationPage('Hyderabad')">EXPLORE</button>
-<button class="btn-quick-quote" onclick="quickQuote('Golconda Fort Package')">
+<button class="btn-explore-now" onclick="event.stopPropagation(); openDestinationPage('Hyderabad')">EXPLORE</button>
+<button class="btn-quick-quote" onclick="event.stopPropagation(); quickQuote('Golconda Fort Package')">
     <i class="fas fa-bolt"></i> Quick Quote
 </button>
 </div>
 </div>
 </div>
 
-<!-- RAMOJI -->
-<div class="dest-card" data-aos="fade-up" data-aos-delay="200">
+<!-- RAMOJI - FULL CLICKABLE -->
+<div class="dest-card" data-aos="fade-up" data-aos-delay="200" onclick="openDestinationPage('Hyderabad')" style="cursor: pointer;">
 <div class="dest-img" style="background-image:url('https://res.cloudinary.com/drlg1t6pk/image/upload/v1769666935/ramoji_kdnuqd.jpg');">
 <div class="mini-slides">
 <span class="slide-link">📍 Film City Tour</span>
@@ -802,7 +822,7 @@
 <span class="slide-link">📍 Adventure Park</span>
 </div>
 <div class="card-badge">ENTERTAINMENT</div>
-<div class="wishlist-btn"><i class="far fa-heart"></i></div>
+<div class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(this);"><i class="far fa-heart"></i></div>
 </div>
 <div class="dest-info">
 <h3>Ramoji Film City Package</h3>
@@ -820,8 +840,8 @@
 </div>
 </div>
 <div class="card-actions">
-<button class="btn-explore-now" onclick="openDestinationPage('Hyderabad')">EXPLORE</button>
-<button class="btn-quick-quote" onclick="quickQuote('Ramoji Film City Package')">
+<button class="btn-explore-now" onclick="event.stopPropagation(); openDestinationPage('Hyderabad')">EXPLORE</button>
+<button class="btn-quick-quote" onclick="event.stopPropagation(); quickQuote('Ramoji Film City Package')">
     <i class="fas fa-bolt"></i> Quick Quote
 </button>
 </div>
@@ -1008,13 +1028,17 @@
 <p class="section-subtitle">Memories captured by our travelers</p>
 <div class="gallery-viewport">
 <div class="gsap-slider-wrapper">
-<div class="slide"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239846/img7_mljqvp.jpg" alt="Travel Gallery" loading="lazy"></div>
+<div class="slide"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1770658087/fd5_am2sbx.jpg" alt="Travel Gallery" loading="lazy"></div>
 <div class="slide"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239845/img36_ip4jcv.jpg" alt="Travel Gallery" loading="lazy"></div>
 <div class="slide"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239845/img32_ntyjbc.jpg" alt="Travel Gallery" loading="lazy"></div>
 <div class="slide"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239792/img12_bl8rzq.jpg" alt="Travel Gallery" loading="lazy"></div>
 <div class="slide"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239792/img11_m3c0kq.jpg" alt="Travel Gallery" loading="lazy"></div>
+<div class="slide"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1770658086/fd3_jscond.jpg" alt="Travel Gallery" loading="lazy"></div>
+<div class="slide"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1770658086/fd4_x7mot0.jpg" alt="Travel Gallery" loading="lazy"></div>
 <div class="slide"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239844/img29_jeheip.jpg" alt="Travel Gallery" loading="lazy"></div>
-<div class="slide"><img src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239860/Varkala_it9rvu.webp" alt="Travel Gallery" loading="lazy"></div>
+<div class="slide"><img src="" alt="Travel Gallery" loading="lazy"></div>
+<div class="slide"><img src="" alt="Travel Gallery" loading="lazy"></div>
+<div class="slide"><img src="" alt="Travel Gallery" loading="lazy"></div>
 </div>
 </div>
 </div>
@@ -1046,7 +1070,8 @@
 </div>
 </section>
 
-<!-- ✅✅✅ DESTINATION DETAIL PAGE WITH FOOTER & WHATSAPP ✅✅✅ -->
+<!-- DESTINATION DETAIL PAGE -->
+<!-- DESTINATION DETAIL PAGE WITH FOOTER -->
 <div id="detailPage" class="detail-page-overlay" style="display:none;">
   <div class="detail-header">
     <button class="btn-back" onclick="closeDetailPage()">
@@ -1062,9 +1087,21 @@
     <div id="places-grid" class="dest-grid"></div>
   </div>
 
-  <!-- ✅ FOOTER INSIDE DESTINATION OVERLAY -->
-  <footer class="main-footer overlay-footer">
+  <!-- ✅ WHATSAPP BUTTON INSIDE OVERLAY -->
+  <a href="javascript:void(0)" onclick="whatsapp('Destination Enquiry')" class="overlay-whatsapp">
+    <i class="fab fa-whatsapp"></i>
+    <div class="whatsapp-pulse"></div>
+  </a>
+
+  <!-- ✅ BACK TO TOP BUTTON -->
+  <button class="back-to-top-overlay" onclick="document.getElementById('detailPage').scrollTo({top:0,behavior:'smooth'})">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- ✅ FOOTER INSIDE OVERLAY -->
+  <footer class="overlay-footer">
     <div class="footer-container">
+
       <!-- BRAND -->
       <div class="footer-box">
         <div class="footer-logo">
@@ -1092,11 +1129,12 @@
       <div class="footer-box">
         <h4>Quick Links</h4>
         <ul>
-          <li><a href="javascript:void(0)" onclick="closeDetailPage(); setTimeout(() => scrollToSection('home'), 300);">Home</a></li>
-          <li><a href="javascript:void(0)" onclick="closeDetailPage(); setTimeout(() => scrollToSection('destinations'), 300);">Destinations</a></li>
-          <li><a href="javascript:void(0)" onclick="closeDetailPage(); setTimeout(() => scrollToSection('offers'), 300);">Offers</a></li>
-          <li><a href="javascript:void(0)" onclick="closeDetailPage(); setTimeout(() => scrollToSection('services'), 300);">Services</a></li>
-          <li><a href="javascript:void(0)" onclick="closeDetailPage(); setTimeout(() => scrollToSection('contact'), 300);">Contact</a></li>
+          <li><a href="javascript:void(0)" onclick="closeDetailPage(); setTimeout(() => document.getElementById('home').scrollIntoView({behavior:'smooth'}), 100)">Home</a></li>
+          <li><a href="javascript:void(0)" onclick="closeDetailPage(); setTimeout(() => toggleAbout(true), 100)">About Us</a></li>
+          <li><a href="javascript:void(0)" onclick="closeDetailPage(); setTimeout(() => document.getElementById('destinations').scrollIntoView({behavior:'smooth'}), 100)">Destinations</a></li>
+          <li><a href="javascript:void(0)" onclick="closeDetailPage(); setTimeout(() => document.getElementById('offers').scrollIntoView({behavior:'smooth'}), 100)">Offers</a></li>
+          <li><a href="javascript:void(0)" onclick="closeDetailPage(); setTimeout(() => document.getElementById('services').scrollIntoView({behavior:'smooth'}), 100)">Services</a></li>
+          <li><a href="javascript:void(0)" onclick="closeDetailPage(); setTimeout(() => document.getElementById('contact').scrollIntoView({behavior:'smooth'}), 100)">Contact</a></li>
         </ul>
       </div>
 
@@ -1104,11 +1142,11 @@
       <div class="footer-box">
         <h4>Top Destinations</h4>
         <ul class="footer-dest-links">
-          <li onclick="openDestinationPage('Tamil Nadu')">Ooty</li>
-          <li onclick="openDestinationPage('kerala')">Munnar</li>
-          <li onclick="openDestinationPage('karnataka')">Goa</li>
-          <li onclick="openDestinationPage('Tamil Nadu')">Kodaikanal</li>
-          <li onclick="openDestinationPage('kerala')">Alleppey</li>
+          <li onclick="closeDetailPage(); setTimeout(() => openDestinationPage('Tamil Nadu'), 200)">Ooty</li>
+          <li onclick="closeDetailPage(); setTimeout(() => openDestinationPage('kerala'), 200)">Munnar</li>
+          <li onclick="closeDetailPage(); setTimeout(() => openDestinationPage('karnataka'), 200)">Goa</li>
+          <li onclick="closeDetailPage(); setTimeout(() => openDestinationPage('Tamil Nadu'), 200)">Kodaikanal</li>
+          <li onclick="closeDetailPage(); setTimeout(() => openDestinationPage('kerala'), 200)">Alleppey</li>
         </ul>
       </div>
 
@@ -1119,6 +1157,7 @@
         <p><i class="fas fa-envelope"></i> dineshcse142@gmail.com</p>
         <p><i class="fas fa-map-marker-alt"></i> Tamil Nadu, India</p>
       </div>
+
     </div>
     
     <div class="footer-bottom">
@@ -1126,19 +1165,9 @@
     </div>
   </footer>
 
-  <!-- ✅ WHATSAPP FLOAT BUTTON INSIDE OVERLAY -->
-  <a href="javascript:void(0)" onclick="whatsapp('Destination Enquiry')" class="whatsapp-float overlay-whatsapp">
-    <i class="fab fa-whatsapp"></i>
-    <div class="whatsapp-pulse"></div>
-  </a>
-
-  <!-- ✅ BACK TO TOP BUTTON -->
-  <button class="back-to-top-overlay" onclick="document.getElementById('detailPage').scrollTo({top: 0, behavior: 'smooth'});">
-    <i class="fas fa-arrow-up"></i>
-  </button>
 </div>
 
-<!-- FOOTER (MAIN PAGE) -->
+<!-- FOOTER -->
 <footer class="main-footer">
   <div class="footer-container">
 
@@ -1153,9 +1182,7 @@
       </p>
       <div class="footer-social">
         <a href="https://www.instagram.com/fundun_holidays" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
         <a href="javascript:void(0)" onclick="whatsapp('General Enquiry')" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
       </div>
       
       <!-- ✅ CERTIFICATE IN FOOTER - Mobile Only -->
@@ -1192,9 +1219,9 @@
     <!-- CONTACT -->
     <div class="footer-box">
       <h4>Contact Us</h4>
-      <p><i class="fas fa-phone"></i> +91 95855 75354</p>
-      <p><i class="fas fa-envelope"></i> dineshcse142@gmail.com</p>
-      <p><i class="fas fa-map-marker-alt"></i> Tamil Nadu, India</p>
+      <p><i class="fas fa-phone"></i> +91 7010954360</p>
+      <p><i class="fas fa-envelope"></i> fundunholidays@gmail.com</p>
+      <p><i class="fas fa-map-marker-alt"></i> 25/1, Ranga Layout 2, NALLAPALAYAM, Ganapathy, Coimbatore, Tamil Nadu 641006</p>
     </div>
 
   </div>
@@ -1208,5 +1235,6 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="script.js"></script>
 <script src="feature-flags-integration.js"></script>
+<script src="live-notifications.js"></script>
 </body>
 </html>

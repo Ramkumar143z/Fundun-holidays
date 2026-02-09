@@ -1,14 +1,3 @@
-/*
-╔══════════════════════════════════════════════════════════════╗
-║  FUNDUN HOLIDAYS - SIMPLE CARD GRID (NO EFFECTS)            ║
-║  Tamil: Destination page-la normal card grid mattum          ║
-╚══════════════════════════════════════════════════════════════╝
-*/
-
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-//  🎯 SMOOTH SCROLL FOR NAVIGATION
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -51,6 +40,70 @@ function toggleAbout(show) {
         
         console.log("✓ About page closed");
     }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//  💖 WISHLIST TOGGLE FUNCTION
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+function toggleWishlist(element) {
+    const icon = element.querySelector('i');
+    
+    if (icon.classList.contains('far')) {
+        // Add to wishlist
+        icon.classList.remove('far');
+        icon.classList.add('fas');
+        element.style.background = 'rgba(212, 175, 55, 0.2)';
+        element.style.borderColor = '#d4af37';
+        
+        // Show notification
+        showQuickNotification('Added to wishlist! ❤️');
+        console.log('✓ Added to wishlist');
+    } else {
+        // Remove from wishlist
+        icon.classList.remove('fas');
+        icon.classList.add('far');
+        element.style.background = 'rgba(0, 0, 0, 0.6)';
+        element.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+        
+        showQuickNotification('Removed from wishlist');
+        console.log('✓ Removed from wishlist');
+    }
+}
+
+// Simple notification function
+function showQuickNotification(message) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 30px;
+        background: rgba(0, 0, 0, 0.9);
+        color: #fff;
+        padding: 15px 25px;
+        border-radius: 10px;
+        border: 1px solid #d4af37;
+        z-index: 10000;
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    `;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    // Trigger animation
+    setTimeout(() => {
+        notification.style.opacity = '1';
+        notification.style.transform = 'translateX(0)';
+    }, 10);
+    
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(50px)';
+        setTimeout(() => notification.remove(), 300);
+    }, 2000);
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -218,12 +271,9 @@ const destinations = {
         }
     }
 };
-
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-//  🎴 SIMPLE CARD GRID - NO SLIDER, NO EFFECTS
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 function openDestinationPage(state) {
+    console.log('🎯 Opening destination page for:', state);
+    
     const data = destinations[state];
     if (!data) {
         console.error(`❌ No data found for state: ${state}`);
@@ -257,7 +307,7 @@ function openDestinationPage(state) {
 
     const placesArray = Object.entries(data.places);
 
-    // Create simple cards - no effects, just grid
+    // Create simple cards
     placesArray.forEach(([city, cityData]) => {
         const card = document.createElement("div");
         card.className = "simple-destination-card";
@@ -584,23 +634,24 @@ function showBookingOptions(state, city = '') {
 }
 
 function quickQuote(packageName) {
+    console.log('📞 Quick quote for:', packageName);
     showBookingOptions(packageName);
 }
 
 function sendToWhatsApp(message) {
-    const phone = "919585575354";
+    const phone = "7010954360";
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
 }
 
 function whatsapp(message) {
-    const phone = "919585575354";
+    const phone = "7010954360";
     const url = `https://wa.me/${phone}?text=${encodeURIComponent("Hi Fundun Holidays, " + message)}`;
     window.open(url, "_blank");
 }
 
 function openMail() {
-    window.location.href = "mailto:dineshcse142@gmail.com";
+    window.location.href = "mailto:fundunholidays@gmail.com";
 }
 
 function scrollToSection(id) {
@@ -763,30 +814,114 @@ function setupDestinationFilters() {
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-//  🚀 INITIALIZE ON LOAD
+//  🔔 LIVE BOOKING NOTIFICATIONS
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+const bookingNotifications = [
+    {
+        name: "Ram from pudukkottai",
+        package: "Ooty Honeymoon Package",
+        time: "2 minutes ago"
+    },
+    {
+        name: "Dinesh & Karthikeyani from ponnamaravathy",
+        package: "Kerala honeymoon Tour",
+        time: "5 minutes ago"
+    },
+    {
+        name: "Arun from Bangalore",
+        package: "Munnar Family Package",
+        time: "8 minutes ago"
+    },
+    {
+        name: "Divya from Mumbai",
+        package: "Kodaikanal Couple Package",
+        time: "12 minutes ago"
+    },
+    {
+        name: "Vikram & Family",
+        package: "Goa Beach Holiday",
+        time: "15 minutes ago"
+    },
+    {
+        name: "Meena from Coimbatore",
+        package: "Ramoji Film City Tour",
+        time: "18 minutes ago"
+    },
+    {
+        name: "Suresh & Team",
+        package: "Corporate Coorg Package",
+        time: "22 minutes ago"
+    },
+    {
+        name: "Lakshmi from Hyderabad",
+        package: "Alleppey Backwaters",
+        time: "25 minutes ago"
+    },
+    {
+        name: "Arjun & Sneha",
+        package: "Wayanad Nature Tour",
+        time: "30 minutes ago"
+    },
+    {
+        name: "Harini from Delhi",
+        package: "Mysore Heritage Tour",
+        time: "35 minutes ago"
+    }
+];
+
+let currentNotificationIndex = 0;
+let notificationTimeout = null;
+
+function showLiveNotification() {
+    const notificationDiv = document.getElementById("live-notification");
+    const notifText = document.getElementById("notif-text");
+    
+    if (!notificationDiv || !notifText) {
+        return;
+    }
+    
+    const notification = bookingNotifications[currentNotificationIndex];
+    
+    notifText.innerHTML = `
+        <strong>${notification.name}</strong> just booked 
+        <span style="color: #d4af37;">${notification.package}</span> 
+        <span style="color: #999;">• ${notification.time}</span>
+    `;
+    
+    notificationDiv.classList.add("show");
+    
+    if (notificationTimeout) {
+        clearTimeout(notificationTimeout);
+    }
+    
+    notificationTimeout = setTimeout(() => {
+        notificationDiv.classList.remove("show");
+        currentNotificationIndex = (currentNotificationIndex + 1) % bookingNotifications.length;
+        setTimeout(showLiveNotification, 8000);
+    }, 5000);
+}
+
+function initLiveNotifications() {
+    setTimeout(() => {
+        showLiveNotification();
+    }, 3000);
+}
+//  🚀 INITIALIZE ON LOAD
 document.addEventListener("DOMContentLoaded", function() {
     
-    console.log("🌴 Fundun Holidays - Simple Grid Layout Loading...");
+    console.log("🌴 Fundun Holidays - Full Card Clickable Active!");
     
-    // Setup everything
     setupHeroCarousel();
     setupMobileMenu();
     setupDestinationFilters();
+    initLiveNotifications();
     
-    // Start review rotation
     renderSingleReview();
     setInterval(renderSingleReview, 3500);
     
     console.log("✓ All systems ready!");
-    console.log("✓ Simple card grid activated - no slider effects!");
-    console.log("✓ Clean & simple layout!");
+    console.log("✓ Full card clickable: ENABLED ✨");
+    console.log("✓ Wishlist function: READY 💖");
+    console.log("✓ Tamil: Ippo card click guaranteed work aagum!");
 });
-
-/*
-╔══════════════════════════════════════════════════════════════╗
-║  ✨ SIMPLE GRID - NO EFFECTS, CLEAN LAYOUT! ✨              ║
-║  Tamil: Ippo normal grid mattum - slider illa!               ║
-╚══════════════════════════════════════════════════════════════╝
-*/
