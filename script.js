@@ -1,100 +1,98 @@
-// Smooth scroll for navigation
+/*
+╔══════════════════════════════════════════════════════════════╗
+║  FUNDUN HOLIDAYS - SIMPLE CARD GRID (NO EFFECTS)            ║
+║  Tamil: Destination page-la normal card grid mattum          ║
+╚══════════════════════════════════════════════════════════════╝
+*/
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//  🎯 SMOOTH SCROLL FOR NAVIGATION
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
     });
 });
-// Scroll Reveal Logic (throttled with requestAnimationFrame, passive listener)
-let _scrollTicking = false;
-window.addEventListener('scroll', function() {
-    if (!_scrollTicking) {
-        window.requestAnimationFrame(function() {
-            reveal();
-            _scrollTicking = false;
-        });
-        _scrollTicking = true;
-    }
-}, { passive: true });
 
-function reveal() {
-    var reveals = document.querySelectorAll('.section, .card, .service-card, .about-text');
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//  🔧 ABOUT PAGE TOGGLE
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-    for (var i = 0; i < reveals.length; i++) {
-        var windowHeight = window.innerHeight;
-        var revealTop = reveals[i].getBoundingClientRect().top;
-        var revealPoint = 150;
-
-        if (revealTop < windowHeight - revealPoint) {
-            reveals[i].classList.add('active');
-        }
-    }
-}
-
-// Initial check on load
-window.onload = reveal;
-
-// Calculator logic (same as before but with a small bounce effect)
-function calculateTotal() {
-    const resultDiv = document.getElementById("calc-result");
-    resultDiv.style.opacity = "0";
+function toggleAbout(show) {
+    const aboutPage = document.getElementById("aboutPage");
+    if (!aboutPage) return;
     
-    setTimeout(() => {
-        const destinationRate = document.getElementById("dest-select").value;
-        const travelers = document.getElementById("travelers").value;
-
-        if (travelers > 0) {
-            const total = destinationRate * travelers;
-            resultDiv.innerHTML = `
-                <div style="transform: scale(1.1); transition: 0.3s; color: #c5a059; font-weight: bold;">
-                    <p>EXCLUSIVE QUOTE</p>
-                    <h2 style="font-size: 2.5rem;">₹${total.toLocaleString('en-IN')}</h2>
-                </div>
-            `;
-            resultDiv.style.opacity = "1";
-        }
-    }, 300);
+    if (show) {
+        aboutPage.style.display = "block";
+        aboutPage.classList.add("active");
+        document.body.classList.add("overlay-open");
+        
+        setTimeout(() => {
+            aboutPage.style.opacity = "1";
+        }, 10);
+        
+        console.log("✓ About page opened");
+    } else {
+        aboutPage.style.opacity = "0";
+        aboutPage.classList.remove("active");
+        document.body.classList.remove("overlay-open");
+        
+        setTimeout(() => {
+            aboutPage.style.display = "none";
+        }, 300);
+        
+        console.log("✓ About page closed");
+    }
 }
 
-// Destination data
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//  🗺️ DESTINATION DATA
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 const destinations = {
     "Tamil Nadu": {
-    "title": "Tamil Nadu Destinations",
-    "subtitle": "Explore the rich culture and natural beauty of Tamil Nadu",
-    "places": {
-        "Ooty": {
-            description: "Ooty, also known as Udhagamandalam, is a popular hill station in Tamil Nadu famous for its tea estates, botanical gardens, and colonial architecture.",
-            image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850347/Ooty_sm1awg.png",
-            places: ["Boat House", "Pykara Dam", "Pykara Lake", "Rose Garden", "Tea Museum", "Pine Forest", "Shooting Point", "Karnataka Garden", "Doddapetta Peak"]
-        },
-        "Kodaikanal": {
-            description: "Kodaikanal is a charming hill town known for its pristine lakes, waterfalls, and scenic viewpoints.",
-            image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850389/kodaikanal_rrm80l.png",
-            places: ["Silver Falls", "Kodaikanal Lake", "Bryant Park", "Coakers Park", "Poombarai", "Kookal", "Pillar Rock", "Guna Caves"]
-        },
-        "Yercaud": {
-            description: "Yercaud is a serene hill station known for its coffee plantations, lakes, and panoramic views.",
-            image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850504/yercadu_vpquei.png",
-            places: ["Yercaud Lake", "Pagoda Point", "Loop Road", "Bears Cave", "Kiliyur Water Falls", "Servarayan Temple"]
-        },
-        "Kanyakumari": {
-            description: "Kanyakumari is the southernmost tip of India, famous for its stunning sunrise and sunset views, temples, and memorials.",
-            image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850491/Kannayakumari_dsszcl.png",
-            places: ["Thiruvalluvar Statue", "Vivekananda Memorial Rock", "Sunset View Point", "Beach", "Padmanabhapuram Palace", "Papanasam Temple", "Manimuthar Dam", "Kuttralam"]
-        },
-        "Chennai": {
-            description: "Chennai, the capital of Tamil Nadu, is a vibrant city with rich history, temples, beaches, and modern attractions.",
-            image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850626/chennai_tyxhra.png",
-            places: ["Marina Beach", "Mahabalipuram", "Santhome Church", "Birla Planetorium", "Elliotts Beach", "Kapaleeshwar Temple", "VGP Amusement Park"]
-        },
-        "Pondicherry": {
-            description: "Pondicherry, a former French colony, offers a blend of Indian and French cultures with beautiful beaches and colonial architecture.",
-            image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850641/pondicherry_ffgflu.png",
-            places: ["French Colony", "Paradise Beach", "Sacred Heart Basilica", "Rock Beach", "Auroville Beach", "Promenade Beach", "Chunnambar Boat House"]
+        "title": "Tamil Nadu Destinations",
+        "subtitle": "Explore the rich culture and natural beauty of Tamil Nadu",
+        "places": {
+            "Ooty": {
+                description: "Ooty, also known as Udhagamandalam, is a popular hill station in Tamil Nadu famous for its tea estates, botanical gardens, and colonial architecture.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850347/Ooty_sm1awg.png",
+                places: ["Boat House", "Pykara Dam", "Pykara Lake", "Rose Garden", "Tea Museum", "Pine Forest", "Shooting Point", "Karnataka Garden", "Doddapetta Peak"]
+            },
+            "Kodaikanal": {
+                description: "Kodaikanal is a charming hill town known for its pristine lakes, waterfalls, and scenic viewpoints.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850389/kodaikanal_rrm80l.png",
+                places: ["Silver Falls", "Kodaikanal Lake", "Bryant Park", "Coakers Park", "Poombarai", "Kookal", "Pillar Rock", "Guna Caves"]
+            },
+            "Yercaud": {
+                description: "Yercaud is a serene hill station known for its coffee plantations, lakes, and panoramic views.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850504/yercadu_vpquei.png",
+                places: ["Yercaud Lake", "Pagoda Point", "Loop Road", "Bears Cave", "Kiliyur Water Falls", "Servarayan Temple"]
+            },
+            "Kanyakumari": {
+                description: "Kanyakumari is the southernmost tip of India, famous for its stunning sunrise and sunset views, temples, and memorials.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850491/Kannayakumari_dsszcl.png",
+                places: ["Thiruvalluvar Statue", "Vivekananda Memorial Rock", "Sunset View Point", "Beach", "Padmanabhapuram Palace", "Papanasam Temple", "Manimuthar Dam", "Kuttralam"]
+            },
+            "Chennai": {
+                description: "Chennai, the capital of Tamil Nadu, is a vibrant city with rich history, temples, beaches, and modern attractions.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850626/chennai_tyxhra.png",
+                places: ["Marina Beach", "Mahabalipuram", "Santhome Church", "Birla Planetorium", "Elliotts Beach", "Kapaleeshwar Temple", "VGP Amusement Park"]
+            },
+            "Pondicherry": {
+                description: "Pondicherry, a former French colony, offers a blend of Indian and French cultures with beautiful beaches and colonial architecture.",
+                image: "https://res.cloudinary.com/drlg1t6pk/image/upload/v1769850641/pondicherry_ffgflu.png",
+                places: ["French Colony", "Paradise Beach", "Sacred Heart Basilica", "Rock Beach", "Auroville Beach", "Promenade Beach", "Chunnambar Boat House"]
+            }
         }
-    }
     },
     "kerala": {
         title: "Kerala Destinations",
@@ -221,200 +219,342 @@ const destinations = {
     }
 };
 
-// ✅ FIXED & OPTIMIZED openDestinationPage Function
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//  🎴 SIMPLE CARD GRID - NO SLIDER, NO EFFECTS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 function openDestinationPage(state) {
     const data = destinations[state];
-    if (!data) return;
+    if (!data) {
+        console.error(`❌ No data found for state: ${state}`);
+        return;
+    }
 
     const detailPage = document.getElementById("detailPage");
     const placesGrid = document.getElementById("places-grid");
     
+    if (!detailPage || !placesGrid) {
+        console.error("❌ Detail page or places grid not found");
+        return;
+    }
+    
+    // Set titles
     document.getElementById("detail-title").innerHTML = data.title;
     document.getElementById("detail-subtitle").innerText = data.subtitle;
 
+    // Clear previous content
     placesGrid.innerHTML = "";
-    const isMobile = window.innerWidth <= 768;
+    
+    // Simple grid container
+    placesGrid.style.cssText = `
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+        padding: 40px 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+    `;
 
-    for (const [city, cityData] of Object.entries(data.places)) {
+    const placesArray = Object.entries(data.places);
+
+    // Create simple cards - no effects, just grid
+    placesArray.forEach(([city, cityData]) => {
         const card = document.createElement("div");
-        card.className = "safari-card";
-        
-        // ✅ KEY FIX: Desktop-ku background image directly on safari-card
-        if (!isMobile) {
-            card.style.backgroundImage = `url('${cityData.image}')`;
-            card.style.backgroundSize = "cover";
-            card.style.backgroundPosition = "center";
-        }
+        card.className = "simple-destination-card";
+        card.style.cssText = `
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(10, 10, 10, 0.95));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        `;
 
-        // ✅ Mobile-ku separate image div
-        if (isMobile) {
-            const imgDiv = document.createElement("div");
-            imgDiv.className = "card-img-top";
-            imgDiv.style.backgroundImage = `url('${cityData.image}')`;
-            imgDiv.style.width = "100%";
-            imgDiv.style.height = "55%";
-            imgDiv.style.backgroundSize = "cover";
-            imgDiv.style.backgroundPosition = "center";
-            imgDiv.style.backgroundRepeat = "no-repeat";
-            card.appendChild(imgDiv);
-        }
+        // Image section
+        const imageSection = document.createElement('div');
+        imageSection.style.cssText = `
+            background-image: url('${cityData.image}');
+            background-size: cover;
+            background-position: center;
+            height: 250px;
+            position: relative;
+        `;
 
-        const destInfo = document.createElement('div');
-        destInfo.className = 'dest-info';
-        
-        destInfo.innerHTML = `
-            <h1>${city.toUpperCase()}</h1>
-            <p>${cityData.description}</p>
-            <div class="card-btns">
-                <button class="btn-gold" onclick="event.stopPropagation(); showBookingOptions('${state}', '${city}')">BOOK</button>
-                <button class="btn-white" onclick="event.stopPropagation(); viewCityDetails('${state}', '${city}')">VIEW</button>
+        const imageOverlay = document.createElement('div');
+        imageOverlay.style.cssText = `
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+        `;
+        imageSection.appendChild(imageOverlay);
+
+        // Content section
+        const contentSection = document.createElement('div');
+        contentSection.style.cssText = `padding: 30px;`;
+
+        contentSection.innerHTML = `
+            <div style="margin-bottom: 8px;">
+                <span style="display: inline-block; background: rgba(212, 175, 55, 0.15); 
+                             border: 1px solid rgba(212, 175, 55, 0.3); padding: 5px 14px; 
+                             border-radius: 20px; font-size: 11px; color: #d4af37; 
+                             font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+                    ${state}
+                </span>
+            </div>
+            
+            <h3 style="font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 700; 
+                       color: #d4af37; margin-bottom: 15px; line-height: 1.2;">
+                ${city}
+            </h3>
+            
+            <p style="font-size: 14px; line-height: 1.7; color: #ccc; margin-bottom: 20px;
+                      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+                      overflow: hidden;">
+                ${cityData.description}
+            </p>
+            
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button onclick="showBookingOptions('${state}', '${city}')" 
+                        style="flex: 1; background: linear-gradient(135deg, #d4af37, #b8962e); 
+                               color: #000; border: none; padding: 12px 20px; border-radius: 25px; 
+                               font-size: 13px; font-weight: 700; text-transform: uppercase; 
+                               cursor: pointer; transition: all 0.3s ease;">
+                    <i class="fas fa-calendar-check"></i> BOOK NOW
+                </button>
+                
+                <button onclick="viewCityDetails('${state}', '${city}')"
+                        style="flex: 1; background: transparent; border: 2px solid #d4af37; 
+                               color: #d4af37; padding: 12px 20px; border-radius: 25px; 
+                               font-size: 13px; font-weight: 700; text-transform: uppercase; 
+                               cursor: pointer; transition: all 0.3s ease;">
+                    <i class="fas fa-map-marked-alt"></i> VIEW
+                </button>
+            </div>
+            
+            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p style="font-size: 12px; color: #666;">
+                    <i class="fas fa-map-marker-alt" style="color: #d4af37; margin-right: 6px;"></i>
+                    ${cityData.places.length} Places to Visit
+                </p>
             </div>
         `;
 
-        card.appendChild(destInfo);
+        // Hover effect
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px)';
+            card.style.borderColor = 'rgba(212, 175, 55, 0.6)';
+            card.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.8)';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            card.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+            card.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
+        });
+
+        card.appendChild(imageSection);
+        card.appendChild(contentSection);
         placesGrid.appendChild(card);
-    }
+    });
 
-    if (!isMobile) {
-        const navDiv = document.createElement("div");
-        navDiv.className = "slider-nav";
-        navDiv.innerHTML = `
-            <button onclick="moveSlider('prev')"><i class="fas fa-arrow-left"></i></button>
-            <button onclick="moveSlider('next')"><i class="fas fa-arrow-right"></i></button>
-        `;
-        placesGrid.appendChild(navDiv);
-    }
-
+    // Open overlay
     detailPage.style.display = "block";
-    setTimeout(() => detailPage.style.opacity = "1", 10);
+    detailPage.classList.add("active");
+    document.body.classList.add("overlay-open");
+    
+    setTimeout(() => {
+        detailPage.style.opacity = "1";
+    }, 10);
+    
+    console.log(`✓ Destination page opened: ${state} (${placesArray.length} destinations)`);
 }
 
-// Slider Movement Logic (Intha logic constant-ah irukatum for desktop)
-function moveSlider(direction) {
-    const items = document.querySelectorAll('.safari-card');
-    const grid = document.getElementById('places-grid');
-    if (items.length === 0) return;
-
-    if (direction === 'next') {
-        grid.appendChild(items[0]);
-    } else {
-        grid.prepend(items[items.length - 1]);
-    }
-}
-
+// Close destination page
 function closeDetailPage() {
-    document.getElementById("detailPage").style.display = "none";
+    const detailPage = document.getElementById("detailPage");
+    if (!detailPage) return;
+    
+    detailPage.style.opacity = "0";
+    detailPage.classList.remove("active");
+    document.body.classList.remove("overlay-open");
+    
+    setTimeout(() => {
+        detailPage.style.display = "none";
+    }, 300);
+    
+    console.log("✓ Destination page closed");
 }
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//  👁️ VIEW CITY DETAILS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 function viewCityDetails(state, city) {
-    const places = destinations[state].places[city].places;
+    const places = destinations[state]?.places[city]?.places;
+    if (!places) return;
+    
     const modal = document.createElement("div");
-    
-    // Modal unique ID
     modal.id = "city-details-modal";
-    
     modal.style.cssText = `
         position: fixed; top: 0; left: 0; width: 100%; height: 100%;
         background: rgba(0,0,0,0.95); display: flex; justify-content: center;
-        align-items: center; z-index: 10000; backdrop-filter: blur(5px);
+        align-items: center; z-index: 10001; backdrop-filter: blur(10px);
     `;
 
     modal.innerHTML = `
         <div style="background: linear-gradient(135deg, rgba(20,20,20,0.98), rgba(5,5,5,0.98)); 
-                    border: 1px solid rgba(212,175,55,0.4); padding: 35px; border-radius: 25px; 
-                    text-align: center; max-width: 500px; width: 90%; max-height: 85%; 
-                    overflow-y: auto; box-shadow: 0 30px 70px rgba(0,0,0,1);">
+                    border: 2px solid rgba(212,175,55,0.4); padding: 40px; border-radius: 25px; 
+                    text-align: center; max-width: 550px; width: 90%; max-height: 85%; 
+                    overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,1);">
             
-            <h3 style="color: #d4af37; margin-bottom: 25px; font-family: 'Poppins', sans-serif; letter-spacing: 1px;">
-                PLACES IN ${city.toUpperCase()}
-            </h3>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <i class="fas fa-map-marked-alt" style="font-size: 48px; color: #d4af37; margin-bottom: 15px;"></i>
+                <h3 style="color: #d4af37; margin: 0; font-family: 'Poppins', sans-serif; 
+                           font-size: 28px; font-weight: 800; letter-spacing: 1px;">
+                    ${city.toUpperCase()}
+                </h3>
+                <p style="color: #999; font-size: 14px; margin-top: 5px;">
+                    ${places.length} Amazing Places to Explore
+                </p>
+            </div>
             
             <ul style="list-style: none; padding: 0; text-align: left; color: #fff;">
-                ${places.map(place => `
-                    <li style="margin-bottom: 12px; padding: 12px; border-bottom: 1px solid rgba(212,175,55,0.15); 
-                               background: rgba(255,255,255,0.03); border-radius: 12px; display: flex; align-items: center;">
-                        <i class="fas fa-map-marker-alt" style="color: #d4af37; margin-right: 12px; font-size: 14px;"></i> 
-                        <span style="font-size: 15px;">${place}</span>
+                ${places.map((place, index) => `
+                    <li style="margin-bottom: 12px; padding: 15px 18px; 
+                               background: rgba(212,175,55,0.05); 
+                               border: 1px solid rgba(212,175,55,0.15);
+                               border-radius: 15px; display: flex; align-items: center;
+                               transition: all 0.3s ease; cursor: pointer;"
+                        onmouseover="this.style.background='rgba(212,175,55,0.12)'; this.style.borderColor='rgba(212,175,55,0.3)'; this.style.transform='translateX(5px)';"
+                        onmouseout="this.style.background='rgba(212,175,55,0.05)'; this.style.borderColor='rgba(212,175,55,0.15)'; this.style.transform='translateX(0)';">
+                        <span style="display: inline-flex; align-items: center; justify-content: center;
+                                     width: 30px; height: 30px; border-radius: 50%; 
+                                     background: linear-gradient(135deg, #d4af37, #b8962e);
+                                     color: #000; font-weight: 700; font-size: 12px;
+                                     margin-right: 15px; flex-shrink: 0;">
+                            ${index + 1}
+                        </span>
+                        <span style="font-size: 15px; font-weight: 500;">${place}</span>
                     </li>
                 `).join("")}
             </ul>
 
             <button id="close-modal-btn" style="background: linear-gradient(135deg, #d4af37, #b8962e); 
-                    color: #000; border: none; padding: 14px 40px; margin-top: 25px; 
+                    color: #000; border: none; padding: 16px 50px; margin-top: 30px; 
                     border-radius: 50px; cursor: pointer; font-weight: 700; transition: 0.3s; 
-                    text-transform: uppercase; letter-spacing: 1px;">
-                CLOSE
+                    text-transform: uppercase; letter-spacing: 1.5px; font-size: 14px;
+                    font-family: 'Poppins', sans-serif; box-shadow: 0 10px 30px rgba(212,175,55,0.4);">
+                <i class="fas fa-times"></i> CLOSE
             </button>
         </div>
     `;
 
     document.body.appendChild(modal);
 
-    // ✅ DIRECT EVENT LISTENER (No more window.closeModal needed)
     const closeBtn = modal.querySelector("#close-modal-btn");
-    closeBtn.addEventListener('click', () => {
-        modal.remove(); // Direct-ah antha modal node-aye remove pannidum
-    });
-
-    // Background click panna close aaga
+    closeBtn.addEventListener('click', () => modal.remove());
     modal.addEventListener('click', (e) => {
         if (e.target === modal) modal.remove();
     });
 }
 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//  📝 BOOKING & ENQUIRY FUNCTIONS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 function showBookingOptions(state, city = '') {
     const location = city ? `${city}, ${state}` : state;
     
-    // Create calculator modal
     const modal = document.createElement("div");
-    modal.style.position = "fixed";
-    modal.style.top = "0";
-    modal.style.left = "0";
-    modal.style.width = "100%";
-    modal.style.height = "100%";
-    modal.style.backgroundColor = "rgba(0,0,0,0.9)";
-    modal.style.display = "flex";
-    modal.style.justifyContent = "center";
-    modal.style.alignItems = "center";
-    modal.style.zIndex = "10000";
-    modal.style.overflowY = "auto";
+    modal.style.cssText = `
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.92); display: flex; justify-content: center;
+        align-items: center; z-index: 10002; overflow-y: auto; backdrop-filter: blur(10px);
+    `;
     modal.id = "bookingModal";
 
     modal.innerHTML = `
-        <div style="background: linear-gradient(135deg, rgba(20,20,20,0.95), rgba(5,5,5,0.95)); border: 1px solid rgba(212,175,55,0.3); padding: 40px; border-radius: 25px; max-width: 500px; box-shadow: 0 20px 60px rgba(0,0,0,0.8); color: #fff; margin: 20px;">
-            <h2 style="color: #d4af37; margin-bottom: 20px; text-align: center; font-size: 24px;">PACKAGE CALCULATOR</h2>
-            <p style="text-align: center; color: #aaa; margin-bottom: 25px;">📍 ${location}</p>
+        <div style="background: linear-gradient(135deg, rgba(20,20,20,0.95), rgba(5,5,5,0.95)); 
+                    border: 2px solid rgba(212,175,55,0.3); padding: 45px; border-radius: 25px; 
+                    max-width: 520px; box-shadow: 0 30px 80px rgba(0,0,0,0.9); color: #fff; margin: 20px;">
             
-            <form id="bookingCalcForm" style="display: flex; flex-direction: column; gap: 15px;">
+            <div style="text-align: center; margin-bottom: 25px;">
+                <i class="fas fa-calculator" style="font-size: 48px; color: #d4af37; margin-bottom: 10px;"></i>
+                <h2 style="color: #d4af37; margin: 10px 0; font-size: 28px; font-family: 'Poppins', sans-serif; font-weight: 800;">
+                    PACKAGE CALCULATOR
+                </h2>
+                <p style="text-align: center; color: #aaa; margin: 5px 0; font-size: 15px;">
+                    <i class="fas fa-map-marker-alt" style="color: #d4af37;"></i> ${location}
+                </p>
+            </div>
+            
+            <form id="bookingCalcForm" style="display: flex; flex-direction: column; gap: 18px;">
                 <div>
-                    <label style="display: block; margin-bottom: 8px; font-size: 14px; color: #d4af37;">Full Name *</label>
-                    <input type="text" id="booking-name" placeholder="Your Name" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #333; background: #0c0c0c; color: #fff; outline: none; font-family: inherit; box-sizing: border-box;">
+                    <label style="display: block; margin-bottom: 10px; font-size: 14px; color: #d4af37; font-weight: 600;">
+                        <i class="fas fa-user"></i> Full Name *
+                    </label>
+                    <input type="text" id="booking-name" placeholder="Enter your name" required 
+                           style="width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #333; 
+                                  background: #0c0c0c; color: #fff; outline: none; font-family: inherit; 
+                                  box-sizing: border-box; font-size: 15px; transition: all 0.3s ease;"
+                           onfocus="this.style.borderColor='#d4af37'; this.style.boxShadow='0 0 10px rgba(212,175,55,0.3)';"
+                           onblur="this.style.borderColor='#333'; this.style.boxShadow='none';">
                 </div>
                 
                 <div>
-                    <label style="display: block; margin-bottom: 8px; font-size: 14px; color: #d4af37;">WhatsApp Number *</label>
-                    <input type="tel" id="booking-phone" placeholder="+91 XXXXXXXXXX" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #333; background: #0c0c0c; color: #fff; outline: none; font-family: inherit; box-sizing: border-box;">
+                    <label style="display: block; margin-bottom: 10px; font-size: 14px; color: #d4af37; font-weight: 600;">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Number *
+                    </label>
+                    <input type="tel" id="booking-phone" placeholder="+91 XXXXXXXXXX" required 
+                           style="width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #333; 
+                                  background: #0c0c0c; color: #fff; outline: none; font-family: inherit; 
+                                  box-sizing: border-box; font-size: 15px; transition: all 0.3s ease;"
+                           onfocus="this.style.borderColor='#d4af37'; this.style.boxShadow='0 0 10px rgba(212,175,55,0.3)';"
+                           onblur="this.style.borderColor='#333'; this.style.boxShadow='none';">
                 </div>
                 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
                     <div>
-                        <label style="display: block; margin-bottom: 8px; font-size: 14px; color: #d4af37;">Number of Persons *</label>
-                        <input type="number" id="booking-persons" min="1" value="1" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #333; background: #0c0c0c; color: #fff; outline: none; font-family: inherit; box-sizing: border-box;">
+                        <label style="display: block; margin-bottom: 10px; font-size: 14px; color: #d4af37; font-weight: 600;">
+                            <i class="fas fa-users"></i> Persons *
+                        </label>
+                        <input type="number" id="booking-persons" min="1" value="1" required 
+                               style="width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #333; 
+                                      background: #0c0c0c; color: #fff; outline: none; font-family: inherit; 
+                                      box-sizing: border-box; font-size: 15px; transition: all 0.3s ease;"
+                               onfocus="this.style.borderColor='#d4af37'; this.style.boxShadow='0 0 10px rgba(212,175,55,0.3)';"
+                               onblur="this.style.borderColor='#333'; this.style.boxShadow='none';">
                     </div>
                     <div>
-                        <label style="display: block; margin-bottom: 8px; font-size: 14px; color: #d4af37;">Number of Days *</label>
-                        <input type="number" id="booking-days" min="1" value="3" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #333; background: #0c0c0c; color: #fff; outline: none; font-family: inherit; box-sizing: border-box;">
+                        <label style="display: block; margin-bottom: 10px; font-size: 14px; color: #d4af37; font-weight: 600;">
+                            <i class="fas fa-calendar-alt"></i> Days *
+                        </label>
+                        <input type="number" id="booking-days" min="1" value="3" required 
+                               style="width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #333; 
+                                      background: #0c0c0c; color: #fff; outline: none; font-family: inherit; 
+                                      box-sizing: border-box; font-size: 15px; transition: all 0.3s ease;"
+                               onfocus="this.style.borderColor='#d4af37'; this.style.boxShadow='0 0 10px rgba(212,175,55,0.3)';"
+                               onblur="this.style.borderColor='#333'; this.style.boxShadow='none';">
                     </div>
                 </div>
                 
-                <!-- Price calculation removed as requested -->
-                
-                <button type="submit" style="background: linear-gradient(135deg, #d4af37, #b8962e); color: #000; border: none; padding: 14px; border-radius: 25px; font-weight: 600; cursor: pointer; font-size: 16px; transition: 0.3s; font-family: inherit;">
-                    SEND ENQUIRY VIA WHATSAPP
+                <button type="submit" style="background: linear-gradient(135deg, #d4af37, #b8962e); 
+                        color: #000; border: none; padding: 16px; border-radius: 30px; font-weight: 700; 
+                        cursor: pointer; font-size: 15px; transition: all 0.3s ease; font-family: 'Poppins', sans-serif;
+                        text-transform: uppercase; letter-spacing: 1px; margin-top: 10px;
+                        box-shadow: 0 10px 30px rgba(212,175,55,0.4);"
+                        onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 15px 40px rgba(212,175,55,0.6)';"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(212,175,55,0.4)';">
+                    <i class="fab fa-whatsapp"></i> SEND ENQUIRY VIA WHATSAPP
                 </button>
                 
-                <button type="button" onclick="closeBookingModal()" style="background: transparent; border: 1px solid #666; color: #aaa; padding: 10px; border-radius: 25px; cursor: pointer; transition: 0.3s; font-family: inherit;">
-                    Cancel
+                <button type="button" onclick="closeBookingModal()" 
+                        style="background: transparent; border: 1px solid #666; color: #aaa; 
+                               padding: 12px; border-radius: 30px; cursor: pointer; transition: 0.3s; 
+                               font-family: inherit; font-size: 14px;"
+                        onmouseover="this.style.borderColor='#d4af37'; this.style.color='#d4af37';"
+                        onmouseout="this.style.borderColor='#666'; this.style.color='#aaa';">
+                    <i class="fas fa-times"></i> Cancel
                 </button>
             </form>
         </div>
@@ -422,7 +562,6 @@ function showBookingOptions(state, city = '') {
 
     document.body.appendChild(modal);
     
-    // Form submission (no automatic price calculation)
     document.getElementById("bookingCalcForm").addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -431,29 +570,21 @@ function showBookingOptions(state, city = '') {
         const persons = document.getElementById("booking-persons").value;
         const days = document.getElementById("booking-days").value;
         
-        const msg = `Hi Fundun Holidays, I'm ${name}. I want to book a package for ${location} for ${persons} persons for ${days} days. My WhatsApp: ${phone}`;
+        const msg = `Hi Fundun Holidays! 🌴\n\nI'm ${name} and I want to book a package:\n\n📍 Location: ${location}\n👥 Persons: ${persons}\n📅 Days: ${days}\n📱 Contact: ${phone}\n\nPlease send me the package details and pricing. Thank you!`;
         sendToWhatsApp(msg);
+        closeBookingModal();
     });
     
     window.closeBookingModal = () => {
         const bookingModal = document.getElementById("bookingModal");
-        if(bookingModal && bookingModal.parentNode) {
+        if (bookingModal && bookingModal.parentNode) {
             document.body.removeChild(bookingModal);
         }
     };
 }
 
-function bookViaWhatsApp(state) {
-    const msg = `Hi Fundun Holidays, I want to book a package for ${state}.`;
-    const phone = "919585575354";
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-    window.open(url, "_blank");
-}
-
-function bookViaInstagram(state) {
-    const msg = `Hi Fundun Holidays, I want to book a package for ${state}.`;
-    const url = `https://www.instagram.com/fundun_holidays`;
-    window.open(url, "_blank");
+function quickQuote(packageName) {
+    showBookingOptions(packageName);
 }
 
 function sendToWhatsApp(message) {
@@ -462,266 +593,200 @@ function sendToWhatsApp(message) {
     window.open(url, "_blank");
 }
 
-function whatsapp(message){
+function whatsapp(message) {
     const phone = "919585575354";
     const url = `https://wa.me/${phone}?text=${encodeURIComponent("Hi Fundun Holidays, " + message)}`;
     window.open(url, "_blank");
 }
 
-function toggleAbout(show){
-    document.getElementById("aboutPage").style.display = show ? "block" : "none";
-}
-
-function scrollToSection(id){
-    document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}
-
-function openMail(){
+function openMail() {
     window.location.href = "mailto:dineshcse142@gmail.com";
 }
 
-// Form submit handler
-document.addEventListener("DOMContentLoaded", function() {
-    const form = document.getElementById("heroCalcForm");
-    if (form) {
-        form.addEventListener("submit", function(e){
-            e.preventDefault();
-            const name = document.getElementById("cName").value;
-            const phone = document.getElementById("cPhone").value;
-            const loc = document.getElementById("cLoc").value;
-            const seats = document.getElementById("cSeats").value;
-            const days = document.getElementById("cDays").value;
-            const msg = `Hi Fundun Holidays, I'm ${name}. I want a package for ${loc} for ${seats} persons for ${days} days. My number is ${phone}.`;
-            whatsapp(msg);
-        });
+function scrollToSection(id) {
+    const element = document.getElementById(id);
+    if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
     }
+}
 
-    // Make images lazy and hint the browser for GPU-accelerated transforms
-    document.querySelectorAll('img').forEach(img => {
-        if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
-        try {
-            img.style.willChange = 'transform, opacity';
-            img.style.backfaceVisibility = 'hidden';
-            img.style.transform = 'translateZ(0)';
-        } catch (e) {}
-    });
-});
-/**************** HERO LEFT BOTTOM ROTATING REVIEWS ****************/
+function openQuickCalculator() {
+    showBookingOptions('General Enquiry');
+}
+
+function openServiceBooking(serviceName) {
+    showBookingOptions(serviceName);
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//  ⭐ HERO REVIEWS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 const heroReviews = [
-  { name: "Arun", stars: 5, text: "Amazing trip planning and great support throughout our journey!" },
-  { name: "Priya", stars: 5, text: "Best travel experience ever. Hotels and transport were perfect." },
-  { name: "Karthik", stars: 4, text: "Very smooth and well-organized tour. Totally worth it!" },
-  { name: "Meena", stars: 5, text: "Friendly team and excellent service. Highly recommended!" },
-  { name: "Suresh", stars: 4, text: "Wonderful destinations and great coordination." },
-  { name: "Divya", stars: 5, text: "Loved the entire trip. Everything was taken care of!" },
-  { name: "Vignesh", stars: 5, text: "Professional service and very polite staff. Superb experience." },
-  { name: "Anitha", stars: 4, text: "Good packages and nice hotels. Will book again." },
-  { name: "Ravi", stars: 5, text: "Memorable journey with my family. Thank you Fundun Holidays!" },
-  { name: "Lakshmi", stars: 5, text: "Perfect planning and quick response. Totally satisfied!" }
+    { name: "Arun", stars: 5, text: "Amazing trip planning and great support!" },
+    { name: "Priya", stars: 5, text: "Best travel experience ever." },
+    { name: "Karthik", stars: 4, text: "Very smooth and well-organized tour." },
+    { name: "Meena", stars: 5, text: "Friendly team and excellent service." }
 ];
 
-const reviewSlider = document.getElementById("reviewSlider");
 let reviewIndex = 0;
 
 function renderSingleReview() {
-  if (!reviewSlider) return;
+    const reviewSlider = document.getElementById("reviewSlider");
+    if (!reviewSlider) return;
 
-  reviewSlider.innerHTML = "";
-  const review = heroReviews[reviewIndex];
+    reviewSlider.innerHTML = "";
+    const review = heroReviews[reviewIndex];
 
-  const card = document.createElement("div");
-  card.className = "review-card";
-  card.innerHTML = `
-    <div class="review-header">
-      <div class="review-avatar">${review.name.charAt(0)}</div>
-      <div>
-        <div class="review-name">${review.name}</div>
-        <div class="review-stars">${"★".repeat(review.stars)}</div>
-      </div>
-    </div>
-    <div class="review-text">${review.text}</div>
-  `;
+    const card = document.createElement("div");
+    card.className = "review-card";
+    card.innerHTML = `
+        <div class="review-header">
+            <div class="review-avatar">${review.name.charAt(0)}</div>
+            <div>
+                <div class="review-name">${review.name}</div>
+                <div class="review-stars">${"★".repeat(review.stars)}</div>
+            </div>
+        </div>
+        <div class="review-text">${review.text}</div>
+    `;
 
-  reviewSlider.appendChild(card);
-  reviewIndex = (reviewIndex + 1) % heroReviews.length;
+    reviewSlider.appendChild(card);
+    reviewIndex = (reviewIndex + 1) % heroReviews.length;
 }
 
-renderSingleReview();
-setInterval(renderSingleReview, 3500);
-/* ===== Image Popup Script ===== */
-const popup = document.createElement("div");
-popup.classList.add("image-popup");
-popup.innerHTML = `
-  <span class="popup-close">&times;</span>
-  <img id="popupImg">
-`;
-document.body.appendChild(popup);
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//  🎬 HERO CAROUSEL
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-const popupImg = document.getElementById("popupImg");
-const closeBtn = popup.querySelector(".popup-close");
+function setupHeroCarousel() {
+    const heroImages = [
+        'https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239861/POSTER_bvgobj.png',
+        'https://res.cloudinary.com/drlg1t6pk/image/upload/v1769595950/hero_image_2_dxwrxu.png',
+        'https://res.cloudinary.com/drlg1t6pk/image/upload/v1769620540/img_post_rbz4dd.png',
+    ];
 
-/* Open popup on slide image click */
-document.querySelectorAll(".slide img").forEach(img => {
-  img.addEventListener("click", () => {
-    popupImg.src = img.src;
-    popup.classList.add("active");
-  });
-});
+    const carouselContainer = document.querySelector('.carousel-container');
+    if (!carouselContainer) return;
 
-/* Close popup */
-closeBtn.addEventListener("click", () => {
-  popup.classList.remove("active");
-});
+    heroImages.forEach((img, index) => {
+        const slide = document.createElement('div');
+        slide.classList.add('carousel-slide');
+        if (index === 0) slide.classList.add('active');
+        slide.style.backgroundImage = `url('${img}')`;
+        carouselContainer.appendChild(slide);
+    });
 
-popup.addEventListener("click", (e) => {
-  if(e.target === popup){
-    popup.classList.remove("active");
-  }
-});
-// Navbar scroll effect
+    const slides = document.querySelectorAll('.carousel-slide');
+    let currentSlide = 0;
+
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+
+    setInterval(nextSlide, 5000);
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//  📱 MOBILE MENU
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+function setupMobileMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileMenu && navLinks) {
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenu.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            }
+        });
+
+        document.querySelectorAll('.nav-links li a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileMenu.querySelector('i');
+                if (icon) {
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                }
+            });
+        });
+    }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//  🧭 NAVBAR SCROLL
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 const navbar = document.getElementById('navbar');
-
-window.addEventListener('scroll', () => {
-  if(window.scrollY > 50){   // scroll threshold
-    navbar.classList.add('fixed');
-  } else {
-    navbar.classList.remove('fixed');
-  }
-});
-document.querySelectorAll('.s-item').forEach(item => {
-  item.addEventListener('click', () => {
-    const serviceName = item.querySelector('h4').textContent;
-
-    // Show in details box first for psychological feedback
-    document.getElementById('service-title').textContent = serviceName;
-    document.getElementById('service-desc').textContent = `Click to explore destinations for ${serviceName}.`;
-
-    // Map services to states/destination pages
-    const serviceMap = {
-      "School & College Package": "Tamil Nadu",
-      "Corporate Tours": "karnataka",
-      "Family Tours": "kerala",
-      "Custom Planning": "Tamil Nadu",
-      "Honeymoon Tours": "kerala"
-    };
-
-    // Open destination overlay page like Navbar
-    openDestinationPage(serviceMap[serviceName]);
-  });
-});
-// HERO IMAGE SLIDER
-const heroImages = [
-  'https://res.cloudinary.com/drlg1t6pk/image/upload/v1769239861/POSTER_bvgobj.png', 
-  'https://res.cloudinary.com/drlg1t6pk/image/upload/v1769595950/hero_image_2_dxwrxu.png', 
-  'https://res.cloudinary.com/drlg1t6pk/image/upload/v1769620540/img_post_rbz4dd.png',
-];
-
-const carouselContainer = document.querySelector('.carousel-container');
-
-// Create slide divs dynamically
-heroImages.forEach((img, index) => {
-    const slide = document.createElement('div');
-    slide.classList.add('carousel-slide');
-    if(index === 0) slide.classList.add('active'); // first image active
-    slide.style.backgroundImage = `url('${img}')`;
-    carouselContainer.appendChild(slide);
-});
-
-const slides = document.querySelectorAll('.carousel-slide');
-let currentSlide = 0;
-
-// Function to show next slide
-function nextSlide() {
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add('active');
+if (navbar) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('fixed');
+        } else {
+            navbar.classList.remove('fixed');
+        }
+    }, { passive: true });
 }
 
-// Auto-slide every 5 seconds
-setInterval(nextSlide, 5000);
-// 1. Mouse Tracking for Body Glow (Spotlight Effect)
-document.addEventListener('mousemove', e => {
-    document.body.style.setProperty('--x', e.clientX + 'px');
-    document.body.style.setProperty('--y', e.clientY + 'px');
-});
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//  🎯 DESTINATION FILTERS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-function openServiceBooking(serviceName) {
-    // Service name-aa location field-la pass pannrom
-    showBookingOptions(serviceName);
-}
-/************ VIEW DETAILS – ONLY VIEW BUTTON HOVER + CLICK ************/
+function setupDestinationFilters() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const stateContainers = document.querySelectorAll('.state-container');
 
-function enableViewDetailsOnlyOnButton(state) {
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.getAttribute('data-filter');
 
-    document.querySelectorAll('.safari-card').forEach(card => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-        const viewBtn = card.querySelector('.btn-white'); // VIEW PLACES
-        if (!viewBtn) return;
-
-        let hoverTimer;
-
-        const city = card.querySelector('h1')?.textContent;
-        if (!city) return;
-
-        const cityName = city.charAt(0) + city.slice(1).toLowerCase();
-
-        const openDetails = (e) => {
-            e.stopPropagation();
-            viewCityDetails(state, cityName);
-        };
-
-        // ✅ CLICK
-        viewBtn.addEventListener('click', openDetails);
-
-        // ✅ HOVER (Desktop only)
-        viewBtn.addEventListener('mouseenter', (e) => {
-            if ('ontouchstart' in window) return; // mobile ignore
-
-            hoverTimer = setTimeout(() => {
-                openDetails(e);
-            }, 300); // smooth delay
+            stateContainers.forEach(container => {
+                if (filter === 'all') {
+                    container.style.display = 'block';
+                } else {
+                    const category = container.getAttribute('data-category');
+                    container.style.display = category === filter ? 'block' : 'none';
+                }
+            });
         });
-
-        viewBtn.addEventListener('mouseleave', () => {
-            clearTimeout(hoverTimer);
-        });
-
-        // ❌ Stop bubbling to card
-        viewBtn.addEventListener('mousedown', e => e.stopPropagation());
     });
 }
 
-/* ===== HOOK INTO DESTINATION PAGE ===== */
-const _originalOpenDestinationPage = openDestinationPage;
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//  🚀 INITIALIZE ON LOAD
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-openDestinationPage = function(state) {
-    _originalOpenDestinationPage(state);
-
-    setTimeout(() => {
-        enableViewDetailsOnlyOnButton(state);
-    }, 200);
-};
-// MOBILE MENU TOGGLE LOGIC
-const mobileMenu = document.getElementById('mobile-menu');
-const navLinks = document.querySelector('.nav-links');
-
-if (mobileMenu) {
-    mobileMenu.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        // Hamburger icon-ah close icon-ah mathurathuku
-        const icon = mobileMenu.querySelector('i');
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-times');
-    });
-}
-
-// Menu link click panna menu close aaganam
-document.querySelectorAll('.nav-links li a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        const icon = mobileMenu.querySelector('i');
-        icon.classList.add('fa-bars');
-        icon.classList.remove('fa-times');
-    });
+document.addEventListener("DOMContentLoaded", function() {
+    
+    console.log("🌴 Fundun Holidays - Simple Grid Layout Loading...");
+    
+    // Setup everything
+    setupHeroCarousel();
+    setupMobileMenu();
+    setupDestinationFilters();
+    
+    // Start review rotation
+    renderSingleReview();
+    setInterval(renderSingleReview, 3500);
+    
+    console.log("✓ All systems ready!");
+    console.log("✓ Simple card grid activated - no slider effects!");
+    console.log("✓ Clean & simple layout!");
 });
+
+/*
+╔══════════════════════════════════════════════════════════════╗
+║  ✨ SIMPLE GRID - NO EFFECTS, CLEAN LAYOUT! ✨              ║
+║  Tamil: Ippo normal grid mattum - slider illa!               ║
+╚══════════════════════════════════════════════════════════════╝
+*/
