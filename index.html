@@ -148,16 +148,11 @@
     <link rel="preconnect" href="https://res.cloudinary.com">
 
     <!-- Google Fonts - Non-blocking (moved from CSS @import) -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome - Non-blocking preload -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style"
-        onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    </noscript>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css">
@@ -335,24 +330,20 @@
 <body itemscope itemtype="https://schema.org/WebPage" class="splash-active">
 
     <!-- SPLASH SCREEN -->
-    <div id="splash-screen">
-        <canvas id="splash-canvas"></canvas>
-        <div class="splash-ui">
-            <div class="splash-logo-ring">
-                <img id="splash-logo"
-                    src="https://res.cloudinary.com/drlg1t6pk/image/upload/f_auto,q_auto,w_200/v1769239791/img4-removebg-preview_ltwiue.png"
-                    alt="Fundun Holidays" fetchpriority="high">
-            </div>
-            <div class="splash-text-block">
-                <div class="splash-letters" id="splashLetters"></div>
-                <div class="splash-sub" id="splashSub">HOLIDAYS</div>
-                <div class="splash-tagline" id="splashTagline">✦ Your Dream Journey Begins Here ✦</div>
-            </div>
-            <div class="splash-bar-wrap">
-                <div class="splash-bar" id="splashBar"></div>
-            </div>
-            <div class="splash-status" id="splashStatus">Loading...</div>
+    <div id="spl">
+        <div id="spl-flare"></div>
+        <div id="spl-center">
+            <div id="spl-ring1"></div>
+            <div id="spl-ring2"></div>
+            <img id="spl-logo"
+                src="https://res.cloudinary.com/drlg1t6pk/image/upload/f_auto,q_auto,w_300/v1769239791/img4-removebg-preview_ltwiue.png"
+                alt="Fundun Holidays" fetchpriority="high">
         </div>
+        <div id="spl-name">
+            <span id="spl-f">FUNDUN</span>
+            <span id="spl-h">HOLIDAYS</span>
+        </div>
+        <div id="spl-line"></div>
     </div>
     <!-- END SPLASH -->
 
@@ -1496,9 +1487,7 @@
                             <i class="fas fa-envelope"></i>
                         </div>
                         <h3>Email</h3>
-                        <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                data-cfemail="9bfdeef5ffeef5f3f4f7f2fffae2e8dbfcf6faf2f7b5f8f4f6">[email&#160;protected]</a>
-                        </p>
+                        <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9bfdeef5ffeef5f3f4f7f2fffae2e8dbfcf6faf2f7b5f8f4f6">[email&#160;protected]</a></p>
                         <small>Open Mail App</small>
                     </div>
                 </div>
@@ -1606,9 +1595,7 @@
                     <div class="footer-box">
                         <h4>Contact Us</h4>
                         <p><i class="fas fa-phone"></i> +91 95855 75354</p>
-                        <p><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                data-cfemail="cfaba6a1aabca7acbcaafefbfd8fa8a2aea6a3e1aca0a2">[email&#160;protected]</a>
-                        </p>
+                        <p><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cfaba6a1aabca7acbcaafefbfd8fa8a2aea6a3e1aca0a2">[email&#160;protected]</a></p>
                         <p><i class="fas fa-map-marker-alt"></i> Tamil Nadu, India</p>
                     </div>
 
@@ -1675,309 +1662,66 @@
                 <div class="footer-box">
                     <h4>Contact Us</h4>
                     <p><i class="fas fa-phone"></i> +91 7010954360</p>
-                    <p><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                            data-cfemail="fa9c8f949e8f94929596939e9b8389ba9d979b9396d4999597">[email&#160;protected]</a>
-                    </p>
+                    <p><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fa9c8f949e8f94929596939e9b8389ba9d979b9396d4999597">[email&#160;protected]</a></p>
                     <p><i class="fas fa-map-marker-alt"></i> 25/1, Ranga Layout 2, NALLAPALAYAM, Ganapathy, Coimbatore,
                         Tamil Nadu 641006</p>
                 </div>
 
             </div>
 
-            <div cla <div class="footer-bottom">
+            <div cla
+            <div class="footer-bottom">
                 <p>© 2025 Fundun Holidays. All rights reserved. | Designed with ❤️ for Travelers</p>
             </div>
 
         </footer>
-        </div><!-- end detailPage -->
+    </div><!-- end detailPage -->
 
-        <!-- Script - deferred for performance -->
-        <script src="script.js" defer></script>
+    <!-- Script - deferred for performance -->
+    <script src="script.js" defer></script>
 
 </body>
 
 
 
-<!-- SPLASH JS -->
-<script>
-    (function () {
-        var splash = document.getElementById('splash-screen');
-        var canvas = document.getElementById('splash-canvas');
-        var ctx = canvas.getContext('2d');
-        var bar = document.getElementById('splashBar');
-        var status = document.getElementById('splashStatus');
-        var lettersEl = document.getElementById('splashLetters');
+    <!-- SPLASH JS -->
+    <script>
+    (function(){
+        var spl  = document.getElementById('spl');
+        var bar  = document.getElementById('spl-logo'); /* reuse for timing ref */
 
-        /* ── resize ── */
-        var W, H;
-        function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
-        resize();
-        window.addEventListener('resize', resize);
-
-        /* ── easing helpers ── */
-        function easeOutExpo(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
-        function easeInOutCubic(t) { return t < 0.5 ? 4 * t * t * t : (1 - Math.pow(-2 * t + 2, 3) / 2); }
-        function lerp(a, b, t) { return a + (b - a) * t; }
-        function rnd(a, b) { return a + Math.random() * (b - a); }
-        function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
-
-        /* ── LETTER SPAWN (staggered, later) ── */
-        var word = 'FUNDUN';
-        for (var i = 0; i < word.length; i++) {
-            var s = document.createElement('span');
-            s.className = 'splash-letter';
-            s.textContent = word[i];
-            /* Start later — 1.8s base + 0.13s per letter */
-            s.style.animationDelay = (1.8 + i * 0.13) + 's';
-            lettersEl.appendChild(s);
-        }
-
-        /* ── TIMELINE ──
-           0.0s  canvas starts (dark, dots, particles)
-           0.6s  first shooting star fires
-           0.8s  logo ring zooms in
-           1.8s  FUNDUN letters pop one-by-one
-           2.6s  HOLIDAYS + tagline fade
-           2.9s  progress bar appears
-           3.0s  bar starts filling (~4.5s total)
-           7.5s  bar reaches 100% → exit begins
-           8.2s  splash fades out
+        /* Timeline:
+           0.0s  black screen
+           0.2s  logo zooms in from a point of light
+           0.55s rings appear
+           0.85s brand name slides up
+           1.1s  gold line wipes across
+           1.2s  gold shimmer starts on text
+           --- hold for 0.8s ---
+           2.3s  lens flare burst
+           2.55s fade to black, then website
         */
 
-        /* ── PARTICLES ── */
-        var particles = [];
-        for (var i = 0; i < 130; i++) {
-            particles.push({
-                x: rnd(0, 1), y: rnd(0, 1),
-                vx: rnd(-0.0003, 0.0003), vy: rnd(-0.0003, 0.0003),
-                r: rnd(0.8, 2.6),
-                a: rnd(0.05, 0.55),
-                da: rnd(-0.003, 0.003),
-                type: Math.random() > 0.72 ? 'star' : 'dot',
-                spin: rnd(0, Math.PI * 2),
-                spinSpeed: rnd(-0.02, 0.02)
-            });
-        }
-
-        /* ── SHOOTING STARS ── */
-        var shooters = [];
-        function mkShooter() {
-            return {
-                x: rnd(0.05, 0.95), y: rnd(0, 0.45),
-                len: rnd(100, 240),
-                spd: rnd(5, 14),
-                ang: rnd(25, 55) * Math.PI / 180,
-                a: 1, life: 1
-            };
-        }
-        /* First star at 0.6s, then every 1.1s */
-        setTimeout(function () { shooters.push(mkShooter()); }, 600);
-        setInterval(function () { if (shooters.length < 4) shooters.push(mkShooter()); }, 1100);
-
-        /* ── DESTINATION IMAGE FLASHES ── */
-        var destUrls = [
-            'https://res.cloudinary.com/drlg1t6pk/image/upload/f_auto,q_auto,w_900/v1769850347/Ooty_sm1awg.png',
-            'https://res.cloudinary.com/drlg1t6pk/image/upload/f_auto,q_auto,w_900/v1769850359/munnar_bjo4pq.png',
-            'https://res.cloudinary.com/drlg1t6pk/image/upload/f_auto,q_auto,w_900/v1769850491/Kannayakumari_dsszcl.png',
-            'https://res.cloudinary.com/drlg1t6pk/image/upload/f_auto,q_auto,w_900/v1769626372/goa_eba8v5.png',
-            'https://res.cloudinary.com/drlg1t6pk/image/upload/f_auto,q_auto,w_900/v1769942817/coorg_hc1qce.jpg',
-        ];
-        var loadedImgs = [];
-        destUrls.forEach(function (u) {
-            var img = new Image(); img.crossOrigin = 'anonymous';
-            img.onload = function () { loadedImgs.push(img); };
-            img.src = u;
-        });
-
-        var flash = null;
-        var flashIdx = 0;
-        /* First image appears at 1.2s, then every 1.6s */
-        setTimeout(function () {
-            function nextFlash() {
-                if (loadedImgs.length === 0) { setTimeout(nextFlash, 400); return; }
-                var img = loadedImgs[flashIdx % loadedImgs.length]; flashIdx++;
-                flash = { img: img, a: 0, scale: 1.0, phase: 'in', born: Date.now() };
-                setTimeout(nextFlash, 1600);
-            }
-            nextFlash();
-        }, 1200);
-
-        /* ── DOT GRID MAP ── */
-        var dots = [];
-        for (var r = 0; r < 32; r++)
-            for (var c = 0; c < 64; c++) {
-                if (Math.random() > 0.52) continue;
-                dots.push({ bx: c / 64, by: r / 32, a: rnd(0.04, 0.16), ph: rnd(0, Math.PI * 2) });
-            }
-
-        /* ── GOLDEN RIPPLE (emanates from center at ~1s) ── */
-        var ripples = [];
-        setTimeout(function () {
-            ripples.push({ r: 0, maxR: Math.max(W, H) * 0.8, a: 0.5, born: Date.now() });
-        }, 1000);
-        setTimeout(function () {
-            ripples.push({ r: 0, maxR: Math.max(W, H) * 0.7, a: 0.3, born: Date.now() });
-        }, 1600);
-
-        /* ── RENDER ── */
-        var startTime = Date.now();
-
-        function draw() {
-            if (splash.style.display === 'none') return;
-            requestAnimationFrame(draw);
-
-            var now = Date.now();
-            var elapsed = (now - startTime) * 0.001; /* seconds */
-            var t = elapsed;
-
-            ctx.clearRect(0, 0, W, H);
-
-            /* 1. Background gradient */
-            var bg = ctx.createRadialGradient(W * .5, H * .5, 0, W * .5, H * .5, W * .75);
-            bg.addColorStop(0, '#0f0900');
-            bg.addColorStop(0.5, '#060400');
-            bg.addColorStop(1, '#000000');
-            ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
-
-            /* 2. Dot grid — fade in over first 1.5s */
-            var gridAlpha = clamp(t / 1.5, 0, 1);
-            dots.forEach(function (d) {
-                var pulse = 0.5 + 0.5 * Math.sin(t * 1.2 + d.ph);
-                ctx.beginPath();
-                ctx.arc(d.bx * W, d.by * H, 1.3, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(212,175,55,' + (d.a * pulse * gridAlpha) + ')';
-                ctx.fill();
-            });
-
-            /* 3. Destination image flash */
-            if (flash) {
-                var age = (now - flash.born) * 0.001;
-                var targetA = 0.17;
-                if (flash.phase === 'in') {
-                    flash.a = Math.min(flash.a + 0.022, targetA);
-                    flash.scale = Math.min(flash.scale + 0.0015, 1.07);
-                    if (age > 1.1) flash.phase = 'out';
-                } else {
-                    flash.a = Math.max(flash.a - 0.015, 0);
-                    if (flash.a <= 0) flash = null;
-                }
-                if (flash) {
-                    var sc = flash.scale;
-                    ctx.save();
-                    ctx.globalAlpha = flash.a;
-                    var iw = W * sc, ih = H * sc;
-                    ctx.drawImage(flash.img, (W - iw) / 2, (H - ih) / 2, iw, ih);
-                    /* warm gold tint */
-                    ctx.fillStyle = 'rgba(180,110,0,0.15)';
-                    ctx.fillRect(0, 0, W, H);
-                    ctx.restore();
-                }
-            }
-
-            /* 4. Vignette */
-            var vig = ctx.createRadialGradient(W / 2, H / 2, H * 0.18, W / 2, H / 2, H * 0.9);
-            vig.addColorStop(0, 'rgba(0,0,0,0)');
-            vig.addColorStop(1, 'rgba(0,0,0,0.88)');
-            ctx.fillStyle = vig; ctx.fillRect(0, 0, W, H);
-
-            /* 5. Gold ripples */
-            ripples.forEach(function (rp, i) {
-                var age = (now - rp.born) * 0.001;
-                var prog = clamp(age / 2.5, 0, 1);
-                var curR = rp.maxR * easeOutExpo(prog);
-                var curA = rp.a * (1 - prog);
-                ctx.beginPath();
-                ctx.arc(W / 2, H / 2, curR, 0, Math.PI * 2);
-                ctx.strokeStyle = 'rgba(212,175,55,' + curA + ')';
-                ctx.lineWidth = 1.5;
-                ctx.stroke();
-                if (prog >= 1) ripples.splice(i, 1);
-            });
-
-            /* 6. Shooting stars */
-            for (var i = shooters.length - 1; i >= 0; i--) {
-                var s = shooters[i];
-                var tx = s.x * W + Math.cos(s.ang) * s.len;
-                var ty = s.y * H + Math.sin(s.ang) * s.len;
-                var lg = ctx.createLinearGradient(s.x * W, s.y * H, tx, ty);
-                lg.addColorStop(0, 'rgba(244,229,161,0)');
-                lg.addColorStop(0.5, 'rgba(244,229,161,' + s.a * 0.7 + ')');
-                lg.addColorStop(1, 'rgba(255,255,255,' + s.a + ')');
-                ctx.beginPath();
-                ctx.moveTo(s.x * W, s.y * H); ctx.lineTo(tx, ty);
-                ctx.strokeStyle = lg; ctx.lineWidth = 1.8; ctx.stroke();
-                s.x += Math.cos(s.ang) * s.spd / W;
-                s.y += Math.sin(s.ang) * s.spd / H;
-                s.a -= 0.012;
-                if (s.a <= 0 || s.x > 1.1 || s.y > 1.1) shooters.splice(i, 1);
-            }
-
-            /* 7. Gold particles */
-            particles.forEach(function (p) {
-                p.x += p.vx; p.y += p.vy;
-                if (p.x < 0) p.x = 1; if (p.x > 1) p.x = 0;
-                if (p.y < 0) p.y = 1; if (p.y > 1) p.y = 0;
-                p.a += p.da;
-                if (p.a < 0.05 || p.a > 0.6) { p.da *= -1; p.a = clamp(p.a, 0.05, 0.6); }
-                p.spin += p.spinSpeed;
-                var fadeIn = clamp(t / 2, 0, 1);
-                ctx.save();
-                ctx.globalAlpha = p.a * fadeIn;
-                var px = p.x * W, py = p.y * H;
-                if (p.type === 'star') {
-                    ctx.translate(px, py); ctx.rotate(p.spin);
-                    ctx.fillStyle = '#d4af37';
-                    ctx.beginPath();
-                    var r1 = p.r * 2.8, r2 = p.r * 0.9;
-                    for (var k = 0; k < 8; k++) {
-                        var a2 = k * Math.PI / 4;
-                        var rr = k % 2 === 0 ? r1 : r2;
-                        k === 0 ? ctx.moveTo(rr * Math.cos(a2), rr * Math.sin(a2)) : ctx.lineTo(rr * Math.cos(a2), rr * Math.sin(a2));
-                    }
-                    ctx.closePath(); ctx.fill();
-                } else {
-                    ctx.beginPath();
-                    ctx.arc(px, py, p.r, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(212,175,55,1)';
-                    ctx.fill();
-                }
-                ctx.restore();
-            });
-        }
-        draw();
-
-        /* ── PROGRESS BAR — slow, dramatic fill over ~4.5s ── */
-        var msgs = ['Preparing your adventure...', 'Discovering destinations...', 'Packing your bags...', 'Ready to take off! ✈'];
-        var pct = 0, mi = 0;
-        /* Bar starts at 3.0s */
-        setTimeout(function () {
-            bar.classList.add('active');
-            var iv = setInterval(function () {
-                /* Slow non-linear easing — fast start, slow end */
-                var inc = pct < 60 ? rnd(2, 6) : rnd(0.8, 2.2);
-                pct = Math.min(pct + inc, 100);
-                bar.style.width = pct + '%';
-                var ni = Math.min(Math.floor(pct / 100 * msgs.length), msgs.length - 1);
-                if (ni !== mi) {
-                    mi = ni;
-                    status.style.opacity = '0';
-                    setTimeout(function () { status.textContent = msgs[mi]; status.style.opacity = '1'; }, 250);
-                }
-                if (pct >= 100) { clearInterval(iv); setTimeout(hide, 700); }
-            }, 200);
-        }, 3000);
-
         function hide() {
-            splash.classList.add('splash-exit');
-            setTimeout(function () {
-                splash.style.display = 'none';
-                document.body.classList.remove('splash-active');
-            }, 1100);
+            /* Step 1: lens flare */
+            spl.classList.add('spl-flare-active');
+            /* Step 2: after flare peaks, fade out */
+            setTimeout(function() {
+                spl.classList.add('spl-out');
+                setTimeout(function() {
+                    spl.style.display = 'none';
+                    document.body.classList.remove('splash-active');
+                }, 580);
+            }, 260);
         }
 
-        /* Absolute safety cap: 9s */
-        setTimeout(function () { if (splash.style.display !== 'none') hide(); }, 9000);
-    })();
-</script>
+        /* Total display time = 2.3s then exit */
+        setTimeout(hide, 2300);
 
+        /* Safety */
+        setTimeout(function(){
+            if (spl.style.display !== 'none') hide();
+        }, 5000);
+    })();
+    </script>
 </html>
