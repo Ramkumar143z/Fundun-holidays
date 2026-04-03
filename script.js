@@ -254,7 +254,7 @@ function sendToWhatsApp() {
 
 ⏰ Time: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`;
 
-    const whatsappURL = `https://wa.me/917558138968?text=${encodeURIComponent(msg)}`;
+    const whatsappURL = `https://wa.me/917010954360?text=${encodeURIComponent(msg)}`;
     const w = window.open(whatsappURL, "_blank");
 
     if (w) {
