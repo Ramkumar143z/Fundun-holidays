@@ -1011,7 +1011,7 @@ function showQuickNotification(message) {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 function quickQuote(p) { showBookingOptions(p); }
-function whatsapp(m) { window.open(`https://wa.me/917558138968?text=${encodeURIComponent("Hi Fundun Holidays, " + m)}`, "_blank"); }
+function whatsapp(m) { window.open(`https://wa.me/917010954360?text=${encodeURIComponent("Hi Fundun Holidays, " + m)}`, "_blank"); }
 function openMail() { window.open("https://mail.google.com/mail/?view=cm&fs=1&to=fundunholidays@gmail.com", "_blank"); }
 function scrollToSection(id) { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); }
 function openQuickCalculator() { showBookingOptions('General Enquiry'); }
